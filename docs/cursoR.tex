@@ -24,8 +24,8 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
-            pdftitle={Curso de R para meteorología IAG/USP},
-            pdfauthor={Sergio Ibarra-Espinosa e possivelmente outros (u r invited to collaborate)},
+            pdftitle={Curso de R para meteorologia IAG/USP},
+            pdfauthor={Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r invited to collaborate)},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -116,11 +116,11 @@
 }
 
 \setlength{\droptitle}{-2em}
-  \title{Curso de R para meteorología IAG/USP}
+  \title{Curso de R para meteorologia IAG/USP}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-  \author{Sergio Ibarra-Espinosa e possivelmente outros (u r invited to
-collaborate)}
+  \author{Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r
+invited to collaborate)}
   \preauthor{\centering\large\emph}
   \postauthor{\par}
   \predate{\centering\large\emph}
@@ -159,7 +159,7 @@ collaborate)}
 }
 \chapter{Pre-requisitos do sistema}\label{primero}
 
-Em Windows, install alem do R, Rtools
+Em Windows, instale além do R, Rtools
 \url{https://cran.r-project.org/bin/windows/Rtools/}
 
 Em MAC instale netcdf e:
@@ -197,7 +197,7 @@ Em Ubuntu:
 
 \section{Pacotes usados neste curso}\label{pacotes-usados-neste-curso}
 
-Para fazer ete curso instale os seguentes pacotes como se indica:
+Para fazer este curso instale os seguintes pacotes como indicado:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -207,7 +207,7 @@ Para fazer ete curso instale os seguentes pacotes como se indica:
 \NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"r-spatial/mapview"}\NormalTok{)}
 \NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"r-spatial/stars"}\NormalTok{)}
 \KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"raster"}\NormalTok{, }\StringTok{"sp"}\NormalTok{, }\StringTok{"rgdal"}\NormalTok{, }\StringTok{"maptools"}\NormalTok{, }\StringTok{"ncdf4"}\NormalTok{))}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"cptcity"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"cptcity"}\NormalTok{, }\StringTok{"data.table"}\NormalTok{, }\StringTok{"openair"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -215,10 +215,10 @@ Para fazer ete curso instale os seguentes pacotes como se indica:
 \tightlist
 \item
   \href{https://CRAN.R-project.org/package=devtools}{devtools} é um
-  pacote para instalar pacotes de diferentes repositorios
+  pacote para instalar pacotes de diferentes repositórios
 \item
-  \href{https://github.com/tidyverse}{tidyverse} é universo de pacotes
-  do Hadley Wickham. A instalação tem que ser usando devtools pois
+  \href{https://github.com/tidyverse}{tidyverse} é o universo de pacotes
+  do Hadley Wickham. A instalação tem que ser usando devtools, pois
   precisamos plotar os objetos espacias sf usando
   \href{https://www.isgeomsfinggplot2yet.site/}{geom\_sf}.
 \item
@@ -226,14 +226,19 @@ Para fazer ete curso instale os seguentes pacotes como se indica:
   \href{https://github.com/r-spatial/mapbiew}{mapview},
   \href{https://github.com/r-spatial/stars}{stars}, raster, sp, rgdal e
   maptools são para a parte espacial. Lembrar que os objetos em
-  meteorologias são espacio-temporais.
+  meteorologias são espaço-temporais.
 \item
   ncdf4 é um pacote para manipular arquivos NetCDF.
 \item
   \href{https://ibarraespinosa.github.io/cptcity/}{cptcity} é um pacote
   que tem 7140 paletas de cores do arquivo web cpt-city
   (\url{http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html}).
+\item
+  \href{http://davidcarslaw.github.io/openair/}{openair} é um pacote
+  para trabalhar com dados de qualidade do ar e meteorologia.
 \end{itemize}
+
+Se faltarem dependencias de sistema, instale elas e instale os pacotes.
 
 \section{Colaborar}\label{colaborar}
 
@@ -241,14 +246,14 @@ A forma preferida de colaboração é com pull-requests em
 \url{https://github.com/ibarraespinosa/cursoR/pull/new/master}. Lembre
 de aplicar a Guia de Estilo de R de Google
 (\url{https://google.github.io/styleguide/Rguide.xml}) ou com o formato
-de formatR \url{https://yihui.name/formatr/}. Em poucas palabras, lembre
-que seu codigo vai ser lido por seres humanos. Se quiser tem aceso no
-repoitorio deste curso, me contacte. Tem um botton para editar qualquer
-pagina.
+de formatR \url{https://yihui.name/formatr/}. Em poucas palavras, lembre
+que seu código vai ser lido por seres humanos. Se quiser tem acesso no
+repositório deste curso, me contate. Tem um botão para editar qualquer
+página.
 
 \section{Aportar com dados}\label{aportar-com-dados}
 
-Se voce tem dados para fazer este curso mais legal, por favor, edite
+Se você tem dados para fazer este curso mais legal, por favor, edite
 este aquivo e com pull request, eu vou fazer um merge para poder.
 
 \begin{enumerate}
@@ -697,18 +702,18 @@ Da pra fazer secuencias:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2018-04-29 13:06:05 -03" "2018-04-29 14:06:05 -03"
-##  [3] "2018-04-29 15:06:05 -03" "2018-04-29 16:06:05 -03"
-##  [5] "2018-04-29 17:06:05 -03" "2018-04-29 18:06:05 -03"
-##  [7] "2018-04-29 19:06:05 -03" "2018-04-29 20:06:05 -03"
-##  [9] "2018-04-29 21:06:05 -03" "2018-04-29 22:06:05 -03"
-## [11] "2018-04-29 23:06:05 -03" "2018-04-30 00:06:05 -03"
-## [13] "2018-04-30 01:06:05 -03" "2018-04-30 02:06:05 -03"
-## [15] "2018-04-30 03:06:05 -03" "2018-04-30 04:06:05 -03"
-## [17] "2018-04-30 05:06:05 -03" "2018-04-30 06:06:05 -03"
-## [19] "2018-04-30 07:06:05 -03" "2018-04-30 08:06:05 -03"
-## [21] "2018-04-30 09:06:05 -03" "2018-04-30 10:06:05 -03"
-## [23] "2018-04-30 11:06:05 -03" "2018-04-30 12:06:05 -03"
+##  [1] "2018-04-29 18:46:07 -03" "2018-04-29 19:46:07 -03"
+##  [3] "2018-04-29 20:46:07 -03" "2018-04-29 21:46:07 -03"
+##  [5] "2018-04-29 22:46:07 -03" "2018-04-29 23:46:07 -03"
+##  [7] "2018-04-30 00:46:07 -03" "2018-04-30 01:46:07 -03"
+##  [9] "2018-04-30 02:46:07 -03" "2018-04-30 03:46:07 -03"
+## [11] "2018-04-30 04:46:07 -03" "2018-04-30 05:46:07 -03"
+## [13] "2018-04-30 06:46:07 -03" "2018-04-30 07:46:07 -03"
+## [15] "2018-04-30 08:46:07 -03" "2018-04-30 09:46:07 -03"
+## [17] "2018-04-30 10:46:07 -03" "2018-04-30 11:46:07 -03"
+## [19] "2018-04-30 12:46:07 -03" "2018-04-30 13:46:07 -03"
+## [21] "2018-04-30 14:46:07 -03" "2018-04-30 15:46:07 -03"
+## [23] "2018-04-30 16:46:07 -03" "2018-04-30 17:46:07 -03"
 \end{verbatim}
 
 funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
@@ -720,8 +725,8 @@ funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "domingo" "domingo" "domingo" "domingo" "domingo" "domingo" "domingo"
-##  [8] "domingo" "domingo" "domingo" "domingo" "segunda" "segunda" "segunda"
+##  [1] "domingo" "domingo" "domingo" "domingo" "domingo" "domingo" "segunda"
+##  [8] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
 ## [15] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
 ## [22] "segunda" "segunda" "segunda"
 \end{verbatim}
@@ -746,10 +751,10 @@ funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 
 \begin{verbatim}
 ## Time differences in days
-##  [1] 17650.67 17650.71 17650.75 17650.80 17650.84 17650.88 17650.92
-##  [8] 17650.96 17651.00 17651.05 17651.09 17651.13 17651.17 17651.21
-## [15] 17651.25 17651.30 17651.34 17651.38 17651.42 17651.46 17651.50
-## [22] 17651.55 17651.59 17651.63
+##  [1] 17650.91 17650.95 17650.99 17651.03 17651.07 17651.12 17651.16
+##  [8] 17651.20 17651.24 17651.28 17651.32 17651.37 17651.41 17651.45
+## [15] 17651.49 17651.53 17651.57 17651.62 17651.66 17651.70 17651.74
+## [22] 17651.78 17651.82 17651.87
 ## attr(,"origin")
 ## [1] "1970-01-01 GMT"
 \end{verbatim}
@@ -784,26 +789,26 @@ semana.
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] domingo domingo domingo domingo domingo domingo domingo domingo
-##   [9] domingo domingo domingo segunda segunda segunda segunda segunda
+##   [1] domingo domingo domingo domingo domingo domingo segunda segunda
+##   [9] segunda segunda segunda segunda segunda segunda segunda segunda
 ##  [17] segunda segunda segunda segunda segunda segunda segunda segunda
-##  [25] segunda segunda segunda segunda segunda segunda segunda segunda
-##  [33] segunda segunda segunda terça   terça   terça   terça   terça  
+##  [25] segunda segunda segunda segunda segunda segunda terça   terça  
+##  [33] terça   terça   terça   terça   terça   terça   terça   terça  
 ##  [41] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [49] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [57] terça   terça   terça   quarta  quarta  quarta  quarta  quarta 
+##  [49] terça   terça   terça   terça   terça   terça   quarta  quarta 
+##  [57] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
 ##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [73] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [81] quarta  quarta  quarta  quinta  quinta  quinta  quinta  quinta 
+##  [73] quarta  quarta  quarta  quarta  quarta  quarta  quinta  quinta 
+##  [81] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
 ##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [97] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-## [105] quinta  quinta  quinta  sexta   sexta   sexta   sexta   sexta  
+##  [97] quinta  quinta  quinta  quinta  quinta  quinta  sexta   sexta  
+## [105] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
 ## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-## [121] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-## [129] sexta   sexta   sexta   sábado  sábado  sábado  sábado  sábado 
+## [121] sexta   sexta   sexta   sexta   sexta   sexta   sábado  sábado 
+## [129] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
 ## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [145] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [153] sábado  sábado  sábado  domingo domingo domingo domingo domingo
+## [145] sábado  sábado  sábado  sábado  sábado  sábado  domingo domingo
+## [153] domingo domingo domingo domingo domingo domingo domingo domingo
 ## [161] domingo domingo domingo domingo domingo domingo domingo domingo
 ## Levels: domingo quarta quinta sábado segunda sexta terça
 \end{verbatim}
@@ -912,7 +917,216 @@ Então
 \chapter{Importando e exportando dados em
 R}\label{importando-e-exportando-dados-em-r}
 
-We describe our methods in this chapter.
+\section{data-frames}\label{data-frames}
+
+Probabelmente um dos promeiros objetos que vamos usar quando começamos
+usar R. Pensa num data-frame como uma planilha de Libreoffice (o excel).
+Os data-frame pode ser criaos como foi visto na seção anterior. O
+principal, é que temos varias funções para ler data-frames no R, entre
+elas
+
+\begin{itemize}
+\tightlist
+\item
+  read.csv
+\item
+  read.csv2
+\item
+  read.table
+\end{itemize}
+
+Agora vamos a ler dados do repositorio usando read.table, mas primeiro
+vamos lembrar que se tu precisar ver a ajuda da função, tem que escrever
+no R \texttt{?read.table}. Então, agora vamos ver os argumentos da
+função:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(read.table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (file, header = FALSE, sep = "", quote = "\"'", dec = ".", 
+##     numerals = c("allow.loss", "warn.loss", "no.loss"), row.names, 
+##     col.names, as.is = !stringsAsFactors, na.strings = "NA", 
+##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE, 
+##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE, 
+##     comment.char = "#", allowEscapes = FALSE, flush = FALSE, 
+##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = "", 
+##     encoding = "unknown", text, skipNul = FALSE) 
+## NULL
+\end{verbatim}
+
+Aqui vem-se os valores default dos argumentos da função
+\texttt{read.table}. O terceiro argumento é sep, com valores por default
+= ``''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Agora vamos usar a funções \texttt{head} and \texttt{tail} para ver as
+primeiras e as ultimas 6 linhas do data-frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido
+## 2             ppb            9          -    Não
+## 3             ppb            9          -    Sim
+## 4             ppb            5          -    Sim
+## 5             ppb            4          -    Sim
+## 6             ppb            5          -    Sim
+## 7             ppb            5          -    Sim
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim
+\end{verbatim}
+
+Agora vamos ler os mesmos dados com outro formato e testar e read.table
+funciona do mesmo jeito
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df2 <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt"}\NormalTok{)}
+\CommentTok{# Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : }
+\CommentTok{# linha 1 não tinha 6 elementos}
+\end{Highlighting}
+\end{Shaded}
+
+Vemos a mensagem de error, mas o que quer dizer.
+
+\textbf{Se tu recever um banco de dados tipo .txt e quer abrir no
+R\ldots{} ABRE ELE COM BLOCO DE NOTAS PRIMEIRO!!!}
+
+O primeiro arquivo:
+
+\includegraphics[width=18.47in]{figuras/f1}
+
+O segundo arquivo é:
+
+\includegraphics[width=15.33in]{figuras/f2}
+
+qual é a diferença?
+
+Como vemos o segundo arquivo tem separação de ``;'', entao, temos que
+lero arquivo assim:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df2 <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{";"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(df2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido
+## 2             ppb            9          -    Não
+## 3             ppb            9          -    Sim
+## 4             ppb            5          -    Sim
+## 5             ppb            4          -    Sim
+## 6             ppb            5          -    Sim
+## 7             ppb            5          -    Sim
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(df2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim
+\end{verbatim}
+
+\section{data.table}\label{data.table}
+
+data.table é um pacote que apresenta a classe \texttt{data.table}, que é
+como uma versão melhorada da classe \texttt{data-frame} O termo
+especifico é que \texttt{data-table} tem herencia (inherits) da classe
+\texttt{data.frame}
 
 \chapter{Applications}\label{applications}
 

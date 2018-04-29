@@ -35,3 +35,46 @@ head(df)
 tail(df)
 ```
 
+
+Agora vamos ler os mesmos dados com outro formato e testar e read.table funciona
+do mesmo jeito
+```{r eval = FALSE}
+df2 <- read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt")
+# Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : 
+# linha 1 não tinha 6 elementos
+```
+
+Vemos a mensagem de error, mas o que quer dizer.
+
+**Se tu recever um banco de dados tipo .txt e quer abrir no R... ABRE ELE COM BLOCO DE NOTAS PRIMEIRO!!!**
+
+O primeiro arquivo:
+
+```{r echo = FALSE}
+knitr::include_graphics("figuras/f1.png")
+```
+
+O segundo arquivo é:
+
+```{r echo = FALSE}
+knitr::include_graphics("figuras/f2.png")
+```
+
+
+qual é a diferença?
+
+
+Como vemos o segundo arquivo tem separação de ";", entao, temos que lero arquivo
+assim:
+
+```{r}
+df2 <- read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt", sep = ";")
+head(df2)
+tail(df2)
+```
+
+## data.table
+
+data.table é um pacote que apresenta a classe `data.table`, que é como uma versão
+melhorada da classe `data-frame` O termo especifico é que `data-table` tem 
+herencia (inherits) da classe `data.frame`

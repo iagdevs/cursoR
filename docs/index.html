@@ -5,24 +5,24 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Curso de R para meteorología IAG/USP</title>
-  <meta name="description" content="Este é um curso de R para meteorologia.O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação">
+  <title>Curso de R para meteorologia IAG/USP</title>
+  <meta name="description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação">
   <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Curso de R para meteorología IAG/USP" />
+  <meta property="og:title" content="Curso de R para meteorologia IAG/USP" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este é um curso de R para meteorologia.O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
+  <meta property="og:description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Curso de R para meteorología IAG/USP" />
+  <meta name="twitter:title" content="Curso de R para meteorologia IAG/USP" />
   
-  <meta name="twitter:description" content="Este é um curso de R para meteorologia.O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
+  <meta name="twitter:description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
   
 
-<meta name="author" content="Sergio Ibarra-Espinosa e possivelmente outros (u r invited to collaborate)">
+<meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r invited to collaborate)">
 
 
 <meta name="date" content="2018-04-29">
@@ -121,7 +121,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
 <li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> <code>data.frames</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html"><i class="fa fa-check"></i><b>4</b> Importando e exportando dados em R</a></li>
+<li class="chapter" data-level="4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html"><i class="fa fa-check"></i><b>4</b> Importando e exportando dados em R</a><ul>
+<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> data-frames</a></li>
+<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data.table"><i class="fa fa-check"></i><b>4.2</b> data.table</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
 <li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
 <li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
@@ -140,7 +143,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de R para meteorología IAG/USP</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de R para meteorologia IAG/USP</a>
           </h1>
         </div>
 
@@ -149,13 +152,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Curso de R para meteorología IAG/USP</h1>
-<h4 class="author"><em>Sergio Ibarra-Espinosa e possivelmente outros (u r invited to collaborate)</em></h4>
+<h1 class="title">Curso de R para meteorologia IAG/USP</h1>
+<h4 class="author"><em>Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r invited to collaborate)</em></h4>
 <h4 class="date"><em>2018-04-29</em></h4>
 </div>
 <div id="primero" class="section level1">
 <h1><span class="header-section-number">Capitulo 1</span> Pre-requisitos do sistema</h1>
-<p>Em Windows, install alem do R, Rtools <a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></p>
+<p>Em Windows, instale além do R, Rtools <a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></p>
 <p>Em MAC instale netcdf e:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">brew</span> unlink gdal
 <span class="ex">brew</span> tap osgeo/osgeo4mac <span class="kw">&amp;&amp;</span> <span class="ex">brew</span> tap --repair
@@ -179,29 +182,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <span class="ex">-</span> sudo apt-get install --yes libproj-dev libgeos-dev libgdal-dev libnetcdf-dev  netcdf-bin gdal-bin</code></pre></div>
 <div id="pacotes-usados-neste-curso" class="section level2">
 <h2><span class="header-section-number">1.1</span> Pacotes usados neste curso</h2>
-<p>Para fazer ete curso instale os seguentes pacotes como se indica:</p>
+<p>Para fazer este curso instale os seguintes pacotes como indicado:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;tidyverse/tidyverse&quot;</span>)
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;r-spatial/sf&quot;</span>)
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;r-spatial/mapview&quot;</span>)
 devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;r-spatial/stars&quot;</span>)
 <span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;raster&quot;</span>, <span class="st">&quot;sp&quot;</span>, <span class="st">&quot;rgdal&quot;</span>, <span class="st">&quot;maptools&quot;</span>, <span class="st">&quot;ncdf4&quot;</span>))
-<span class="kw">install.packages</span>(<span class="st">&quot;cptcity&quot;</span>)</code></pre></div>
+<span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;cptcity&quot;</span>, <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;openair&quot;</span>))</code></pre></div>
 <ul>
-<li><a href="https://CRAN.R-project.org/package=devtools">devtools</a> é um pacote para instalar pacotes de diferentes repositorios</li>
-<li><a href="https://github.com/tidyverse">tidyverse</a> é universo de pacotes do Hadley Wickham. A instalação tem que ser usando devtools pois precisamos plotar os objetos espacias sf usando <a href="https://www.isgeomsfinggplot2yet.site/">geom_sf</a>.</li>
-<li><a href="https://github.com/r-spatial/sf">sf</a> e <a href="https://github.com/r-spatial/mapbiew">mapview</a>, <a href="https://github.com/r-spatial/stars">stars</a>, raster, sp, rgdal e maptools são para a parte espacial. Lembrar que os objetos em meteorologias são espacio-temporais.</li>
+<li><a href="https://CRAN.R-project.org/package=devtools">devtools</a> é um pacote para instalar pacotes de diferentes repositórios</li>
+<li><a href="https://github.com/tidyverse">tidyverse</a> é o universo de pacotes do Hadley Wickham. A instalação tem que ser usando devtools, pois precisamos plotar os objetos espacias sf usando <a href="https://www.isgeomsfinggplot2yet.site/">geom_sf</a>.</li>
+<li><a href="https://github.com/r-spatial/sf">sf</a> e <a href="https://github.com/r-spatial/mapbiew">mapview</a>, <a href="https://github.com/r-spatial/stars">stars</a>, raster, sp, rgdal e maptools são para a parte espacial. Lembrar que os objetos em meteorologias são espaço-temporais.</li>
 <li>ncdf4 é um pacote para manipular arquivos NetCDF.</li>
 <li><a href="https://ibarraespinosa.github.io/cptcity/">cptcity</a> é um pacote que tem 7140 paletas de cores do arquivo web cpt-city (<a href="http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html" class="uri">http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html</a>).</li>
+<li><a href="http://davidcarslaw.github.io/openair/">openair</a> é um pacote para trabalhar com dados de qualidade do ar e meteorologia.</li>
 </ul>
+<p>Se faltarem dependencias de sistema, instale elas e instale os pacotes.</p>
 </div>
 <div id="colaborar" class="section level2">
 <h2><span class="header-section-number">1.2</span> Colaborar</h2>
-<p>A forma preferida de colaboração é com pull-requests em <a href="https://github.com/ibarraespinosa/cursoR/pull/new/master" class="uri">https://github.com/ibarraespinosa/cursoR/pull/new/master</a>. Lembre de aplicar a Guia de Estilo de R de Google (<a href="https://google.github.io/styleguide/Rguide.xml" class="uri">https://google.github.io/styleguide/Rguide.xml</a>) ou com o formato de formatR <a href="https://yihui.name/formatr/" class="uri">https://yihui.name/formatr/</a>. Em poucas palabras, lembre que seu codigo vai ser lido por seres humanos. Se quiser tem aceso no repoitorio deste curso, me contacte. Tem um botton para editar qualquer pagina.</p>
+<p>A forma preferida de colaboração é com pull-requests em <a href="https://github.com/ibarraespinosa/cursoR/pull/new/master" class="uri">https://github.com/ibarraespinosa/cursoR/pull/new/master</a>. Lembre de aplicar a Guia de Estilo de R de Google (<a href="https://google.github.io/styleguide/Rguide.xml" class="uri">https://google.github.io/styleguide/Rguide.xml</a>) ou com o formato de formatR <a href="https://yihui.name/formatr/" class="uri">https://yihui.name/formatr/</a>. Em poucas palavras, lembre que seu código vai ser lido por seres humanos. Se quiser tem acesso no repositório deste curso, me contate. Tem um botão para editar qualquer página.</p>
 </div>
 <div id="aportar-com-dados" class="section level2">
 <h2><span class="header-section-number">1.3</span> Aportar com dados</h2>
-<p>Se voce tem dados para fazer este curso mais legal, por favor, edite este aquivo e com pull request, eu vou fazer um merge para poder.</p>
+<p>Se você tem dados para fazer este curso mais legal, por favor, edite este aquivo e com pull request, eu vou fazer um merge para poder.</p>
 <ol style="list-style-type: decimal">
 <li>NCEP: <a href="ftp://nomads.ncdc.noaa.gov/GFS/analysis_only/" class="uri">ftp://nomads.ncdc.noaa.gov/GFS/analysis_only/</a></li>
 <li></li>

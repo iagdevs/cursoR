@@ -5,24 +5,24 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Curso de R para meteorología IAG/USP</title>
-  <meta name="description" content="Este é um curso de R para meteorologia.O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação">
+  <title>Curso de R para meteorologia IAG/USP</title>
+  <meta name="description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação">
   <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Curso de R para meteorología IAG/USP" />
+  <meta property="og:title" content="Curso de R para meteorologia IAG/USP" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este é um curso de R para meteorologia.O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
+  <meta property="og:description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Curso de R para meteorología IAG/USP" />
+  <meta name="twitter:title" content="Curso de R para meteorologia IAG/USP" />
   
-  <meta name="twitter:description" content="Este é um curso de R para meteorologia.O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
+  <meta name="twitter:description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
   
 
-<meta name="author" content="Sergio Ibarra-Espinosa e possivelmente outros (u r invited to collaborate)">
+<meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r invited to collaborate)">
 
 
 <meta name="date" content="2018-04-29">
@@ -121,7 +121,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
 <li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> <code>data.frames</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html"><i class="fa fa-check"></i><b>4</b> Importando e exportando dados em R</a></li>
+<li class="chapter" data-level="4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html"><i class="fa fa-check"></i><b>4</b> Importando e exportando dados em R</a><ul>
+<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> data-frames</a></li>
+<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data.table"><i class="fa fa-check"></i><b>4.2</b> data.table</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
 <li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
 <li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
@@ -140,7 +143,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de R para meteorología IAG/USP</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de R para meteorologia IAG/USP</a>
           </h1>
         </div>
 
@@ -150,8 +153,135 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="importando-e-exportando-dados-em-r" class="section level1">
 <h1><span class="header-section-number">Capitulo 4</span> Importando e exportando dados em R</h1>
-<p>We describe our methods in this chapter.</p>
+<div id="data-frames" class="section level2">
+<h2><span class="header-section-number">4.1</span> data-frames</h2>
+<p>Probabelmente um dos promeiros objetos que vamos usar quando começamos usar R. Pensa num data-frame como uma planilha de Libreoffice (o excel). Os data-frame pode ser criaos como foi visto na seção anterior. O principal, é que temos varias funções para ler data-frames no R, entre elas</p>
+<ul>
+<li>read.csv</li>
+<li>read.csv2</li>
+<li>read.table</li>
+</ul>
+<p>Agora vamos a ler dados do repositorio usando read.table, mas primeiro vamos lembrar que se tu precisar ver a ajuda da função, tem que escrever no R <code>?read.table</code>. Então, agora vamos ver os argumentos da função:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(read.table)</code></pre></div>
+<pre><code>## function (file, header = FALSE, sep = &quot;&quot;, quote = &quot;\&quot;&#39;&quot;, dec = &quot;.&quot;, 
+##     numerals = c(&quot;allow.loss&quot;, &quot;warn.loss&quot;, &quot;no.loss&quot;), row.names, 
+##     col.names, as.is = !stringsAsFactors, na.strings = &quot;NA&quot;, 
+##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE, 
+##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE, 
+##     comment.char = &quot;#&quot;, allowEscapes = FALSE, flush = FALSE, 
+##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = &quot;&quot;, 
+##     encoding = &quot;unknown&quot;, text, skipNul = FALSE) 
+## NULL</code></pre>
+<p>Aqui vem-se os valores default dos argumentos da função <code>read.table</code>. O terceiro argumento é sep, com valores por default = “”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>)</code></pre></div>
+<p>Agora vamos usar a funções <code>head</code> and <code>tail</code> para ver as primeiras e as ultimas 6 linhas do data-frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido
+## 2             ppb            9          -    Não
+## 3             ppb            9          -    Sim
+## 4             ppb            5          -    Sim
+## 5             ppb            4          -    Sim
+## 6             ppb            5          -    Sim
+## 7             ppb            5          -    Sim</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(df)</code></pre></div>
+<pre><code>##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim</code></pre>
+<p>Agora vamos ler os mesmos dados com outro formato e testar e read.table funciona do mesmo jeito</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt&quot;</span>)
+<span class="co"># Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : </span>
+<span class="co"># linha 1 não tinha 6 elementos</span></code></pre></div>
+<p>Vemos a mensagem de error, mas o que quer dizer.</p>
+<p><strong>Se tu recever um banco de dados tipo .txt e quer abrir no R… ABRE ELE COM BLOCO DE NOTAS PRIMEIRO!!!</strong></p>
+<p>O primeiro arquivo:</p>
+<p><img src="figuras/f1.png" width="665" /></p>
+<p>O segundo arquivo é:</p>
+<p><img src="figuras/f2.png" width="552" /></p>
+<p>qual é a diferença?</p>
+<p>Como vemos o segundo arquivo tem separação de “;”, entao, temos que lero arquivo assim:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
+<span class="kw">head</span>(df2)</code></pre></div>
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido
+## 2             ppb            9          -    Não
+## 3             ppb            9          -    Sim
+## 4             ppb            5          -    Sim
+## 5             ppb            4          -    Sim
+## 6             ppb            5          -    Sim
+## 7             ppb            5          -    Sim</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(df2)</code></pre></div>
+<pre><code>##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim</code></pre>
+</div>
+<div id="data.table" class="section level2">
+<h2><span class="header-section-number">4.2</span> data.table</h2>
+<p>data.table é um pacote que apresenta a classe <code>data.table</code>, que é como uma versão melhorada da classe <code>data-frame</code> O termo especifico é que <code>data-table</code> tem herencia (inherits) da classe <code>data.frame</code></p>
 
+</div>
 </div>
             </section>
 
