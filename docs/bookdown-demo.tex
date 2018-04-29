@@ -242,7 +242,21 @@ A forma preferida de colaboração é com pull-requests em
 de aplicar a Guia de Estilo de R de Google
 (\url{https://google.github.io/styleguide/Rguide.xml}) ou com o formato
 de formatR \url{https://yihui.name/formatr/}. Em poucas palabras, lembre
-que seu codigo vai ser lido por seres humanos.
+que seu codigo vai ser lido por seres humanos. Se quiser tem aceso no
+repoitorio deste curso, me contacte.
+
+\section{Aportar com dados}\label{aportar-com-dados}
+
+Se voce tem dados para fazer este curso mais legal, por favor, edite
+este aquivo e com pull request, eu vou fazer um merge para poder.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  NCEP: \url{ftp://nomads.ncdc.noaa.gov/GFS/analysis_only/}
+\item
+\item
+\end{enumerate}
 
 \chapter{Intro}\label{intro}
 
@@ -682,18 +696,18 @@ Da pra fazer secuencias:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2018-04-29 12:56:01 -03" "2018-04-29 13:56:01 -03"
-##  [3] "2018-04-29 14:56:01 -03" "2018-04-29 15:56:01 -03"
-##  [5] "2018-04-29 16:56:01 -03" "2018-04-29 17:56:01 -03"
-##  [7] "2018-04-29 18:56:01 -03" "2018-04-29 19:56:01 -03"
-##  [9] "2018-04-29 20:56:01 -03" "2018-04-29 21:56:01 -03"
-## [11] "2018-04-29 22:56:01 -03" "2018-04-29 23:56:01 -03"
-## [13] "2018-04-30 00:56:01 -03" "2018-04-30 01:56:01 -03"
-## [15] "2018-04-30 02:56:01 -03" "2018-04-30 03:56:01 -03"
-## [17] "2018-04-30 04:56:01 -03" "2018-04-30 05:56:01 -03"
-## [19] "2018-04-30 06:56:01 -03" "2018-04-30 07:56:01 -03"
-## [21] "2018-04-30 08:56:01 -03" "2018-04-30 09:56:01 -03"
-## [23] "2018-04-30 10:56:01 -03" "2018-04-30 11:56:01 -03"
+##  [1] "2018-04-29 13:00:51 -03" "2018-04-29 14:00:51 -03"
+##  [3] "2018-04-29 15:00:51 -03" "2018-04-29 16:00:51 -03"
+##  [5] "2018-04-29 17:00:51 -03" "2018-04-29 18:00:51 -03"
+##  [7] "2018-04-29 19:00:51 -03" "2018-04-29 20:00:51 -03"
+##  [9] "2018-04-29 21:00:51 -03" "2018-04-29 22:00:51 -03"
+## [11] "2018-04-29 23:00:51 -03" "2018-04-30 00:00:51 -03"
+## [13] "2018-04-30 01:00:51 -03" "2018-04-30 02:00:51 -03"
+## [15] "2018-04-30 03:00:51 -03" "2018-04-30 04:00:51 -03"
+## [17] "2018-04-30 05:00:51 -03" "2018-04-30 06:00:51 -03"
+## [19] "2018-04-30 07:00:51 -03" "2018-04-30 08:00:51 -03"
+## [21] "2018-04-30 09:00:51 -03" "2018-04-30 10:00:51 -03"
+## [23] "2018-04-30 11:00:51 -03" "2018-04-30 12:00:51 -03"
 \end{verbatim}
 
 funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
@@ -706,7 +720,7 @@ funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 
 \begin{verbatim}
 ##  [1] "domingo" "domingo" "domingo" "domingo" "domingo" "domingo" "domingo"
-##  [8] "domingo" "domingo" "domingo" "domingo" "domingo" "segunda" "segunda"
+##  [8] "domingo" "domingo" "domingo" "domingo" "segunda" "segunda" "segunda"
 ## [15] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
 ## [22] "segunda" "segunda" "segunda"
 \end{verbatim}
@@ -731,10 +745,10 @@ funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 
 \begin{verbatim}
 ## Time differences in days
-##  [1] 17650.66 17650.71 17650.75 17650.79 17650.83 17650.87 17650.91
-##  [8] 17650.96 17651.00 17651.04 17651.08 17651.12 17651.16 17651.21
-## [15] 17651.25 17651.29 17651.33 17651.37 17651.41 17651.46 17651.50
-## [22] 17651.54 17651.58 17651.62
+##  [1] 17650.67 17650.71 17650.75 17650.79 17650.83 17650.88 17650.92
+##  [8] 17650.96 17651.00 17651.04 17651.08 17651.13 17651.17 17651.21
+## [15] 17651.25 17651.29 17651.33 17651.38 17651.42 17651.46 17651.50
+## [22] 17651.54 17651.58 17651.63
 ## attr(,"origin")
 ## [1] "1970-01-01 GMT"
 \end{verbatim}
@@ -770,25 +784,25 @@ semana.
 
 \begin{verbatim}
 ##   [1] domingo domingo domingo domingo domingo domingo domingo domingo
-##   [9] domingo domingo domingo domingo segunda segunda segunda segunda
+##   [9] domingo domingo domingo segunda segunda segunda segunda segunda
 ##  [17] segunda segunda segunda segunda segunda segunda segunda segunda
 ##  [25] segunda segunda segunda segunda segunda segunda segunda segunda
-##  [33] segunda segunda segunda segunda terça   terça   terça   terça  
+##  [33] segunda segunda segunda terça   terça   terça   terça   terça  
 ##  [41] terça   terça   terça   terça   terça   terça   terça   terça  
 ##  [49] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [57] terça   terça   terça   terça   quarta  quarta  quarta  quarta 
+##  [57] terça   terça   terça   quarta  quarta  quarta  quarta  quarta 
 ##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
 ##  [73] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [81] quarta  quarta  quarta  quarta  quinta  quinta  quinta  quinta 
+##  [81] quarta  quarta  quarta  quinta  quinta  quinta  quinta  quinta 
 ##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
 ##  [97] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-## [105] quinta  quinta  quinta  quinta  sexta   sexta   sexta   sexta  
+## [105] quinta  quinta  quinta  sexta   sexta   sexta   sexta   sexta  
 ## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
 ## [121] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-## [129] sexta   sexta   sexta   sexta   sábado  sábado  sábado  sábado 
+## [129] sexta   sexta   sexta   sábado  sábado  sábado  sábado  sábado 
 ## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
 ## [145] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [153] sábado  sábado  sábado  sábado  domingo domingo domingo domingo
+## [153] sábado  sábado  sábado  domingo domingo domingo domingo domingo
 ## [161] domingo domingo domingo domingo domingo domingo domingo domingo
 ## Levels: domingo quarta quinta sábado segunda sexta terça
 \end{verbatim}
@@ -894,7 +908,8 @@ Então
 ## [1] 3 1
 \end{verbatim}
 
-\chapter{Methods}\label{methods}
+\chapter{Importando e exportando dados em
+R}\label{importando-e-exportando-dados-em-r}
 
 We describe our methods in this chapter.
 
