@@ -4,14 +4,34 @@
 
 Probabelmente um dos promeiros objetos que vamos usar quando começamos usar R.
 Pensa num data-frame como uma planilha de Libreoffice (o excel). Os data-frame
-pode serm criaos como foi visto no 
+pode ser criaos como foi visto na seção anterior. O principal, é que temos varias
+funções para ler data-frames no R, entre elas
+
+- read.csv
+- read.csv2
+- read.table
+
+Agora vamos a ler dados do repositorio usando read.table, mas primeiro vamos lembrar
+que se tu precisar ver a ajuda da função, tem que escrever no R `?read.table`.
+Então, agora vamos ver os argumentos da função:
+
+```{r}
+args(read.table)
+```
+
+Aqui vem-se os valores default dos argumentos da função `read.table`. O terceiro
+argumento é sep, com valores por default = "". 
 
 
 ```{r}
-df <- readRDS("~/MEGA/PhDgrive/Health/NOxIPEN.rds")
+df <- read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt")
+```
+
+Agora vamos usar a funções `head` and `tail` para ver as primeiras e as ultimas
+6 linhas do data-frame.
+
+```{r}
 head(df)
-df[, 14:length(df)] <- NULL
-df[, 1] <- NULL
-write.table(df, "dados/NOXIPEN2014.txt", sep = "\t")
+tail(df)
 ```
 
