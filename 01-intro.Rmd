@@ -1,10 +1,10 @@
 # Intro {#intro}
 
-Este curso é para pos, então vamos ver conteúdo rapidamente e se não da tempo,
-este curso esta online no sitio https://github.com/atmoschem/cursorIAG.
+Este curso é para pós-graduação, então vamos ver o conteúdo rapidamente. Caso não der tempo,
+este curso está online no sítio https://github.com/atmoschem/cursorIAG.
 
 Eu tento usar [BASE](http://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html)
-sempre que posso, e se não da ai vou para outros paradigmas.
+sempre que posso e, se não der, só então vou para outros paradigmas.
 
 Outros pacotes de BASE: [utils](http://stat.ethz.ch/R-manual/R-devel/library/utils/html/00Index.html), [stats](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html), [datasets](http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html), [graphics](http://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html),
 [grDevices](https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html), [grid](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html), [methods](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/00Index.html), [tools](https://stat.ethz.ch/R-manual/R-devel/library/tools/html/00Index.html), [parallel](https://stat.ethz.ch/R-manual/R-devel/library/parallel/html/00Index.html), [compiler](https://stat.ethz.ch/R-manual/R-devel/library/compiler/html/00Index.html), [splines](https://stat.ethz.ch/R-manual/R-devel/library/splines/html/00Index.html), [tcltk](https://stat.ethz.ch/R-manual/R-devel/library/tcltk/html/00Index.html) , [stats4](https://stat.ethz.ch/R-manual/R-devel/library/stats4/html/00Index.html).
@@ -12,13 +12,13 @@ Outros pacotes de BASE: [utils](http://stat.ethz.ch/R-manual/R-devel/library/uti
 
 Veja [outros](https://cran.r-project.org/web/packages/available_packages_by_name.html) pacotes.
 
-Este curso esta baseado no livro [R Programming for Data Science](https://leanpub.com/rprogramming).
+Este curso está baseado no livro [R Programming for Data Science](https://leanpub.com/rprogramming).
 
 Vamos usar [Rstudio](https://www.rstudio.com/)
 
 **Dica:**
 
-- Se não sabe como usar uma função, escreva: `?função`.
-- As funções tem argumentos, use **TAB** para ver eles numa função.
+- Se não souber usar uma função, escreva: `?função`.
+- As funções têm argumentos, use **TAB** para ver elas numa função.
 
 Vamos lá!
