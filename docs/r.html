@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Curso de R para meteorología IAG/USP</title>
+  <meta name="description" content="Este é um curso de R para meteorologia.O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Curso de R para meteorología IAG/USP" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este é um curso de R para meteorologia.O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Curso de R para meteorología IAG/USP" />
+  
+  <meta name="twitter:description" content="Este é um curso de R para meteorologia.O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
+  
+
+<meta name="author" content="Sergio Ibarra-Espinosa e possivelmente outros (u r invited to collaborate)">
+
+
+<meta name="date" content="2018-04-29">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="methods.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pre-requisitos do sistema</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.1</b> Pacotes usados neste curso</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.2</b> Colaborar</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a></li>
+<li class="chapter" data-level="3" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>3</b> R!</a><ul>
+<li class="chapter" data-level="3.1" data-path="r.html"><a href="r.html#objetos-de-r"><i class="fa fa-check"></i><b>3.1</b> Objetos de R</a></li>
+<li class="chapter" data-level="3.2" data-path="r.html"><a href="r.html#classe"><i class="fa fa-check"></i><b>3.2</b> Classe</a></li>
+<li class="chapter" data-level="3.3" data-path="r.html"><a href="r.html#vetores"><i class="fa fa-check"></i><b>3.3</b> Vetores</a></li>
+<li class="chapter" data-level="3.4" data-path="r.html"><a href="r.html#convertir-objetos-com-as"><i class="fa fa-check"></i><b>3.4</b> Convertir objetos com <code>as</code></a></li>
+<li class="chapter" data-level="3.5" data-path="r.html"><a href="r.html#matrices-e-a-funcao-matrix"><i class="fa fa-check"></i><b>3.5</b> Matrices e a função <code>matrix</code></a></li>
+<li class="chapter" data-level="3.6" data-path="r.html"><a href="r.html#array"><i class="fa fa-check"></i><b>3.6</b> Array</a></li>
+<li class="chapter" data-level="3.7" data-path="r.html"><a href="r.html#list"><i class="fa fa-check"></i><b>3.7</b> <code>list</code></a></li>
+<li class="chapter" data-level="3.8" data-path="r.html"><a href="r.html#tempo-e-data"><i class="fa fa-check"></i><b>3.8</b> Tempo e Data</a></li>
+<li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
+<li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> <code>data.frames</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
+<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
+<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de R para meteorología IAG/USP</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> R!</h1>
+<ul>
+<li>Quase em qualquer sistema operacional mas eu vou focar em Linux.</li>
+<li>Muita documentação:</li>
+<li><a href="http://cran.r-project.org/doc/manuals/r-release/R-intro.html">Intro</a>.</li>
+<li><a href="http://cran.r-project.org/doc/manuals/r-release/R-data.html">I/O</a>.</li>
+<li>Quer fazer um pacote? <a href="http://cran.r-project.org/doc/manuals/r-release/R-exts.html">Veja</a>, <a href="http://cran.r-project.org/doc/manuals/r-release/R-ints.html">aqui</a> e <a href="http://cran.r-project.org/doc/manuals/r-release/R-lang.html">aqui</a>.</li>
+<li><a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> provides a great source of resources.</li>
+</ul>
+<div id="objetos-de-r" class="section level2">
+<h2><span class="header-section-number">3.1</span> Objetos de R</h2>
+<ul>
+<li>Character a</li>
+<li>numeric 1</li>
+<li>integer 1</li>
+<li>complex 0+1i</li>
+<li>logical TRUE</li>
+</ul>
+</div>
+<div id="classe" class="section level2">
+<h2><span class="header-section-number">3.2</span> Classe</h2>
+<p><code>class</code> função permite ver a classe dos objetos</p>
+</div>
+<div id="vetores" class="section level2">
+<h2><span class="header-section-number">3.3</span> Vetores</h2>
+<ul>
+<li>c(“A”, “C”, “D”)</li>
+<li>1:5 = c(1, 2, 3, 4, 5)</li>
+<li>c(TRUE, FALSE)</li>
+<li>c(1i, -1i)</li>
+<li>c(1, “C”, “D”) qual é a classe???</li>
+<li>c(1, NA, “D”) qual é a classe???</li>
+<li>c(1, NA, NaN) qual é a classe???</li>
+</ul>
+</div>
+<div id="convertir-objetos-com-as" class="section level2">
+<h2><span class="header-section-number">3.4</span> Convertir objetos com <code>as</code></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>))</code></pre></div>
+<pre><code>## Warning: NAs introduzidos por coerção</code></pre>
+<pre><code>## [1]  1 NA NA</code></pre>
+</div>
+<div id="matrices-e-a-funcao-matrix" class="section level2">
+<h2><span class="header-section-number">3.5</span> Matrices e a função <code>matrix</code></h2>
+<p><strong>[linhas, colunas]</strong></p>
+<ul>
+<li>permitidos elementos <strong>da mesma clase</strong>!</li>
+</ul>
+<p>vamos ver os argumentos da função <code>matrix</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(matrix)</code></pre></div>
+<pre><code>## function (data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL) 
+## NULL</code></pre>
+<p>usando TAB</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">4</span>))</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+## [3,]    0    0    0    0
+## [4,]    0    0    0    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(m1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span>(<span class="dv">4</span><span class="op">*</span><span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">4</span>))</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    5    9   13
+## [2,]    2    6   10   14
+## [3,]    3    7   11   15
+## [4,]    4    8   12   16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(m1)</code></pre></div>
+<pre><code>## [1] 4 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(m2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="dv">1</span><span class="op">:</span>(<span class="dv">4</span><span class="op">*</span><span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12
+## [4,]   13   14   15   16</code></pre>
+</div>
+<div id="array" class="section level2">
+<h2><span class="header-section-number">3.6</span> Array</h2>
+<p>É como uma matriz de matrizes de matrizes de matrizes…… and so on.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(array)</code></pre></div>
+<pre><code>## function (data = NA, dim = length(data), dimnames = NULL) 
+## NULL</code></pre>
+<p>lembre usar TAB</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)))</code></pre></div>
+<pre><code>##      [,1]
+## [1,]    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(a)</code></pre></div>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)))</code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1]
+## [1,]    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(a)</code></pre></div>
+<pre><code>## [1] &quot;array&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)))</code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2]
+## [1,]    0    0
+## [2,]    0    0
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]    0    0
+## [2,]    0    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">4</span>)))</code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+## 
+## , , 3
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+## 
+## , , 4
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(a)</code></pre></div>
+<pre><code>## [1] 2 4 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(a &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dt">data =</span> <span class="dv">0</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)))</code></pre></div>
+</div>
+<div id="list" class="section level2">
+<h2><span class="header-section-number">3.7</span> <code>list</code></h2>
+<p>As listas são como sacolas, e dentro delas, tu pode colocar mais sacolas… então, tu pode ter sacolas, dentro de sacolas, dentro de sacolas… ou</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list</span>(<span class="kw">list</span>(<span class="kw">list</span>(<span class="kw">list</span>(<span class="dv">1</span>))))</code></pre></div>
+<pre><code>## [[1]]
+## [[1]][[1]]
+## [[1]][[1]][[1]]
+## [[1]][[1]][[1]][[1]]
+## [1] 1</code></pre>
+<p>a diferença das matrices, tu pode colocar cualquer coisa nas listas, por exemplo: funções, characters, etc.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>, <span class="ot">TRUE</span>, <span class="dv">1</span> <span class="op">+</span><span class="st"> </span>4i))</code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;a&quot;
+## 
+## [[3]]
+## [1] TRUE
+## 
+## [[4]]
+## [1] 1+4i</code></pre>
+</div>
+<div id="tempo-e-data" class="section level2">
+<h2><span class="header-section-number">3.8</span> Tempo e Data</h2>
+<p>R tem classes de tempo e data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(a &lt;-<span class="st"> </span><span class="kw">ISOdate</span>(<span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">month =</span> <span class="dv">4</span>, <span class="dt">day =</span> <span class="dv">5</span>))</code></pre></div>
+<pre><code>## [1] &quot;2018-04-05 12:00:00 GMT&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(a)</code></pre></div>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(b &lt;-<span class="st"> </span><span class="kw">ISOdate</span>(<span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">month =</span> <span class="dv">4</span>, <span class="dt">day =</span> <span class="dv">5</span>, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>))</code></pre></div>
+<pre><code>## [1] &quot;2018-04-05 12:00:00 Americas&quot;</code></pre>
+<p>tempo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(d &lt;-<span class="st"> </span><span class="kw">ISOdatetime</span>(<span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">month =</span> <span class="dv">4</span>, <span class="dt">day =</span> <span class="dv">5</span>, <span class="dt">hour =</span> <span class="dv">0</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">sec =</span> <span class="dv">0</span>,
+                  <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>))</code></pre></div>
+<pre><code>## [1] &quot;2018-04-05 Americas&quot;</code></pre>
+<p>O pacote <a href="https://github.com/eddelbuettel/nanotime">nanotime</a> permite trabalhar com nano segundos.</p>
+<p>Da pra fazer secuencias:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hoje &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+(a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>))</code></pre></div>
+<pre><code>##  [1] &quot;2018-04-29 12:55:59 -03&quot; &quot;2018-04-29 13:55:59 -03&quot;
+##  [3] &quot;2018-04-29 14:55:59 -03&quot; &quot;2018-04-29 15:55:59 -03&quot;
+##  [5] &quot;2018-04-29 16:55:59 -03&quot; &quot;2018-04-29 17:55:59 -03&quot;
+##  [7] &quot;2018-04-29 18:55:59 -03&quot; &quot;2018-04-29 19:55:59 -03&quot;
+##  [9] &quot;2018-04-29 20:55:59 -03&quot; &quot;2018-04-29 21:55:59 -03&quot;
+## [11] &quot;2018-04-29 22:55:59 -03&quot; &quot;2018-04-29 23:55:59 -03&quot;
+## [13] &quot;2018-04-30 00:55:59 -03&quot; &quot;2018-04-30 01:55:59 -03&quot;
+## [15] &quot;2018-04-30 02:55:59 -03&quot; &quot;2018-04-30 03:55:59 -03&quot;
+## [17] &quot;2018-04-30 04:55:59 -03&quot; &quot;2018-04-30 05:55:59 -03&quot;
+## [19] &quot;2018-04-30 06:55:59 -03&quot; &quot;2018-04-30 07:55:59 -03&quot;
+## [21] &quot;2018-04-30 08:55:59 -03&quot; &quot;2018-04-30 09:55:59 -03&quot;
+## [23] &quot;2018-04-30 10:55:59 -03&quot; &quot;2018-04-30 11:55:59 -03&quot;</code></pre>
+<p>funções bacana: <strong>weekdays</strong>, <strong>month</strong>, <strong>julian</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
+<pre><code>##  [1] &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot;
+##  [8] &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;segunda&quot; &quot;segunda&quot;
+## [15] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;
+## [22] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
+<pre><code>##  [1] &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot;
+##  [9] &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot;
+## [17] &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#olha ?julian... dias desde origin</span></code></pre></div>
+<pre><code>## Time differences in days
+##  [1] 17650.66 17650.71 17650.75 17650.79 17650.83 17650.87 17650.91
+##  [8] 17650.96 17651.00 17651.04 17651.08 17651.12 17651.16 17651.21
+## [15] 17651.25 17651.29 17651.33 17651.37 17651.41 17651.46 17651.50
+## [22] 17651.54 17651.58 17651.62
+## attr(,&quot;origin&quot;)
+## [1] &quot;1970-01-01 GMT&quot;</code></pre>
+<p>olha <a href="https://en.wikipedia.org/wiki/Julian_day" class="uri">https://en.wikipedia.org/wiki/Julian_day</a>:</p>
+</div>
+<div id="fatores" class="section level2">
+<h2><span class="header-section-number">3.9</span> Fatores</h2>
+<p>Os <code>factors</code> podem ser um pouco infernais. Olha <a href="http://www.burns-stat.com/documents/books/the-r-inferno/">R INFERNO</a></p>
+<p>Usados para representar categorias, ejemplo clasico para nos, dias da semana.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span><span class="op">*</span><span class="dv">7</span>)
+aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
+<span class="kw">class</span>(aa)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
+<pre><code>##   [1] domingo domingo domingo domingo domingo domingo domingo domingo
+##   [9] domingo domingo domingo domingo segunda segunda segunda segunda
+##  [17] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [25] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [33] segunda segunda segunda segunda terça   terça   terça   terça  
+##  [41] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [49] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [57] terça   terça   terça   terça   quarta  quarta  quarta  quarta 
+##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [73] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [81] quarta  quarta  quarta  quarta  quinta  quinta  quinta  quinta 
+##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [97] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+## [105] quinta  quinta  quinta  quinta  sexta   sexta   sexta   sexta  
+## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [121] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [129] sexta   sexta   sexta   sexta   sábado  sábado  sábado  sábado 
+## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [145] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [153] sábado  sábado  sábado  sábado  domingo domingo domingo domingo
+## [161] domingo domingo domingo domingo domingo domingo domingo domingo
+## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
+<p>olha os <strong>Levels</strong></p>
+<p>Então:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ab &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> aa,
+             <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>,  <span class="st">&quot;Wednesday&quot;</span>,  <span class="st">&quot;Thursday&quot;</span>,
+                        <span class="st">&quot;Friday&quot;</span>, <span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>))
+<span class="kw">levels</span>(ab)</code></pre></div>
+<pre><code>## [1] &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;    &quot;Saturday&quot; 
+## [7] &quot;Sunday&quot;</code></pre>
+</div>
+<div id="data.frames" class="section level2">
+<h2><span class="header-section-number">3.10</span> <code>data.frames</code></h2>
+<p><em>lembre ?data.frame</em></p>
+<p>São como planilha EXCEL…. mais o menos</p>
+<p>É uma classe bem especial, tem elementos de matriz mas o modo é lista</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))</code></pre></div>
+<pre><code>##   a
+## 1 1
+## 2 2
+## 3 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(df)</code></pre></div>
+<pre><code>## [1] &quot;a&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mode</span>(df)</code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<p>Então</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(df)</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncol</span>(df)</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(df)</code></pre></div>
+<pre><code>## [1] 3 1</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-basicr.Rmd",
+"text": "Edit"
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
