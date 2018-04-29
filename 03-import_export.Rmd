@@ -8,6 +8,10 @@ pode serm criaos como foi visto no
 
 
 ```{r}
-df <- read.csv("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/CO_2012_C.CESAR.csv")
+df <- readRDS("~/MEGA/PhDgrive/Health/NOxIPEN.rds")
+head(df)
+df[, 14:length(df)] <- NULL
+df[, 1] <- NULL
+write.table(df, "dados/NOXIPEN2014.txt", sep = "\t")
 ```
 
