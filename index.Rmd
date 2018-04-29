@@ -1,6 +1,6 @@
 --- 
 title: "Curso de R para meteorologia IAG/USP"
-author: "Sergio Ibarra-Espinosa e possivelmente outros (u r invited to collaborate)"
+author: "Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r invited to collaborate)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -51,11 +51,7 @@ Em Ubuntu:
 
 ## Pacotes usados neste curso
 
-<<<<<<< HEAD
-Para fazer este curso instale os seguentes pacotes como se indica:
-=======
 Para fazer este curso instale os seguintes pacotes como indicado:
->>>>>>> e97dd14dd23beff29b48e02ea86d9d6904676296
 
 ```{r eval = FALSE}
 install.packages("devtools")
@@ -101,14 +97,8 @@ repositório deste curso, me contate. Tem um botão para editar qualquer página
 
 ## Aportar com dados
 
-<<<<<<< HEAD
-Se voce tem dados para fazer este curso mais legal, por favor, edite este aquivo
-e com pull request, eu vou fazer um merge para poder. Tambem, existe a pasta
-dados em 
-=======
 Se você tem dados para fazer este curso mais legal, por favor, edite este aquivo
 e com pull request, eu vou fazer um merge para poder.
->>>>>>> e97dd14dd23beff29b48e02ea86d9d6904676296
 
 
 1. NCEP: ftp://nomads.ncdc.noaa.gov/GFS/analysis_only/

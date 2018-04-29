@@ -6,5 +6,3 @@ Probabelmente um dos promeiros objetos que vamos usar quando começamos usar R.
 Pensa num data-frame como uma planilha de Libreoffice (o excel). Os data-frame
 pode serm criaos como foi visto no 
 
-We describe our methods in this chapter.
-E 
