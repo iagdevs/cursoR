@@ -51,7 +51,7 @@ Em Ubuntu:
 
 ## Pacotes usados neste curso
 
-Para fazer ete curso instale os seguentes pacotes como se indica:
+Para fazer este curso instale os seguentes pacotes como se indica:
 
 ```{r eval = FALSE}
 install.packages("devtools")
@@ -60,7 +60,7 @@ devtools::install_github("r-spatial/sf")
 devtools::install_github("r-spatial/mapview")
 devtools::install_github("r-spatial/stars")
 install.packages(c("raster", "sp", "rgdal", "maptools", "ncdf4"))
-install.packages("cptcity")
+install.packages(c("cptcity", "data.table", "openair"))
 ```
 
 - [devtools](https://CRAN.R-project.org/package=devtools) é um pacote para
@@ -74,7 +74,11 @@ para a parte espacial. Lembrar que os objetos em meteorologias são espacio-temp
 - ncdf4 é um pacote para manipular arquivos NetCDF.
 - [cptcity](https://ibarraespinosa.github.io/cptcity/) é um pacote que tem 7140
 paletas de cores do arquivo web cpt-city (http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html).
+- [openair](http://davidcarslaw.github.io/openair/) é um pacote para
+trabalhar com dados de qualidade do ar e meteorologia.
 
+
+Se faltarem dependencias de sistema, instale elas e instale os pacotes.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
@@ -94,7 +98,8 @@ repoitorio deste curso, me contacte. Tem um botton para editar qualquer pagina.
 ## Aportar com dados
 
 Se voce tem dados para fazer este curso mais legal, por favor, edite este aquivo
-e com pull request, eu vou fazer um merge para poder.
+e com pull request, eu vou fazer um merge para poder. Tambem, existe a pasta
+dados em 
 
 
 1. NCEP: ftp://nomads.ncdc.noaa.gov/GFS/analysis_only/

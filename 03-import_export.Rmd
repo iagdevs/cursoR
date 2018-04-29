@@ -1,3 +1,8 @@
 # Importando e exportando dados em R
 
+## data-frames
+
+Probabelmente um dos promeiros objetos que vamos usar quando começamos usar R.
+Pensa num data-frame como uma planilha de Libreoffice (o excel). 
+
 We describe our methods in this chapter.
