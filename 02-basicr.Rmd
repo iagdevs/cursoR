@@ -1,7 +1,7 @@
 # R! {#r}
 
 
-- Quase em qualquer sistema operacional mas eu vou focar em Linux.
+- Quase em qualquer sistema operacional, mas eu vou focar em Linux.
 - Muita documentação:
 - [Intro](http://cran.r-project.org/doc/manuals/r-release/R-intro.html).
 - [I/O](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
@@ -31,14 +31,14 @@
 - c(1, NA, "D") qual é a classe???
 - c(1, NA, NaN) qual é a classe???
 
-## Convertir objetos com `as`
+## Converter objetos com `as`
 
 ```{r}
 as.numeric(c(1, "C", "D"))
 ```
 
 
-## Matrices e a função `matrix`
+## Matrizes e a função `matrix`
 
 **[linhas, colunas]**
 
@@ -75,7 +75,7 @@ dim(m1)
 args(array)
 ```
 
-lembre usar TAB
+lembre-se de usar TAB
 
 ```{r}
 (a <- array(data = 0, dim = c(1,1)))
@@ -106,13 +106,13 @@ dim(a)
 
 ## `list`
 
-As listas são como sacolas, e dentro delas, tu pode colocar mais sacolas...
-então, tu pode ter sacolas, dentro de sacolas, dentro de sacolas...
+As listas são como sacolas, e dentro delas, você pode colocar mais sacolas...
+então, você pode ter sacolas, dentro de sacolas, dentro de sacolas...
 ou
 ```{r}
 list(list(list(list(1))))
 ```
-a diferença das matrices, tu pode colocar cualquer coisa nas listas, por exemplo:
+a diferença das matrizes, você pode colocar qualquer coisa nas listas, por exemplo:
 funções, characters, etc.
 
 ```{r}
@@ -138,7 +138,7 @@ tempo
 
 O pacote [nanotime](https://github.com/eddelbuettel/nanotime) permite trabalhar com nano segundos.
 
-Da pra fazer secuencias:
+Dá para fazer sequências:
 
 ```{r}
 hoje <- Sys.time()
@@ -146,7 +146,7 @@ hoje <- Sys.time()
 
 ```
 
-funções bacana: **weekdays**, **month**, **julian**
+funções bacanas: **weekdays**, **month**, **julian**
 
 ```{r}
 weekdays(a)
@@ -161,7 +161,7 @@ olha https://en.wikipedia.org/wiki/Julian_day:
 
 Os `factors` podem ser um pouco infernais. Olha [R INFERNO](http://www.burns-stat.com/documents/books/the-r-inferno/)
 
-Usados para representar categorias, ejemplo clasico para nos, dias da semana.
+Usados para representar categorias, exemplo clássico para nós: dias da semana.
 
 ```{r}
 a <- seq.POSIXt(from = hoje, by = 3600, length.out = 24*7)
@@ -184,9 +184,9 @@ levels(ab)
 
 _lembre ?data.frame_
 
-São como planilha EXCEL.... mais o menos
+São como planilha EXCEL.... mais ou menos
 
-É uma classe bem especial, tem elementos de matriz mas o modo é lista
+É uma classe bem especial, tem elementos de matriz, mas o modo é lista
 
 ```{r}
 (df <- data.frame(a = 1:3))
