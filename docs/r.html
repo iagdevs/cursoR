@@ -108,7 +108,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.2</b> Colaborar</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#aportar-com-dados"><i class="fa fa-check"></i><b>1.3</b> Aportar com dados</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#importante"><i class="fa fa-check"></i><b>2.1</b> IMPORTANTE</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>3</b> R!</a><ul>
 <li class="chapter" data-level="3.1" data-path="r.html"><a href="r.html#objetos-de-r"><i class="fa fa-check"></i><b>3.1</b> Objetos de R</a></li>
 <li class="chapter" data-level="3.2" data-path="r.html"><a href="r.html#classe"><i class="fa fa-check"></i><b>3.2</b> Classe</a></li>
@@ -122,8 +124,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> <code>data.frames</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html"><i class="fa fa-check"></i><b>4</b> Importando e exportando dados em R</a><ul>
-<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> data-frames</a></li>
-<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data.table"><i class="fa fa-check"></i><b>4.2</b> data.table</a></li>
+<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> data-frames</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#qua-dificultades-tu-ja-enfrentou-importando-dados"><i class="fa fa-check"></i><b>4.1.1</b> Qua dificultades tu já enfrentou importando dados?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#processando-nossa-data-frame"><i class="fa fa-check"></i><b>4.2</b> Processando nossa data-frame</a></li>
+<li class="chapter" data-level="4.3" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#aggregate"><i class="fa fa-check"></i><b>4.3</b> aggregate</a></li>
+<li class="chapter" data-level="4.4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#subset"><i class="fa fa-check"></i><b>4.4</b> subset</a></li>
+<li class="chapter" data-level="4.5" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data.table-read_xl-e-mais"><i class="fa fa-check"></i><b>4.5</b> data.table, read_xl e mais</a></li>
+<li class="chapter" data-level="4.6" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#netcdf"><i class="fa fa-check"></i><b>4.6</b> NetCDF</a></li>
+<li class="chapter" data-level="4.7" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#binarios"><i class="fa fa-check"></i><b>4.7</b> Binarios</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
 <li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
@@ -324,21 +333,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Da pra fazer secuencias:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hoje &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 (a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>))</code></pre></div>
-<pre><code>##  [1] &quot;2018-04-29 18:45:45 -03&quot; &quot;2018-04-29 19:45:45 -03&quot;
-##  [3] &quot;2018-04-29 20:45:45 -03&quot; &quot;2018-04-29 21:45:45 -03&quot;
-##  [5] &quot;2018-04-29 22:45:45 -03&quot; &quot;2018-04-29 23:45:45 -03&quot;
-##  [7] &quot;2018-04-30 00:45:45 -03&quot; &quot;2018-04-30 01:45:45 -03&quot;
-##  [9] &quot;2018-04-30 02:45:45 -03&quot; &quot;2018-04-30 03:45:45 -03&quot;
-## [11] &quot;2018-04-30 04:45:45 -03&quot; &quot;2018-04-30 05:45:45 -03&quot;
-## [13] &quot;2018-04-30 06:45:45 -03&quot; &quot;2018-04-30 07:45:45 -03&quot;
-## [15] &quot;2018-04-30 08:45:45 -03&quot; &quot;2018-04-30 09:45:45 -03&quot;
-## [17] &quot;2018-04-30 10:45:45 -03&quot; &quot;2018-04-30 11:45:45 -03&quot;
-## [19] &quot;2018-04-30 12:45:45 -03&quot; &quot;2018-04-30 13:45:45 -03&quot;
-## [21] &quot;2018-04-30 14:45:45 -03&quot; &quot;2018-04-30 15:45:45 -03&quot;
-## [23] &quot;2018-04-30 16:45:45 -03&quot; &quot;2018-04-30 17:45:45 -03&quot;</code></pre>
+<pre><code>##  [1] &quot;2018-04-29 19:54:43 -03&quot; &quot;2018-04-29 20:54:43 -03&quot;
+##  [3] &quot;2018-04-29 21:54:43 -03&quot; &quot;2018-04-29 22:54:43 -03&quot;
+##  [5] &quot;2018-04-29 23:54:43 -03&quot; &quot;2018-04-30 00:54:43 -03&quot;
+##  [7] &quot;2018-04-30 01:54:43 -03&quot; &quot;2018-04-30 02:54:43 -03&quot;
+##  [9] &quot;2018-04-30 03:54:43 -03&quot; &quot;2018-04-30 04:54:43 -03&quot;
+## [11] &quot;2018-04-30 05:54:43 -03&quot; &quot;2018-04-30 06:54:43 -03&quot;
+## [13] &quot;2018-04-30 07:54:43 -03&quot; &quot;2018-04-30 08:54:43 -03&quot;
+## [15] &quot;2018-04-30 09:54:43 -03&quot; &quot;2018-04-30 10:54:43 -03&quot;
+## [17] &quot;2018-04-30 11:54:43 -03&quot; &quot;2018-04-30 12:54:43 -03&quot;
+## [19] &quot;2018-04-30 13:54:43 -03&quot; &quot;2018-04-30 14:54:43 -03&quot;
+## [21] &quot;2018-04-30 15:54:43 -03&quot; &quot;2018-04-30 16:54:43 -03&quot;
+## [23] &quot;2018-04-30 17:54:43 -03&quot; &quot;2018-04-30 18:54:43 -03&quot;</code></pre>
 <p>funções bacana: <strong>weekdays</strong>, <strong>month</strong>, <strong>julian</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;segunda&quot;
+<pre><code>##  [1] &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;segunda&quot; &quot;segunda&quot;
 ##  [8] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;
 ## [15] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;
 ## [22] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;</code></pre>
@@ -348,10 +357,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [17] &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#olha ?julian... dias desde origin</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17650.91 17650.95 17650.99 17651.03 17651.07 17651.12 17651.16
-##  [8] 17651.20 17651.24 17651.28 17651.32 17651.37 17651.41 17651.45
-## [15] 17651.49 17651.53 17651.57 17651.62 17651.66 17651.70 17651.74
-## [22] 17651.78 17651.82 17651.87
+##  [1] 17650.95 17651.00 17651.04 17651.08 17651.12 17651.16 17651.20
+##  [8] 17651.25 17651.29 17651.33 17651.37 17651.41 17651.45 17651.50
+## [15] 17651.54 17651.58 17651.62 17651.66 17651.70 17651.75 17651.79
+## [22] 17651.83 17651.87 17651.91
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>olha <a href="https://en.wikipedia.org/wiki/Julian_day" class="uri">https://en.wikipedia.org/wiki/Julian_day</a>:</p>
@@ -365,25 +374,25 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] domingo domingo domingo domingo domingo domingo segunda segunda
+<pre><code>##   [1] domingo domingo domingo domingo domingo segunda segunda segunda
 ##   [9] segunda segunda segunda segunda segunda segunda segunda segunda
 ##  [17] segunda segunda segunda segunda segunda segunda segunda segunda
-##  [25] segunda segunda segunda segunda segunda segunda terça   terça  
+##  [25] segunda segunda segunda segunda segunda terça   terça   terça  
 ##  [33] terça   terça   terça   terça   terça   terça   terça   terça  
 ##  [41] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [49] terça   terça   terça   terça   terça   terça   quarta  quarta 
+##  [49] terça   terça   terça   terça   terça   quarta  quarta  quarta 
 ##  [57] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
 ##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [73] quarta  quarta  quarta  quarta  quarta  quarta  quinta  quinta 
+##  [73] quarta  quarta  quarta  quarta  quarta  quinta  quinta  quinta 
 ##  [81] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
 ##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [97] quinta  quinta  quinta  quinta  quinta  quinta  sexta   sexta  
+##  [97] quinta  quinta  quinta  quinta  quinta  sexta   sexta   sexta  
 ## [105] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
 ## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-## [121] sexta   sexta   sexta   sexta   sexta   sexta   sábado  sábado 
+## [121] sexta   sexta   sexta   sexta   sexta   sábado  sábado  sábado 
 ## [129] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
 ## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [145] sábado  sábado  sábado  sábado  sábado  sábado  domingo domingo
+## [145] sábado  sábado  sábado  sábado  sábado  domingo domingo domingo
 ## [153] domingo domingo domingo domingo domingo domingo domingo domingo
 ## [161] domingo domingo domingo domingo domingo domingo domingo domingo
 ## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
