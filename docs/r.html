@@ -149,7 +149,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="r" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> R!</h1>
+<h1><span class="header-section-number">Capitulo 3</span> R!</h1>
 <ul>
 <li>Quase em qualquer sistema operacional mas eu vou focar em Linux.</li>
 <li>Muita documentação:</li>
@@ -321,18 +321,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Da pra fazer secuencias:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hoje &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 (a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>))</code></pre></div>
-<pre><code>##  [1] &quot;2018-04-29 13:04:02 -03&quot; &quot;2018-04-29 14:04:02 -03&quot;
-##  [3] &quot;2018-04-29 15:04:02 -03&quot; &quot;2018-04-29 16:04:02 -03&quot;
-##  [5] &quot;2018-04-29 17:04:02 -03&quot; &quot;2018-04-29 18:04:02 -03&quot;
-##  [7] &quot;2018-04-29 19:04:02 -03&quot; &quot;2018-04-29 20:04:02 -03&quot;
-##  [9] &quot;2018-04-29 21:04:02 -03&quot; &quot;2018-04-29 22:04:02 -03&quot;
-## [11] &quot;2018-04-29 23:04:02 -03&quot; &quot;2018-04-30 00:04:02 -03&quot;
-## [13] &quot;2018-04-30 01:04:02 -03&quot; &quot;2018-04-30 02:04:02 -03&quot;
-## [15] &quot;2018-04-30 03:04:02 -03&quot; &quot;2018-04-30 04:04:02 -03&quot;
-## [17] &quot;2018-04-30 05:04:02 -03&quot; &quot;2018-04-30 06:04:02 -03&quot;
-## [19] &quot;2018-04-30 07:04:02 -03&quot; &quot;2018-04-30 08:04:02 -03&quot;
-## [21] &quot;2018-04-30 09:04:02 -03&quot; &quot;2018-04-30 10:04:02 -03&quot;
-## [23] &quot;2018-04-30 11:04:02 -03&quot; &quot;2018-04-30 12:04:02 -03&quot;</code></pre>
+<pre><code>##  [1] &quot;2018-04-29 13:06:04 -03&quot; &quot;2018-04-29 14:06:04 -03&quot;
+##  [3] &quot;2018-04-29 15:06:04 -03&quot; &quot;2018-04-29 16:06:04 -03&quot;
+##  [5] &quot;2018-04-29 17:06:04 -03&quot; &quot;2018-04-29 18:06:04 -03&quot;
+##  [7] &quot;2018-04-29 19:06:04 -03&quot; &quot;2018-04-29 20:06:04 -03&quot;
+##  [9] &quot;2018-04-29 21:06:04 -03&quot; &quot;2018-04-29 22:06:04 -03&quot;
+## [11] &quot;2018-04-29 23:06:04 -03&quot; &quot;2018-04-30 00:06:04 -03&quot;
+## [13] &quot;2018-04-30 01:06:04 -03&quot; &quot;2018-04-30 02:06:04 -03&quot;
+## [15] &quot;2018-04-30 03:06:04 -03&quot; &quot;2018-04-30 04:06:04 -03&quot;
+## [17] &quot;2018-04-30 05:06:04 -03&quot; &quot;2018-04-30 06:06:04 -03&quot;
+## [19] &quot;2018-04-30 07:06:04 -03&quot; &quot;2018-04-30 08:06:04 -03&quot;
+## [21] &quot;2018-04-30 09:06:04 -03&quot; &quot;2018-04-30 10:06:04 -03&quot;
+## [23] &quot;2018-04-30 11:06:04 -03&quot; &quot;2018-04-30 12:06:04 -03&quot;</code></pre>
 <p>funções bacana: <strong>weekdays</strong>, <strong>month</strong>, <strong>julian</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
 <pre><code>##  [1] &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot; &quot;domingo&quot;
@@ -345,10 +345,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## [17] &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot; &quot;abril&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#olha ?julian... dias desde origin</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17650.67 17650.71 17650.75 17650.79 17650.84 17650.88 17650.92
-##  [8] 17650.96 17651.00 17651.04 17651.09 17651.13 17651.17 17651.21
-## [15] 17651.25 17651.29 17651.34 17651.38 17651.42 17651.46 17651.50
-## [22] 17651.54 17651.59 17651.63
+##  [1] 17650.67 17650.71 17650.75 17650.80 17650.84 17650.88 17650.92
+##  [8] 17650.96 17651.00 17651.05 17651.09 17651.13 17651.17 17651.21
+## [15] 17651.25 17651.30 17651.34 17651.38 17651.42 17651.46 17651.50
+## [22] 17651.55 17651.59 17651.63
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>olha <a href="https://en.wikipedia.org/wiki/Julian_day" class="uri">https://en.wikipedia.org/wiki/Julian_day</a>:</p>
@@ -458,7 +458,7 @@ gitbook.start({
 "link": "https://github.com/ibarraespinosa/cursoR/edit/master/02-basicr.Rmd",
 "text": "Edit"
 },
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"download": ["cursoR.pdf", "cursoR.epub"],
 "toc": {
 "collapse": "subsection"
 }

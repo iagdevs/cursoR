@@ -1,6 +1,6 @@
-book_filename: "bookdown-demo"
+book_filename: "cursoR"
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Capitulo "
 delete_merged_file: true
 output_dir: "docs"

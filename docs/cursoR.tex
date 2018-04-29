@@ -1,0 +1,932 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Curso de R para meteorología IAG/USP},
+            pdfauthor={Sergio Ibarra-Espinosa e possivelmente outros (u r invited to collaborate)},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Curso de R para meteorología IAG/USP}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Sergio Ibarra-Espinosa e possivelmente outros (u r invited to
+collaborate)}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{2018-04-29}
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter{Pre-requisitos do sistema}\label{primero}
+
+Em Windows, install alem do R, Rtools
+\url{https://cran.r-project.org/bin/windows/Rtools/}
+
+Em MAC instale netcdf e:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{brew}\NormalTok{ unlink gdal}
+\ExtensionTok{brew}\NormalTok{ tap osgeo/osgeo4mac }\KeywordTok{&&} \ExtensionTok{brew}\NormalTok{ tap --repair}
+\ExtensionTok{brew}\NormalTok{ install proj}
+\ExtensionTok{brew}\NormalTok{ install geos}
+\ExtensionTok{brew}\NormalTok{ install udunits}
+\ExtensionTok{brew}\NormalTok{ install gdal2 --with-armadillo --with-complete --with-libkml --with-unsupported}
+\ExtensionTok{brew}\NormalTok{ link --force gdal2}
+\end{Highlighting}
+\end{Shaded}
+
+Em Ubuntu:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \ExtensionTok{-}\NormalTok{ sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes}
+  \ExtensionTok{-}\NormalTok{ sudo apt-get --yes --force-yes update -qq}
+  \CommentTok{# install tmap dependencies}
+  \ExtensionTok{-}\NormalTok{ sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev}
+  \CommentTok{# install tmap dependencies; for 16.04 libjq-dev this ppa is needed:}
+  \ExtensionTok{-}\NormalTok{ sudo add-apt-repository -y ppa:opencpu/jq}
+  \ExtensionTok{-}\NormalTok{ sudo apt-get --yes --force-yes update -qq}
+  \ExtensionTok{-}\NormalTok{ sudo apt-get install libjq-dev}
+  \CommentTok{# units/udunits2 dependency:}
+  \ExtensionTok{-}\NormalTok{ sudo apt-get install --yes libudunits2-dev}
+  \CommentTok{# sf dependencies:}
+  \ExtensionTok{-}\NormalTok{ sudo apt-get install --yes libproj-dev libgeos-dev libgdal-dev libnetcdf-dev  netcdf-bin gdal-bin}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Pacotes usados neste curso}\label{pacotes-usados-neste-curso}
+
+Para fazer ete curso instale os seguentes pacotes como se indica:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"tidyverse/tidyverse"}\NormalTok{)}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"r-spatial/sf"}\NormalTok{)}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"r-spatial/mapview"}\NormalTok{)}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"r-spatial/stars"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"raster"}\NormalTok{, }\StringTok{"sp"}\NormalTok{, }\StringTok{"rgdal"}\NormalTok{, }\StringTok{"maptools"}\NormalTok{, }\StringTok{"ncdf4"}\NormalTok{))}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"cptcity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://CRAN.R-project.org/package=devtools}{devtools} é um
+  pacote para instalar pacotes de diferentes repositorios
+\item
+  \href{https://github.com/tidyverse}{tidyverse} é universo de pacotes
+  do Hadley Wickham. A instalação tem que ser usando devtools pois
+  precisamos plotar os objetos espacias sf usando
+  \href{https://www.isgeomsfinggplot2yet.site/}{geom\_sf}.
+\item
+  \href{https://github.com/r-spatial/sf}{sf} e
+  \href{https://github.com/r-spatial/mapbiew}{mapview},
+  \href{https://github.com/r-spatial/stars}{stars}, raster, sp, rgdal e
+  maptools são para a parte espacial. Lembrar que os objetos em
+  meteorologias são espacio-temporais.
+\item
+  ncdf4 é um pacote para manipular arquivos NetCDF.
+\item
+  \href{https://ibarraespinosa.github.io/cptcity/}{cptcity} é um pacote
+  que tem 7140 paletas de cores do arquivo web cpt-city
+  (\url{http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html}).
+\end{itemize}
+
+\section{Colaborar}\label{colaborar}
+
+A forma preferida de colaboração é com pull-requests em
+\url{https://github.com/ibarraespinosa/cursoR/pull/new/master}. Lembre
+de aplicar a Guia de Estilo de R de Google
+(\url{https://google.github.io/styleguide/Rguide.xml}) ou com o formato
+de formatR \url{https://yihui.name/formatr/}. Em poucas palabras, lembre
+que seu codigo vai ser lido por seres humanos. Se quiser tem aceso no
+repoitorio deste curso, me contacte. Tem um botton para editar qualquer
+pagina.
+
+\section{Aportar com dados}\label{aportar-com-dados}
+
+Se voce tem dados para fazer este curso mais legal, por favor, edite
+este aquivo e com pull request, eu vou fazer um merge para poder.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  NCEP: \url{ftp://nomads.ncdc.noaa.gov/GFS/analysis_only/}
+\item
+\item
+\end{enumerate}
+
+\chapter{Intro}\label{intro}
+
+Este curso é para pos, então vamos ver conteúdo rapidamente e se não da
+tempo, este curso esta online no sitio
+\url{https://github.com/atmoschem/cursorIAG}.
+
+Eu tento usar
+\href{http://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html}{BASE}
+sempre que posso, e se não da ai vou para outros paradigmas.
+
+Outros pacotes de BASE:
+\href{http://stat.ethz.ch/R-manual/R-devel/library/utils/html/00Index.html}{utils},
+\href{http://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html}{stats},
+\href{http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html}{datasets},
+\href{http://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html}{graphics},
+\href{https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html}{grDevices},
+\href{https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html}{grid},
+\href{https://stat.ethz.ch/R-manual/R-devel/library/methods/html/00Index.html}{methods},
+\href{https://stat.ethz.ch/R-manual/R-devel/library/tools/html/00Index.html}{tools},
+\href{https://stat.ethz.ch/R-manual/R-devel/library/parallel/html/00Index.html}{parallel},
+\href{https://stat.ethz.ch/R-manual/R-devel/library/compiler/html/00Index.html}{compiler},
+\href{https://stat.ethz.ch/R-manual/R-devel/library/splines/html/00Index.html}{splines},
+\href{https://stat.ethz.ch/R-manual/R-devel/library/tcltk/html/00Index.html}{tcltk}
+,
+\href{https://stat.ethz.ch/R-manual/R-devel/library/stats4/html/00Index.html}{stats4}.
+
+Veja
+\href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{outros}
+pacotes.
+
+Este curso esta baseado no livro
+\href{https://leanpub.com/rprogramming}{R Programming for Data Science}.
+
+Vamos usar \href{https://www.rstudio.com/}{Rstudio}
+
+\textbf{Dica:}
+
+\begin{itemize}
+\tightlist
+\item
+  Se não sabe como usar uma função, escreva: \texttt{?função}.
+\item
+  As funções tem argumentos, use \textbf{TAB} para ver eles numa função.
+\end{itemize}
+
+Vamos lá!
+
+\chapter{R!}\label{r}
+
+\begin{itemize}
+\tightlist
+\item
+  Quase em qualquer sistema operacional mas eu vou focar em Linux.
+\item
+  Muita documentação:
+\item
+  \href{http://cran.r-project.org/doc/manuals/r-release/R-intro.html}{Intro}.
+\item
+  \href{http://cran.r-project.org/doc/manuals/r-release/R-data.html}{I/O}.
+\item
+  Quer fazer um pacote?
+  \href{http://cran.r-project.org/doc/manuals/r-release/R-exts.html}{Veja},
+  \href{http://cran.r-project.org/doc/manuals/r-release/R-ints.html}{aqui}
+  e
+  \href{http://cran.r-project.org/doc/manuals/r-release/R-lang.html}{aqui}.
+\item
+  \href{https://stackoverflow.com/questions/tagged/r}{Stackoverflow}
+  provides a great source of resources.
+\end{itemize}
+
+\section{Objetos de R}\label{objetos-de-r}
+
+\begin{itemize}
+\tightlist
+\item
+  Character a
+\item
+  numeric 1
+\item
+  integer 1
+\item
+  complex 0+1i
+\item
+  logical TRUE
+\end{itemize}
+
+\section{Classe}\label{classe}
+
+\texttt{class} função permite ver a classe dos objetos
+
+\section{Vetores}\label{vetores}
+
+\begin{itemize}
+\tightlist
+\item
+  c(``A'', ``C'', ``D'')
+\item
+  1:5 = c(1, 2, 3, 4, 5)
+\item
+  c(TRUE, FALSE)
+\item
+  c(1i, -1i)
+\item
+  c(1, ``C'', ``D'') qual é a classe???
+\item
+  c(1, NA, ``D'') qual é a classe???
+\item
+  c(1, NA, NaN) qual é a classe???
+\end{itemize}
+
+\section{\texorpdfstring{Convertir objetos com
+\texttt{as}}{Convertir objetos com as}}\label{convertir-objetos-com-as}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: NAs introduzidos por coerção
+\end{verbatim}
+
+\begin{verbatim}
+## [1]  1 NA NA
+\end{verbatim}
+
+\section{\texorpdfstring{Matrices e a função
+\texttt{matrix}}{Matrices e a função matrix}}\label{matrices-e-a-funcao-matrix}
+
+\textbf{{[}linhas, colunas{]}}
+
+\begin{itemize}
+\tightlist
+\item
+  permitidos elementos \textbf{da mesma clase}!
+\end{itemize}
+
+vamos ver os argumentos da função \texttt{matrix}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(matrix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL) 
+## NULL
+\end{verbatim}
+
+usando TAB
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{4}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+## [3,]    0    0    0    0
+## [4,]    0    0    0    0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(m1 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data =} \DecValTok{1}\OperatorTok{:}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\DecValTok{4}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{4}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    5    9   13
+## [2,]    2    6   10   14
+## [3,]    3    7   11   15
+## [4,]    4    8   12   16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(m1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(m2 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data =} \DecValTok{1}\OperatorTok{:}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\DecValTok{4}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{4}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{, }\DataTypeTok{byrow =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    5    6    7    8
+## [3,]    9   10   11   12
+## [4,]   13   14   15   16
+\end{verbatim}
+
+\section{Array}\label{array}
+
+É como uma matriz de matrizes de matrizes de matrizes\ldots{}\ldots{}
+and so on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(array)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (data = NA, dim = length(data), dimnames = NULL) 
+## NULL
+\end{verbatim}
+
+lembre usar TAB
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]    0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## , , 1
+## 
+##      [,1]
+## [1,]    0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "array"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## , , 1
+## 
+##      [,1] [,2]
+## [1,]    0    0
+## [2,]    0    0
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]    0    0
+## [2,]    0    0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## , , 1
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+## 
+## , , 3
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+## 
+## , , 4
+## 
+##      [,1] [,2] [,3] [,4]
+## [1,]    0    0    0    0
+## [2,]    0    0    0    0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 4 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\section{\texorpdfstring{\texttt{list}}{list}}\label{list}
+
+As listas são como sacolas, e dentro delas, tu pode colocar mais
+sacolas\ldots{} então, tu pode ter sacolas, dentro de sacolas, dentro de
+sacolas\ldots{} ou
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [[1]][[1]]
+## [[1]][[1]][[1]]
+## [[1]][[1]][[1]][[1]]
+## [1] 1
+\end{verbatim}
+
+a diferença das matrices, tu pode colocar cualquer coisa nas listas, por
+exemplo: funções, characters, etc.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{4i))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] "a"
+## 
+## [[3]]
+## [1] TRUE
+## 
+## [[4]]
+## [1] 1+4i
+\end{verbatim}
+
+\section{Tempo e Data}\label{tempo-e-data}
+
+R tem classes de tempo e data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(a <-}\StringTok{ }\KeywordTok{ISOdate}\NormalTok{(}\DataTypeTok{year =} \DecValTok{2018}\NormalTok{, }\DataTypeTok{month =} \DecValTok{4}\NormalTok{, }\DataTypeTok{day =} \DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2018-04-05 12:00:00 GMT"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "POSIXct" "POSIXt"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(b <-}\StringTok{ }\KeywordTok{ISOdate}\NormalTok{(}\DataTypeTok{year =} \DecValTok{2018}\NormalTok{, }\DataTypeTok{month =} \DecValTok{4}\NormalTok{, }\DataTypeTok{day =} \DecValTok{5}\NormalTok{, }\DataTypeTok{tz =} \StringTok{"Americas/Sao_Paulo"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2018-04-05 12:00:00 Americas"
+\end{verbatim}
+
+tempo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(d <-}\StringTok{ }\KeywordTok{ISOdatetime}\NormalTok{(}\DataTypeTok{year =} \DecValTok{2018}\NormalTok{, }\DataTypeTok{month =} \DecValTok{4}\NormalTok{, }\DataTypeTok{day =} \DecValTok{5}\NormalTok{, }\DataTypeTok{hour =} \DecValTok{0}\NormalTok{, }\DataTypeTok{min =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sec =} \DecValTok{0}\NormalTok{,}
+                  \DataTypeTok{tz =} \StringTok{"Americas/Sao_Paulo"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2018-04-05 Americas"
+\end{verbatim}
+
+O pacote \href{https://github.com/eddelbuettel/nanotime}{nanotime}
+permite trabalhar com nano segundos.
+
+Da pra fazer secuencias:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hoje <-}\StringTok{ }\KeywordTok{Sys.time}\NormalTok{()}
+\NormalTok{(a <-}\StringTok{ }\KeywordTok{seq.POSIXt}\NormalTok{(}\DataTypeTok{from =}\NormalTok{ hoje, }\DataTypeTok{by =} \DecValTok{3600}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{24}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "2018-04-29 13:06:05 -03" "2018-04-29 14:06:05 -03"
+##  [3] "2018-04-29 15:06:05 -03" "2018-04-29 16:06:05 -03"
+##  [5] "2018-04-29 17:06:05 -03" "2018-04-29 18:06:05 -03"
+##  [7] "2018-04-29 19:06:05 -03" "2018-04-29 20:06:05 -03"
+##  [9] "2018-04-29 21:06:05 -03" "2018-04-29 22:06:05 -03"
+## [11] "2018-04-29 23:06:05 -03" "2018-04-30 00:06:05 -03"
+## [13] "2018-04-30 01:06:05 -03" "2018-04-30 02:06:05 -03"
+## [15] "2018-04-30 03:06:05 -03" "2018-04-30 04:06:05 -03"
+## [17] "2018-04-30 05:06:05 -03" "2018-04-30 06:06:05 -03"
+## [19] "2018-04-30 07:06:05 -03" "2018-04-30 08:06:05 -03"
+## [21] "2018-04-30 09:06:05 -03" "2018-04-30 10:06:05 -03"
+## [23] "2018-04-30 11:06:05 -03" "2018-04-30 12:06:05 -03"
+\end{verbatim}
+
+funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{weekdays}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "domingo" "domingo" "domingo" "domingo" "domingo" "domingo" "domingo"
+##  [8] "domingo" "domingo" "domingo" "domingo" "segunda" "segunda" "segunda"
+## [15] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
+## [22] "segunda" "segunda" "segunda"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{months}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "abril" "abril" "abril" "abril" "abril" "abril" "abril" "abril"
+##  [9] "abril" "abril" "abril" "abril" "abril" "abril" "abril" "abril"
+## [17] "abril" "abril" "abril" "abril" "abril" "abril" "abril" "abril"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{julian}\NormalTok{(a) }\CommentTok{#olha ?julian... dias desde origin}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Time differences in days
+##  [1] 17650.67 17650.71 17650.75 17650.80 17650.84 17650.88 17650.92
+##  [8] 17650.96 17651.00 17651.05 17651.09 17651.13 17651.17 17651.21
+## [15] 17651.25 17651.30 17651.34 17651.38 17651.42 17651.46 17651.50
+## [22] 17651.55 17651.59 17651.63
+## attr(,"origin")
+## [1] "1970-01-01 GMT"
+\end{verbatim}
+
+olha \url{https://en.wikipedia.org/wiki/Julian_day}:
+
+\section{Fatores}\label{fatores}
+
+Os \texttt{factors} podem ser um pouco infernais. Olha
+\href{http://www.burns-stat.com/documents/books/the-r-inferno/}{R
+INFERNO}
+
+Usados para representar categorias, ejemplo clasico para nos, dias da
+semana.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{seq.POSIXt}\NormalTok{(}\DataTypeTok{from =}\NormalTok{ hoje, }\DataTypeTok{by =} \DecValTok{3600}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{24}\OperatorTok{*}\DecValTok{7}\NormalTok{)}
+\NormalTok{aa <-}\StringTok{ }\KeywordTok{weekdays}\NormalTok{(a)}
+\KeywordTok{class}\NormalTok{(aa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{factor}\NormalTok{(aa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] domingo domingo domingo domingo domingo domingo domingo domingo
+##   [9] domingo domingo domingo segunda segunda segunda segunda segunda
+##  [17] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [25] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [33] segunda segunda segunda terça   terça   terça   terça   terça  
+##  [41] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [49] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [57] terça   terça   terça   quarta  quarta  quarta  quarta  quarta 
+##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [73] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [81] quarta  quarta  quarta  quinta  quinta  quinta  quinta  quinta 
+##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [97] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+## [105] quinta  quinta  quinta  sexta   sexta   sexta   sexta   sexta  
+## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [121] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [129] sexta   sexta   sexta   sábado  sábado  sábado  sábado  sábado 
+## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [145] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [153] sábado  sábado  sábado  domingo domingo domingo domingo domingo
+## [161] domingo domingo domingo domingo domingo domingo domingo domingo
+## Levels: domingo quarta quinta sábado segunda sexta terça
+\end{verbatim}
+
+olha os \textbf{Levels}
+
+Então:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ab <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ aa,}
+             \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{,  }\StringTok{"Wednesday"}\NormalTok{,  }\StringTok{"Thursday"}\NormalTok{,}
+                        \StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }\StringTok{"Sunday"}\NormalTok{))}
+\KeywordTok{levels}\NormalTok{(ab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday" 
+## [7] "Sunday"
+\end{verbatim}
+
+\section{\texorpdfstring{\texttt{data.frames}}{data.frames}}\label{data.frames}
+
+\emph{lembre ?data.frame}
+
+São como planilha EXCEL\ldots{}. mais o menos
+
+É uma classe bem especial, tem elementos de matriz mas o modo é lista
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   a
+## 1 1
+## 2 2
+## 3 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mode}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "list"
+\end{verbatim}
+
+Então
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{nrow}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ncol}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 1
+\end{verbatim}
+
+\chapter{Importando e exportando dados em
+R}\label{importando-e-exportando-dados-em-r}
+
+We describe our methods in this chapter.
+
+\chapter{Applications}\label{applications}
+
+Some \emph{significant} applications are demonstrated in this chapter.
+
+\section{Example one}\label{example-one}
+
+\section{Example two}\label{example-two}
+
+\chapter{Final Words}\label{final-words}
+
+We have finished a nice book.
+
+\bibliography{book.bib,packages.bib}
+
+
+\end{document}
