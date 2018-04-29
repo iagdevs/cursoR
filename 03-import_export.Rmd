@@ -6,3 +6,8 @@ Probabelmente um dos promeiros objetos que vamos usar quando começamos usar R.
 Pensa num data-frame como uma planilha de Libreoffice (o excel). Os data-frame
 pode serm criaos como foi visto no 
 
+
+```{r}
+df <- read.csv("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/CO_2012_C.CESAR.csv")
+```
+
