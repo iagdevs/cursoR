@@ -73,8 +73,101 @@ head(df2)
 tail(df2)
 ```
 
-## data.table
+
+### Qua dificultades tu já enfrentou importando dados?
+
+
+
+## Processando nossa data-frame
+
+Tem numeroas formas e pacotes para ordenar, arrangiar (Arrange), mutar e cambiar
+as data-frames. As mais conhecidas são provablemente do universe *tidyverse* com 
+o famoso pacote _dplyr_. Mas, nesta curso vamos focar em **base**.
+
+Vamos então revisar a classe de cada columna do nosso data-frame com a função
+`sapply`, apresentada em outro capitulo, mas se quiser, da uma olhada em `?sapply`.
+
+```{r}
+sapply(df, class)
+```
+
+Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo
+reconhecida como "tempo", especificamente como classe "POSIXct". Mas, a classe de
+Data é "factor" e de Hora tambem "factor", o que é ruim. Então, vamos criar uma
+variabel de tempo mais standard com formato `r Sys.time()`.
+
+Para isso temos que grudar as variabel Data e Hora. Faremios isso numa nova
+varaibel chamada tempo_char, adicionando ela diretamente no `df` com o cifrão 
+DOLLAR $. O grude pode ser feito com as funções `paste` ou `paste0`.
+
+```{r}
+df$tempo_char <- paste(df$Data, df$Hora)
+head(df$tempo_char)
+class(df$tempo_char)
+```
+
+Esta melhorando mas ainda tem clase `r class(df$tempo_char)`.
+
+Para convertir a nossa classe POSIXct podemos usar a função `as.POSIXct` (olha 
+`as.POSIXct`). Seus argumentos são:
+
+```{r}
+args(as.POSIXct)
+```
+
+
+Então, vamos criar outra variabel tempo o formato POSIXct
+
+```{r}
+df$tempo <- as.POSIXct(x = df$tempo_char, tz = "Americas/Sao_Paulo", 
+                       format = "%d/%m/%Y %H:%M")
+head(df$tempo)
+class(df$tempo)
+```
+
+Agora, vamos a extraer os dias da semana do tempo, mes e dia juliano:
+
+```{r}
+df$weekdays <- weekdays(df$tempo)
+head(df$weekdays)
+df$mes <- months(df$tempo)
+head(df$mes)
+df$diajuliano <- julian(df$tempo)
+head(df$diajuliano)
+```
+
+## aggregate
+
+
+## subset
+
+## data.table, read_xl e mais
 
 data.table é um pacote que apresenta a classe `data.table`, que é como uma versão
 melhorada da classe `data-frame` O termo especifico é que `data-table` tem 
 herencia (inherits) da classe `data.frame`
+
+Vamos ver como funciona data.table lendo o dois arquivos e comparar quanto tempo
+demoram cada um.
+
+```{r}
+df1 <- print(system.time(read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt", h = T)))
+```
+
+```{r}
+library(data.table)
+df2 <- print(system.time(fread("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt", h = T)))
+
+```
+
+
+
+olha que estamos usando a função `fread`.
+
+read_xl é mais uma função do universo tidyverse que permite importar excel no R,
+diretamente e inteligentemente.
+
+## NetCDF
+
+## Binarios
+

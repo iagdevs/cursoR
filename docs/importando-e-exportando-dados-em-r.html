@@ -280,6 +280,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="data.table" class="section level2">
 <h2><span class="header-section-number">4.2</span> data.table</h2>
 <p>data.table é um pacote que apresenta a classe <code>data.table</code>, que é como uma versão melhorada da classe <code>data-frame</code> O termo especifico é que <code>data-table</code> tem herencia (inherits) da classe <code>data.frame</code></p>
+<p>Vamos ver como funciona data.table lendo o dois arquivos e comparar quanto tempo demoram cada um.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
+<pre><code>##    user  system elapsed 
+##   0.102   0.017   9.375</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
+df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
+<pre><code>## Warning in fread(&quot;https://raw.githubusercontent.com/ibarraespinosa/
+## cursoR/master/dados/NOXIPEN2014.txt&quot;, : Starting data input on line 2
+## and discarding line 1 because it has too few or too many items to be
+## column names or data: &quot;TipodeRede&quot; &quot;TipodeMonitoramento&quot; &quot;Tipo&quot; &quot;Data&quot;
+## &quot;Hora&quot; &quot;CodigoEstação&quot; &quot;NomeEstação&quot; &quot;NomeParâmetro&quot; &quot;UnidadedeMedida&quot;
+## &quot;MediaHoraria&quot; &quot;MediaMovel&quot; &quot;Valido&quot;</code></pre>
+<pre><code>##    user  system elapsed 
+##   0.233   0.009   0.488</code></pre>
+<p>olha que estamos usando a função <code>fread</code>.</p>
 
 </div>
 </div>

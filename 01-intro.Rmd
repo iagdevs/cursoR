@@ -21,4 +21,21 @@ Vamos usar [Rstudio](https://www.rstudio.com/)
 - Se não sabe como usar uma função, escreva: `?função`.
 - As funções tem argumentos, use **TAB** para ver eles numa função.
 
+## IMPORTANTE
+
+teu novo melhor amigo, besti friendi, BFF, parceiro, mano, tabarish, komrade,
+compaheiro, colega, buisiness partner amd whatever meanningful is 
+
+- **TAB** no **RSTUDIO**. 
+
+Esta combinação é tão boa, como o cafe com leite, pizza e abacaxi, vitamina de 
+acabate com amendoim Manaus, a melhor combinação.
+
+```{r echo = FALSE}
+knitr::include_graphics("figuras/tab-key-.jpeg")
+```
+
+Porque quando se tu não lembra os argumentos da função, e não quer ver o help
+*?* de cada função, so clica **TAB** e RSTUDIO te mostrara a lista de argumentos.
+
 Vamos lá!
