@@ -169,5 +169,58 @@ diretamente e inteligentemente.
 
 ## NetCDF
 
+O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos com dados, atributos e metadados.
+
+O pacote `ncdf4` podes ser usado com o R para ler e escrever estes arquivos, os comandos abaixo instalam e carregam o pacote:
+```{r}
+install.packages("ncdf4")
+library("ncdf4")
+nc_version() # que retorna a versão da biblioteca que o R está utilizando
+```
+Um arquivo então pode ser ascessado por:
+```{r}
+wrf <- nc_open("data/met_em.d03.2016-01-10.nc")
+```
+A partir de agora o objeto wrf, contem algumas informações sobre o arquivo, por exemplo um `print(wrf)` ou simplesmente `wrf` mostra o conteúdo do arquivo:
+```{r}
+wrf
+```
+Entre a informação mostrada na tela estão o nome do arquivo (e versão da biblioteca usada para criar), numero de variáveis (92 no arquivo de exemplo), uma descrição de cada variavel (incluindo atributos) as dimenções (13 para esse aquivo) e os atributos globais.
+
+Agora vamos abrir alguma variável:
+```{r}
+names(wrf$var)              # print no nome de cada variavel
+ST <- ncvar_get(wrf, "ST")  # escolho você picachu
+
+```
+ncvar_get	Read data from a netCDF file
+
+
+ncatt_get	Get attribute from netCDF file
+ncatt_put	Put an attribute into a netCDF file
+
+ncvar_add	Add New netCDF Variable to Existing File
+ncvar_change_missval	Change the Missing Value For a netCDF Variable
+ncvar_def	Define a netCDF Variable
+ncvar_put	Write data to a netCDF file
+ncvar_rename	Rename an Existing Variable in a netCDF File
+
+nc_version	Report version of ncdf4 library
+nc_create	Create a netCDF File
+ncdim_def	Define a netCDF Dimension
+nc_enddef	Takes a netCDF file out of define mode
+nc_redef	Puts a netCDF file back into define mode
+
+nc_close	Close a netCDF File
+nc_sync	Synchronize (flush to disk) a netCDF File
+
+
+Para salvar toda informação e liberar o ascesso ao arquivo use a função `nc_close` (ou a função `nc_sync` que sincroniza o NetCDF carregado na memória com o NetCDF no Disco)
+```{r}
+nc_close(wrf)
+```
+
+
+
 ## Binarios
 
