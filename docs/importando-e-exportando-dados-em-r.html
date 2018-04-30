@@ -22,7 +22,7 @@
   <meta name="twitter:description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
   
 
-<meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r invited to collaborate)">
+<meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, e possivelmente outros (u r invited to collaborate)">
 
 
 <meta name="date" content="2018-04-30">
@@ -302,7 +302,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
-<p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-04-30 16:52:15.</p>
+<p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-04-30 18:31:42.</p>
 <p>Para isso temos que grudar as variabel Data e Hora. Faremios isso numa nova varaibel chamada tempo_char, adicionando ela diretamente no <code>df</code> com o cifrão DOLLAR $. O grude pode ser feito com as funções <code>paste</code> ou <code>paste0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo_char &lt;-<span class="st"> </span><span class="kw">paste</span>(df<span class="op">$</span>Data, df<span class="op">$</span>Hora)
 <span class="kw">head</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
@@ -348,7 +348,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Vamos ver como funciona data.table lendo o dois arquivos e comparar quanto tempo demoram cada um.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.155   0.009   1.261</code></pre>
+##   0.186   0.017   1.257</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>## Warning in fread(&quot;https://raw.githubusercontent.com/ibarraespinosa/
@@ -358,7 +358,7 @@ df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw"
 ## &quot;Hora&quot; &quot;CodigoEstação&quot; &quot;NomeEstação&quot; &quot;NomeParâmetro&quot; &quot;UnidadedeMedida&quot;
 ## &quot;MediaHoraria&quot; &quot;MediaMovel&quot; &quot;Valido&quot;</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.079   0.008   0.801</code></pre>
+##   0.090   0.000   0.798</code></pre>
 <p>olha que estamos usando a função <code>fread</code>.</p>
 <p>read_xl é mais uma função do universo tidyverse que permite importar excel no R, diretamente e inteligentemente.</p>
 </div>

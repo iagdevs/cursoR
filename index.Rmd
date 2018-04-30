@@ -1,6 +1,6 @@
 --- 
 title: "Curso de R para meteorologia IAG/USP"
-author: "Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r invited to collaborate)"
+author: "Sergio Ibarra-Espinosa,\n Amanda Rehbein,\n Daniel Schuch,\n e possivelmente outros (u r invited to collaborate)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook

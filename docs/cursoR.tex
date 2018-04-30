@@ -25,7 +25,7 @@
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={Curso de R para meteorologia IAG/USP},
-            pdfauthor={Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r invited to collaborate)},
+            pdfauthor={Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, e possivelmente outros (u r invited to collaborate)},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -119,8 +119,8 @@
   \title{Curso de R para meteorologia IAG/USP}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-  \author{Sergio Ibarra-Espinosa, Amanda Rehbein e possivelmente outros (u r
-invited to collaborate)}
+  \author{Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, e possivelmente
+outros (u r invited to collaborate)}
   \preauthor{\centering\large\emph}
   \postauthor{\par}
   \predate{\centering\large\emph}
@@ -723,18 +723,18 @@ Da pra fazer secuencias:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2018-04-30 16:52:24 -03" "2018-04-30 17:52:24 -03"
-##  [3] "2018-04-30 18:52:24 -03" "2018-04-30 19:52:24 -03"
-##  [5] "2018-04-30 20:52:24 -03" "2018-04-30 21:52:24 -03"
-##  [7] "2018-04-30 22:52:24 -03" "2018-04-30 23:52:24 -03"
-##  [9] "2018-05-01 00:52:24 -03" "2018-05-01 01:52:24 -03"
-## [11] "2018-05-01 02:52:24 -03" "2018-05-01 03:52:24 -03"
-## [13] "2018-05-01 04:52:24 -03" "2018-05-01 05:52:24 -03"
-## [15] "2018-05-01 06:52:24 -03" "2018-05-01 07:52:24 -03"
-## [17] "2018-05-01 08:52:24 -03" "2018-05-01 09:52:24 -03"
-## [19] "2018-05-01 10:52:24 -03" "2018-05-01 11:52:24 -03"
-## [21] "2018-05-01 12:52:24 -03" "2018-05-01 13:52:24 -03"
-## [23] "2018-05-01 14:52:24 -03" "2018-05-01 15:52:24 -03"
+##  [1] "2018-04-30 18:31:58 -03" "2018-04-30 19:31:58 -03"
+##  [3] "2018-04-30 20:31:58 -03" "2018-04-30 21:31:58 -03"
+##  [5] "2018-04-30 22:31:58 -03" "2018-04-30 23:31:58 -03"
+##  [7] "2018-05-01 00:31:58 -03" "2018-05-01 01:31:58 -03"
+##  [9] "2018-05-01 02:31:58 -03" "2018-05-01 03:31:58 -03"
+## [11] "2018-05-01 04:31:58 -03" "2018-05-01 05:31:58 -03"
+## [13] "2018-05-01 06:31:58 -03" "2018-05-01 07:31:58 -03"
+## [15] "2018-05-01 08:31:58 -03" "2018-05-01 09:31:58 -03"
+## [17] "2018-05-01 10:31:58 -03" "2018-05-01 11:31:58 -03"
+## [19] "2018-05-01 12:31:58 -03" "2018-05-01 13:31:58 -03"
+## [21] "2018-05-01 14:31:58 -03" "2018-05-01 15:31:58 -03"
+## [23] "2018-05-01 16:31:58 -03" "2018-05-01 17:31:58 -03"
 \end{verbatim}
 
 funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
@@ -746,8 +746,8 @@ funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
-##  [8] "segunda" "terça"   "terça"   "terça"   "terça"   "terça"   "terça"  
+##  [1] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "terça"  
+##  [8] "terça"   "terça"   "terça"   "terça"   "terça"   "terça"   "terça"  
 ## [15] "terça"   "terça"   "terça"   "terça"   "terça"   "terça"   "terça"  
 ## [22] "terça"   "terça"   "terça"
 \end{verbatim}
@@ -759,7 +759,7 @@ funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "abril" "abril" "abril" "abril" "abril" "abril" "abril" "abril"
+##  [1] "abril" "abril" "abril" "abril" "abril" "abril" "maio"  "maio" 
 ##  [9] "maio"  "maio"  "maio"  "maio"  "maio"  "maio"  "maio"  "maio" 
 ## [17] "maio"  "maio"  "maio"  "maio"  "maio"  "maio"  "maio"  "maio"
 \end{verbatim}
@@ -772,10 +772,10 @@ funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 
 \begin{verbatim}
 ## Time differences in days
-##  [1] 17651.83 17651.87 17651.91 17651.95 17651.99 17652.04 17652.08
-##  [8] 17652.12 17652.16 17652.20 17652.24 17652.29 17652.33 17652.37
-## [15] 17652.41 17652.45 17652.49 17652.54 17652.58 17652.62 17652.66
-## [22] 17652.70 17652.74 17652.79
+##  [1] 17651.90 17651.94 17651.98 17652.02 17652.06 17652.11 17652.15
+##  [8] 17652.19 17652.23 17652.27 17652.31 17652.36 17652.40 17652.44
+## [15] 17652.48 17652.52 17652.56 17652.61 17652.65 17652.69 17652.73
+## [22] 17652.77 17652.81 17652.86
 ## attr(,"origin")
 ## [1] "1970-01-01 GMT"
 \end{verbatim}
@@ -810,25 +810,25 @@ semana.
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] segunda segunda segunda segunda segunda segunda segunda segunda
+##   [1] segunda segunda segunda segunda segunda segunda terça   terça  
 ##   [9] terça   terça   terça   terça   terça   terça   terça   terça  
 ##  [17] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [25] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [25] terça   terça   terça   terça   terça   terça   quarta  quarta 
 ##  [33] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
 ##  [41] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [49] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [49] quarta  quarta  quarta  quarta  quarta  quarta  quinta  quinta 
 ##  [57] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
 ##  [65] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [73] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [73] quinta  quinta  quinta  quinta  quinta  quinta  sexta   sexta  
 ##  [81] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
 ##  [89] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [97] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [97] sexta   sexta   sexta   sexta   sexta   sexta   sábado  sábado 
 ## [105] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
 ## [113] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [121] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [121] sábado  sábado  sábado  sábado  sábado  sábado  domingo domingo
 ## [129] domingo domingo domingo domingo domingo domingo domingo domingo
 ## [137] domingo domingo domingo domingo domingo domingo domingo domingo
-## [145] domingo domingo domingo domingo domingo domingo domingo domingo
+## [145] domingo domingo domingo domingo domingo domingo segunda segunda
 ## [153] segunda segunda segunda segunda segunda segunda segunda segunda
 ## [161] segunda segunda segunda segunda segunda segunda segunda segunda
 ## Levels: domingo quarta quinta sábado segunda sexta terça
@@ -1178,7 +1178,7 @@ Quando nos trabalhamos com series de tempo, é importante ter a variabel
 de tempo reconhecida como ``tempo'', especificamente como classe
 ``POSIXct''. Mas, a classe de Data é ``factor'' e de Hora tambem
 ``factor'', o que é ruim. Então, vamos criar uma variabel de tempo mais
-standard com formato 2018-04-30 16:52:27.
+standard com formato 2018-04-30 18:32:01.
 
 Para isso temos que grudar as variabel Data e Hora. Faremios isso numa
 nova varaibel chamada tempo\_char, adicionando ela diretamente no
@@ -1307,7 +1307,7 @@ quanto tempo demoram cada um.
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.182   0.031   1.229
+##   0.207   0.011   1.222
 \end{verbatim}
 
 \begin{Shaded}
@@ -1328,7 +1328,7 @@ quanto tempo demoram cada um.
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.028   0.004   0.089
+##   0.025   0.004   0.089
 \end{verbatim}
 
 olha que estamos usando a função \texttt{fread}.
