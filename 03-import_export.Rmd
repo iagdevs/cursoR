@@ -172,14 +172,15 @@ diretamente e inteligentemente.
 O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos com dados, atributos e metadados.
 
 O pacote `ncdf4` podes ser usado com o R para ler e escrever estes arquivos, os comandos abaixo instalam e carregam o pacote:
-```{r}
+```{r eval = FALSE}
 install.packages("ncdf4")
-library("ncdf4")
 nc_version() # que retorna a versão da biblioteca que o R está utilizando
 ```
 Um arquivo então pode ser ascessado por:
 ```{r}
-wrf <- nc_open("data/met_em.d03.2016-01-10.nc")
+library("ncdf4")
+download.file("https://github.com/ibarraespinosa/cursoR/raw/master/dados/met_em.d03.2016-01-10.nc", destfile = "~/met_em.d03.2016-01-10.nc")
+wrf <- nc_open("dados/met_em.d03.2016-01-10.nc")
 ```
 A partir de agora o objeto wrf, contem algumas informações sobre o arquivo, por exemplo um `print(wrf)` ou simplesmente `wrf` mostra o conteúdo do arquivo:
 ```{r}
