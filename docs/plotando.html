@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Curso de R para meteorologia IAG/USP</title>
+  <meta name="description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Curso de R para meteorologia IAG/USP" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Curso de R para meteorologia IAG/USP" />
+  
+  <meta name="twitter:description" content="Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação" />
+  
+
+<meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, e possivelmente outros (u r invited to collaborate)">
+
+
+<meta name="date" content="2018-05-03">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="importando-e-exportando-dados-em-r.html">
+<link rel="next" href="geo-spatial-raster-sf-e-stars.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso R DCA/IAG/USP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pre-requisitos do sistema</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.1</b> Pacotes usados neste curso</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.2</b> Colaborar</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#aportar-com-dados"><i class="fa fa-check"></i><b>1.3</b> Aportar com dados</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#importante"><i class="fa fa-check"></i><b>2.1</b> IMPORTANTE</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>3</b> R!</a><ul>
+<li class="chapter" data-level="3.1" data-path="r.html"><a href="r.html#objetos-de-r"><i class="fa fa-check"></i><b>3.1</b> Objetos de R</a></li>
+<li class="chapter" data-level="3.2" data-path="r.html"><a href="r.html#classe"><i class="fa fa-check"></i><b>3.2</b> Classe</a></li>
+<li class="chapter" data-level="3.3" data-path="r.html"><a href="r.html#vetores"><i class="fa fa-check"></i><b>3.3</b> Vetores</a></li>
+<li class="chapter" data-level="3.4" data-path="r.html"><a href="r.html#convertir-objetos-com-as"><i class="fa fa-check"></i><b>3.4</b> Convertir objetos com <code>as</code></a></li>
+<li class="chapter" data-level="3.5" data-path="r.html"><a href="r.html#matrices-e-a-funcao-matrix"><i class="fa fa-check"></i><b>3.5</b> Matrices e a função <code>matrix</code></a></li>
+<li class="chapter" data-level="3.6" data-path="r.html"><a href="r.html#array"><i class="fa fa-check"></i><b>3.6</b> Array</a></li>
+<li class="chapter" data-level="3.7" data-path="r.html"><a href="r.html#list"><i class="fa fa-check"></i><b>3.7</b> <code>list</code></a></li>
+<li class="chapter" data-level="3.8" data-path="r.html"><a href="r.html#tempo-e-data"><i class="fa fa-check"></i><b>3.8</b> Tempo e Data</a></li>
+<li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
+<li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> <code>data.frames</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html"><i class="fa fa-check"></i><b>4</b> Importando e exportando dados em R</a><ul>
+<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> data-frames</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#qua-dificultades-tu-ja-enfrentou-importando-dados"><i class="fa fa-check"></i><b>4.1.1</b> Qua dificultades tu já enfrentou importando dados?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#exportando-texto-com-write.table"><i class="fa fa-check"></i><b>4.2</b> Exportando texto com <code>write.table</code></a></li>
+<li class="chapter" data-level="4.3" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#exportando-objetos-com-save"><i class="fa fa-check"></i><b>4.3</b> Exportando objetos com <code>save</code></a></li>
+<li class="chapter" data-level="4.4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#exportando-objetos-com-saverds"><i class="fa fa-check"></i><b>4.4</b> Exportando objetos com <code>saveRDS</code></a></li>
+<li class="chapter" data-level="4.5" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#processando-nossa-data-frame"><i class="fa fa-check"></i><b>4.5</b> Processando nossa data-frame</a></li>
+<li class="chapter" data-level="4.6" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#aggregate"><i class="fa fa-check"></i><b>4.6</b> aggregate</a></li>
+<li class="chapter" data-level="4.7" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#subset"><i class="fa fa-check"></i><b>4.7</b> subset</a></li>
+<li class="chapter" data-level="4.8" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data.table-read_xl-e-mais"><i class="fa fa-check"></i><b>4.8</b> data.table, read_xl e mais</a></li>
+<li class="chapter" data-level="4.9" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#netcdf"><i class="fa fa-check"></i><b>4.9</b> NetCDF</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plotando.html"><a href="plotando.html"><i class="fa fa-check"></i><b>5</b> Plotando</a><ul>
+<li class="chapter" data-level="5.1" data-path="plotando.html"><a href="plotando.html#plot"><i class="fa fa-check"></i><b>5.1</b> plot</a></li>
+<li class="chapter" data-level="5.2" data-path="plotando.html"><a href="plotando.html#ggplot"><i class="fa fa-check"></i><b>5.2</b> ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="geo-spatial-raster-sf-e-stars.html"><a href="geo-spatial-raster-sf-e-stars.html"><i class="fa fa-check"></i><b>6</b> Geo Spatial: <code>raster</code>, <code>sf</code> e <code>stars</code></a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://ibarraespinosa.github.io/cursoR" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de R para meteorologia IAG/USP</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="plotando" class="section level1">
+<h1><span class="header-section-number">Capitulo 5</span> Plotando</h1>
+<div id="plot" class="section level2">
+<h2><span class="header-section-number">5.1</span> plot</h2>
+<p>exemplo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;df.rds&quot;</span>)
+<span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
+## 2             ppb            9          -    Não 01/01/2014 01:00
+## 3             ppb            9          -    Sim 01/01/2014 02:00
+## 4             ppb            5          -    Sim 01/01/2014 03:00
+## 5             ppb            4          -    Sim 01/01/2014 04:00
+## 6             ppb            5          -    Sim 01/01/2014 05:00
+## 7             ppb            5          -    Sim 01/01/2014 06:00
+##                 tempo weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00   quarta janeiro 16071.04 days 2014
+## 3 2014-01-01 02:00:00   quarta janeiro 16071.08 days 2014
+## 4 2014-01-01 03:00:00   quarta janeiro 16071.12 days 2014
+## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
+## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
+## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014</code></pre>
+<p>plot basico</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(plot)</code></pre></div>
+<pre><code>## function (x, y, ...) 
+## NULL</code></pre>
+<p>então</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo, <span class="dt">y =</span> df<span class="op">$</span>MediaHoraria)</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p>feio, ne?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="dt">y =</span> df<span class="op">$</span>MediaHoraria[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], 
+     <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;horas&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;NO2[ppb]&quot;</span>,
+     <span class="dt">main =</span> <span class="st">&quot;Plot menos feio&quot;</span>)</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p>Vamos a colocar <strong>DOIS</strong> plots</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="dt">y =</span> df<span class="op">$</span>MediaHoraria[<span class="dv">101</span><span class="op">:</span><span class="dv">200</span>], 
+     <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,
+     <span class="dt">xlab =</span> <span class="st">&quot;horas&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;NO2[ppb]&quot;</span>,
+     <span class="dt">main =</span> <span class="st">&quot;Plot estranho&quot;</span>)
+<span class="kw">lines</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="dt">y =</span> df<span class="op">$</span>MediaHoraria[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], 
+     <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p>Se tu é fan de BASE PLOT, tudo bem :)</p>
+</div>
+<div id="ggplot" class="section level2">
+<h2><span class="header-section-number">5.2</span> ggplot</h2>
+<p>Tem um monte de recursos para ggplot na web</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(df)</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria))</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>opa</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> mes)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() </code></pre></div>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>deixando so 2014</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span>df[df<span class="op">$</span>ano <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>,]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> mes)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() </code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>mes)</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>mes, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p>Y para terminar, meu theme favorito</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;atmoschem/veinreport&quot;</span>)</code></pre></div>
+<p>e logo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(veinreport)
+<span class="kw">library</span>(cptcity)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">cpt</span>())</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p>Pode revertir a escala de cores</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">rev</span>(<span class="kw">cpt</span>())) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>mes, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<p>não gostou, tenta com a sorte</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>mes, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">lucky</span>())</code></pre></div>
+<pre><code>## Colour gradient: jjg_polarity_RdGy, number: 4293</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>mes, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">lucky</span>())</code></pre></div>
+<pre><code>## Colour gradient: nd_basic_Megenta_White_Magenta, number: 5292</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">lucky</span>())</code></pre></div>
+<pre><code>## Colour gradient: hult_gr50_hult, number: 3419</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="importando-e-exportando-dados-em-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="geo-spatial-raster-sf-e-stars.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ibarraespinosa/cursoR/edit/master/04-plotting_ggplotting.Rmd",
+"text": "Edit"
+},
+"download": ["cursoR.pdf", "cursoR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
