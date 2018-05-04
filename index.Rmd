@@ -1,6 +1,6 @@
 --- 
-title: "Curso de R para meteorologia IAG/USP"
-author: "Sergio Ibarra-Espinosa,\n Amanda Rehbein,\n Daniel Schuch,\n e possivelmente outros (u r invited to collaborate)"
+title: "Curso de R para Meteorologia IAG/USP"
+author: "Sergio Ibarra-Espinosa,\n Amanda Rehbein,\n Daniel Schuch,\n Camila Lopes,\n e possivelmente outros (u r invited to collaborate)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -9,7 +9,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
-description: "Este é um curso de R para meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pos-graduação"
+description: "Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação"
 ---
 
 # Pre-requisitos do sistema {#primero}
