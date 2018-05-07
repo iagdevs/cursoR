@@ -259,7 +259,7 @@ Como poderiamos escolher só o mes de janeiro??
 
 ```{r}
 #[     LINHAS    ,  COLUNAS   ]
-df[df$mes == "janeiro", ] #TODAS AS COLUNAS
+head(df[df$mes == "janeiro", ]) #TODAS AS COLUNAS
 ```
 
 
