@@ -1,0 +1,204 @@
+# R! {#r}
+
+
+- Quase em qualquer sistema operacional mas eu vou focar em Linux.
+- Muita documentação:
+- [Intro](http://cran.r-project.org/doc/manuals/r-release/R-intro.html).
+- [I/O](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
+- Quer fazer um pacote? [Veja](http://cran.r-project.org/doc/manuals/r-release/R-exts.html),
+[aqui](http://cran.r-project.org/doc/manuals/r-release/R-ints.html) e [aqui](http://cran.r-project.org/doc/manuals/r-release/R-lang.html).
+- [Stackoverflow](https://stackoverflow.com/questions/tagged/r) provides a great source of resources.
+
+## Objetos de R
+
+- Character `r "a"`
+- numeric `r 1`
+- integer `r 1`
+- complex `r 1i`
+- logical `r TRUE`
+
+## Classe
+
+`class` função permite ver a classe dos objetos
+
+## Vetores
+
+- c("A", "C", "D")
+- 1:5 = c(1, 2, 3, 4, 5)
+- c(TRUE, FALSE)
+- c(1i, -1i)
+- c(1, "C", "D") qual é a classe???
+- c(1, NA, "D") qual é a classe???
+- c(1, NA, NaN) qual é a classe???
+
+## Convertir objetos com `as`
+
+```{r}
+as.numeric(c(1, "C", "D"))
+```
+
+
+## Matrices e a função `matrix`
+
+**[linhas, colunas]**
+
+- permitidos elementos **da mesma clase**!
+
+vamos ver os argumentos da função `matrix`
+
+```{r}
+args(matrix)
+```
+
+usando TAB
+
+```{r}
+(m <- matrix(data = 0, nrow = 4, ncol = 4))
+```
+
+
+```{r}
+(m1 <- matrix(data = 1:(4*4), nrow = 4, ncol = 4))
+dim(m1)
+```
+
+
+```{r}
+(m2 <- matrix(data = 1:(4*4), nrow = 4, ncol = 4, byrow = TRUE))
+```
+
+## Array
+
+É como uma matriz de matrizes de matrizes de matrizes...... and so on.
+
+```{r}
+args(array)
+```
+
+lembre usar TAB
+
+```{r}
+(a <- array(data = 0, dim = c(1,1)))
+class(a)
+```
+
+```{r}
+(a <- array(data = 0, dim = c(1,1,1)))
+class(a)
+```
+
+
+
+```{r}
+(a <- array(data = 0, dim = c(2,2,2)))
+```
+
+
+```{r}
+(a <- array(data = 0, dim = c(2,4,4)))
+dim(a)
+```
+
+
+```{r eval = FALSE}
+(a <- array(data = 0, dim = c(2, 2,2,2)))
+```
+
+## `list`
+
+As listas são como sacolas, e dentro delas, tu pode colocar mais sacolas...
+então, tu pode ter sacolas, dentro de sacolas, dentro de sacolas...
+ou
+```{r}
+list(list(list(list(1))))
+```
+a diferença das matrices, tu pode colocar cualquer coisa nas listas, por exemplo:
+funções, characters, etc.
+
+```{r}
+(x <- list(1, "a", TRUE, 1 + 4i))
+```
+
+## Tempo e Data
+
+R tem classes de tempo e data:
+
+```{r}
+(a <- ISOdate(year = 2018, month = 4, day = 5))
+class(a)
+(b <- ISOdate(year = 2018, month = 4, day = 5, tz = "Americas/Sao_Paulo"))
+```
+
+tempo
+
+```{r}
+(d <- ISOdatetime(year = 2018, month = 4, day = 5, hour = 0, min = 0, sec = 0,
+                  tz = "Americas/Sao_Paulo"))
+```
+
+O pacote [nanotime](https://github.com/eddelbuettel/nanotime) permite trabalhar com nano segundos.
+
+Da pra fazer secuencias:
+
+```{r}
+hoje <- Sys.time()
+(a <- seq.POSIXt(from = hoje, by = 3600, length.out = 24))
+
+```
+
+funções bacana: **weekdays**, **month**, **julian**
+
+```{r}
+weekdays(a)
+months(a)
+julian(a) #olha ?julian... dias desde origin
+```
+olha https://en.wikipedia.org/wiki/Julian_day:
+
+
+
+## Fatores
+
+Os `factors` podem ser um pouco infernais. Olha [R INFERNO](http://www.burns-stat.com/documents/books/the-r-inferno/)
+
+Usados para representar categorias, ejemplo clasico para nos, dias da semana.
+
+```{r}
+a <- seq.POSIXt(from = hoje, by = 3600, length.out = 24*7)
+aa <- weekdays(a)
+class(aa)
+factor(aa)
+```
+olha os **Levels**
+
+Então: 
+
+```{r}
+ab <- factor(x = aa,
+             levels = c("Monday", "Tuesday",  "Wednesday",  "Thursday",
+                        "Friday", "Saturday", "Sunday"))
+levels(ab)
+```
+
+## `data.frames`
+
+_lembre ?data.frame_
+
+São como planilha EXCEL.... mais o menos
+
+É uma classe bem especial, tem elementos de matriz mas o modo é lista
+
+```{r}
+(df <- data.frame(a = 1:3))
+names(df)
+class(df)
+mode(df)
+```
+
+Então
+
+```{r}
+nrow(df)
+ncol(df)
+dim(df)
+```

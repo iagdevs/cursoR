@@ -1,0 +1,107 @@
+--- 
+title: "Curso de R para Meteorologia IAG/USP"
+author: "Sergio Ibarra-Espinosa,\n Amanda Rehbein,\n Daniel Schuch,\n Camila Lopes,\n e possivelmente outros (u r invited to collaborate)"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação"
+---
+
+# Pre-requisitos do sistema {#primero}
+
+Em Windows, instale além do R, Rtools https://cran.r-project.org/bin/windows/Rtools/
+
+Em MAC instale netcdf e:
+
+
+```{bash eval = FALSE}
+brew unlink gdal
+brew tap osgeo/osgeo4mac && brew tap --repair
+brew install proj
+brew install geos
+brew install udunits
+brew install gdal2 --with-armadillo --with-complete --with-libkml --with-unsupported
+brew link --force gdal2
+```
+
+
+Em Ubuntu:
+
+```{bash eval = FALSE}
+  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
+  - sudo apt-get --yes --force-yes update -qq
+  # install tmap dependencies
+  - sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev
+  # install tmap dependencies; for 16.04 libjq-dev this ppa is needed:
+  - sudo add-apt-repository -y ppa:opencpu/jq
+  - sudo apt-get --yes --force-yes update -qq
+  - sudo apt-get install libjq-dev
+  # units/udunits2 dependency:
+  - sudo apt-get install --yes libudunits2-dev
+  # sf dependencies:
+  - sudo apt-get install --yes libproj-dev libgeos-dev libgdal-dev libnetcdf-dev  netcdf-bin gdal-bin
+
+```
+
+
+## Pacotes usados neste curso
+
+Para fazer este curso instale os seguintes pacotes como indicado:
+
+```{r eval = FALSE}
+install.packages("devtools")
+devtools::install_github("tidyverse/tidyverse")
+devtools::install_github("r-spatial/sf")
+devtools::install_github("r-spatial/mapview")
+devtools::install_github("r-spatial/stars")
+install.packages(c("raster", "sp", "rgdal", "maptools", "ncdf4"))
+install.packages(c("cptcity", "data.table", "openair"))
+```
+
+- [devtools](https://CRAN.R-project.org/package=devtools) é um pacote para
+instalar pacotes de diferentes repositórios
+- [tidyverse](https://github.com/tidyverse) é o universo de pacotes do Hadley
+Wickham. A instalação tem que ser usando devtools, pois precisamos plotar os
+objetos espacias sf usando [geom_sf](https://www.isgeomsfinggplot2yet.site/).
+- [sf](https://github.com/r-spatial/sf) e [mapview](https://github.com/r-spatial/mapbiew),
+[stars](https://github.com/r-spatial/stars), raster, sp, rgdal e maptools são 
+para a parte espacial. Lembrar que os objetos em meteorologias são espaço-temporais.
+- ncdf4 é um pacote para manipular arquivos NetCDF.
+- [cptcity](https://ibarraespinosa.github.io/cptcity/) é um pacote que tem 7140
+paletas de cores do arquivo web cpt-city (http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html).
+- [openair](http://davidcarslaw.github.io/openair/) é um pacote para
+trabalhar com dados de qualidade do ar e meteorologia.
+
+
+Se faltarem dependencias de sistema, instale elas e instale os pacotes.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+## Colaborar
+
+A forma preferida de colaboração é com pull-requests em https://github.com/ibarraespinosa/cursoR/pull/new/master. Lembre de aplicar a 
+Guia de Estilo de R de Google (https://google.github.io/styleguide/Rguide.xml)
+ou com o formato de formatR https://yihui.name/formatr/. Em poucas palavras,
+lembre que seu código vai ser lido por seres humanos. Se quiser tem acesso no
+repositório deste curso, me contate. Tem um botão para editar qualquer página.
+
+## Aportar com dados
+
+Se você tem dados para fazer este curso mais legal, por favor, edite este aquivo
+e com pull request, eu vou fazer um merge para poder.
+
+
+1. NCEP: ftp://nomads.ncdc.noaa.gov/GFS/analysis_only/
+1.
+1.
+
