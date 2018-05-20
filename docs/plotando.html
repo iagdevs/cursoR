@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, e possivelmente outros (u r invited to collaborate)">
 
 
-<meta name="date" content="2018-05-15">
+<meta name="date" content="2018-05-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="importando-e-exportando-dados-em-r.html">
-<link rel="next" href="geo-spatial-raster-sf-e-stars.html">
+<link rel="next" href="loop.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -140,7 +140,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1" data-path="plotando.html"><a href="plotando.html#plot"><i class="fa fa-check"></i><b>5.1</b> plot</a></li>
 <li class="chapter" data-level="5.2" data-path="plotando.html"><a href="plotando.html#ggplot"><i class="fa fa-check"></i><b>5.2</b> ggplot</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="geo-spatial-raster-sf-e-stars.html"><a href="geo-spatial-raster-sf-e-stars.html"><i class="fa fa-check"></i><b>6</b> Geo Spatial: <code>raster</code>, <code>sf</code> e <code>stars</code></a></li>
+<li class="chapter" data-level="6" data-path="loop.html"><a href="loop.html"><i class="fa fa-check"></i><b>6</b> Estruturas de control</a><ul>
+<li class="chapter" data-level="6.1" data-path="loop.html"><a href="loop.html#if-else"><i class="fa fa-check"></i><b>6.1</b> if-else</a></li>
+<li class="chapter" data-level="6.2" data-path="loop.html"><a href="loop.html#for"><i class="fa fa-check"></i><b>6.2</b> for</a></li>
+<li class="chapter" data-level="6.3" data-path="loop.html"><a href="loop.html#while"><i class="fa fa-check"></i><b>6.3</b> while</a></li>
+<li class="chapter" data-level="6.4" data-path="loop.html"><a href="loop.html#repeat"><i class="fa fa-check"></i><b>6.4</b> repeat</a></li>
+<li class="chapter" data-level="6.5" data-path="loop.html"><a href="loop.html#lapply"><i class="fa fa-check"></i><b>6.5</b> lapply</a></li>
+<li class="chapter" data-level="6.6" data-path="loop.html"><a href="loop.html#sapply"><i class="fa fa-check"></i><b>6.6</b> sapply</a></li>
+<li class="chapter" data-level="6.7" data-path="loop.html"><a href="loop.html#split"><i class="fa fa-check"></i><b>6.7</b> split</a></li>
+<li class="chapter" data-level="6.8" data-path="loop.html"><a href="loop.html#tapply"><i class="fa fa-check"></i><b>6.8</b> tapply</a></li>
+<li class="chapter" data-level="6.9" data-path="loop.html"><a href="loop.html#apply"><i class="fa fa-check"></i><b>6.9</b> apply</a></li>
+<li class="chapter" data-level="6.10" data-path="loop.html"><a href="loop.html#mapply"><i class="fa fa-check"></i><b>6.10</b> mapply</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="fx.html"><a href="fx.html"><i class="fa fa-check"></i><b>7</b> De scripts a funções e de funções a pacotes</a></li>
+<li class="chapter" data-level="8" data-path="geo.html"><a href="geo.html"><i class="fa fa-check"></i><b>8</b> Geo Spatial: <code>raster</code>, <code>sf</code> e <code>stars</code></a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://ibarraespinosa.github.io/cursoR" target="blank">Published with bookdown</a></li>
@@ -277,20 +290,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>mes, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">lucky</span>())</code></pre></div>
-<pre><code>## Colour gradient: jjg_ccolo_phill_Sky_Vs_Road, number: 4024</code></pre>
+<pre><code>## Colour gradient: bhw_bhw2_bhw2_03, number: 62</code></pre>
 <p><img src="cursoR_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>mes, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">lucky</span>())</code></pre></div>
-<pre><code>## Colour gradient: ggr_Radial_Eyeball_Blue, number: 3147</code></pre>
+<pre><code>## Colour gradient: saga_saga_11, number: 6902</code></pre>
 <p><img src="cursoR_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria, <span class="dt">colour =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>()<span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">lucky</span>())</code></pre></div>
-<pre><code>## Colour gradient: mjf_departurePCT, number: 4986</code></pre>
+<pre><code>## Colour gradient: nd_other_Neon_Orange, number: 5415</code></pre>
 <p><img src="cursoR_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 
 </div>
@@ -301,7 +314,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         </div>
       </div>
 <a href="importando-e-exportando-dados-em-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="geo-spatial-raster-sf-e-stars.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="loop.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

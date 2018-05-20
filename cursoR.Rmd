@@ -1,0 +1,266 @@
+--- 
+title: "Curso de R para Meteorologia IAG/USP"
+author: "Sergio Ibarra-Espinosa,\n Amanda Rehbein,\n Daniel Schuch,\n Camila Lopes,\n Isabela Siqueira,\n e possivelmente outros (você está convidado para colaborar)"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação"
+---
+
+# Pré-requisitos do sistema {#primero}
+
+Placeholder
+
+
+## Pacotes usados neste curso
+## Colaborar
+## Compartilhar dados
+
+<!--chapter:end:index.Rmd-->
+
+
+# Intro {#intro}
+
+Placeholder
+
+
+## IMPORTANTE
+
+<!--chapter:end:01-intro.Rmd-->
+
+
+# R! {#r}
+
+Placeholder
+
+
+## Objetos de R
+## Classe
+## Vetores
+## Convertir objetos com `as`
+## Matrices e a função `matrix`
+## Array
+## `list`
+## Tempo e Data
+## Fatores
+## `data.frames`
+
+<!--chapter:end:02-basicr.Rmd-->
+
+
+# Importando e exportando dados em R
+
+Placeholder
+
+
+## data-frames
+### Qua dificultades tu já enfrentou importando dados?
+## Exportando texto com `write.table`
+## Exportando objetos com `save`
+## Exportando objetos com `saveRDS`
+## Processando nossa data-frame
+## aggregate
+## subset
+## data.table, read_xl e mais
+## NetCDF
+
+<!--chapter:end:03-import_export.Rmd-->
+
+# Plotando
+
+## `plot` (base)
+
+exemplo
+
+```{r}
+df <- readRDS("df.rds")
+head(df)
+```
+
+plot basico
+
+```{r}
+args(plot)
+```
+
+então
+
+```{r}
+plot(x = df$tempo, y = df$MediaHoraria)
+```
+
+
+feio, ne?
+
+```{r}
+plot(x = df$tempo[1:100], y = df$MediaHoraria[1:100], 
+     pch = 16, type = "b", col = "blue",
+     xlab = "horas", ylab = "NO2[ppb]",
+     main = "Plot menos feio")
+
+```
+
+
+Vamos a colocar **DOIS** plots
+
+
+```{r}
+plot(x = df$tempo[1:100], y = df$MediaHoraria[101:200], 
+     pch = 16, type = "b", col = "blue",
+     xlab = "horas", ylab = "NO2[ppb]",
+     main = "Plot estranho")
+lines(x = df$tempo[1:100], y = df$MediaHoraria[1:100], 
+     pch = 15, type = "b", col = "red")
+
+```
+
+Se tu é fan de BASE PLOT, tudo bem :)
+
+
+## ggplot
+
+Tem um monte de recursos para ggplot na web
+
+```{r}
+library(ggplot2)
+ggplot(df)
+```
+
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria))
+```
+
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria)) + 
+  geom_line()
+```
+
+opa
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = mes)) + 
+  geom_line() 
+```
+
+
+deixando so 2014 
+```{r}
+df <- df[df$ano == 2014,]
+```
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = mes)) + 
+  geom_line() +
+  theme_bw()
+```
+
+
+```{r}
+
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
+  geom_line() 
+```
+
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
+  geom_line() +
+  facet_wrap(~mes)
+```
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
+  geom_line() +
+  facet_wrap(~mes, scales = "free")
+```
+
+Y para terminar, meu theme favorito
+
+```{r eval = FALSE}
+devtools::install_github("atmoschem/veinreport")
+```
+
+e logo
+```{r}
+library(veinreport)
+library(cptcity)
+```
+
+
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
+  geom_line()+
+  theme_black() +
+  scale_color_gradientn(colours = cpt())
+```
+
+Pode revertir a escala de cores
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
+  geom_line()+
+  theme_black() +
+  scale_color_gradientn(colours = rev(cpt())) + 
+  facet_wrap(~mes, scales = "free")
+```
+
+
+não gostou, tenta com a sorte
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
+  geom_line()+
+  theme_black() +
+    facet_wrap(~mes, scales = "free") +
+  scale_color_gradientn(colours = lucky())
+```
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
+  geom_line()+
+  theme_black() +
+    facet_wrap(~mes, scales = "free") +
+  scale_color_gradientn(colours = lucky())
+```
+
+
+```{r}
+ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
+  geom_line()+
+  theme_black() +
+  scale_color_gradientn(colours = lucky())
+```
+
+
+<!--chapter:end:04-plotting_ggplotting.Rmd-->
+
+# Geo Spatial: `raster`, `sf` e `stars`
+
+Coming soon
+
+<!--chapter:end:05-geo-spatial.Rmd-->
+
+`r if (knitr:::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:06-references.Rmd-->
+
