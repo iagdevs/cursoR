@@ -1,98 +1,132 @@
 # Plotando
 
-## plot
+## `plot` (base)
 
-exemplo
+**Exemplo 1**: Dados de qualidade do ar
 
 ```{r}
 df <- readRDS("df.rds")
-head(df)
+summary(df)
 ```
 
-plot basico
+A função `plot` precisa dos seguintes argumentos:
 
 ```{r}
 args(plot)
 ```
 
-então
+Então, a forma mais fácil de plotar uma variável em função do tempo é:
 
 ```{r}
 plot(x = df$tempo, y = df$MediaHoraria)
 ```
 
-
-feio, ne?
+Feio, né?  
+Tentando deixar mais bonito...
 
 ```{r}
-plot(x = df$tempo[1:100], y = df$MediaHoraria[1:100], 
-     pch = 16, type = "b", col = "blue",
-     xlab = "horas", ylab = "NO2[ppb]",
-     main = "Plot menos feio")
-
+plot(x = df$tempo[1:100], y = df$MediaHoraria[1:100], #-- Selecionando uma parte do df!
+     pch = 16, #-- Forma do ponto (círculo preenchido)
+     type = "b", #-- Tipo de gráfico ("b" = both, ponto e linha)
+     col = "blue", #-- Cor do elemento (definido pelo type)
+     xlab = "Data", ylab = "NOx [ppb]", #-- Nome dos eixos x e y
+     main = "Gráfico mais Bonito") #-- Título do gráfico
 ```
 
+Colocando **DOIS** elementos no mesmo gráfico: 
 
-Vamos a colocar **DOIS** plots
-
-
+<a id="plot_base"></a>
 ```{r}
-plot(x = df$tempo[1:100], y = df$MediaHoraria[101:200], 
+df_parcial <- df[1:180,] #-- Selecionando uma parte do df!
+plot(x = df_parcial$tempo[df_parcial$Valido == "Sim"], y = df_parcial$MediaHoraria[df_parcial$Valido == "Sim"],
      pch = 16, type = "b", col = "blue",
-     xlab = "horas", ylab = "NO2[ppb]",
-     main = "Plot estranho")
-lines(x = df$tempo[1:100], y = df$MediaHoraria[1:100], 
+     xlab = "Data", ylab = "NOx [ppb]",
+     main = "Dados Válidos e Inválidos")
+lines(x = df_parcial$tempo[df$Valido == "Não"], y = df_parcial$MediaHoraria[df$Valido == "Não"], 
      pch = 15, type = "b", col = "red")
-
 ```
+    
+```{block2, type='rmdchallenge'}
+**Desafio**: Coloque uma legenda na figura especificando que os dados válidos estão em azul e os inválidos em vermelho 
+```
+  
+A função `plot` cumpre bem o papel de gerar um gráfico simples, e até permite algumas customizações, mas ela exige cada vez mais linhas de código e argumentos dentro das funções para deixar o gráfico "mais bonito" - ao cumprir o desafio, você irá perceber como uma coisa "simples" como colocar uma legenda pode exigir muito mais do que parece!
 
-Se tu é fan de BASE PLOT, tudo bem :)
+## `ggplot` (ggplot2)
 
+A função `ggplot` funciona de um jeito um pouco diferente. Veja a figura abaixo:
 
-## ggplot
+![Fonte: https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf](figuras/ggplot_guide.png)
 
-Tem um monte de recursos para ggplot na web
+Em vez de uma única função, o gráfico é formado por camadas, sendo que cada camada é um elemento (`geom_...` ou `stat_...`) ou configuração (`scale_..._...`, `coord_...`, `theme` ou `theme_...`, `guides`, `labs`, etc). Consulte a maioria das opções disponíveis em [Data Visualization Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
 
-```{r}
+Que tal refazermos os gráficos da seção anterior?
+
+```{r, message=FALSE}
+#-- Não esqueça de carregar o pacote!
 library(ggplot2)
-ggplot(df)
 ```
-
-
 
 ```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria))
+ggplot(df, aes(x = tempo, y = MediaHoraria)) +
+  geom_point(pch = 1)
 ```
-
-
 
 ```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria)) + 
-  geom_line()
+ggplot(df[1:100,], aes(x = tempo, y = MediaHoraria)) + 
+  geom_line(color = "blue") + #-- Linhas...
+  geom_point(color = "blue", pch = 16) + #-- ... com pontos
+  labs(title = "Gráfico mais Bonito", x = "Data", y = "NOx [ppb]") + #-- Títulos
+  theme(plot.title = element_text(hjust = 0.5)) #-- Centralizando o título, o padrão do ggplot é colocá-lo à esquerda
 ```
 
-opa
-
+Agora o mais interessante:
 
 ```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = mes)) + 
-  geom_line() 
+ggplot(df[1:180,], aes(x = tempo, y = MediaHoraria)) + 
+  geom_line(aes(color = Valido)) +
+  geom_point(aes(color = Valido, shape = Valido)) +
+  labs(title = "Dados Válidos e Inválidos", x = "Data", y = "NOx [ppb]") +
+  scale_color_manual(values = c("red", "blue")) + #-- Definindo as cores manualmente
+  scale_shape_manual(values = c(15, 16)) + #-- Definindo as formas manualmente
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
-
-deixando so 2014 
-```{r}
-df <- df[df$ano == 2014,]
+```{block2, type='rmdquestion'}
+**Pergunta**: Qual a principal diferença entre o código acima e o [código usando `plot`](#plot_base)?
 ```
 
+A função `ggplot` plota apenas data frames, pois ela mapeia as variáveis por nomes de colunas. Assim, é preciso [converter matrizes ou arrays em data frames](#convert_df).  
+Uma vantagem de trabalharmos com data frames, [como já vimos antes](#processing_dfs), é manipular esses dados antes de plotá-los.  
 
-```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = mes)) + 
-  geom_line() +
-  theme_bw()
+Vamos analisar o ano de 2014:  
+* *Em média*, como o NOx varia ao longo do dia? 
+  + E para cada dia da semana?
+  + E para cada mês?
+  
+Usando algumas funções dentro do pacote **tidyverse**, como o [*pipe* (`%>%`)](http://r4ds.had.co.nz/pipes.html):
+
+```{r, message=FALSE}
+library(tidyverse)
+library(scales)
+
+df_2014 <- filter(df, ano == "2014")
+df_2014_hour <- df_2014 %>% #-- A partir do data frame df_2014...
+  group_by(Hora) %>% #-- ... agrupe os dados pela coluna hora...
+  summarise(Media = mean(MediaHoraria, na.rm = T)) %>% #-- ... E calcule as médias, salvando em uma coluna nova
+  mutate(Hora = as.POSIXct(strptime(Hora, "%H:%M"))) %>% #-- Transformando em data
+  ungroup() #-- Desagrupando
+
+ggplot(df_2014_hour) +
+  scale_x_datetime(date_labels = "%H:%M") + #-- Formato de data que aparecerá no eixo x
+  geom_line(aes(x = Hora, y = Media, group = 1), color = "purple") +
+  labs(title = "Média Horária Anual", y = "NOx [ppb]")
 ```
 
-
+```{block2, type='rmdexercise'}
+**Exercício**: *Em média*, como o NOx varia mensalmente? Faça um gráfico de acordo.
+```
+  
 ```{r}
 
 ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
