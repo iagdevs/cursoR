@@ -101,7 +101,7 @@ ggplot(df[1:180,], aes(x = tempo, y = MediaHoraria)) +
 A função `ggplot` plota apenas data frames, pois ela mapeia as variáveis por nomes de colunas. Assim, é preciso [converter matrizes ou arrays em data frames](#convert_df).  
 Uma vantagem de trabalharmos com data frames, [como já vimos antes](#processing_dfs), é poder manipular esses dados de muitas formas possíveis antes de plotá-los. 
 
-**Exemplo 1.1**: Extraindo algumas informações sobre os dados
+**COntinuação do Exemplo**: Extraindo algumas informações sobre os dados
 
 Vamos analisar o ano de 2014:   
 
@@ -128,10 +128,6 @@ ggplot(df_2014_hour) +
   labs(title = "Média Horária Anual", y = "NOx [ppb]")
 ```
 
-```{block2, type='rmdexercise'}
-**Exercício**: *Em média*, como o NOx varia mensalmente? Faça um gráfico de acordo.
-```
-  
 ```{r, message=FALSE}
 library(tidyverse)
 
