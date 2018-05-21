@@ -2,7 +2,7 @@
 
 ## `plot` (base)
 
-**Exemplo 1**: Dados de qualidade do ar
+**Exemplo**: Dados de qualidade do ar
 
 ```{r}
 df <- readRDS("df.rds")
@@ -38,12 +38,14 @@ Colocando **DOIS** elementos no mesmo gráfico:
 <a id="plot_base"></a>
 ```{r}
 df_parcial <- df[1:180,] #-- Selecionando uma parte do df!
-plot(x = df_parcial$tempo[df_parcial$Valido == "Sim"], y = df_parcial$MediaHoraria[df_parcial$Valido == "Sim"],
+plot(x = df_parcial$tempo[df_parcial$Valido == "Sim"], 
+     y = df_parcial$MediaHoraria[df_parcial$Valido == "Sim"],
      pch = 16, type = "b", col = "blue",
      xlab = "Data", ylab = "NOx [ppb]",
      main = "Dados Válidos e Inválidos")
-lines(x = df_parcial$tempo[df$Valido == "Não"], y = df_parcial$MediaHoraria[df$Valido == "Não"], 
-     pch = 15, type = "b", col = "red")
+lines(x = df_parcial$tempo[df$Valido == "Não"], 
+      y = df_parcial$MediaHoraria[df$Valido == "Não"], 
+      pch = 15, type = "b", col = "red")
 ```
     
 ```{block2, type='rmdchallenge'}
@@ -77,7 +79,7 @@ ggplot(df[1:100,], aes(x = tempo, y = MediaHoraria)) +
   geom_line(color = "blue") + #-- Linhas...
   geom_point(color = "blue", pch = 16) + #-- ... com pontos
   labs(title = "Gráfico mais Bonito", x = "Data", y = "NOx [ppb]") + #-- Títulos
-  theme(plot.title = element_text(hjust = 0.5)) #-- Centralizando o título, o padrão do ggplot é colocá-lo à esquerda
+  theme(plot.title = element_text(hjust = 0.5)) #-- Centralizando o título
 ```
 
 Agora o mais interessante:
@@ -97,12 +99,15 @@ ggplot(df[1:180,], aes(x = tempo, y = MediaHoraria)) +
 ```
 
 A função `ggplot` plota apenas data frames, pois ela mapeia as variáveis por nomes de colunas. Assim, é preciso [converter matrizes ou arrays em data frames](#convert_df).  
-Uma vantagem de trabalharmos com data frames, [como já vimos antes](#processing_dfs), é manipular esses dados antes de plotá-los.  
+Uma vantagem de trabalharmos com data frames, [como já vimos antes](#processing_dfs), é poder manipular esses dados de muitas formas possíveis antes de plotá-los. 
 
-Vamos analisar o ano de 2014:  
-* *Em média*, como o NOx varia ao longo do dia? 
-  + E para cada dia da semana?
-  + E para cada mês?
+**Exemplo 1.1**: Extraindo algumas informações sobre os dados
+
+Vamos analisar o ano de 2014:   
+
+* *Em média*, como o NOx varia ao longo do dia?  
+    + E para cada dia da semana?  
+    + E para cada mês?  
   
 Usando algumas funções dentro do pacote **tidyverse**, como o [*pipe* (`%>%`)](http://r4ds.had.co.nz/pipes.html):
 
@@ -127,86 +132,102 @@ ggplot(df_2014_hour) +
 **Exercício**: *Em média*, como o NOx varia mensalmente? Faça um gráfico de acordo.
 ```
   
-```{r}
+```{r, message=FALSE}
+library(tidyverse)
 
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
-  geom_line() 
+df_2014 <- filter(df, ano == "2014")
+df_2014_hourly <- df_2014 %>% #-- A partir do data frame df_2014...
+  group_by(Hora) %>% #-- ... agrupe os dados pela coluna Hora...
+  summarise(Media = mean(MediaHoraria, na.rm = T)) %>% #-- ... E calcule as médias,
+                                                       #-- salvando em uma coluna nova
+  ungroup() %>% #-- Desagrupando
+  mutate(Hora = as.POSIXct(strptime(Hora, "%H:%M"))) #-- Transformando em data
+
+ggplot(df_2014_hourly) +
+  scale_x_datetime(date_labels = "%H:%M") + #-- Formato de data que aparecerá no eixo x
+  geom_col(aes(x = Hora, y = Media), fill = "purple") +
+  labs(title = "Média Horária Anual", y = "NOx [ppb]")
 ```
 
+```{r, message=FALSE}
+df_2014_weekly <- df_2014 %>% #-- 
+  group_by(Hora, weekdays) %>% #-- Agrupando os dados pelas colunas Hora e weekdays
+  summarise(Media = mean(MediaHoraria, na.rm = T)) %>% 
+  ungroup() %>% 
+  mutate(Hora = as.POSIXct(strptime(Hora, "%H:%M"))) %>%
+  mutate(weekdays = factor(weekdays,levels = c("Monday", "Tuesday", "Wednesday", 
+                                               "Thursday", "Friday", "Saturday", 
+                                               "Sunday"))) #-- Ordenando os dias da semana
 
-
-```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
-  geom_line() +
-  facet_wrap(~mes)
+ggplot(df_2014_weekly) +
+  scale_x_datetime(date_labels = "%H:%M") +
+  geom_col(aes(x = Hora, y = Media), fill = "purple") +
+  labs(title = "Média Horária Anual por Dia da Semana", y = "NOx [ppb]") +
+  facet_wrap(~ weekdays) #-- Criando paineis em função do dia da semana
 ```
 
+```{r, message=FALSE}
+df_2014_monthly <- df_2014 %>%
+  group_by(Hora, mes) %>% #-- Agrupando os dados pelas colunas Hora e mes
+  summarise(Media = mean(MediaHoraria, na.rm = T)) %>%
+  ungroup() %>%
+  mutate(Hora = as.POSIXct(strptime(Hora, "%H:%M"))) %>%
+  mutate(mes = factor(mes, levels = c("January", "February", "March", "April", "May", 
+                                      "June", "July", "August", "September", "October", 
+                                      "November", "December"))) #-- Ordenando os meses
 
-```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
-  geom_line() +
-  facet_wrap(~mes, scales = "free")
+ggplot(df_2014_monthly) +
+  scale_x_datetime(date_labels = "%H:%M") +
+  geom_col(aes(x = Hora, y = Media), fill = "purple") +
+  labs(title = "Média Horária Anual por Mês", y = "NOx [ppb]") +
+  facet_wrap(~ mes) #-- Criando paineis em função do mês
 ```
 
-Y para terminar, meu theme favorito
+```{block2, type='rmdexercise'}
+**Exercício**: *Em média*, como **os dados válidos** de NOx variam mensalmente ao longo do ano de 2014? Faça um gráfico.
+```
+  
+```{r}
+```
 
-```{r eval = FALSE}
+```{block2, type='rmdchallenge'}
+**Desafio**: Ainda é possível melhorar os gráficos acima! Pesquise como:  
+  
+* Diminuir a quantidade de horários no eixo x  
+* Separar por dias da semana e meses a partir da coluna "tempo", não precisando usar as colunas de caracteres e consequentemente ordená-las manualmente 
+```
+
+### Explorando outras escalas de cores e temas
+
+Pacotes **veinreport** e **cptcity**
+```{r message=F}
 devtools::install_github("atmoschem/veinreport")
-```
 
-e logo
-```{r}
 library(veinreport)
 library(cptcity)
 ```
 
-
-
-
-```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
-  geom_line()+
-  theme_black() +
-  scale_color_gradientn(colours = cpt())
-```
-
-Pode revertir a escala de cores
-
+Refazendo alguns gráficos:  
 
 ```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
-  geom_line()+
-  theme_black() +
-  scale_color_gradientn(colours = rev(cpt())) + 
-  facet_wrap(~mes, scales = "free")
+ggplot(df, aes(x = tempo, y = MediaHoraria)) + 
+  geom_line(aes(color = MediaHoraria)) +
+  labs(x = "Data", y = "NOx [ppb]") +
+  scale_color_gradientn(colours = cpt()) + #-- Definindo as cores com uma escala gradiente
+  theme_black()
 ```
 
-
-não gostou, tenta com a sorte
-
+Experimentando escalas de cores com a função `lucky`:
 
 ```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
-  geom_line()+
+ggplot(df_2014_monthly) +
+  scale_x_datetime(date_labels = "%H:%M") +
+  geom_col(aes(x = Hora, y = Media, fill = Media)) +
+  labs(title = "Média Horária Anual por Mês", y = "NOx [ppb]") +
+  scale_fill_gradientn(colors = lucky()) + #-- Definindo as cores com uma escala gradiente aleatória
   theme_black() +
-    facet_wrap(~mes, scales = "free") +
-  scale_color_gradientn(colours = lucky())
+  theme(legend.position = "bottom", legend.direction = "horizontal") + #-- Colocando a legenda na parte de baixo da figura
+  facet_wrap(~ mes) #-- Criando paineis em função do mês
 ```
 
-
-```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
-  geom_line()+
-  theme_black() +
-    facet_wrap(~mes, scales = "free") +
-  scale_color_gradientn(colours = lucky())
-```
-
-
-```{r}
-ggplot(df, aes(x = tempo, y = MediaHoraria, colour = MediaHoraria)) + 
-  geom_line()+
-  theme_black() +
-  scale_color_gradientn(colours = lucky())
-```
-
+**Este é só o começo!** [Veja aqui um pouco mais das muitas aplicações do `ggplot`](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html).
