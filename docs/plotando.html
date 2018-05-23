@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-05-21">
+<meta name="date" content="2018-05-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -112,19 +112,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#importante"><i class="fa fa-check"></i><b>2.1</b> IMPORTANTE</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>3</b> R!</a><ul>
-<li class="chapter" data-level="3.1" data-path="r.html"><a href="r.html#objetos-de-r"><i class="fa fa-check"></i><b>3.1</b> Objetos de R</a></li>
+<li class="chapter" data-level="3.1" data-path="r.html"><a href="r.html#objetos-do-r"><i class="fa fa-check"></i><b>3.1</b> Objetos do R</a></li>
 <li class="chapter" data-level="3.2" data-path="r.html"><a href="r.html#classe"><i class="fa fa-check"></i><b>3.2</b> Classe</a></li>
 <li class="chapter" data-level="3.3" data-path="r.html"><a href="r.html#vetores"><i class="fa fa-check"></i><b>3.3</b> Vetores</a></li>
 <li class="chapter" data-level="3.4" data-path="r.html"><a href="r.html#converter-objetos"><i class="fa fa-check"></i><b>3.4</b> Converter objetos</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="r.html"><a href="r.html#as"><i class="fa fa-check"></i><b>3.4.1</b> <code>as</code></a></li>
 <li class="chapter" data-level="3.4.2" data-path="r.html"><a href="r.html#convert_df"><i class="fa fa-check"></i><b>3.4.2</b> <code>merge</code> e <code>melt</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="r.html"><a href="r.html#matrices-e-a-funcao-matrix"><i class="fa fa-check"></i><b>3.5</b> Matrices e a função <code>matrix</code></a></li>
+<li class="chapter" data-level="3.5" data-path="r.html"><a href="r.html#matrizes-e-a-funcao-matrix"><i class="fa fa-check"></i><b>3.5</b> Matrizes e a função <code>matrix</code></a></li>
 <li class="chapter" data-level="3.6" data-path="r.html"><a href="r.html#array"><i class="fa fa-check"></i><b>3.6</b> Array</a></li>
 <li class="chapter" data-level="3.7" data-path="r.html"><a href="r.html#list"><i class="fa fa-check"></i><b>3.7</b> <code>list</code></a></li>
 <li class="chapter" data-level="3.8" data-path="r.html"><a href="r.html#tempo-e-data"><i class="fa fa-check"></i><b>3.8</b> Tempo e Data</a></li>
 <li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
-<li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> <code>data.frames</code></a></li>
+<li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> Data.frames</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html"><i class="fa fa-check"></i><b>4</b> Importando e exportando dados em R</a><ul>
 <li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> data-frames</a><ul>
@@ -241,7 +241,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## NULL</code></pre>
 <p>Então, a forma mais fácil de plotar uma variável em função do tempo é:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo, <span class="dt">y =</span> df<span class="op">$</span>MediaHoraria)</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <p>Feio, né?<br />
 Tentando deixar mais bonito…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="dt">y =</span> df<span class="op">$</span>MediaHoraria[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="co">#-- Selecionando uma parte do df!</span>
@@ -250,7 +250,7 @@ Tentando deixar mais bonito…</p>
      <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="co">#-- Cor do elemento (definido pelo type)</span>
      <span class="dt">xlab =</span> <span class="st">&quot;Data&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;NOx [ppb]&quot;</span>, <span class="co">#-- Nome dos eixos x e y</span>
      <span class="dt">main =</span> <span class="st">&quot;Gráfico mais Bonito&quot;</span>) <span class="co">#-- Título do gráfico</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 <p>Colocando <strong>DOIS</strong> elementos no mesmo gráfico:</p>
 <p><a id="plot_base"></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_parcial &lt;-<span class="st"> </span>df[<span class="dv">1</span><span class="op">:</span><span class="dv">180</span>,] <span class="co">#-- Selecionando uma parte do df!</span>
@@ -262,12 +262,8 @@ Tentando deixar mais bonito…</p>
 <span class="kw">lines</span>(<span class="dt">x =</span> df_parcial<span class="op">$</span>tempo[df<span class="op">$</span>Valido <span class="op">==</span><span class="st"> &quot;Não&quot;</span>], 
       <span class="dt">y =</span> df_parcial<span class="op">$</span>MediaHoraria[df<span class="op">$</span>Valido <span class="op">==</span><span class="st"> &quot;Não&quot;</span>], 
       <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-
-<div class="rmdchallenge">
-<strong>Desafio</strong>: Coloque uma legenda na figura especificando que os dados válidos estão em azul e os inválidos em vermelho
-</div>
-
+<p><img src="cursoR_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><strong>Desafio</strong>: Coloque uma legenda na figura especificando que os dados válidos estão em azul e os inválidos em vermelho</p>
 <p>A função <code>plot</code> cumpre bem o papel de gerar um gráfico simples, e até permite algumas customizações, mas ela exige cada vez mais linhas de código e argumentos dentro das funções para deixar o gráfico “mais bonito” - ao cumprir o desafio, você irá perceber como uma coisa “simples” como colocar uma legenda pode exigir muito mais do que parece!</p>
 </div>
 <div id="ggplot-ggplot2" class="section level2">
@@ -284,13 +280,13 @@ Tentando deixar mais bonito…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">pch =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>## Warning: Removed 260 rows containing missing values (geom_point).</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,], <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Linhas...</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- ... com pontos</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Gráfico mais Bonito&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Data&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Títulos</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>)) <span class="co">#-- Centralizando o título</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 <p>Agora o mais interessante:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df[<span class="dv">1</span><span class="op">:</span><span class="dv">180</span>,], <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Valido)) <span class="op">+</span>
@@ -299,12 +295,8 @@ Tentando deixar mais bonito…</p>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co">#-- Definindo as cores manualmente</span>
 <span class="st">  </span><span class="kw">scale_shape_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">+</span><span class="st"> </span><span class="co">#-- Definindo as formas manualmente</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>))</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-
-<div class="rmdquestion">
-<strong>Pergunta</strong>: Qual a principal diferença entre o código acima e o <a href="plotando.html#plot_base">código usando <code>plot</code></a>?
-</div>
-
+<p><img src="cursoR_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><strong>Pergunta</strong>: Qual a principal diferença entre o código acima e o <a href="plotando.html#plot_base">código usando <code>plot</code></a>?</p>
 <p>A função <code>ggplot</code> plota apenas data frames, pois ela mapeia as variáveis por nomes de colunas. Assim, é preciso <a href="r.html#convert_df">converter matrizes ou arrays em data frames</a>.<br />
 Uma vantagem de trabalharmos com data frames, <a href="importando-e-exportando-dados-em-r.html#processing_dfs">como já vimos antes</a>, é poder manipular esses dados de muitas formas possíveis antes de plotá-los.</p>
 <p><strong>COntinuação do Exemplo</strong>: Extraindo algumas informações sobre os dados</p>
@@ -322,33 +314,33 @@ Uma vantagem de trabalharmos com data frames, <a href="importando-e-exportando-d
 <span class="kw">library</span>(scales)
 
 df_<span class="dv">2014</span> &lt;-<span class="st"> </span><span class="kw">filter</span>(df, ano <span class="op">==</span><span class="st"> &quot;2014&quot;</span>)
-df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- A partir do data frame df_2014...</span>
+df_<span class="dv">2014</span>_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- A partir do data frame df_2014...</span>
 <span class="st">  </span><span class="kw">group_by</span>(Hora) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- ... agrupe os dados pela coluna hora...</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Media =</span> <span class="kw">mean</span>(MediaHoraria, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- ... E calcule as médias, salvando em uma coluna nova</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Hora =</span> <span class="kw">as.POSIXct</span>(<span class="kw">strptime</span>(Hora, <span class="st">&quot;%H:%M&quot;</span>))) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- Transformando em data</span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="co">#-- Desagrupando</span>
 
-<span class="kw">ggplot</span>(df_2014_hour) <span class="op">+</span>
+<span class="kw">ggplot</span>(df_<span class="dv">2014</span>_hour) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%H:%M&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Formato de data que aparecerá no eixo x</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media, <span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>)</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 
 df_<span class="dv">2014</span> &lt;-<span class="st"> </span><span class="kw">filter</span>(df, ano <span class="op">==</span><span class="st"> &quot;2014&quot;</span>)
-df_2014_hourly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- A partir do data frame df_2014...</span>
+df_<span class="dv">2014</span>_hourly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- A partir do data frame df_2014...</span>
 <span class="st">  </span><span class="kw">group_by</span>(Hora) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- ... agrupe os dados pela coluna Hora...</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Media =</span> <span class="kw">mean</span>(MediaHoraria, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- ... E calcule as médias,</span>
 <span class="st">                                                       </span><span class="co">#-- salvando em uma coluna nova</span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- Desagrupando</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Hora =</span> <span class="kw">as.POSIXct</span>(<span class="kw">strptime</span>(Hora, <span class="st">&quot;%H:%M&quot;</span>))) <span class="co">#-- Transformando em data</span>
 
-<span class="kw">ggplot</span>(df_2014_hourly) <span class="op">+</span>
+<span class="kw">ggplot</span>(df_<span class="dv">2014</span>_hourly) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%H:%M&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Formato de data que aparecerá no eixo x</span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media), <span class="dt">fill =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>)</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_2014_weekly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- </span>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">2014</span>_weekly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- </span>
 <span class="st">  </span><span class="kw">group_by</span>(Hora, weekdays) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- Agrupando os dados pelas colunas Hora e weekdays</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Media =</span> <span class="kw">mean</span>(MediaHoraria, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span>
@@ -357,13 +349,13 @@ df_2014_hourly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <sp
                                                <span class="st">&quot;Thursday&quot;</span>, <span class="st">&quot;Friday&quot;</span>, <span class="st">&quot;Saturday&quot;</span>, 
                                                <span class="st">&quot;Sunday&quot;</span>))) <span class="co">#-- Ordenando os dias da semana</span>
 
-<span class="kw">ggplot</span>(df_2014_weekly) <span class="op">+</span>
+<span class="kw">ggplot</span>(df_<span class="dv">2014</span>_weekly) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%H:%M&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media), <span class="dt">fill =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual por Dia da Semana&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>weekdays) <span class="co">#-- Criando paineis em função do dia da semana</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_2014_monthly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_<span class="dv">2014</span>_monthly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(Hora, mes) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- Agrupando os dados pelas colunas Hora e mes</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Media =</span> <span class="kw">mean</span>(MediaHoraria, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
@@ -372,33 +364,24 @@ df_2014_hourly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <sp
                                       <span class="st">&quot;June&quot;</span>, <span class="st">&quot;July&quot;</span>, <span class="st">&quot;August&quot;</span>, <span class="st">&quot;September&quot;</span>, <span class="st">&quot;October&quot;</span>, 
                                       <span class="st">&quot;November&quot;</span>, <span class="st">&quot;December&quot;</span>))) <span class="co">#-- Ordenando os meses</span>
 
-<span class="kw">ggplot</span>(df_2014_monthly) <span class="op">+</span>
+<span class="kw">ggplot</span>(df_<span class="dv">2014</span>_monthly) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%H:%M&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media), <span class="dt">fill =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual por Mês&quot;, y = &quot;</span>NOx [ppb]<span class="st">&quot;) +</span>
 <span class="st">  facet_wrap(~ mes) #-- Criando paineis em função do mês</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-
-<div class="rmdexercise">
-<strong>Exercício</strong>: <em>Em média</em>, como <strong>os dados válidos</strong> de NOx variam mensalmente ao longo do ano de 2014? Faça um gráfico.
-</div>
-
-
-<div class="rmdchallenge">
+<p><img src="cursoR_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<p><strong>Exercício</strong>: <em>Em média</em>, como <strong>os dados válidos</strong> de NOx variam mensalmente ao longo do ano de 2014? Faça um gráfico.</p>
 <p><strong>Desafio</strong>: Ainda é possível melhorar os gráficos acima! Pesquise como:</p>
 <ul>
 <li>Diminuir a quantidade de horários no eixo x<br />
 </li>
-<li>Separar por dias da semana e meses a partir da coluna “tempo”, não precisando usar as colunas de caracteres e consequentemente ordená-las manualmente
-</div>
-</li>
+<li>Separar por dias da semana e meses a partir da coluna “tempo”, não precisando usar as colunas de caracteres e consequentemente ordená-las manualmente</li>
 </ul>
 <div id="explorando-outras-escalas-de-cores-e-temas" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Explorando outras escalas de cores e temas</h3>
 <p>Pacotes <strong>veinreport</strong> e <strong>cptcity</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;atmoschem/veinreport&quot;</span>)
-
-<span class="kw">library</span>(veinreport)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;atmoschem/veinreport&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(veinreport)
 <span class="kw">library</span>(cptcity)</code></pre></div>
 <p>Refazendo alguns gráficos:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
@@ -407,9 +390,9 @@ df_2014_hourly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <sp
 <span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">cpt</span>()) <span class="op">+</span><span class="st"> </span><span class="co">#-- Definindo as cores com uma escala gradiente</span>
 <span class="st">  </span><span class="kw">theme_black</span>()</code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 <p>Experimentando escalas de cores com a função <code>lucky</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df_2014_monthly) <span class="op">+</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df_<span class="dv">2014</span>_monthly) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%H:%M&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media, <span class="dt">fill =</span> Media)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual por Mês&quot;, y = &quot;</span>NOx [ppb]<span class="st">&quot;) +</span>
@@ -417,8 +400,8 @@ df_2014_hourly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <sp
 <span class="st">  theme_black() +</span>
 <span class="st">  theme(legend.position = &quot;</span>bottom<span class="st">&quot;, legend.direction = &quot;</span>horizontal<span class="st">&quot;) + #-- Colocando a legenda na parte de baixo da figura</span>
 <span class="st">  facet_wrap(~ mes) #-- Criando paineis em função do mês</span></code></pre></div>
-<pre><code>## Colour gradient: gacruxa_navyyard_navyyard_16, number: 2866</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<pre><code>## Colour gradient: sd_Green_3D_2, number: 6959</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p><strong>Este é só o começo!</strong> <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">Veja aqui um pouco mais das muitas aplicações do <code>ggplot</code></a>.</p>
 
 </div>

@@ -48,7 +48,7 @@ lines(x = df_parcial$tempo[df$Valido == "Não"],
       pch = 15, type = "b", col = "red")
 ```
     
-```{block2, type='rmdchallenge'}
+```{block2}
 **Desafio**: Coloque uma legenda na figura especificando que os dados válidos estão em azul e os inválidos em vermelho 
 ```
   
@@ -94,7 +94,7 @@ ggplot(df[1:180,], aes(x = tempo, y = MediaHoraria)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-```{block2, type='rmdquestion'}
+```{block2}
 **Pergunta**: Qual a principal diferença entre o código acima e o [código usando `plot`](#plot_base)?
 ```
 
@@ -179,14 +179,14 @@ ggplot(df_2014_monthly) +
   facet_wrap(~ mes) #-- Criando paineis em função do mês
 ```
 
-```{block2, type='rmdexercise'}
+```{block2}
 **Exercício**: *Em média*, como **os dados válidos** de NOx variam mensalmente ao longo do ano de 2014? Faça um gráfico.
 ```
   
 ```{r}
 ```
 
-```{block2, type='rmdchallenge'}
+```{block2}
 **Desafio**: Ainda é possível melhorar os gráficos acima! Pesquise como:  
   
 * Diminuir a quantidade de horários no eixo x  
@@ -196,8 +196,12 @@ ggplot(df_2014_monthly) +
 ### Explorando outras escalas de cores e temas
 
 Pacotes **veinreport** e **cptcity**
-```{r message=F}
+
+```{r eval = FALSE}
 devtools::install_github("atmoschem/veinreport")
+```
+
+```{r message=F}
 
 library(veinreport)
 library(cptcity)

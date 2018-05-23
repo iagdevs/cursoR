@@ -25,7 +25,7 @@
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={Curso de R para Meteorologia IAG/USP},
-            pdfauthor={Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, e possivelmente outros (u r invited to collaborate)},
+            pdfauthor={Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -119,13 +119,14 @@
   \title{Curso de R para Meteorologia IAG/USP}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-  \author{Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, e
-possivelmente outros (u r invited to collaborate)}
+  \author{Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes,
+Isabela Siqueira, e possivelmente outros (você está convidado para
+colaborar)}
   \preauthor{\centering\large\emph}
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-05-17}
+  \date{2018-05-22}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -143,12 +144,18 @@ possivelmente outros (u r invited to collaborate)}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter{Pre-requisitos do sistema}\label{primero}
+\chapter{Pré-requisitos do sistema}\label{primero}
 
-Em Windows, instale além do R, Rtools
+Antes de instalar o R na sua plataforma de interesse, verifique se há
+recomendações abaixo:
+
+\textbf{Windows}\\
+A princípio não há pré-requisitos! Caso fique entusiasmado com o R e
+queira desenvolver os próprios pacotes, instale o Rtools
 \url{https://cran.r-project.org/bin/windows/Rtools/}
 
-Em MAC instale netcdf e:
+\textbf{MacOS}\\
+Instale \texttt{NetCDF4} e:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -162,22 +169,22 @@ Em MAC instale netcdf e:
 \end{Highlighting}
 \end{Shaded}
 
-Em Ubuntu:
+\textbf{Linux (Ubuntu e derivados)}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-  \ExtensionTok{-}\NormalTok{ sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes}
-  \ExtensionTok{-}\NormalTok{ sudo apt-get --yes --force-yes update -qq}
-  \CommentTok{# install tmap dependencies}
-  \ExtensionTok{-}\NormalTok{ sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev}
-  \CommentTok{# install tmap dependencies; for 16.04 libjq-dev this ppa is needed:}
-  \ExtensionTok{-}\NormalTok{ sudo add-apt-repository -y ppa:opencpu/jq}
-  \ExtensionTok{-}\NormalTok{ sudo apt-get --yes --force-yes update -qq}
-  \ExtensionTok{-}\NormalTok{ sudo apt-get install libjq-dev}
-  \CommentTok{# units/udunits2 dependency:}
-  \ExtensionTok{-}\NormalTok{ sudo apt-get install --yes libudunits2-dev}
-  \CommentTok{# sf dependencies:}
-  \ExtensionTok{-}\NormalTok{ sudo apt-get install --yes libproj-dev libgeos-dev libgdal-dev libnetcdf-dev  netcdf-bin gdal-bin}
+\FunctionTok{sudo}\NormalTok{ add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes}
+\FunctionTok{sudo}\NormalTok{ apt-get --yes --force-yes update -qq}
+\CommentTok{# install tmap dependencies}
+\FunctionTok{sudo}\NormalTok{ apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev}
+\CommentTok{# install tmap dependencies; for 16.04 libjq-dev this ppa is needed:}
+\FunctionTok{sudo}\NormalTok{ add-apt-repository -y ppa:opencpu/jq}
+\FunctionTok{sudo}\NormalTok{ apt-get --yes --force-yes update -qq}
+\FunctionTok{sudo}\NormalTok{ apt-get install libjq-dev}
+\CommentTok{# units/udunits2 dependency:}
+\FunctionTok{sudo}\NormalTok{ apt-get install --yes libudunits2-dev}
+\CommentTok{# sf dependencies:}
+\FunctionTok{sudo}\NormalTok{ apt-get install --yes libproj-dev libgeos-dev libgdal-dev libnetcdf-dev  netcdf-bin gdal-bin}
 \end{Highlighting}
 \end{Shaded}
 
@@ -188,79 +195,97 @@ Para fazer este curso instale os seguintes pacotes como indicado:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
-\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"tidyverse/tidyverse"}\NormalTok{)}
-\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"r-spatial/sf"}\NormalTok{)}
-\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"r-spatial/mapview"}\NormalTok{)}
-\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"r-spatial/stars"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"raster"}\NormalTok{, }\StringTok{"sp"}\NormalTok{, }\StringTok{"rgdal"}\NormalTok{, }\StringTok{"maptools"}\NormalTok{, }\StringTok{"ncdf4"}\NormalTok{))}
-\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"cptcity"}\NormalTok{, }\StringTok{"data.table"}\NormalTok{, }\StringTok{"openair"}\NormalTok{))}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"reshape2"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"sf"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"maptools"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"mapview"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"fields"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"raster"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"sp"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rgdal"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ncdf4"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"data.table"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"openair"}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"cptcity"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://CRAN.R-project.org/package=devtools}{devtools} é um
-  pacote para instalar pacotes de diferentes repositórios
+  \href{https://CRAN.R-project.org/package=devtools}{devtools} permite a
+  instalação de versões de desenvolvimento de pacotes de diferentes
+  repositórios
 \item
   \href{https://github.com/tidyverse}{tidyverse} é o universo de pacotes
-  do Hadley Wickham. A instalação tem que ser usando devtools, pois
-  precisamos plotar os objetos espacias sf usando
-  \href{https://www.isgeomsfinggplot2yet.site/}{geom\_sf}.
+  do Hadley Wickham para tratamento e visualização de dados
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Se você quiser plotar os objetos espaciais sf com o pacote
+    \href{http://ggplot2.tidyverse.org/}{ggplot2} (que faz parte do
+    tidyverse), ele precisa ser instalado usando o devtools
+    (\texttt{devtools::install\_github("tidyverse/ggplot2")}), pois a
+    função \href{https://www.isgeomsfinggplot2yet.site/}{geom\_sf} ainda
+    não está disponível na versão oficial
+  \end{itemize}
 \item
-  \href{https://github.com/r-spatial/sf}{sf} e
-  \href{https://github.com/r-spatial/mapbiew}{mapview},
-  \href{https://github.com/r-spatial/stars}{stars}, raster, sp, rgdal e
-  maptools são para a parte espacial. Lembrar que os objetos em
-  meteorologias são espaço-temporais.
+  \href{https://github.com/r-spatial/sf}{sf},
+  \href{https://github.com/r-spatial/mapbiew}{mapview}, raster, sp,
+  rgdal, maptools e fields tratam dados espaciais. Lembre-se que os
+  objetos em Meteorologia são espaço-temporais
 \item
-  ncdf4 é um pacote para manipular arquivos NetCDF.
+  ncdf4 é um pacote para manipular arquivos NetCDF
 \item
   \href{https://ibarraespinosa.github.io/cptcity/}{cptcity} é um pacote
-  que tem 7140 paletas de cores do arquivo web cpt-city
-  (\url{http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html}).
+  que tem 7140 paletas de cores do arquivo web
+  \href{http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html}{cpt-city}
 \item
   \href{http://davidcarslaw.github.io/openair/}{openair} é um pacote
-  para trabalhar com dados de qualidade do ar e meteorologia.
+  para trabalhar com dados de qualidade do ar e Meteorologia
 \end{itemize}
 
-Se faltarem dependencias de sistema, instale elas e instale os pacotes.
+Preste atenção na instalação dos pacotes pois eles podem precisar de
+dependências do sistema.
 
 \section{Colaborar}\label{colaborar}
 
-A forma preferida de colaboração é com pull-requests em
-\url{https://github.com/ibarraespinosa/cursoR/pull/new/master}. Lembre
-de aplicar a Guia de Estilo de R de Google
-(\url{https://google.github.io/styleguide/Rguide.xml}) ou com o formato
-de formatR \url{https://yihui.name/formatr/}. Em poucas palavras, lembre
-que seu código vai ser lido por seres humanos. Se quiser tem acesso no
-repositório deste curso, me contate. Tem um botão para editar qualquer
-página.
+A melhor forma de colaboração é com \emph{pull requests} em
+\url{https://github.com/ibarraespinosa/cursoR/pull/new/master}. Aplique
+o \href{https://google.github.io/styleguide/Rguide.xml}{Guia de Estilo
+de R do Google} ou o formato
+\href{https://yihui.name/formatr/}{formatR}. Em poucas palavras, lembre
+que seu código vai ser lido por seres humanos. É possível editar
+qualquer página usando um dos botões acima.
 
-\section{Aportar com dados}\label{aportar-com-dados}
+\section{Compartilhar dados}\label{compartilhar-dados}
 
-Se você tem dados para fazer este curso mais legal, por favor, edite
-este aquivo e com pull request, eu vou fazer um merge para poder.
+Se você conhece alguma fonte de dados para deixar este curso mais legal,
+edite este arquivo e faça um \emph{pull request}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
   NCEP: \url{ftp://nomads.ncdc.noaa.gov/GFS/analysis_only/}
 \item
+  \ldots{}
 \item
+  \ldots{}
 \end{enumerate}
 
 \chapter{Intro}\label{intro}
 
-Este curso é para pos, então vamos ver conteúdo rapidamente e se não da
-tempo, este curso esta online no sitio
-\url{https://github.com/atmoschem/cursorIAG}.
+Este curso é voltado para os alunos de pós-graduação, dessa forma,
+veremos os conceitos rapidamente. Caso não haja tempo, o conteúdo ficará
+online no link: \url{https://github.com/atmoschem/cursorIAG}.
 
-Eu tento usar
-\href{http://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html}{BASE}
-sempre que posso, e se não da ai vou para outros paradigmas.
+Sempre que tiver uma dúvida, tente utilizar:
+\href{http://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html}{BASE}.
 
-Outros pacotes de BASE:
+Outros pacotes BASE:
 \href{http://stat.ethz.ch/R-manual/R-devel/library/utils/html/00Index.html}{utils},
 \href{http://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html}{stats},
 \href{http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html}{datasets},
@@ -276,30 +301,26 @@ Outros pacotes de BASE:
 ,
 \href{https://stat.ethz.ch/R-manual/R-devel/library/stats4/html/00Index.html}{stats4}.
 
-Veja
+Acesse
 \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{outros}
-pacotes.
+para a lista de pacotes disponíveis.
 
-Este curso esta baseado no livro
+Este curso foi baseado no livro
 \href{https://leanpub.com/rprogramming}{R Programming for Data Science}.
 
-Vamos usar \href{https://www.rstudio.com/}{Rstudio}
+Neste curso iremos utilizar \href{https://www.rstudio.com/}{Rstudio}
 
 \textbf{Dica:}
 
 \begin{itemize}
 \tightlist
 \item
-  Se não sabe como usar uma função, escreva: \texttt{?função}.
+  Se não souber usar uma função, escreva: \texttt{?função}.
 \item
-  As funções tem argumentos, use \textbf{TAB} para ver eles numa função.
+  As funções tem argumentos, use \textbf{TAB} para vê-los numa função.
 \end{itemize}
 
 \section{IMPORTANTE}\label{importante}
-
-teu novo melhor amigo, besti friendi, BFF, parceiro, mano, tabarish,
-komrade, compaheiro, colega, buisiness partner amd whatever meanningful
-is
 
 \begin{itemize}
 \tightlist
@@ -307,25 +328,22 @@ is
   \textbf{TAB} no \textbf{RSTUDIO}.
 \end{itemize}
 
-Esta combinação é tão boa, como o cafe com leite, pizza e abacaxi,
-vitamina de acabate com amendoim Manaus, a melhor combinação.
+Isso te ajudará a evitar coisas como: grafia errada da função, verificar
+se a função existe, verificar argumentos, etc\ldots{} Use sempre!
 
 \includegraphics[width=5.88in]{figuras/tab-key-}
 
-Porque quando se tu não lembra os argumentos da função, e não quer ver o
-help \emph{?} de cada função, so clica \textbf{TAB} e RSTUDIO te
-mostrara a lista de argumentos.
-
-Vamos lá!
+Vamos começar!
 
 \chapter{R!}\label{r}
 
 \begin{itemize}
 \tightlist
 \item
-  Quase em qualquer sistema operacional mas eu vou focar em Linux.
+  Iremos focar no Linux, mas R e RStudio estão disponíveis para Windows
+  e Mac também.
 \item
-  Muita documentação:
+  Documentação:
 \item
   \href{http://cran.r-project.org/doc/manuals/r-release/R-intro.html}{Intro}.
 \item
@@ -337,29 +355,29 @@ Vamos lá!
   e
   \href{http://cran.r-project.org/doc/manuals/r-release/R-lang.html}{aqui}.
 \item
-  \href{https://stackoverflow.com/questions/tagged/r}{Stackoverflow}
-  provides a great source of resources.
+  \href{https://stackoverflow.com/questions/tagged/r}{Stackoverflow} te
+  ajudará em horas de desespero.
 \end{itemize}
 
-\section{Objetos de R}\label{objetos-de-r}
+\section{Objetos do R}\label{objetos-do-r}
 
 \begin{itemize}
 \tightlist
 \item
   Character a
 \item
-  numeric 1
+  Numeric 1
 \item
-  integer 1
+  Integer 1
 \item
-  complex 0+1i
+  Complex 0+1i
 \item
-  logical TRUE
+  Logical TRUE
 \end{itemize}
 
 \section{Classe}\label{classe}
 
-\texttt{class} função permite ver a classe dos objetos
+\texttt{class} essa função permite ver a classe dos objetos
 
 \section{Vetores}\label{vetores}
 
@@ -381,8 +399,9 @@ Vamos lá!
   c(1, NA, NaN) qual é a classe???
 \end{itemize}
 
-\section{\texorpdfstring{Convertir objetos com
-\texttt{as}}{Convertir objetos com as}}\label{convertir-objetos-com-as}
+\section{Converter objetos}\label{converter-objetos}
+
+\subsection{\texorpdfstring{\texttt{as}}{as}}\label{as}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -398,18 +417,21 @@ Vamos lá!
 ## [1]  1 NA NA
 \end{verbatim}
 
-\section{\texorpdfstring{Matrices e a função
-\texttt{matrix}}{Matrices e a função matrix}}\label{matrices-e-a-funcao-matrix}
+\hypertarget{convert_df}{\subsection{\texorpdfstring{\texttt{merge} e
+\texttt{melt}}{merge e melt}}\label{convert_df}}
+
+\section{\texorpdfstring{Matrizes e a função
+\texttt{matrix}}{Matrizes e a função matrix}}\label{matrizes-e-a-funcao-matrix}
 
 \textbf{{[}linhas, colunas{]}}
 
 \begin{itemize}
 \tightlist
 \item
-  permitidos elementos \textbf{da mesma clase}!
+  Só são permitidos elementos \textbf{da mesma clase}!
 \end{itemize}
 
-vamos ver os argumentos da função \texttt{matrix}
+Argumentos da função \texttt{matrix}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -478,8 +500,10 @@ usando TAB
 
 \section{Array}\label{array}
 
-É como uma matriz de matrizes de matrizes de matrizes\ldots{}\ldots{}
-and so on.
+Permite armazenar diversos elementos, com diversas dimensões. Dessa
+forma, um array com duas dimensões é o mesmo que uma matriz, dessa
+forma, podemos armazenar diversas matrizes dentro de um array, mas suas
+dimensões são pré-estabelecidas.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -492,7 +516,7 @@ and so on.
 ## NULL
 \end{verbatim}
 
-lembre usar TAB
+Não esqueça do TAB
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -608,9 +632,9 @@ lembre usar TAB
 
 \section{\texorpdfstring{\texttt{list}}{list}}\label{list}
 
-As listas são como sacolas, e dentro delas, tu pode colocar mais
-sacolas\ldots{} então, tu pode ter sacolas, dentro de sacolas, dentro de
-sacolas\ldots{} ou
+Já as listas permitem que você armazene qualquer tipo de ojeto,
+independente da classe, dessa forma, podemos colocar numa lista: número,
+caracteres, argumentos lógicos, ou que você quiser:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -626,8 +650,8 @@ sacolas\ldots{} ou
 ## [1] 1
 \end{verbatim}
 
-a diferença das matrices, tu pode colocar cualquer coisa nas listas, por
-exemplo: funções, characters, etc.
+Isso faz com que elas sejam bastante versáteis e sirvam para armazenar o
+que você precisar, mas elas só podem ter uma dimensão, como uma fila.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -651,7 +675,7 @@ exemplo: funções, characters, etc.
 
 \section{Tempo e Data}\label{tempo-e-data}
 
-R tem classes de tempo e data:
+R também tem classes de tempo e data:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -683,7 +707,7 @@ R tem classes de tempo e data:
 ## [1] "2018-04-05 12:00:00 Americas"
 \end{verbatim}
 
-tempo
+Tempo
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -696,10 +720,11 @@ tempo
 ## [1] "2018-04-05 Americas"
 \end{verbatim}
 
-O pacote \href{https://github.com/eddelbuettel/nanotime}{nanotime}
-permite trabalhar com nano segundos.
+Caso você precise, o pacote
+\href{https://github.com/eddelbuettel/nanotime}{nanotime} permite
+trabalhar com nano segundos.
 
-Da pra fazer secuencias:
+É possível fazer sequências:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -709,21 +734,21 @@ Da pra fazer secuencias:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2018-05-17 19:15:05 -03" "2018-05-17 20:15:05 -03"
-##  [3] "2018-05-17 21:15:05 -03" "2018-05-17 22:15:05 -03"
-##  [5] "2018-05-17 23:15:05 -03" "2018-05-18 00:15:05 -03"
-##  [7] "2018-05-18 01:15:05 -03" "2018-05-18 02:15:05 -03"
-##  [9] "2018-05-18 03:15:05 -03" "2018-05-18 04:15:05 -03"
-## [11] "2018-05-18 05:15:05 -03" "2018-05-18 06:15:05 -03"
-## [13] "2018-05-18 07:15:05 -03" "2018-05-18 08:15:05 -03"
-## [15] "2018-05-18 09:15:05 -03" "2018-05-18 10:15:05 -03"
-## [17] "2018-05-18 11:15:05 -03" "2018-05-18 12:15:05 -03"
-## [19] "2018-05-18 13:15:05 -03" "2018-05-18 14:15:05 -03"
-## [21] "2018-05-18 15:15:05 -03" "2018-05-18 16:15:05 -03"
-## [23] "2018-05-18 17:15:05 -03" "2018-05-18 18:15:05 -03"
+##  [1] "2018-05-22 22:10:06 -03" "2018-05-22 23:10:06 -03"
+##  [3] "2018-05-23 00:10:06 -03" "2018-05-23 01:10:06 -03"
+##  [5] "2018-05-23 02:10:06 -03" "2018-05-23 03:10:06 -03"
+##  [7] "2018-05-23 04:10:06 -03" "2018-05-23 05:10:06 -03"
+##  [9] "2018-05-23 06:10:06 -03" "2018-05-23 07:10:06 -03"
+## [11] "2018-05-23 08:10:06 -03" "2018-05-23 09:10:06 -03"
+## [13] "2018-05-23 10:10:06 -03" "2018-05-23 11:10:06 -03"
+## [15] "2018-05-23 12:10:06 -03" "2018-05-23 13:10:06 -03"
+## [17] "2018-05-23 14:10:06 -03" "2018-05-23 15:10:06 -03"
+## [19] "2018-05-23 16:10:06 -03" "2018-05-23 17:10:06 -03"
+## [21] "2018-05-23 18:10:06 -03" "2018-05-23 19:10:06 -03"
+## [23] "2018-05-23 20:10:06 -03" "2018-05-23 21:10:06 -03"
 \end{verbatim}
 
-funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
+funções úteis: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -732,10 +757,10 @@ funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "Thursday" "Thursday" "Thursday" "Thursday" "Thursday" "Friday"  
-##  [7] "Friday"   "Friday"   "Friday"   "Friday"   "Friday"   "Friday"  
-## [13] "Friday"   "Friday"   "Friday"   "Friday"   "Friday"   "Friday"  
-## [19] "Friday"   "Friday"   "Friday"   "Friday"   "Friday"   "Friday"
+##  [1] "terça"  "terça"  "quarta" "quarta" "quarta" "quarta" "quarta"
+##  [8] "quarta" "quarta" "quarta" "quarta" "quarta" "quarta" "quarta"
+## [15] "quarta" "quarta" "quarta" "quarta" "quarta" "quarta" "quarta"
+## [22] "quarta" "quarta" "quarta"
 \end{verbatim}
 
 \begin{Shaded}
@@ -745,36 +770,36 @@ funções bacana: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "May" "May" "May" "May" "May" "May" "May" "May" "May" "May" "May"
-## [12] "May" "May" "May" "May" "May" "May" "May" "May" "May" "May" "May"
-## [23] "May" "May"
+##  [1] "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio"
+## [11] "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio"
+## [21] "maio" "maio" "maio" "maio"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{julian}\NormalTok{(a) }\CommentTok{#olha ?julian... dias desde origin}
+\KeywordTok{julian}\NormalTok{(a) }\CommentTok{#dia Juliano*}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## Time differences in days
-##  [1] 17668.93 17668.97 17669.01 17669.05 17669.09 17669.14 17669.18
-##  [8] 17669.22 17669.26 17669.30 17669.34 17669.39 17669.43 17669.47
-## [15] 17669.51 17669.55 17669.59 17669.64 17669.68 17669.72 17669.76
-## [22] 17669.80 17669.84 17669.89
+##  [1] 17674.05 17674.09 17674.13 17674.17 17674.22 17674.26 17674.30
+##  [8] 17674.34 17674.38 17674.42 17674.47 17674.51 17674.55 17674.59
+## [15] 17674.63 17674.67 17674.72 17674.76 17674.80 17674.84 17674.88
+## [22] 17674.92 17674.97 17675.01
 ## attr(,"origin")
 ## [1] "1970-01-01 GMT"
 \end{verbatim}
 
-olha \url{https://en.wikipedia.org/wiki/Julian_day}:
+*Para mais informações: \url{https://en.wikipedia.org/wiki/Julian_day}:
 
 \section{Fatores}\label{fatores}
 
-Os \texttt{factors} podem ser um pouco infernais. Olha
+Os \texttt{factors} podem ser um pouco infernais. Dê uma olhada em
 \href{http://www.burns-stat.com/documents/books/the-r-inferno/}{R
 INFERNO}
 
-Usados para representar categorias, ejemplo clasico para nos, dias da
+São variáveis que representam categorias, como por exemplo, dias da
 semana.
 
 \begin{Shaded}
@@ -796,34 +821,33 @@ semana.
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] Thursday  Thursday  Thursday  Thursday  Thursday  Friday    Friday   
-##   [8] Friday    Friday    Friday    Friday    Friday    Friday    Friday   
-##  [15] Friday    Friday    Friday    Friday    Friday    Friday    Friday   
-##  [22] Friday    Friday    Friday    Friday    Friday    Friday    Friday   
-##  [29] Friday    Saturday  Saturday  Saturday  Saturday  Saturday  Saturday 
-##  [36] Saturday  Saturday  Saturday  Saturday  Saturday  Saturday  Saturday 
-##  [43] Saturday  Saturday  Saturday  Saturday  Saturday  Saturday  Saturday 
-##  [50] Saturday  Saturday  Saturday  Saturday  Sunday    Sunday    Sunday   
-##  [57] Sunday    Sunday    Sunday    Sunday    Sunday    Sunday    Sunday   
-##  [64] Sunday    Sunday    Sunday    Sunday    Sunday    Sunday    Sunday   
-##  [71] Sunday    Sunday    Sunday    Sunday    Sunday    Sunday    Sunday   
-##  [78] Monday    Monday    Monday    Monday    Monday    Monday    Monday   
-##  [85] Monday    Monday    Monday    Monday    Monday    Monday    Monday   
-##  [92] Monday    Monday    Monday    Monday    Monday    Monday    Monday   
-##  [99] Monday    Monday    Monday    Tuesday   Tuesday   Tuesday   Tuesday  
-## [106] Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday  
-## [113] Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday  
-## [120] Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Wednesday
-## [127] Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday
-## [134] Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday
-## [141] Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday
-## [148] Wednesday Wednesday Thursday  Thursday  Thursday  Thursday  Thursday 
-## [155] Thursday  Thursday  Thursday  Thursday  Thursday  Thursday  Thursday 
-## [162] Thursday  Thursday  Thursday  Thursday  Thursday  Thursday  Thursday 
-## Levels: Friday Monday Saturday Sunday Thursday Tuesday Wednesday
+##   [1] terça   terça   quarta  quarta  quarta  quarta  quarta  quarta 
+##   [9] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [17] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [25] quarta  quarta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [33] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [41] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [49] quinta  quinta  sexta   sexta   sexta   sexta   sexta   sexta  
+##  [57] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [65] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [73] sexta   sexta   sábado  sábado  sábado  sábado  sábado  sábado 
+##  [81] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [89] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [97] sábado  sábado  domingo domingo domingo domingo domingo domingo
+## [105] domingo domingo domingo domingo domingo domingo domingo domingo
+## [113] domingo domingo domingo domingo domingo domingo domingo domingo
+## [121] domingo domingo segunda segunda segunda segunda segunda segunda
+## [129] segunda segunda segunda segunda segunda segunda segunda segunda
+## [137] segunda segunda segunda segunda segunda segunda segunda segunda
+## [145] segunda segunda terça   terça   terça   terça   terça   terça  
+## [153] terça   terça   terça   terça   terça   terça   terça   terça  
+## [161] terça   terça   terça   terça   terça   terça   terça   terça  
+## Levels: domingo quarta quinta sábado segunda sexta terça
 \end{verbatim}
 
-olha os \textbf{Levels}
+São muito úteis para regressões, plotes e resumos estatísitcos.
+
+Olhe os \textbf{Levels}
 
 Então:
 
@@ -841,11 +865,11 @@ Então:
 ## [7] "Sunday"
 \end{verbatim}
 
-\section{\texorpdfstring{\texttt{data.frames}}{data.frames}}\label{data.frames}
+\section{Data.frames}\label{data.frames}
 
 \emph{lembre ?data.frame}
 
-São como planilha EXCEL\ldots{}. mais o menos
+Lembram uma planilha EXCEL\ldots{} Mais ou menos
 
 É uma classe bem especial, tem elementos de matriz mas o modo é lista
 
@@ -892,7 +916,8 @@ São como planilha EXCEL\ldots{}. mais o menos
 ## [1] "list"
 \end{verbatim}
 
-Então
+Podemos utilizar para armazenar dados, sendo que um data.frame é sempre
+composto por vetores com comprimento IGUAL
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1274,8 +1299,8 @@ quiser.
 \end{Highlighting}
 \end{Shaded}
 
-\section{Processando nossa
-data-frame}\label{processando-nossa-data-frame}
+\hypertarget{processing_dfs}{\section{Processando nossa
+data-frame}\label{processing_dfs}}
 
 Tem numeroas formas e pacotes para ordenar, arrangiar (Arrange), mutar e
 cambiar as data-frames. As mais conhecidas são provablemente do universe
@@ -1307,7 +1332,7 @@ Quando nos trabalhamos com series de tempo, é importante ter a variabel
 de tempo reconhecida como ``tempo'', especificamente como classe
 ``POSIXct''. Mas, a classe de Data é ``factor'' e de Hora tambem
 ``factor'', o que é ruim. Então, vamos criar uma variabel de tempo mais
-standard com formato 2018-05-17 19:15:05.
+standard com formato 2018-05-22 22:10:09.
 
 Para isso temos que grudar as variabel Data e Hora. Faremios isso numa
 nova varaibel chamada tempo\_char, adicionando ela diretamente no
@@ -1388,7 +1413,7 @@ Agora, vamos a extraer os dias da semana do tempo, mes e dia juliano:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Wednesday" "Wednesday" "Wednesday" "Wednesday" "Wednesday" "Wednesday"
+## [1] "quarta" "quarta" "quarta" "quarta" "quarta" "quarta"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1399,7 +1424,7 @@ Agora, vamos a extraer os dias da semana do tempo, mes e dia juliano:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "January" "January" "January" "January" "January" "January"
+## [1] "janeiro" "janeiro" "janeiro" "janeiro" "janeiro" "janeiro"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1452,13 +1477,13 @@ Vamos a carregar a nossa data.frame. Primero uma olhada
 ## 5             ppb            4          -    Sim 01/01/2014 04:00
 ## 6             ppb            5          -    Sim 01/01/2014 05:00
 ## 7             ppb            5          -    Sim 01/01/2014 06:00
-##                 tempo  weekdays     mes    diajuliano  ano
-## 2 2014-01-01 01:00:00 Wednesday January 16071.04 days 2014
-## 3 2014-01-01 02:00:00 Wednesday January 16071.08 days 2014
-## 4 2014-01-01 03:00:00 Wednesday January 16071.12 days 2014
-## 5 2014-01-01 04:00:00 Wednesday January 16071.17 days 2014
-## 6 2014-01-01 05:00:00 Wednesday January 16071.21 days 2014
-## 7 2014-01-01 06:00:00 Wednesday January 16071.25 days 2014
+##                 tempo weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00   quarta janeiro 16071.04 days 2014
+## 3 2014-01-01 02:00:00   quarta janeiro 16071.08 days 2014
+## 4 2014-01-01 03:00:00   quarta janeiro 16071.12 days 2014
+## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
+## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
+## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014
 \end{verbatim}
 
 Poderiamos calcular a media horaria por dia da semana. Então:
@@ -1471,14 +1496,14 @@ Poderiamos calcular a media horaria por dia da semana. Então:
 \end{Shaded}
 
 \begin{verbatim}
-##     Group.1     x
-## 1    Friday 42558
-## 2    Monday 34057
-## 3  Saturday 32298
-## 4    Sunday 20327
-## 5  Thursday 41199
-## 6   Tuesday 37904
-## 7 Wednesday 40180
+##   Group.1     x
+## 1 domingo 20327
+## 2  quarta 40180
+## 3  quinta 41199
+## 4  sábado 32298
+## 5 segunda 34057
+## 6   sexta 42558
+## 7   terça 37904
 \end{verbatim}
 
 \begin{Shaded}
@@ -1497,14 +1522,14 @@ Poderiamos calcular a media horaria por dia da semana. Então:
 \end{Shaded}
 
 \begin{verbatim}
-##        dias MediaHoraria    sd
-## 1    Friday        42558 42558
-## 2    Monday        34057 34057
-## 3  Saturday        32298 32298
-## 4    Sunday        20327 20327
-## 5  Thursday        41199 41199
-## 6   Tuesday        37904 37904
-## 7 Wednesday        40180 40180
+##      dias MediaHoraria    sd
+## 1 domingo        20327 20327
+## 2  quarta        40180 40180
+## 3  quinta        41199 41199
+## 4  sábado        32298 32298
+## 5 segunda        34057 34057
+## 6   sexta        42558 42558
+## 7   terça        37904 37904
 \end{verbatim}
 
 \section{subset}\label{subset}
@@ -1519,13 +1544,34 @@ Como poderiamos escolher só o mes de janeiro??
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] TipodeRede          TipodeMonitoramento Tipo               
-##  [4] Data                Hora                CodigoEstação      
-##  [7] NomeEstação         NomeParâmetro       UnidadedeMedida    
-## [10] MediaHoraria        MediaMovel          Valido             
-## [13] tempo_char          tempo               weekdays           
-## [16] mes                 diajuliano          ano                
-## <0 rows> (or 0-length row.names)
+##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
+## 2             ppb            9          -    Não 01/01/2014 01:00
+## 3             ppb            9          -    Sim 01/01/2014 02:00
+## 4             ppb            5          -    Sim 01/01/2014 03:00
+## 5             ppb            4          -    Sim 01/01/2014 04:00
+## 6             ppb            5          -    Sim 01/01/2014 05:00
+## 7             ppb            5          -    Sim 01/01/2014 06:00
+##                 tempo weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00   quarta janeiro 16071.04 days 2014
+## 3 2014-01-01 02:00:00   quarta janeiro 16071.08 days 2014
+## 4 2014-01-01 03:00:00   quarta janeiro 16071.12 days 2014
+## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
+## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
+## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014
 \end{verbatim}
 
 Mes janeiro pero solo o valor mediahoraria, que retorna um vetor
@@ -1553,7 +1599,7 @@ numerico
 \end{Shaded}
 
 \begin{verbatim}
-## integer(0)
+## [1] 9 9 5 4 5 5
 \end{verbatim}
 
 \begin{Shaded}
@@ -1563,7 +1609,7 @@ numerico
 \end{Shaded}
 
 \begin{verbatim}
-## integer(0)
+## [1] 9 9 5 4 5 5
 \end{verbatim}
 
 \begin{Shaded}
@@ -1602,7 +1648,7 @@ quanto tempo demoram cada um.
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.065   0.000   0.185
+##   0.107   0.008   1.275
 \end{verbatim}
 
 \begin{Shaded}
@@ -1614,7 +1660,7 @@ quanto tempo demoram cada um.
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.017   0.004   0.028
+##   0.024   0.000   0.081
 \end{verbatim}
 
 olha que estamos usando a função \texttt{fread}.
@@ -3613,49 +3659,70 @@ data frame, podemos ``ver'' ou selecionar suas sub-partes
 
 \chapter{Plotando}\label{plotando}
 
-\section{plot}\label{plot}
+\section{\texorpdfstring{\texttt{plot}
+(base)}{plot (base)}}\label{plot-base}
 
-exemplo
+\textbf{Exemplo}: Dados de qualidade do ar
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"df.rds"}\NormalTok{)}
-\KeywordTok{head}\NormalTok{(df)}
+\KeywordTok{summary}\NormalTok{(df)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
-## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
-## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
-## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
-## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
-## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
-## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
-##   CodigoEstação                NomeEstação              NomeParâmetro
-## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
-## 2             ppb            9          -    Não 01/01/2014 01:00
-## 3             ppb            9          -    Sim 01/01/2014 02:00
-## 4             ppb            5          -    Sim 01/01/2014 03:00
-## 5             ppb            4          -    Sim 01/01/2014 04:00
-## 6             ppb            5          -    Sim 01/01/2014 05:00
-## 7             ppb            5          -    Sim 01/01/2014 06:00
-##                 tempo  weekdays     mes    diajuliano  ano
-## 2 2014-01-01 01:00:00 Wednesday January 16071.04 days 2014
-## 3 2014-01-01 02:00:00 Wednesday January 16071.08 days 2014
-## 4 2014-01-01 03:00:00 Wednesday January 16071.12 days 2014
-## 5 2014-01-01 04:00:00 Wednesday January 16071.17 days 2014
-## 6 2014-01-01 05:00:00 Wednesday January 16071.21 days 2014
-## 7 2014-01-01 06:00:00 Wednesday January 16071.25 days 2014
+##       TipodeRede   TipodeMonitoramento              Tipo     
+##  Automático:8581   CETESB:8581         Dados Primários:8581  
+##                                                              
+##                                                              
+##                                                              
+##                                                              
+##                                                              
+##                                                              
+##          Data           Hora      CodigoEstação
+##  01/01/2014:  24   16:00  : 363   Min.   :95   
+##  01/01/2015:  24   12:00  : 361   1st Qu.:95   
+##  01/02/2014:  24   14:00  : 361   Median :95   
+##  01/04/2014:  24   18:00  : 361   Mean   :95   
+##  01/05/2014:  24   13:00  : 360   3rd Qu.:95   
+##  01/06/2014:  24   17:00  : 360   Max.   :95   
+##  (Other)   :8437   (Other):6415                
+##                      NomeEstação                      NomeParâmetro 
+##  Cid.Universitária-USP-Ipen:8581   NOx (Óxidos de Nitrogênio):8581  
+##                                                                     
+##                                                                     
+##                                                                     
+##                                                                     
+##                                                                     
+##                                                                     
+##  UnidadedeMedida  MediaHoraria    MediaMovel Valido      tempo_char       
+##  ppb:8581        Min.   :  0.00   -:8581     Não: 907   Length:8581       
+##                  1st Qu.:  9.00              Sim:7674   Class :character  
+##                  Median : 18.00                         Mode  :character  
+##                  Mean   : 29.87                                           
+##                  3rd Qu.: 34.00                                           
+##                  Max.   :306.00                                           
+##                  NA's   :260                                              
+##      tempo                       weekdays             mes           
+##  Min.   :2014-01-01 01:00:00   Length:8581        Length:8581       
+##  1st Qu.:2014-04-05 14:00:00   Class :character   Class :character  
+##  Median :2014-07-05 23:00:00   Mode  :character   Mode  :character  
+##  Mean   :2014-07-04 20:22:55                                        
+##  3rd Qu.:2014-10-03 10:00:00                                        
+##  Max.   :2015-01-02 00:00:00                                        
+##                                                                     
+##   diajuliano           ano           
+##  Length:8581       Length:8581       
+##  Class :difftime   Class :character  
+##  Mode  :numeric    Mode  :character  
+##                                      
+##                                      
+##                                      
+## 
 \end{verbatim}
 
-plot basico
+A função \texttt{plot} precisa dos seguintes argumentos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3668,7 +3735,7 @@ plot basico
 ## NULL
 \end{verbatim}
 
-então
+Então, a forma mais fácil de plotar uma variável em função do tempo é:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3678,107 +3745,171 @@ então
 
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-68-1.pdf}
 
-feio, ne?
+Feio, né?\\
+Tentando deixar mais bonito\ldots{}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df}\OperatorTok{$}\NormalTok{tempo[}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ df}\OperatorTok{$}\NormalTok{MediaHoraria[}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{], }
-     \DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{,}
-     \DataTypeTok{xlab =} \StringTok{"horas"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"NO2[ppb]"}\NormalTok{,}
-     \DataTypeTok{main =} \StringTok{"Plot menos feio"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df}\OperatorTok{$}\NormalTok{tempo[}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ df}\OperatorTok{$}\NormalTok{MediaHoraria[}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{], }\CommentTok{#-- Selecionando uma parte do df!}
+     \DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\CommentTok{#-- Forma do ponto (círculo preenchido)}
+     \DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\CommentTok{#-- Tipo de gráfico ("b" = both, ponto e linha)}
+     \DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\CommentTok{#-- Cor do elemento (definido pelo type)}
+     \DataTypeTok{xlab =} \StringTok{"Data"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"NOx [ppb]"}\NormalTok{, }\CommentTok{#-- Nome dos eixos x e y}
+     \DataTypeTok{main =} \StringTok{"Gráfico mais Bonito"}\NormalTok{) }\CommentTok{#-- Título do gráfico}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-69-1.pdf}
 
-Vamos a colocar \textbf{DOIS} plots
+Colocando \textbf{DOIS} elementos no mesmo gráfico:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df}\OperatorTok{$}\NormalTok{tempo[}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ df}\OperatorTok{$}\NormalTok{MediaHoraria[}\DecValTok{101}\OperatorTok{:}\DecValTok{200}\NormalTok{], }
+\NormalTok{df_parcial <-}\StringTok{ }\NormalTok{df[}\DecValTok{1}\OperatorTok{:}\DecValTok{180}\NormalTok{,] }\CommentTok{#-- Selecionando uma parte do df!}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df_parcial}\OperatorTok{$}\NormalTok{tempo[df_parcial}\OperatorTok{$}\NormalTok{Valido }\OperatorTok{==}\StringTok{ "Sim"}\NormalTok{], }
+     \DataTypeTok{y =}\NormalTok{ df_parcial}\OperatorTok{$}\NormalTok{MediaHoraria[df_parcial}\OperatorTok{$}\NormalTok{Valido }\OperatorTok{==}\StringTok{ "Sim"}\NormalTok{],}
      \DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{,}
-     \DataTypeTok{xlab =} \StringTok{"horas"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"NO2[ppb]"}\NormalTok{,}
-     \DataTypeTok{main =} \StringTok{"Plot estranho"}\NormalTok{)}
-\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df}\OperatorTok{$}\NormalTok{tempo[}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ df}\OperatorTok{$}\NormalTok{MediaHoraria[}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{], }
-     \DataTypeTok{pch =} \DecValTok{15}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+     \DataTypeTok{xlab =} \StringTok{"Data"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"NOx [ppb]"}\NormalTok{,}
+     \DataTypeTok{main =} \StringTok{"Dados Válidos e Inválidos"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df_parcial}\OperatorTok{$}\NormalTok{tempo[df}\OperatorTok{$}\NormalTok{Valido }\OperatorTok{==}\StringTok{ "Não"}\NormalTok{], }
+      \DataTypeTok{y =}\NormalTok{ df_parcial}\OperatorTok{$}\NormalTok{MediaHoraria[df}\OperatorTok{$}\NormalTok{Valido }\OperatorTok{==}\StringTok{ "Não"}\NormalTok{], }
+      \DataTypeTok{pch =} \DecValTok{15}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-70-1.pdf}
 
-Se tu é fan de BASE PLOT, tudo bem :)
+\textbf{Desafio}: Coloque uma legenda na figura especificando que os
+dados válidos estão em azul e os inválidos em vermelho
 
-\section{ggplot}\label{ggplot}
+A função \texttt{plot} cumpre bem o papel de gerar um gráfico simples, e
+até permite algumas customizações, mas ela exige cada vez mais linhas de
+código e argumentos dentro das funções para deixar o gráfico ``mais
+bonito'' - ao cumprir o desafio, você irá perceber como uma coisa
+``simples'' como colocar uma legenda pode exigir muito mais do que
+parece!
 
-Tem um monte de recursos para ggplot na web
+\section{\texorpdfstring{\texttt{ggplot}
+(ggplot2)}{ggplot (ggplot2)}}\label{ggplot-ggplot2}
+
+A função \texttt{ggplot} funciona de um jeito um pouco diferente. Veja a
+figura abaixo:
+
+\begin{figure}
+\centering
+\includegraphics{figuras/ggplot_guide.png}
+\caption{Fonte:
+\url{https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf}}
+\end{figure}
+
+Em vez de uma única função, o gráfico é formado por camadas, sendo que
+cada camada é um elemento (\texttt{geom\_...} ou \texttt{stat\_...}) ou
+configuração (\texttt{scale\_...\_...}, \texttt{coord\_...},
+\texttt{theme} ou \texttt{theme\_...}, \texttt{guides}, \texttt{labs},
+etc). Consulte a maioria das opções disponíveis em
+\href{https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf}{Data
+Visualization Cheatsheet}.
+
+Que tal refazermos os gráficos da seção anterior?
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{#-- Não esqueça de carregar o pacote!}
 \KeywordTok{library}\NormalTok{(ggplot2)}
-\KeywordTok{ggplot}\NormalTok{(df)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-71-1.pdf}
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-72-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{pch =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: Removed 1 rows containing missing values (geom_path).
+## Warning: Removed 260 rows containing missing values (geom_point).
 \end{verbatim}
 
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-73-1.pdf}
 
-opa
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ mes)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }
+\KeywordTok{ggplot}\NormalTok{(df[}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{,], }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Linhas...}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- ... com pontos}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Gráfico mais Bonito"}\NormalTok{, }\DataTypeTok{x =} \StringTok{"Data"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Títulos}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\CommentTok{#-- Centralizando o título}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Warning: Removed 1 rows containing missing values (geom_path).
-\end{verbatim}
 
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-74-1.pdf}
 
-deixando so 2014
+Agora o mais interessante:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df <-}\StringTok{ }\NormalTok{df[df}\OperatorTok{$}\NormalTok{ano }\OperatorTok{==}\StringTok{ }\DecValTok{2014}\NormalTok{,]}
+\KeywordTok{ggplot}\NormalTok{(df[}\DecValTok{1}\OperatorTok{:}\DecValTok{180}\NormalTok{,], }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ Valido)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ Valido, }\DataTypeTok{shape =}\NormalTok{ Valido)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Dados Válidos e Inválidos"}\NormalTok{, }\DataTypeTok{x =} \StringTok{"Data"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Definindo as cores manualmente}
+\StringTok{  }\KeywordTok{scale_shape_manual}\NormalTok{(}\DataTypeTok{values =} \KeywordTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{16}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Definindo as formas manualmente}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-75-1.pdf}
+
+\textbf{Pergunta}: Qual a principal diferença entre o código acima e o
+\protect\hyperlink{plot_base}{código usando \texttt{plot}}?
+
+A função \texttt{ggplot} plota apenas data frames, pois ela mapeia as
+variáveis por nomes de colunas. Assim, é preciso
+\protect\hyperlink{convert_df}{converter matrizes ou arrays em data
+frames}.\\
+Uma vantagem de trabalharmos com data frames,
+\protect\hyperlink{processing_dfs}{como já vimos antes}, é poder
+manipular esses dados de muitas formas possíveis antes de plotá-los.
+
+\textbf{COntinuação do Exemplo}: Extraindo algumas informações sobre os
+dados
+
+Vamos analisar o ano de 2014:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Em média}, como o NOx varia ao longo do dia?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    E para cada dia da semana?\\
+  \item
+    E para cada mês?
+  \end{itemize}
+\end{itemize}
+
+Usando algumas funções dentro do pacote \textbf{tidyverse}, como o
+\href{http://r4ds.had.co.nz/pipes.html}{\emph{pipe}
+(\texttt{\%\textgreater{}\%})}:
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ mes)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(scales)}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-76-1.pdf}
+\NormalTok{df_}\DecValTok{2014}\NormalTok{ <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(df, ano }\OperatorTok{==}\StringTok{ "2014"}\NormalTok{)}
+\NormalTok{df_}\DecValTok{2014}\NormalTok{_hour <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}\StringTok{ }\CommentTok{#-- A partir do data frame df_2014...}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- ... agrupe os dados pela coluna hora...}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- ... E calcule as médias, salvando em uma coluna nova}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Hora =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(Hora, }\StringTok{"%H:%M"}\NormalTok{))) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Transformando em data}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\CommentTok{#-- Desagrupando}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }
+\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_hour) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Formato de data que aparecerá no eixo x}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media, }\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3786,9 +3917,20 @@ deixando so 2014
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{mes)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+
+\NormalTok{df_}\DecValTok{2014}\NormalTok{ <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(df, ano }\OperatorTok{==}\StringTok{ "2014"}\NormalTok{)}
+\NormalTok{df_}\DecValTok{2014}\NormalTok{_hourly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}\StringTok{ }\CommentTok{#-- A partir do data frame df_2014...}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- ... agrupe os dados pela coluna Hora...}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- ... E calcule as médias,}
+\StringTok{                                                       }\CommentTok{#-- salvando em uma coluna nova}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Desagrupando}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Hora =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(Hora, }\StringTok{"%H:%M"}\NormalTok{))) }\CommentTok{#-- Transformando em data}
+
+\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_hourly) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Formato de data que aparecerá no eixo x}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media), }\DataTypeTok{fill =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3796,23 +3938,72 @@ deixando so 2014
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{mes, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{)}
+\NormalTok{df_}\DecValTok{2014}\NormalTok{_weekly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}\StringTok{ }\CommentTok{#-- }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora, weekdays) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Agrupando os dados pelas colunas Hora e weekdays}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Hora =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(Hora, }\StringTok{"%H:%M"}\NormalTok{))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{weekdays =} \KeywordTok{factor}\NormalTok{(weekdays,}\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }
+                                               \StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }
+                                               \StringTok{"Sunday"}\NormalTok{))) }\CommentTok{#-- Ordenando os dias da semana}
+
+\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_weekly) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media), }\DataTypeTok{fill =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Dia da Semana"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{weekdays) }\CommentTok{#-- Criando paineis em função do dia da semana}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-79-1.pdf}
 
-Y para terminar, meu theme favorito
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_}\DecValTok{2014}\NormalTok{_monthly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora, mes) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Agrupando os dados pelas colunas Hora e mes}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Hora =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(Hora, }\StringTok{"%H:%M"}\NormalTok{))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{mes =} \KeywordTok{factor}\NormalTok{(mes, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"January"}\NormalTok{, }\StringTok{"February"}\NormalTok{, }\StringTok{"March"}\NormalTok{, }\StringTok{"April"}\NormalTok{, }\StringTok{"May"}\NormalTok{, }
+                                      \StringTok{"June"}\NormalTok{, }\StringTok{"July"}\NormalTok{, }\StringTok{"August"}\NormalTok{, }\StringTok{"September"}\NormalTok{, }\StringTok{"October"}\NormalTok{, }
+                                      \StringTok{"November"}\NormalTok{, }\StringTok{"December"}\NormalTok{))) }\CommentTok{#-- Ordenando os meses}
+
+\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_monthly) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media), }\DataTypeTok{fill =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Mês", y = "}\NormalTok{NOx [ppb]}\StringTok{") +}
+\StringTok{  facet_wrap(~ mes) #-- Criando paineis em função do mês}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-80-1.pdf}
+
+\textbf{Exercício}: \emph{Em média}, como \textbf{os dados válidos} de
+NOx variam mensalmente ao longo do ano de 2014? Faça um gráfico.
+
+\textbf{Desafio}: Ainda é possível melhorar os gráficos acima! Pesquise
+como:
+
+\begin{itemize}
+\tightlist
+\item
+  Diminuir a quantidade de horários no eixo x\\
+\item
+  Separar por dias da semana e meses a partir da coluna ``tempo'', não
+  precisando usar as colunas de caracteres e consequentemente ordená-las
+  manualmente
+\end{itemize}
+
+\subsection{Explorando outras escalas de cores e
+temas}\label{explorando-outras-escalas-de-cores-e-temas}
+
+Pacotes \textbf{veinreport} e \textbf{cptcity}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"atmoschem/veinreport"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-e logo
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3821,79 +4012,48 @@ e logo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_black}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_color_gradientn}\NormalTok{(}\DataTypeTok{colours =} \KeywordTok{cpt}\NormalTok{())}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-82-1.pdf}
-
-Pode revertir a escala de cores
+Refazendo alguns gráficos:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_black}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_color_gradientn}\NormalTok{(}\DataTypeTok{colours =} \KeywordTok{rev}\NormalTok{(}\KeywordTok{cpt}\NormalTok{())) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{mes, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-83-1.pdf}
-
-não gostou, tenta com a sorte
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_black}\NormalTok{() }\OperatorTok{+}
-\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{mes, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_color_gradientn}\NormalTok{(}\DataTypeTok{colours =} \KeywordTok{lucky}\NormalTok{())}
+\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Data"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_color_gradientn}\NormalTok{(}\DataTypeTok{colours =} \KeywordTok{cpt}\NormalTok{()) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Definindo as cores com uma escala gradiente}
+\StringTok{  }\KeywordTok{theme_black}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Colour gradient: idv_radar_dbz, number: 3449
-\end{verbatim}
-
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-84-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_black}\NormalTok{() }\OperatorTok{+}
-\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{mes, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_color_gradientn}\NormalTok{(}\DataTypeTok{colours =} \KeywordTok{lucky}\NormalTok{())}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Colour gradient: ing_xmas_ib_jul13, number: 3608
-\end{verbatim}
-
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-85-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ tempo, }\DataTypeTok{y =}\NormalTok{ MediaHoraria, }\DataTypeTok{colour =}\NormalTok{ MediaHoraria)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_black}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_color_gradientn}\NormalTok{(}\DataTypeTok{colours =} \KeywordTok{lucky}\NormalTok{())}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Colour gradient: go2_webtwo_green_g2_1, number: 3257
+## Warning: Removed 1 rows containing missing values (geom_path).
 \end{verbatim}
 
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-86-1.pdf}
+
+Experimentando escalas de cores com a função \texttt{lucky}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_monthly) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media, }\DataTypeTok{fill =}\NormalTok{ Media)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Mês", y = "}\NormalTok{NOx [ppb]}\StringTok{") +}
+\StringTok{  scale_fill_gradientn(colors = lucky()) + #-- Definindo as cores com uma escala gradiente aleatória}
+\StringTok{  theme_black() +}
+\StringTok{  theme(legend.position = "}\NormalTok{bottom}\StringTok{", legend.direction = "}\NormalTok{horizontal}\StringTok{") + #-- Colocando a legenda na parte de baixo da figura}
+\StringTok{  facet_wrap(~ mes) #-- Criando paineis em função do mês}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Colour gradient: es_ocean_breeze_es_ocean_breeze_099, number: 1601
+\end{verbatim}
+
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-87-1.pdf}
+
+\textbf{Este é só o começo!}
+\href{http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html}{Veja
+aqui um pouco mais das muitas aplicações do \texttt{ggplot}}.
 
 \chapter{Estruturas de control}\label{loop}
 
