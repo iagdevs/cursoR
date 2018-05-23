@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, e possivelmente outros (u r invited to collaborate)">
 
 
-<meta name="date" content="2018-05-15">
+<meta name="date" content="2018-05-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -140,7 +140,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1" data-path="plotando.html"><a href="plotando.html#plot"><i class="fa fa-check"></i><b>5.1</b> plot</a></li>
 <li class="chapter" data-level="5.2" data-path="plotando.html"><a href="plotando.html#ggplot"><i class="fa fa-check"></i><b>5.2</b> ggplot</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="geo-spatial-raster-sf-e-stars.html"><a href="geo-spatial-raster-sf-e-stars.html"><i class="fa fa-check"></i><b>6</b> Geo Spatial: <code>raster</code>, <code>sf</code> e <code>stars</code></a></li>
+<li class="chapter" data-level="6" data-path="loop.html"><a href="loop.html"><i class="fa fa-check"></i><b>6</b> Estruturas de control</a><ul>
+<li class="chapter" data-level="6.1" data-path="loop.html"><a href="loop.html#if-else"><i class="fa fa-check"></i><b>6.1</b> if-else</a></li>
+<li class="chapter" data-level="6.2" data-path="loop.html"><a href="loop.html#for"><i class="fa fa-check"></i><b>6.2</b> for</a></li>
+<li class="chapter" data-level="6.3" data-path="loop.html"><a href="loop.html#while"><i class="fa fa-check"></i><b>6.3</b> while</a></li>
+<li class="chapter" data-level="6.4" data-path="loop.html"><a href="loop.html#repeat"><i class="fa fa-check"></i><b>6.4</b> repeat</a></li>
+<li class="chapter" data-level="6.5" data-path="loop.html"><a href="loop.html#lapply"><i class="fa fa-check"></i><b>6.5</b> lapply</a></li>
+<li class="chapter" data-level="6.6" data-path="loop.html"><a href="loop.html#sapply"><i class="fa fa-check"></i><b>6.6</b> sapply</a></li>
+<li class="chapter" data-level="6.7" data-path="loop.html"><a href="loop.html#split"><i class="fa fa-check"></i><b>6.7</b> split</a></li>
+<li class="chapter" data-level="6.8" data-path="loop.html"><a href="loop.html#tapply"><i class="fa fa-check"></i><b>6.8</b> tapply</a></li>
+<li class="chapter" data-level="6.9" data-path="loop.html"><a href="loop.html#apply"><i class="fa fa-check"></i><b>6.9</b> apply</a></li>
+<li class="chapter" data-level="6.10" data-path="loop.html"><a href="loop.html#mapply"><i class="fa fa-check"></i><b>6.10</b> mapply</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="fx.html"><a href="fx.html"><i class="fa fa-check"></i><b>7</b> De scripts a funções e de funções a pacotes</a></li>
+<li class="chapter" data-level="8" data-path="geo.html"><a href="geo.html"><i class="fa fa-check"></i><b>8</b> Geo Spatial: <code>raster</code>, <code>sf</code> e <code>stars</code></a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://ibarraespinosa.github.io/cursoR" target="blank">Published with bookdown</a></li>
@@ -335,35 +348,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Da pra fazer secuencias:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hoje &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 (a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>))</code></pre></div>
-<pre><code>##  [1] &quot;2018-05-15 16:00:04 -03&quot; &quot;2018-05-15 17:00:04 -03&quot;
-##  [3] &quot;2018-05-15 18:00:04 -03&quot; &quot;2018-05-15 19:00:04 -03&quot;
-##  [5] &quot;2018-05-15 20:00:04 -03&quot; &quot;2018-05-15 21:00:04 -03&quot;
-##  [7] &quot;2018-05-15 22:00:04 -03&quot; &quot;2018-05-15 23:00:04 -03&quot;
-##  [9] &quot;2018-05-16 00:00:04 -03&quot; &quot;2018-05-16 01:00:04 -03&quot;
-## [11] &quot;2018-05-16 02:00:04 -03&quot; &quot;2018-05-16 03:00:04 -03&quot;
-## [13] &quot;2018-05-16 04:00:04 -03&quot; &quot;2018-05-16 05:00:04 -03&quot;
-## [15] &quot;2018-05-16 06:00:04 -03&quot; &quot;2018-05-16 07:00:04 -03&quot;
-## [17] &quot;2018-05-16 08:00:04 -03&quot; &quot;2018-05-16 09:00:04 -03&quot;
-## [19] &quot;2018-05-16 10:00:04 -03&quot; &quot;2018-05-16 11:00:04 -03&quot;
-## [21] &quot;2018-05-16 12:00:04 -03&quot; &quot;2018-05-16 13:00:04 -03&quot;
-## [23] &quot;2018-05-16 14:00:04 -03&quot; &quot;2018-05-16 15:00:04 -03&quot;</code></pre>
+<pre><code>##  [1] &quot;2018-05-17 19:14:35 -03&quot; &quot;2018-05-17 20:14:35 -03&quot;
+##  [3] &quot;2018-05-17 21:14:35 -03&quot; &quot;2018-05-17 22:14:35 -03&quot;
+##  [5] &quot;2018-05-17 23:14:35 -03&quot; &quot;2018-05-18 00:14:35 -03&quot;
+##  [7] &quot;2018-05-18 01:14:35 -03&quot; &quot;2018-05-18 02:14:35 -03&quot;
+##  [9] &quot;2018-05-18 03:14:35 -03&quot; &quot;2018-05-18 04:14:35 -03&quot;
+## [11] &quot;2018-05-18 05:14:35 -03&quot; &quot;2018-05-18 06:14:35 -03&quot;
+## [13] &quot;2018-05-18 07:14:35 -03&quot; &quot;2018-05-18 08:14:35 -03&quot;
+## [15] &quot;2018-05-18 09:14:35 -03&quot; &quot;2018-05-18 10:14:35 -03&quot;
+## [17] &quot;2018-05-18 11:14:35 -03&quot; &quot;2018-05-18 12:14:35 -03&quot;
+## [19] &quot;2018-05-18 13:14:35 -03&quot; &quot;2018-05-18 14:14:35 -03&quot;
+## [21] &quot;2018-05-18 15:14:35 -03&quot; &quot;2018-05-18 16:14:35 -03&quot;
+## [23] &quot;2018-05-18 17:14:35 -03&quot; &quot;2018-05-18 18:14:35 -03&quot;</code></pre>
 <p>funções bacana: <strong>weekdays</strong>, <strong>month</strong>, <strong>julian</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;Tuesday&quot;   &quot;Tuesday&quot;   &quot;Tuesday&quot;   &quot;Tuesday&quot;   &quot;Tuesday&quot;  
-##  [6] &quot;Tuesday&quot;   &quot;Tuesday&quot;   &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Wednesday&quot;
-## [11] &quot;Wednesday&quot; &quot;Wednesday&quot; &quot;Wednesday&quot; &quot;Wednesday&quot; &quot;Wednesday&quot;
-## [16] &quot;Wednesday&quot; &quot;Wednesday&quot; &quot;Wednesday&quot; &quot;Wednesday&quot; &quot;Wednesday&quot;
-## [21] &quot;Wednesday&quot; &quot;Wednesday&quot; &quot;Wednesday&quot; &quot;Wednesday&quot;</code></pre>
+<pre><code>##  [1] &quot;Thursday&quot; &quot;Thursday&quot; &quot;Thursday&quot; &quot;Thursday&quot; &quot;Thursday&quot; &quot;Friday&quot;  
+##  [7] &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;  
+## [13] &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;  
+## [19] &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;   &quot;Friday&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
 <pre><code>##  [1] &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot;
 ## [12] &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot; &quot;May&quot;
 ## [23] &quot;May&quot; &quot;May&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#olha ?julian... dias desde origin</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17666.79 17666.83 17666.88 17666.92 17666.96 17667.00 17667.04
-##  [8] 17667.08 17667.13 17667.17 17667.21 17667.25 17667.29 17667.33
-## [15] 17667.38 17667.42 17667.46 17667.50 17667.54 17667.58 17667.63
-## [22] 17667.67 17667.71 17667.75
+##  [1] 17668.93 17668.97 17669.01 17669.05 17669.09 17669.14 17669.18
+##  [8] 17669.22 17669.26 17669.30 17669.34 17669.39 17669.43 17669.47
+## [15] 17669.51 17669.55 17669.59 17669.64 17669.68 17669.72 17669.76
+## [22] 17669.80 17669.84 17669.89
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>olha <a href="https://en.wikipedia.org/wiki/Julian_day" class="uri">https://en.wikipedia.org/wiki/Julian_day</a>:</p>
@@ -377,30 +389,30 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday  
-##   [8] Tuesday   Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday
-##  [15] Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday
-##  [22] Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday
-##  [29] Wednesday Wednesday Wednesday Wednesday Thursday  Thursday  Thursday 
-##  [36] Thursday  Thursday  Thursday  Thursday  Thursday  Thursday  Thursday 
-##  [43] Thursday  Thursday  Thursday  Thursday  Thursday  Thursday  Thursday 
-##  [50] Thursday  Thursday  Thursday  Thursday  Thursday  Thursday  Thursday 
-##  [57] Friday    Friday    Friday    Friday    Friday    Friday    Friday   
-##  [64] Friday    Friday    Friday    Friday    Friday    Friday    Friday   
-##  [71] Friday    Friday    Friday    Friday    Friday    Friday    Friday   
-##  [78] Friday    Friday    Friday    Saturday  Saturday  Saturday  Saturday 
-##  [85] Saturday  Saturday  Saturday  Saturday  Saturday  Saturday  Saturday 
-##  [92] Saturday  Saturday  Saturday  Saturday  Saturday  Saturday  Saturday 
-##  [99] Saturday  Saturday  Saturday  Saturday  Saturday  Saturday  Sunday   
-## [106] Sunday    Sunday    Sunday    Sunday    Sunday    Sunday    Sunday   
-## [113] Sunday    Sunday    Sunday    Sunday    Sunday    Sunday    Sunday   
-## [120] Sunday    Sunday    Sunday    Sunday    Sunday    Sunday    Sunday   
-## [127] Sunday    Sunday    Monday    Monday    Monday    Monday    Monday   
-## [134] Monday    Monday    Monday    Monday    Monday    Monday    Monday   
-## [141] Monday    Monday    Monday    Monday    Monday    Monday    Monday   
-## [148] Monday    Monday    Monday    Monday    Monday    Tuesday   Tuesday  
-## [155] Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday  
-## [162] Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday  
+<pre><code>##   [1] Thursday  Thursday  Thursday  Thursday  Thursday  Friday    Friday   
+##   [8] Friday    Friday    Friday    Friday    Friday    Friday    Friday   
+##  [15] Friday    Friday    Friday    Friday    Friday    Friday    Friday   
+##  [22] Friday    Friday    Friday    Friday    Friday    Friday    Friday   
+##  [29] Friday    Saturday  Saturday  Saturday  Saturday  Saturday  Saturday 
+##  [36] Saturday  Saturday  Saturday  Saturday  Saturday  Saturday  Saturday 
+##  [43] Saturday  Saturday  Saturday  Saturday  Saturday  Saturday  Saturday 
+##  [50] Saturday  Saturday  Saturday  Saturday  Sunday    Sunday    Sunday   
+##  [57] Sunday    Sunday    Sunday    Sunday    Sunday    Sunday    Sunday   
+##  [64] Sunday    Sunday    Sunday    Sunday    Sunday    Sunday    Sunday   
+##  [71] Sunday    Sunday    Sunday    Sunday    Sunday    Sunday    Sunday   
+##  [78] Monday    Monday    Monday    Monday    Monday    Monday    Monday   
+##  [85] Monday    Monday    Monday    Monday    Monday    Monday    Monday   
+##  [92] Monday    Monday    Monday    Monday    Monday    Monday    Monday   
+##  [99] Monday    Monday    Monday    Tuesday   Tuesday   Tuesday   Tuesday  
+## [106] Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday  
+## [113] Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday  
+## [120] Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Tuesday   Wednesday
+## [127] Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday
+## [134] Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday
+## [141] Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday Wednesday
+## [148] Wednesday Wednesday Thursday  Thursday  Thursday  Thursday  Thursday 
+## [155] Thursday  Thursday  Thursday  Thursday  Thursday  Thursday  Thursday 
+## [162] Thursday  Thursday  Thursday  Thursday  Thursday  Thursday  Thursday 
 ## Levels: Friday Monday Saturday Sunday Thursday Tuesday Wednesday</code></pre>
 <p>olha os <strong>Levels</strong></p>
 <p>Então:</p>

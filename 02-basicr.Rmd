@@ -31,12 +31,15 @@
 - c(1, NA, "D") qual é a classe???
 - c(1, NA, NaN) qual é a classe???
 
-## Converter objetos com `as`
+## Converter objetos 
+
+### `as`
 
 ```{r}
 as.numeric(c(1, "C", "D"))
 ```
 
+### `merge` e `melt` {#convert_df}
 
 ## Matrizes e a função `matrix`
 

@@ -169,7 +169,7 @@ frenteQ <- readRDS("FremteQuente.rds")
 ```
 
 
-## Processando nossa data-frame
+## Processando nossa data-frame {#processing_dfs}
 
 Tem numeroas formas e pacotes para ordenar, arrangiar (Arrange), mutar e cambiar
 as data-frames. As mais conhecidas são provablemente do universe *tidyverse* com 

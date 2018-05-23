@@ -1,6 +1,6 @@
 book_filename: "cursoR"
 language:
   ui:
-    chapter_name: "Capitulo "
+    chapter_name: "Capítulo "
 delete_merged_file: true
 output_dir: "docs"
