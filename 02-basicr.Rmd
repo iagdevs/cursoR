@@ -1,25 +1,25 @@
 # R! {#r}
 
 
-- Quase em qualquer sistema operacional mas eu vou focar em Linux.
-- Muita documentação:
+- Iremos focar no Linux, mas R e RStudio estão disponíveis para Windows e Mac também.
+- Documentação:
 - [Intro](http://cran.r-project.org/doc/manuals/r-release/R-intro.html).
 - [I/O](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
 - Quer fazer um pacote? [Veja](http://cran.r-project.org/doc/manuals/r-release/R-exts.html),
 [aqui](http://cran.r-project.org/doc/manuals/r-release/R-ints.html) e [aqui](http://cran.r-project.org/doc/manuals/r-release/R-lang.html).
-- [Stackoverflow](https://stackoverflow.com/questions/tagged/r) provides a great source of resources.
+- [Stackoverflow](https://stackoverflow.com/questions/tagged/r) te ajudará em horas de desespero.
 
-## Objetos de R
+## Objetos do R
 
 - Character `r "a"`
-- numeric `r 1`
-- integer `r 1`
-- complex `r 1i`
-- logical `r TRUE`
+- Numeric `r 1`
+- Integer `r 1`
+- Complex `r 1i`
+- Logical `r TRUE`
 
 ## Classe
 
-`class` função permite ver a classe dos objetos
+`class` essa função permite ver a classe dos objetos
 
 ## Vetores
 
@@ -41,13 +41,13 @@ as.numeric(c(1, "C", "D"))
 
 ### `merge` e `melt` {#convert_df}
 
-## Matrices e a função `matrix`
+## Matrizes e a função `matrix`
 
 **[linhas, colunas]**
 
-- permitidos elementos **da mesma clase**!
+- Só são permitidos elementos **da mesma clase**!
 
-vamos ver os argumentos da função `matrix`
+Argumentos da função `matrix`
 
 ```{r}
 args(matrix)
@@ -72,13 +72,13 @@ dim(m1)
 
 ## Array
 
-É como uma matriz de matrizes de matrizes de matrizes...... and so on.
+Permite armazenar diversos elementos, com diversas dimensões. Dessa forma, um array com duas dimensões é o mesmo que uma matriz, dessa forma, podemos armazenar diversas matrizes dentro de um array, mas suas dimensões são pré-estabelecidas.
 
 ```{r}
 args(array)
 ```
 
-lembre usar TAB
+Não esqueça do TAB
 
 ```{r}
 (a <- array(data = 0, dim = c(1,1)))
@@ -109,14 +109,12 @@ dim(a)
 
 ## `list`
 
-As listas são como sacolas, e dentro delas, tu pode colocar mais sacolas...
-então, tu pode ter sacolas, dentro de sacolas, dentro de sacolas...
-ou
+Já as listas permitem que você armazene qualquer tipo de ojeto, independente da classe, dessa forma, podemos colocar numa lista: número, caracteres, argumentos lógicos, ou que você quiser:
+
 ```{r}
 list(list(list(list(1))))
 ```
-a diferença das matrices, tu pode colocar cualquer coisa nas listas, por exemplo:
-funções, characters, etc.
+Isso faz com que elas sejam bastante versáteis e sirvam para armazenar o que você precisar, mas elas só podem ter uma dimensão, como uma fila.
 
 ```{r}
 (x <- list(1, "a", TRUE, 1 + 4i))
@@ -124,7 +122,7 @@ funções, characters, etc.
 
 ## Tempo e Data
 
-R tem classes de tempo e data:
+R também tem classes de tempo e data:
 
 ```{r}
 (a <- ISOdate(year = 2018, month = 4, day = 5))
@@ -132,16 +130,16 @@ class(a)
 (b <- ISOdate(year = 2018, month = 4, day = 5, tz = "Americas/Sao_Paulo"))
 ```
 
-tempo
+Tempo
 
 ```{r}
 (d <- ISOdatetime(year = 2018, month = 4, day = 5, hour = 0, min = 0, sec = 0,
                   tz = "Americas/Sao_Paulo"))
 ```
 
-O pacote [nanotime](https://github.com/eddelbuettel/nanotime) permite trabalhar com nano segundos.
+Caso você precise, o pacote [nanotime](https://github.com/eddelbuettel/nanotime) permite trabalhar com nano segundos.
 
-Da pra fazer secuencias:
+É possível fazer sequências:
 
 ```{r}
 hoje <- Sys.time()
@@ -149,22 +147,22 @@ hoje <- Sys.time()
 
 ```
 
-funções bacana: **weekdays**, **month**, **julian**
+funções úteis: **weekdays**, **month**, **julian**
 
 ```{r}
 weekdays(a)
 months(a)
-julian(a) #olha ?julian... dias desde origin
+julian(a) #dia Juliano*
 ```
-olha https://en.wikipedia.org/wiki/Julian_day:
+*Para mais informações: https://en.wikipedia.org/wiki/Julian_day:
 
 
 
 ## Fatores
 
-Os `factors` podem ser um pouco infernais. Olha [R INFERNO](http://www.burns-stat.com/documents/books/the-r-inferno/)
+Os `factors` podem ser um pouco infernais. Dê uma olhada em [R INFERNO](http://www.burns-stat.com/documents/books/the-r-inferno/)
 
-Usados para representar categorias, ejemplo clasico para nos, dias da semana.
+São variáveis que representam categorias, como por exemplo, dias da semana.
 
 ```{r}
 a <- seq.POSIXt(from = hoje, by = 3600, length.out = 24*7)
@@ -172,7 +170,9 @@ aa <- weekdays(a)
 class(aa)
 factor(aa)
 ```
-olha os **Levels**
+São muito úteis para regressões, plotes e resumos estatísitcos.
+
+Olhe os **Levels**
 
 Então: 
 
@@ -183,11 +183,11 @@ ab <- factor(x = aa,
 levels(ab)
 ```
 
-## `data.frames`
+## Data.frames
 
 _lembre ?data.frame_
 
-São como planilha EXCEL.... mais o menos
+Lembram uma planilha EXCEL... Mais ou menos
 
 É uma classe bem especial, tem elementos de matriz mas o modo é lista
 
@@ -198,7 +198,7 @@ class(df)
 mode(df)
 ```
 
-Então
+Podemos utilizar para armazenar dados, sendo que um data.frame é sempre composto por vetores com comprimento IGUAL
 
 ```{r}
 nrow(df)

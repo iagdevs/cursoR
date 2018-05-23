@@ -1,41 +1,32 @@
 # Intro {#intro}
 
-Este curso é para pos, então vamos ver conteúdo rapidamente e se não da tempo,
-este curso esta online no sitio https://github.com/atmoschem/cursorIAG.
+Este curso é voltado para os alunos de pós-graduação, dessa forma, veremos os conceitos rapidamente. Caso não haja tempo, o conteúdo ficará online no link: https://github.com/atmoschem/cursorIAG.
 
-Eu tento usar [BASE](http://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html)
-sempre que posso, e se não da ai vou para outros paradigmas.
+Sempre que tiver uma dúvida, tente utilizar: [BASE](http://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html).
 
-Outros pacotes de BASE: [utils](http://stat.ethz.ch/R-manual/R-devel/library/utils/html/00Index.html), [stats](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html), [datasets](http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html), [graphics](http://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html),
+Outros pacotes BASE: [utils](http://stat.ethz.ch/R-manual/R-devel/library/utils/html/00Index.html), [stats](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html), [datasets](http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html), [graphics](http://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html),
 [grDevices](https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html), [grid](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html), [methods](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/00Index.html), [tools](https://stat.ethz.ch/R-manual/R-devel/library/tools/html/00Index.html), [parallel](https://stat.ethz.ch/R-manual/R-devel/library/parallel/html/00Index.html), [compiler](https://stat.ethz.ch/R-manual/R-devel/library/compiler/html/00Index.html), [splines](https://stat.ethz.ch/R-manual/R-devel/library/splines/html/00Index.html), [tcltk](https://stat.ethz.ch/R-manual/R-devel/library/tcltk/html/00Index.html) , [stats4](https://stat.ethz.ch/R-manual/R-devel/library/stats4/html/00Index.html).
 
 
-Veja [outros](https://cran.r-project.org/web/packages/available_packages_by_name.html) pacotes.
+Acesse [outros](https://cran.r-project.org/web/packages/available_packages_by_name.html) para a lista de pacotes disponíveis.
 
-Este curso esta baseado no livro [R Programming for Data Science](https://leanpub.com/rprogramming).
+Este curso foi baseado no livro [R Programming for Data Science](https://leanpub.com/rprogramming).
 
-Vamos usar [Rstudio](https://www.rstudio.com/)
+Neste curso iremos utilizar [Rstudio](https://www.rstudio.com/)
 
 **Dica:**
 
-- Se não sabe como usar uma função, escreva: `?função`.
-- As funções tem argumentos, use **TAB** para ver eles numa função.
+- Se não souber usar uma função, escreva: `?função`.
+- As funções tem argumentos, use **TAB** para vê-los numa função.
 
 ## IMPORTANTE
 
-teu novo melhor amigo, besti friendi, BFF, parceiro, mano, tabarish, komrade,
-compaheiro, colega, buisiness partner amd whatever meanningful is 
-
 - **TAB** no **RSTUDIO**. 
 
-Esta combinação é tão boa, como o cafe com leite, pizza e abacaxi, vitamina de 
-acabate com amendoim Manaus, a melhor combinação.
+Isso te ajudará a evitar coisas como: grafia errada da função, verificar se a função existe, verificar argumentos, etc... Use sempre!
 
 ```{r echo = FALSE}
 knitr::include_graphics("figuras/tab-key-.jpeg")
 ```
 
-Porque quando se tu não lembra os argumentos da função, e não quer ver o help
-*?* de cada função, so clica **TAB** e RSTUDIO te mostrara a lista de argumentos.
-
-Vamos lá!
+Vamos começar!
