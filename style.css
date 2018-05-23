@@ -12,3 +12,17 @@ pre {
 pre code {
   white-space: inherit;
 }
+.rmdquestion, .rmdchallenge, .rmdexercise {
+  padding: 1em 1em 1em 6em;
+  margin-bottom: 10px;
+  background: #f5f5f5 5px center/4em no-repeat;
+}
+.rmdquestion {
+  background-image: url("figuras/question.png");
+}
+.rmdchallenge {
+  background-image: url("figuras/challenge.jpeg");
+}
+.rmdexercise {
+  background-image: url("figuras/exercise.png");
+}

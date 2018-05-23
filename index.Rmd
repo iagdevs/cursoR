@@ -1,6 +1,6 @@
 --- 
 title: "Curso de R para Meteorologia IAG/USP"
-author: "Sergio Ibarra-Espinosa,\n Amanda Rehbein,\n Daniel Schuch,\n Camila Lopes,\n e possivelmente outros (u r invited to collaborate)"
+author: "Sergio Ibarra-Espinosa,\n Amanda Rehbein,\n Daniel Schuch,\n Camila Lopes,\n Isabela Siqueira,\n e possivelmente outros (você está convidado para colaborar)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -12,12 +12,15 @@ github-repo: rstudio/bookdown-demo
 description: "Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação"
 ---
 
-# Pre-requisitos do sistema {#primero}
+# Pré-requisitos do sistema {#primero}
 
-Em Windows, instale além do R, Rtools https://cran.r-project.org/bin/windows/Rtools/
+Antes de instalar o R na sua plataforma de interesse, verifique se há recomendações abaixo:
 
-Em MAC instale netcdf e:
-
+**Windows**  
+A princípio não há pré-requisitos! Caso fique entusiasmado com o R e queira desenvolver os próprios pacotes, instale o Rtools https://cran.r-project.org/bin/windows/Rtools/
+  
+**MacOS**  
+Instale `NetCDF4` e:
 
 ```{bash eval = FALSE}
 brew unlink gdal
@@ -28,24 +31,22 @@ brew install udunits
 brew install gdal2 --with-armadillo --with-complete --with-libkml --with-unsupported
 brew link --force gdal2
 ```
-
-
-Em Ubuntu:
+  
+**Linux (Ubuntu e derivados)**
 
 ```{bash eval = FALSE}
-  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
-  - sudo apt-get --yes --force-yes update -qq
-  # install tmap dependencies
-  - sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev
-  # install tmap dependencies; for 16.04 libjq-dev this ppa is needed:
-  - sudo add-apt-repository -y ppa:opencpu/jq
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install libjq-dev
-  # units/udunits2 dependency:
-  - sudo apt-get install --yes libudunits2-dev
-  # sf dependencies:
-  - sudo apt-get install --yes libproj-dev libgeos-dev libgdal-dev libnetcdf-dev  netcdf-bin gdal-bin
-
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
+sudo apt-get --yes --force-yes update -qq
+# install tmap dependencies
+sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev
+# install tmap dependencies; for 16.04 libjq-dev this ppa is needed:
+sudo add-apt-repository -y ppa:opencpu/jq
+sudo apt-get --yes --force-yes update -qq
+sudo apt-get install libjq-dev
+# units/udunits2 dependency:
+sudo apt-get install --yes libudunits2-dev
+# sf dependencies:
+sudo apt-get install --yes libproj-dev libgeos-dev libgdal-dev libnetcdf-dev  netcdf-bin gdal-bin
 ```
 
 
@@ -55,30 +56,32 @@ Para fazer este curso instale os seguintes pacotes como indicado:
 
 ```{r eval = FALSE}
 install.packages("devtools")
-devtools::install_github("tidyverse/tidyverse")
-devtools::install_github("r-spatial/sf")
-devtools::install_github("r-spatial/mapview")
-devtools::install_github("r-spatial/stars")
-install.packages(c("raster", "sp", "rgdal", "maptools", "ncdf4"))
-install.packages(c("cptcity", "data.table", "openair"))
+install.packages("tidyverse")
+install.packages("reshape2")
+install.packages("sf")
+install.packages("maptools")
+install.packages("mapview")
+install.packages("fields")
+install.packages("raster")
+install.packages("sp")
+install.packages("rgdal")
+install.packages("ncdf4")
+install.packages("data.table")
+install.packages("openair")
+install.packages("cptcity")
 ```
 
-- [devtools](https://CRAN.R-project.org/package=devtools) é um pacote para
-instalar pacotes de diferentes repositórios
-- [tidyverse](https://github.com/tidyverse) é o universo de pacotes do Hadley
-Wickham. A instalação tem que ser usando devtools, pois precisamos plotar os
-objetos espacias sf usando [geom_sf](https://www.isgeomsfinggplot2yet.site/).
-- [sf](https://github.com/r-spatial/sf) e [mapview](https://github.com/r-spatial/mapbiew),
-[stars](https://github.com/r-spatial/stars), raster, sp, rgdal e maptools são 
-para a parte espacial. Lembrar que os objetos em meteorologias são espaço-temporais.
-- ncdf4 é um pacote para manipular arquivos NetCDF.
-- [cptcity](https://ibarraespinosa.github.io/cptcity/) é um pacote que tem 7140
-paletas de cores do arquivo web cpt-city (http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html).
-- [openair](http://davidcarslaw.github.io/openair/) é um pacote para
-trabalhar com dados de qualidade do ar e meteorologia.
-
-
-Se faltarem dependencias de sistema, instale elas e instale os pacotes.
+* [devtools](https://CRAN.R-project.org/package=devtools) permite a instalação de versões de desenvolvimento de pacotes de diferentes repositórios
+* [tidyverse](https://github.com/tidyverse) é o universo de pacotes do Hadley
+Wickham para tratamento e visualização de dados  
+    + Se você quiser plotar os objetos espaciais sf com o pacote [ggplot2](http://ggplot2.tidyverse.org/) (que faz parte do tidyverse), ele precisa ser instalado usando o devtools (`devtools::install_github("tidyverse/ggplot2")`), pois a função [geom_sf](https://www.isgeomsfinggplot2yet.site/) ainda não está disponível na versão oficial
+* [sf](https://github.com/r-spatial/sf), [mapview](https://github.com/r-spatial/mapbiew), raster, sp, rgdal, maptools e fields tratam dados espaciais. Lembre-se que os objetos em Meteorologia são espaço-temporais
+* ncdf4 é um pacote para manipular arquivos NetCDF
+* [cptcity](https://ibarraespinosa.github.io/cptcity/) é um pacote que tem 7140 paletas de cores do arquivo web [cpt-city](http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html)
+* [openair](http://davidcarslaw.github.io/openair/) é um pacote para
+trabalhar com dados de qualidade do ar e Meteorologia
+  
+Preste atenção na instalação dos pacotes pois eles podem precisar de dependências do sistema.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
@@ -89,19 +92,13 @@ knitr::write_bib(c(
 
 ## Colaborar
 
-A forma preferida de colaboração é com pull-requests em https://github.com/ibarraespinosa/cursoR/pull/new/master. Lembre de aplicar a 
-Guia de Estilo de R de Google (https://google.github.io/styleguide/Rguide.xml)
-ou com o formato de formatR https://yihui.name/formatr/. Em poucas palavras,
-lembre que seu código vai ser lido por seres humanos. Se quiser tem acesso no
-repositório deste curso, me contate. Tem um botão para editar qualquer página.
+A melhor forma de colaboração é com *pull requests* em https://github.com/ibarraespinosa/cursoR/pull/new/master. Aplique o [Guia de Estilo de R do Google](https://google.github.io/styleguide/Rguide.xml) ou o formato [formatR](https://yihui.name/formatr/). Em poucas palavras, lembre que seu código vai ser lido por seres humanos. É possível editar qualquer página usando um dos botões acima.
 
-## Aportar com dados
+## Compartilhar dados
 
-Se você tem dados para fazer este curso mais legal, por favor, edite este aquivo
-e com pull request, eu vou fazer um merge para poder.
-
-
+Se você conhece alguma fonte de dados para deixar este curso mais legal, edite este arquivo e faça um *pull request*.
+  
 1. NCEP: ftp://nomads.ncdc.noaa.gov/GFS/analysis_only/
-1.
-1.
+2. ...
+3. ...
 
