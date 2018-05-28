@@ -1,4 +1,4 @@
-## Curso de R para Meteorologia
+## Curso de R para Meteorologia IAG/USP
 
 Este é um curso de R desenvolvido pelo iagdevs!
   
