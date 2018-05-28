@@ -1,6 +1,6 @@
 # Intro {#intro}
 
-Este curso é voltado para os alunos de pós-graduação, dessa forma, veremos os conceitos rapidamente. Caso não haja tempo, o conteúdo ficará online no link: https://github.com/atmoschem/cursorIAG.
+Este curso é voltado para os alunos de pós-graduação, dessa forma, veremos os conceitos rapidamente. Caso não haja tempo, o conteúdo ficará online no link: https://github.com/iagdevs/cursoR.
 
 Sempre que tiver uma dúvida, tente utilizar: [BASE](http://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html).
 
@@ -12,16 +12,18 @@ Acesse [outros](https://cran.r-project.org/web/packages/available_packages_by_na
 
 Este curso foi baseado no livro [R Programming for Data Science](https://leanpub.com/rprogramming).
 
-Neste curso iremos utilizar [Rstudio](https://www.rstudio.com/)
+Neste curso iremos utilizar o software [RStudio](https://www.rstudio.com/). A imagem abaixo resume um pouco das funcionalidades disponíveis.
 
-**Dica:**
+![Fonte: [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)](figuras/rstudio_ide.png)
 
-- Se não souber usar uma função, escreva: `?função`.
-- As funções tem argumentos, use **TAB** para vê-los numa função.
+**Dicas:**
+
+- Se não souber usar uma função, escreva: `?função`
+- As funções tem argumentos, use **TAB** para vê-los numa função
 
 ## IMPORTANTE
 
-- **TAB** no **RSTUDIO**. 
+- **TAB** no **RSTUDIO** 
 
 Isso te ajudará a evitar coisas como: grafia errada da função, verificar se a função existe, verificar argumentos, etc... Use sempre!
 

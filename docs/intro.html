@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-05-22">
+<meta name="date" content="2018-05-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,43 +49,6 @@
 
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -182,24 +145,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Capítulo 2</span> Intro</h1>
-<p>Este curso é voltado para os alunos de pós-graduação, dessa forma, veremos os conceitos rapidamente. Caso não haja tempo, o conteúdo ficará online no link: <a href="https://github.com/atmoschem/cursorIAG" class="uri">https://github.com/atmoschem/cursorIAG</a>.</p>
+<p>Este curso é voltado para os alunos de pós-graduação, dessa forma, veremos os conceitos rapidamente. Caso não haja tempo, o conteúdo ficará online no link: <a href="https://github.com/iagdevs/cursoR" class="uri">https://github.com/iagdevs/cursoR</a>.</p>
 <p>Sempre que tiver uma dúvida, tente utilizar: <a href="http://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html">BASE</a>.</p>
 <p>Outros pacotes BASE: <a href="http://stat.ethz.ch/R-manual/R-devel/library/utils/html/00Index.html">utils</a>, <a href="http://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html">stats</a>, <a href="http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html">datasets</a>, <a href="http://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html">graphics</a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html">grDevices</a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html">grid</a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/methods/html/00Index.html">methods</a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/tools/html/00Index.html">tools</a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/parallel/html/00Index.html">parallel</a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/compiler/html/00Index.html">compiler</a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/splines/html/00Index.html">splines</a>, <a href="https://stat.ethz.ch/R-manual/R-devel/library/tcltk/html/00Index.html">tcltk</a> , <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats4/html/00Index.html">stats4</a>.</p>
 <p>Acesse <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">outros</a> para a lista de pacotes disponíveis.</p>
 <p>Este curso foi baseado no livro <a href="https://leanpub.com/rprogramming">R Programming for Data Science</a>.</p>
-<p>Neste curso iremos utilizar <a href="https://www.rstudio.com/">Rstudio</a></p>
-<p><strong>Dica:</strong></p>
+<p>Neste curso iremos utilizar o software <a href="https://www.rstudio.com/">RStudio</a>. A imagem abaixo resume um pouco das funcionalidades disponíveis.</p>
+<div class="figure">
+<img src="figuras/rstudio_ide.png" alt="Fonte: RStudio IDE Cheatsheet" />
+<p class="caption">Fonte: <a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">RStudio IDE Cheatsheet</a></p>
+</div>
+<p><strong>Dicas:</strong></p>
 <ul>
-<li>Se não souber usar uma função, escreva: <code>?função</code>.</li>
-<li>As funções tem argumentos, use <strong>TAB</strong> para vê-los numa função.</li>
+<li>Se não souber usar uma função, escreva: <code>?função</code></li>
+<li>As funções tem argumentos, use <strong>TAB</strong> para vê-los numa função</li>
 </ul>
 <div id="importante" class="section level2">
 <h2><span class="header-section-number">2.1</span> IMPORTANTE</h2>
 <ul>
-<li><strong>TAB</strong> no <strong>RSTUDIO</strong>.</li>
+<li><strong>TAB</strong> no <strong>RSTUDIO</strong></li>
 </ul>
 <p>Isso te ajudará a evitar coisas como: grafia errada da função, verificar se a função existe, verificar argumentos, etc… Use sempre!</p>
-<p><img src="figuras/tab-key-.jpeg" width="212" /></p>
+<p><img src="figuras/tab-key-.jpeg" /><!-- --></p>
 <p>Vamos começar!</p>
 
 </div>
