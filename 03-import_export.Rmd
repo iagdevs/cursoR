@@ -1,6 +1,6 @@
 # Importando e exportando dados em R
 
-## data-frames
+## Data Frames
 
 Probabelmente um dos promeiros objetos que vamos usar quando começamos usar R.
 Pensa num data-frame como uma planilha de Libreoffice (o excel). Os data-frame
@@ -73,10 +73,11 @@ head(df2)
 tail(df2)
 ```
 
+**Qua dificultades tu já enfrentou importando dados?**
 
-### Qua dificultades tu já enfrentou importando dados?
-
-## Exportando texto com `write.table`
+## BASE
+  
+### Exportando texto com `write.table`
 
 Exportar é bem facil, mas se sabemos os argumentos das funções, vai ser
 mais eficiente ainda. Vamos `write.table`
@@ -104,7 +105,7 @@ col.names se tu quer o nome nas colunas...
 
 **PRATICA!**
 
-## Exportando objetos com `save`
+### Exportando objetos com `save`
 
 
 ```{r}
@@ -140,7 +141,7 @@ imperfeito, vai dar merda....
 O melhor da função é que permite salvar com tipos de compressão, por 
 exemplo compress = "xz".
 
-## Exportando objetos com `saveRDS`
+### Exportando objetos com `saveRDS`
 
 Esta é uma das minhas funçoes favoritas no R
 
@@ -169,7 +170,7 @@ frenteQ <- readRDS("FremteQuente.rds")
 ```
 
 
-## Processando nossa data-frame {#processing_dfs}
+### Processando nossa data-frame {#processing_dfs}
 
 Tem numeroas formas e pacotes para ordenar, arrangiar (Arrange), mutar e cambiar
 as data-frames. As mais conhecidas são provablemente do universe *tidyverse* com 
@@ -229,7 +230,7 @@ head(df$diajuliano)
 df$ano <- format(df$tempo, "%Y")
 ```
 
-## aggregate
+### aggregate
 
 Vamos a carregar a nossa data.frame. Primero uma olhada
 
@@ -253,7 +254,7 @@ dff
 ```
 
 
-## subset
+### subset
 
 Como poderiamos escolher só o mes de janeiro??
 
@@ -275,11 +276,11 @@ class(df[df$mes == "janeiro", "MediaHoraria"])
 Mas vamos salvar o nosso "df"
 
 ```{r}
-saveRDS(df, "df.rds")
+saveRDS(df, "dados/df.rds")
 ```
 
 
-## data.table, read_xl e mais
+### data.table, read_xl e mais
 
 data.table é um pacote que apresenta a classe `data.table`, que é como uma versão
 melhorada da classe `data-frame` O termo especifico é que `data-table` tem 
@@ -304,7 +305,13 @@ olha que estamos usando a função `fread`.
 
 read_xl é mais uma função do universo tidyverse que permite importar excel no R, diretamente e inteligentemente.
 
-## NetCDF
+## Tidyverse
+  
+### Leitura `%>%` Processamento
+
+## Outros Tipos de Dados
+  
+### NetCDF
 
 O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos compostos por dados, atributos e metadados.
 
@@ -433,4 +440,4 @@ O pacote possue ainda funções mais específicas para a criação de arquivos e
 
 *DICA*: o NetCDF no R funciona de forma parecida com ouma lista ou data frame, podemos "ver" ou selecionar suas sub-partes (sub-sub-partes...) com "$" e TAB.
 
-
+### Dados Binários
