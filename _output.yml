@@ -5,8 +5,8 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Curso R DCA/IAG/USP</a></li>
       after: |
-        <li><a href="https://ibarraespinosa.github.io/cursoR" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/ibarraespinosa/cursoR/edit/master/%s
+        <li><a href="https://iagdevs.github.io/cursoR" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/iagsdevs/cursoR/edit/master/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:

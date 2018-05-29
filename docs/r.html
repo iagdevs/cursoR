@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-05-22">
+<meta name="date" content="2018-05-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -359,34 +359,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>É possível fazer sequências:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hoje &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 (a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>))</code></pre></div>
-<pre><code>##  [1] &quot;2018-05-22 22:09:41 -03&quot; &quot;2018-05-22 23:09:41 -03&quot;
-##  [3] &quot;2018-05-23 00:09:41 -03&quot; &quot;2018-05-23 01:09:41 -03&quot;
-##  [5] &quot;2018-05-23 02:09:41 -03&quot; &quot;2018-05-23 03:09:41 -03&quot;
-##  [7] &quot;2018-05-23 04:09:41 -03&quot; &quot;2018-05-23 05:09:41 -03&quot;
-##  [9] &quot;2018-05-23 06:09:41 -03&quot; &quot;2018-05-23 07:09:41 -03&quot;
-## [11] &quot;2018-05-23 08:09:41 -03&quot; &quot;2018-05-23 09:09:41 -03&quot;
-## [13] &quot;2018-05-23 10:09:41 -03&quot; &quot;2018-05-23 11:09:41 -03&quot;
-## [15] &quot;2018-05-23 12:09:41 -03&quot; &quot;2018-05-23 13:09:41 -03&quot;
-## [17] &quot;2018-05-23 14:09:41 -03&quot; &quot;2018-05-23 15:09:41 -03&quot;
-## [19] &quot;2018-05-23 16:09:41 -03&quot; &quot;2018-05-23 17:09:41 -03&quot;
-## [21] &quot;2018-05-23 18:09:41 -03&quot; &quot;2018-05-23 19:09:41 -03&quot;
-## [23] &quot;2018-05-23 20:09:41 -03&quot; &quot;2018-05-23 21:09:41 -03&quot;</code></pre>
+<pre><code>##  [1] &quot;2018-05-28 21:50:49 -03&quot; &quot;2018-05-28 22:50:49 -03&quot;
+##  [3] &quot;2018-05-28 23:50:49 -03&quot; &quot;2018-05-29 00:50:49 -03&quot;
+##  [5] &quot;2018-05-29 01:50:49 -03&quot; &quot;2018-05-29 02:50:49 -03&quot;
+##  [7] &quot;2018-05-29 03:50:49 -03&quot; &quot;2018-05-29 04:50:49 -03&quot;
+##  [9] &quot;2018-05-29 05:50:49 -03&quot; &quot;2018-05-29 06:50:49 -03&quot;
+## [11] &quot;2018-05-29 07:50:49 -03&quot; &quot;2018-05-29 08:50:49 -03&quot;
+## [13] &quot;2018-05-29 09:50:49 -03&quot; &quot;2018-05-29 10:50:49 -03&quot;
+## [15] &quot;2018-05-29 11:50:49 -03&quot; &quot;2018-05-29 12:50:49 -03&quot;
+## [17] &quot;2018-05-29 13:50:49 -03&quot; &quot;2018-05-29 14:50:49 -03&quot;
+## [19] &quot;2018-05-29 15:50:49 -03&quot; &quot;2018-05-29 16:50:49 -03&quot;
+## [21] &quot;2018-05-29 17:50:49 -03&quot; &quot;2018-05-29 18:50:49 -03&quot;
+## [23] &quot;2018-05-29 19:50:49 -03&quot; &quot;2018-05-29 20:50:49 -03&quot;</code></pre>
 <p>funções úteis: <strong>weekdays</strong>, <strong>month</strong>, <strong>julian</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;terça&quot;  &quot;terça&quot;  &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;
-##  [8] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;
-## [15] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;
-## [22] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;</code></pre>
+<pre><code>##  [1] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
+##  [8] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
+## [15] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
+## [22] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
 <pre><code>##  [1] &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot;
 ## [11] &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot;
 ## [21] &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano*</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17674.05 17674.09 17674.13 17674.17 17674.22 17674.26 17674.30
-##  [8] 17674.34 17674.38 17674.42 17674.47 17674.51 17674.55 17674.59
-## [15] 17674.63 17674.67 17674.72 17674.76 17674.80 17674.84 17674.88
-## [22] 17674.92 17674.97 17675.01
+##  [1] 17680.04 17680.08 17680.12 17680.16 17680.20 17680.24 17680.29
+##  [8] 17680.33 17680.37 17680.41 17680.45 17680.49 17680.54 17680.58
+## [15] 17680.62 17680.66 17680.70 17680.74 17680.79 17680.83 17680.87
+## [22] 17680.91 17680.95 17680.99
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>*Para mais informações: <a href="https://en.wikipedia.org/wiki/Julian_day" class="uri">https://en.wikipedia.org/wiki/Julian_day</a>:</p>
@@ -400,27 +400,27 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] terça   terça   quarta  quarta  quarta  quarta  quarta  quarta 
-##   [9] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [17] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [25] quarta  quarta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [33] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [41] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [49] quinta  quinta  sexta   sexta   sexta   sexta   sexta   sexta  
-##  [57] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [65] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [73] sexta   sexta   sábado  sábado  sábado  sábado  sábado  sábado 
-##  [81] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-##  [89] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-##  [97] sábado  sábado  domingo domingo domingo domingo domingo domingo
-## [105] domingo domingo domingo domingo domingo domingo domingo domingo
-## [113] domingo domingo domingo domingo domingo domingo domingo domingo
-## [121] domingo domingo segunda segunda segunda segunda segunda segunda
-## [129] segunda segunda segunda segunda segunda segunda segunda segunda
-## [137] segunda segunda segunda segunda segunda segunda segunda segunda
-## [145] segunda segunda terça   terça   terça   terça   terça   terça  
-## [153] terça   terça   terça   terça   terça   terça   terça   terça  
-## [161] terça   terça   terça   terça   terça   terça   terça   terça  
+<pre><code>##   [1] segunda segunda segunda terça   terça   terça   terça   terça  
+##   [9] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [17] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [25] terça   terça   terça   quarta  quarta  quarta  quarta  quarta 
+##  [33] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [41] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [49] quarta  quarta  quarta  quinta  quinta  quinta  quinta  quinta 
+##  [57] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [65] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [73] quinta  quinta  quinta  sexta   sexta   sexta   sexta   sexta  
+##  [81] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [89] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [97] sexta   sexta   sexta   sábado  sábado  sábado  sábado  sábado 
+## [105] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [113] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [121] sábado  sábado  sábado  domingo domingo domingo domingo domingo
+## [129] domingo domingo domingo domingo domingo domingo domingo domingo
+## [137] domingo domingo domingo domingo domingo domingo domingo domingo
+## [145] domingo domingo domingo segunda segunda segunda segunda segunda
+## [153] segunda segunda segunda segunda segunda segunda segunda segunda
+## [161] segunda segunda segunda segunda segunda segunda segunda segunda
 ## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
 <p>São muito úteis para regressões, plotes e resumos estatísitcos.</p>
 <p>Olhe os <strong>Levels</strong></p>

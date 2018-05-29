@@ -7,10 +7,9 @@ Sempre que tiver uma dúvida, tente utilizar: [BASE](http://stat.ethz.ch/R-manua
 Outros pacotes BASE: [utils](http://stat.ethz.ch/R-manual/R-devel/library/utils/html/00Index.html), [stats](http://stat.ethz.ch/R-manual/R-devel/library/stats/html/00Index.html), [datasets](http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html), [graphics](http://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html),
 [grDevices](https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html), [grid](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html), [methods](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/00Index.html), [tools](https://stat.ethz.ch/R-manual/R-devel/library/tools/html/00Index.html), [parallel](https://stat.ethz.ch/R-manual/R-devel/library/parallel/html/00Index.html), [compiler](https://stat.ethz.ch/R-manual/R-devel/library/compiler/html/00Index.html), [splines](https://stat.ethz.ch/R-manual/R-devel/library/splines/html/00Index.html), [tcltk](https://stat.ethz.ch/R-manual/R-devel/library/tcltk/html/00Index.html) , [stats4](https://stat.ethz.ch/R-manual/R-devel/library/stats4/html/00Index.html).
 
-
 Acesse [outros](https://cran.r-project.org/web/packages/available_packages_by_name.html) para a lista de pacotes disponíveis.
 
-Este curso foi baseado no livro [R Programming for Data Science](https://leanpub.com/rprogramming).
+Este curso foi baseado no livro [R Programming for Data Science](https://leanpub.com/rprogramming) e possui <span style="color:red">exercícios</span> a serem resolvidos, <span style="color:blue">perguntas</span> que ajudam a entender conceitos e <span style="color:purple">desafios</span> para aprofundar os conhecimentos adquiridos.
 
 Neste curso iremos utilizar o software [RStudio](https://www.rstudio.com/). A imagem abaixo resume um pouco das funcionalidades disponíveis.
 

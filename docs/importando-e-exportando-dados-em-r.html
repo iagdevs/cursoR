@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-05-22">
+<meta name="date" content="2018-05-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -371,7 +371,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
-<p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-05-22 22:09:45.</p>
+<p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-05-28 21:50:51.</p>
 <p>Para isso temos que grudar as variabel Data e Hora. Faremios isso numa nova varaibel chamada tempo_char, adicionando ela diretamente no <code>df</code> com o cifrão DOLLAR $. O grude pode ser feito com as funções <code>paste</code> ou <code>paste0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo_char &lt;-<span class="st"> </span><span class="kw">paste</span>(df<span class="op">$</span>Data, df<span class="op">$</span>Hora)
 <span class="kw">head</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
@@ -511,7 +511,7 @@ dff</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df[df<span class="op">$</span>mes <span class="op">==</span><span class="st"> &quot;janeiro&quot;</span>, <span class="st">&quot;MediaHoraria&quot;</span>])</code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>Mas vamos salvar o nosso “df”</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(df, <span class="st">&quot;df.rds&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(df, <span class="st">&quot;dados/df.rds&quot;</span>)</code></pre></div>
 </div>
 <div id="data.table-read_xl-e-mais" class="section level2">
 <h2><span class="header-section-number">4.8</span> data.table, read_xl e mais</h2>
@@ -519,11 +519,11 @@ dff</code></pre></div>
 <p>Vamos ver como funciona data.table lendo o dois arquivos e comparar quanto tempo demoram cada um.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.141   0.016   1.295</code></pre>
+##   0.105   0.000   0.418</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.074   0.004   0.377</code></pre>
+##   0.036   0.007   0.213</code></pre>
 <p>olha que estamos usando a função <code>fread</code>.</p>
 <p>read_xl é mais uma função do universo tidyverse que permite importar excel no R, diretamente e inteligentemente.</p>
 </div>
@@ -1498,7 +1498,7 @@ extrema &lt;-<span class="st"> </span><span class="kw">ncvar_def</span>(<span cl
                      <span class="dt">dim =</span> <span class="kw">list</span>(wrf<span class="op">$</span>dim<span class="op">$</span>west_east,
                                 wrf<span class="op">$</span>dim<span class="op">$</span>south_north,
                                 wrf<span class="op">$</span>dim<span class="op">$</span>Time),
-                     <span class="dt">missval =</span> <span class="dv">-999</span>,
+                     <span class="dt">missval =</span> <span class="op">-</span><span class="dv">999</span>,
                      <span class="dt">longname =</span> <span class="st">&quot;temperatura extrema&quot;</span>)
 <span class="kw">ncvar_add</span>(wrf, extrema)
 <span class="kw">names</span>(wrf<span class="op">$</span>var)
