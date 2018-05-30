@@ -1,4 +1,4 @@
-# Estruturas de control {#loop}
+# Estruturas de Controle {#loop}
 
 ## if-else
 

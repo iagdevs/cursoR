@@ -12,7 +12,9 @@ github-repo: rstudio/bookdown-demo
 description: "Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação"
 ---
 
-# Pré-requisitos do sistema {#primero}
+# Pré-Requisitos {#primero}
+
+## Sistema Operacional
 
 Antes de instalar o R na sua plataforma de interesse, verifique se há recomendações abaixo:
 
@@ -71,15 +73,17 @@ install.packages("openair")
 install.packages("cptcity")
 ```
 
+Descrição de alguns desses pacotes:
+
 * [devtools](https://CRAN.R-project.org/package=devtools) permite a instalação de versões de desenvolvimento de pacotes de diferentes repositórios
 * [tidyverse](https://github.com/tidyverse) é o universo de pacotes do Hadley
 Wickham para tratamento e visualização de dados  
     + Se você quiser plotar os objetos espaciais sf com o pacote [ggplot2](http://ggplot2.tidyverse.org/) (que faz parte do tidyverse), ele precisa ser instalado usando o devtools (`devtools::install_github("tidyverse/ggplot2")`), pois a função [geom_sf](https://www.isgeomsfinggplot2yet.site/) ainda não está disponível na versão oficial
 * [sf](https://github.com/r-spatial/sf), [mapview](https://github.com/r-spatial/mapbiew), raster, sp, rgdal, maptools e fields tratam dados espaciais. Lembre-se que os objetos em Meteorologia são espaço-temporais
 * ncdf4 é um pacote para manipular arquivos NetCDF
-* [cptcity](https://ibarraespinosa.github.io/cptcity/) é um pacote que tem 7140 paletas de cores do arquivo web [cpt-city](http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html)
 * [openair](http://davidcarslaw.github.io/openair/) é um pacote para
 trabalhar com dados de qualidade do ar e Meteorologia
+* [cptcity](https://ibarraespinosa.github.io/cptcity/) é um pacote que tem 7140 paletas de cores do arquivo web [cpt-city](http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html)
   
 Preste atenção na instalação dos pacotes pois eles podem precisar de dependências do sistema.
 
@@ -92,7 +96,7 @@ knitr::write_bib(c(
 
 ## Colaborar
 
-A melhor forma de colaboração é com *pull requests* em https://github.com/ibarraespinosa/cursoR/pull/new/master. Aplique o [Guia de Estilo de R do Google](https://google.github.io/styleguide/Rguide.xml) ou o formato [formatR](https://yihui.name/formatr/). Em poucas palavras, lembre que seu código vai ser lido por seres humanos. É possível editar qualquer página usando um dos botões acima.
+A melhor forma de colaboração é com [*pull requests* no repositório do curso](https://github.com/iagdevs/cursoR/pull/new/master). Aplique o [Guia de Estilo de R do Google](https://google.github.io/styleguide/Rguide.xml) ou o formato [formatR](https://yihui.name/formatr/). Em poucas palavras, lembre que seu código vai ser lido por seres humanos. É possível editar qualquer página usando um dos botões acima.
 
 ## Compartilhar dados
 

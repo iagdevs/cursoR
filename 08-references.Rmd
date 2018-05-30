@@ -1,3 +1,18 @@
 `r if (knitr:::is_html_output()) '
-# References {-}
+# Referências {-}
 '`
+
+- [R Programming for Data Science (Leanpub)](https://leanpub.com/rprogramming)  
+- [R Graphics Cookbook (Cookbook for R)](http://www.cookbook-r.com/Graphs/)  
+- [An Introduction to R (CRAN)](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)  
+- [R Data Import/Export (CRAN)](https://cran.r-project.org/doc/manuals/r-release/R-data.html)  
+- [RStudio Cheat Sheets (RStudio)](https://www.rstudio.com/resources/cheatsheets/)  
+- [Webinars and Videos On Demand (RStudio)](https://www.rstudio.com/resources/webinars/)  
+- [Online Learning (RStudio)](https://www.rstudio.com/online-learning/)  
+- [Learn the tidyverse (Tidyverse)](https://www.tidyverse.org/learn/)
+- [Writing R Extensions (CRAN)](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)  
+- [R Internals (CRAN)](https://cran.r-project.org/doc/manuals/r-release/R-ints.html)  
+- [R Language Definition (CRAN)](https://cran.r-project.org/doc/manuals/r-release/R-lang.html)  
+
+***
+*Quer fazer um documento com o mesmo estilo do nosso? Leia* [bookdown: Authoring Books and Technical Documents with R Markdown (bookdown.org)](https://bookdown.org/yihui/bookdown/)

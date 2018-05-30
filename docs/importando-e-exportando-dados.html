@@ -1,0 +1,2438 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Curso de R para Meteorologia IAG/USP</title>
+  <meta name="description" content="Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Curso de R para Meteorologia IAG/USP" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Curso de R para Meteorologia IAG/USP" />
+  
+  <meta name="twitter:description" content="Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação" />
+  
+
+<meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
+
+
+<meta name="date" content="2018-05-30">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="r.html">
+<link rel="next" href="plotando.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Curso R DCA/IAG/USP</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pré-Requisitos</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#sistema-operacional"><i class="fa fa-check"></i><b>1.1</b> Sistema Operacional</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.2</b> Pacotes usados neste curso</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.3</b> Colaborar</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.4</b> Compartilhar dados</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#importante"><i class="fa fa-check"></i><b>2.1</b> IMPORTANTE</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>3</b> R!</a><ul>
+<li class="chapter" data-level="3.1" data-path="r.html"><a href="r.html#objetos-do-r"><i class="fa fa-check"></i><b>3.1</b> Objetos do R</a></li>
+<li class="chapter" data-level="3.2" data-path="r.html"><a href="r.html#classe"><i class="fa fa-check"></i><b>3.2</b> Classe</a></li>
+<li class="chapter" data-level="3.3" data-path="r.html"><a href="r.html#vetores"><i class="fa fa-check"></i><b>3.3</b> Vetores</a></li>
+<li class="chapter" data-level="3.4" data-path="r.html"><a href="r.html#converter-objetos"><i class="fa fa-check"></i><b>3.4</b> Converter objetos</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="r.html"><a href="r.html#as"><i class="fa fa-check"></i><b>3.4.1</b> <code>as</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="r.html"><a href="r.html#convert_df"><i class="fa fa-check"></i><b>3.4.2</b> <code>merge</code> e <code>melt</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r.html"><a href="r.html#matrizes-e-a-funcao-matrix"><i class="fa fa-check"></i><b>3.5</b> Matrizes e a função <code>matrix</code></a></li>
+<li class="chapter" data-level="3.6" data-path="r.html"><a href="r.html#array"><i class="fa fa-check"></i><b>3.6</b> Array</a></li>
+<li class="chapter" data-level="3.7" data-path="r.html"><a href="r.html#list"><i class="fa fa-check"></i><b>3.7</b> <code>list</code></a></li>
+<li class="chapter" data-level="3.8" data-path="r.html"><a href="r.html#tempo-e-data"><i class="fa fa-check"></i><b>3.8</b> Tempo e Data</a></li>
+<li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
+<li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> Data.frames</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html"><i class="fa fa-check"></i><b>4</b> Importando e Exportando Dados</a><ul>
+<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> Data Frames</a></li>
+<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#base"><i class="fa fa-check"></i><b>4.2</b> BASE</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-texto-com-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Exportando texto com <code>write.table</code></a></li>
+<li class="chapter" data-level="4.2.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-save"><i class="fa fa-check"></i><b>4.2.2</b> Exportando objetos com <code>save</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-saverds"><i class="fa fa-check"></i><b>4.2.3</b> Exportando objetos com <code>saveRDS</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#processing_dfs"><i class="fa fa-check"></i><b>4.2.4</b> Processando nossa data-frame</a></li>
+<li class="chapter" data-level="4.2.5" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#aggregate"><i class="fa fa-check"></i><b>4.2.5</b> aggregate</a></li>
+<li class="chapter" data-level="4.2.6" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#subset"><i class="fa fa-check"></i><b>4.2.6</b> subset</a></li>
+<li class="chapter" data-level="4.2.7" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data.table-read_xl-e-mais"><i class="fa fa-check"></i><b>4.2.7</b> data.table, read_xl e mais</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#tidyverse"><i class="fa fa-check"></i><b>4.3</b> Tidyverse</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#leitura-processamento"><i class="fa fa-check"></i><b>4.3.1</b> Leitura <code>%&gt;%</code> Processamento</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#outros-tipos-de-dados"><i class="fa fa-check"></i><b>4.4</b> Outros Tipos de Dados</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#netcdf"><i class="fa fa-check"></i><b>4.4.1</b> NetCDF</a></li>
+<li class="chapter" data-level="4.4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#dados-binarios"><i class="fa fa-check"></i><b>4.4.2</b> Dados Binários</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="plotando.html"><a href="plotando.html"><i class="fa fa-check"></i><b>5</b> Plotando</a><ul>
+<li class="chapter" data-level="5.1" data-path="plotando.html"><a href="plotando.html#plot-base"><i class="fa fa-check"></i><b>5.1</b> <code>plot</code> (base)</a></li>
+<li class="chapter" data-level="5.2" data-path="plotando.html"><a href="plotando.html#ggplot-ggplot2"><i class="fa fa-check"></i><b>5.2</b> <code>ggplot</code> (ggplot2)</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="plotando.html"><a href="plotando.html#explorando-outras-escalas-de-cores-e-temas"><i class="fa fa-check"></i><b>5.2.1</b> Explorando outras escalas de cores e temas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="loop.html"><a href="loop.html"><i class="fa fa-check"></i><b>6</b> Estruturas de Controle</a><ul>
+<li class="chapter" data-level="6.1" data-path="loop.html"><a href="loop.html#if-else"><i class="fa fa-check"></i><b>6.1</b> if-else</a></li>
+<li class="chapter" data-level="6.2" data-path="loop.html"><a href="loop.html#for"><i class="fa fa-check"></i><b>6.2</b> for</a></li>
+<li class="chapter" data-level="6.3" data-path="loop.html"><a href="loop.html#while"><i class="fa fa-check"></i><b>6.3</b> while</a></li>
+<li class="chapter" data-level="6.4" data-path="loop.html"><a href="loop.html#repeat"><i class="fa fa-check"></i><b>6.4</b> repeat</a></li>
+<li class="chapter" data-level="6.5" data-path="loop.html"><a href="loop.html#lapply"><i class="fa fa-check"></i><b>6.5</b> lapply</a></li>
+<li class="chapter" data-level="6.6" data-path="loop.html"><a href="loop.html#sapply"><i class="fa fa-check"></i><b>6.6</b> sapply</a></li>
+<li class="chapter" data-level="6.7" data-path="loop.html"><a href="loop.html#split"><i class="fa fa-check"></i><b>6.7</b> split</a></li>
+<li class="chapter" data-level="6.8" data-path="loop.html"><a href="loop.html#tapply"><i class="fa fa-check"></i><b>6.8</b> tapply</a></li>
+<li class="chapter" data-level="6.9" data-path="loop.html"><a href="loop.html#apply"><i class="fa fa-check"></i><b>6.9</b> apply</a></li>
+<li class="chapter" data-level="6.10" data-path="loop.html"><a href="loop.html#mapply"><i class="fa fa-check"></i><b>6.10</b> mapply</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="fx.html"><a href="fx.html"><i class="fa fa-check"></i><b>7</b> De Scripts a Funções e de Funções a Pacotes</a></li>
+<li class="chapter" data-level="8" data-path="geo.html"><a href="geo.html"><i class="fa fa-check"></i><b>8</b> Geo Spatial: <code>raster</code>, <code>sf</code> e <code>stars</code></a></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://iagdevs.github.io/cursoR" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Curso de R para Meteorologia IAG/USP</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="importando-e-exportando-dados" class="section level1">
+<h1><span class="header-section-number">Capítulo 4</span> Importando e Exportando Dados</h1>
+<div id="data-frames" class="section level2">
+<h2><span class="header-section-number">4.1</span> Data Frames</h2>
+<p>Probabelmente um dos promeiros objetos que vamos usar quando começamos usar R. Pensa num data-frame como uma planilha de Libreoffice (o excel). Os data-frame pode ser criaos como foi visto na seção anterior. O principal, é que temos varias funções para ler data-frames no R, entre elas</p>
+<ul>
+<li>read.csv</li>
+<li>read.csv2</li>
+<li>read.table</li>
+</ul>
+<p>Agora vamos a ler dados do repositorio usando read.table, mas primeiro vamos lembrar que se tu precisar ver a ajuda da função, tem que escrever no R <code>?read.table</code>. Então, agora vamos ver os argumentos da função:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(read.table)</code></pre></div>
+<pre><code>## function (file, header = FALSE, sep = &quot;&quot;, quote = &quot;\&quot;&#39;&quot;, dec = &quot;.&quot;, 
+##     numerals = c(&quot;allow.loss&quot;, &quot;warn.loss&quot;, &quot;no.loss&quot;), row.names, 
+##     col.names, as.is = !stringsAsFactors, na.strings = &quot;NA&quot;, 
+##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE, 
+##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE, 
+##     comment.char = &quot;#&quot;, allowEscapes = FALSE, flush = FALSE, 
+##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = &quot;&quot;, 
+##     encoding = &quot;unknown&quot;, text, skipNul = FALSE) 
+## NULL</code></pre>
+<p>Aqui vem-se os valores default dos argumentos da função <code>read.table</code>. O terceiro argumento é sep, com valores por default = “”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>)</code></pre></div>
+<p>Agora vamos usar a funções <code>head</code> and <code>tail</code> para ver as primeiras e as ultimas 6 linhas do data-frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido
+## 2             ppb            9          -    Não
+## 3             ppb            9          -    Sim
+## 4             ppb            5          -    Sim
+## 5             ppb            4          -    Sim
+## 6             ppb            5          -    Sim
+## 7             ppb            5          -    Sim</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(df)</code></pre></div>
+<pre><code>##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim</code></pre>
+<p>Agora vamos ler os mesmos dados com outro formato e testar e read.table funciona do mesmo jeito</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt&quot;</span>)
+<span class="co"># Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : </span>
+<span class="co"># linha 1 não tinha 6 elementos</span></code></pre></div>
+<p>Vemos a mensagem de error, mas o que quer dizer.</p>
+<p><strong>Se tu recever um banco de dados tipo .txt e quer abrir no R… ABRE ELE COM BLOCO DE NOTAS PRIMEIRO!!!</strong></p>
+<p>O primeiro arquivo:</p>
+<p><img src="figuras/f1.png" /><!-- --></p>
+<p>O segundo arquivo é:</p>
+<p><img src="figuras/f2.png" /><!-- --></p>
+<p>qual é a diferença?</p>
+<p>Como vemos o segundo arquivo tem separação de “;”, entao, temos que lero arquivo assim:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
+<span class="kw">head</span>(df2)</code></pre></div>
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido
+## 2             ppb            9          -    Não
+## 3             ppb            9          -    Sim
+## 4             ppb            5          -    Sim
+## 5             ppb            4          -    Sim
+## 6             ppb            5          -    Sim
+## 7             ppb            5          -    Sim</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(df2)</code></pre></div>
+<pre><code>##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim</code></pre>
+<p><strong>Qua dificultades tu já enfrentou importando dados?</strong></p>
+</div>
+<div id="base" class="section level2">
+<h2><span class="header-section-number">4.2</span> BASE</h2>
+<div id="exportando-texto-com-write.table" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Exportando texto com <code>write.table</code></h3>
+<p>Exportar é bem facil, mas se sabemos os argumentos das funções, vai ser mais eficiente ainda. Vamos <code>write.table</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(write.table)</code></pre></div>
+<pre><code>## function (x, file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot; &quot;, 
+##     eol = &quot;\n&quot;, na = &quot;NA&quot;, dec = &quot;.&quot;, row.names = TRUE, col.names = TRUE, 
+##     qmethod = c(&quot;escape&quot;, &quot;double&quot;), fileEncoding = &quot;&quot;) 
+## NULL</code></pre>
+<p>Se temos um data-frame com colunas de classe character, <code>quote = TRUE</code> quer dizer que o arquivo de texto resultante vai ter aspas nas colunas de caracter.</p>
+<p><code>sep</code> é como vão ser separadas as colunas. Se tu quer abrir o arquivo com Excel, poderia separar com “,”, “;”, &quot; “,”“… Depende como tu quer.</p>
+<p>eol quer dizer <em>end of line</em>, e é para ver a forma de colocar o “end of line”</p>
+<p><strong>row.names</strong>.. esta TRUE mas SEMPRE SEMPRE SEMPRE COLOCA:</p>
+<p><strong>row.names = FALSE</strong>. Se não, R vai adiiconar uma coluna com os indices das linhas….</p>
+<p>col.names se tu quer o nome nas colunas…</p>
+<p><strong>PRATICA!</strong></p>
+</div>
+<div id="exportando-objetos-com-save" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Exportando objetos com <code>save</code></h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(save)</code></pre></div>
+<pre><code>## function (..., list = character(), file = stop(&quot;&#39;file&#39; must be specified&quot;), 
+##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii), 
+##     compression_level, eval.promises = TRUE, precheck = TRUE) 
+## NULL</code></pre>
+<p><code>save</code> salva o objeto com a extensão .rda. Para carregar de volta o objeto, tem que ser feito com a função <code>load</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(load)</code></pre></div>
+<pre><code>## function (file, envir = parent.frame(), verbose = FALSE) 
+## NULL</code></pre>
+<p>O que pode ser ruim, porque as vezes tu esqueceu o nome do objeto no ambiente de R. Por exemplo, tu salvou o arquivo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(frenteFria, <span class="dt">file =</span> <span class="st">&quot;FrenteQuente.rda&quot;</span>)</code></pre></div>
+<p>logo tu carrega</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;FrenteQuente.rda&quot;</span>)</code></pre></div>
+<p>acreditando que vai ter tua frente quente, mas o nome do objeto no ambiente de R é frenteDria… então, tem que ficar de olho, e como somos imperfeito, vai dar merda….</p>
+<p>O melhor da função é que permite salvar com tipos de compressão, por exemplo compress = “xz”.</p>
+</div>
+<div id="exportando-objetos-com-saverds" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Exportando objetos com <code>saveRDS</code></h3>
+<p>Esta é uma das minhas funçoes favoritas no R</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(saveRDS)</code></pre></div>
+<pre><code>## function (object, file = &quot;&quot;, ascii = FALSE, version = NULL, compress = TRUE, 
+##     refhook = NULL) 
+## NULL</code></pre>
+<p>e</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(readRDS)</code></pre></div>
+<pre><code>## function (file, refhook = NULL) 
+## NULL</code></pre>
+<p>Tu consegue salvar o objeto R de forma serializada e compactada com o argumento <code>compress</code> mas o melhor é quando vai chamar o objeto de volta ao R. Agora tu usa o <code>readRDS</code> e coloca o nome que tu quiser.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(FrenteQuente, <span class="st">&quot;FrenteQuente.rds&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">frenteQ &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;FremteQuente.rds&quot;</span>)</code></pre></div>
+</div>
+<div id="processing_dfs" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Processando nossa data-frame</h3>
+<p>Tem numeroas formas e pacotes para ordenar, arrangiar (Arrange), mutar e cambiar as data-frames. As mais conhecidas são provablemente do universe <em>tidyverse</em> com o famoso pacote <em>dplyr</em>. Mas, nesta curso vamos focar em <strong>base</strong>.</p>
+<p>Vamos então revisar a classe de cada columna do nosso data-frame com a função <code>sapply</code>, apresentada em outro capitulo, mas se quiser, da uma olhada em <code>?sapply</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(df, class)</code></pre></div>
+<pre><code>##          TipodeRede TipodeMonitoramento                Tipo 
+##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
+##                Data                Hora       CodigoEstação 
+##            &quot;factor&quot;            &quot;factor&quot;           &quot;integer&quot; 
+##         NomeEstação       NomeParâmetro     UnidadedeMedida 
+##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
+##        MediaHoraria          MediaMovel              Valido 
+##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
+<p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-05-30 17:37:08.</p>
+<p>Para isso temos que grudar as variabel Data e Hora. Faremios isso numa nova varaibel chamada tempo_char, adicionando ela diretamente no <code>df</code> com o cifrão DOLLAR $. O grude pode ser feito com as funções <code>paste</code> ou <code>paste0</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo_char &lt;-<span class="st"> </span><span class="kw">paste</span>(df<span class="op">$</span>Data, df<span class="op">$</span>Hora)
+<span class="kw">head</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
+<pre><code>## [1] &quot;01/01/2014 01:00&quot; &quot;01/01/2014 02:00&quot; &quot;01/01/2014 03:00&quot;
+## [4] &quot;01/01/2014 04:00&quot; &quot;01/01/2014 05:00&quot; &quot;01/01/2014 06:00&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Esta melhorando mas ainda tem clase character.</p>
+<p>Para convertir a nossa classe POSIXct podemos usar a função <code>as.POSIXct</code> (olha <code>as.POSIXct</code>). Seus argumentos são:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(as.POSIXct)</code></pre></div>
+<pre><code>## function (x, tz = &quot;&quot;, ...) 
+## NULL</code></pre>
+<p>Então, vamos criar outra variabel tempo o formato POSIXct</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo_char, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>, 
+                       <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)
+<span class="kw">head</span>(df<span class="op">$</span>tempo)</code></pre></div>
+<pre><code>## [1] &quot;2014-01-01 01:00:00 Americas&quot; &quot;2014-01-01 02:00:00 Americas&quot;
+## [3] &quot;2014-01-01 03:00:00 Americas&quot; &quot;2014-01-01 04:00:00 Americas&quot;
+## [5] &quot;2014-01-01 05:00:00 Americas&quot; &quot;2014-01-01 06:00:00 Americas&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df<span class="op">$</span>tempo)</code></pre></div>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+<p>Agora, vamos a extraer os dias da semana do tempo, mes e dia juliano:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>weekdays &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%A&quot;</span>)
+<span class="kw">head</span>(df<span class="op">$</span>weekdays)</code></pre></div>
+<pre><code>## [1] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>mes &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%B&quot;</span>)
+<span class="kw">head</span>(df<span class="op">$</span>mes)</code></pre></div>
+<pre><code>## [1] &quot;janeiro&quot; &quot;janeiro&quot; &quot;janeiro&quot; &quot;janeiro&quot; &quot;janeiro&quot; &quot;janeiro&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>diajuliano &lt;-<span class="st"> </span><span class="kw">julian</span>(df<span class="op">$</span>tempo)
+<span class="kw">head</span>(df<span class="op">$</span>diajuliano)</code></pre></div>
+<pre><code>## Time differences in days
+## [1] 16071.04 16071.08 16071.12 16071.17 16071.21 16071.25</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>ano &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%Y&quot;</span>)</code></pre></div>
+</div>
+<div id="aggregate" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> aggregate</h3>
+<p>Vamos a carregar a nossa data.frame. Primero uma olhada</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df)</code></pre></div>
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
+## 2             ppb            9          -    Não 01/01/2014 01:00
+## 3             ppb            9          -    Sim 01/01/2014 02:00
+## 4             ppb            5          -    Sim 01/01/2014 03:00
+## 5             ppb            4          -    Sim 01/01/2014 04:00
+## 6             ppb            5          -    Sim 01/01/2014 05:00
+## 7             ppb            5          -    Sim 01/01/2014 06:00
+##                 tempo weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00   quarta janeiro 16071.04 days 2014
+## 3 2014-01-01 02:00:00   quarta janeiro 16071.08 days 2014
+## 4 2014-01-01 03:00:00   quarta janeiro 16071.12 days 2014
+## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
+## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
+## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014</code></pre>
+<p>Poderiamos calcular a media horaria por dia da semana. Então:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria, <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays), sum, <span class="dt">na.rm =</span> T)
+dff</code></pre></div>
+<pre><code>##   Group.1     x
+## 1 domingo 20327
+## 2  quarta 40180
+## 3  quinta 41199
+## 4  sábado 32298
+## 5 segunda 34057
+## 6   sexta 42558
+## 7   terça 37904</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(dff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dias&quot;</span>, <span class="st">&quot;MediaHoraria&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff<span class="op">$</span>sd &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria, 
+                    <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays), 
+                    sum, <span class="dt">na.rm =</span> T)<span class="op">$</span>x
+dff</code></pre></div>
+<pre><code>##      dias MediaHoraria    sd
+## 1 domingo        20327 20327
+## 2  quarta        40180 40180
+## 3  quinta        41199 41199
+## 4  sábado        32298 32298
+## 5 segunda        34057 34057
+## 6   sexta        42558 42558
+## 7   terça        37904 37904</code></pre>
+</div>
+<div id="subset" class="section level3">
+<h3><span class="header-section-number">4.2.6</span> subset</h3>
+<p>Como poderiamos escolher só o mes de janeiro??</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#[     LINHAS    ,  COLUNAS   ]</span>
+<span class="kw">head</span>(df[df<span class="op">$</span>mes <span class="op">==</span><span class="st"> &quot;janeiro&quot;</span>, ]) <span class="co">#TODAS AS COLUNAS</span></code></pre></div>
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
+## 2             ppb            9          -    Não 01/01/2014 01:00
+## 3             ppb            9          -    Sim 01/01/2014 02:00
+## 4             ppb            5          -    Sim 01/01/2014 03:00
+## 5             ppb            4          -    Sim 01/01/2014 04:00
+## 6             ppb            5          -    Sim 01/01/2014 05:00
+## 7             ppb            5          -    Sim 01/01/2014 06:00
+##                 tempo weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00   quarta janeiro 16071.04 days 2014
+## 3 2014-01-01 02:00:00   quarta janeiro 16071.08 days 2014
+## 4 2014-01-01 03:00:00   quarta janeiro 16071.12 days 2014
+## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
+## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
+## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014</code></pre>
+<p>Mes janeiro pero solo o valor mediahoraria, que retorna um vetor numerico</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(df)</code></pre></div>
+<pre><code>##  [1] &quot;TipodeRede&quot;          &quot;TipodeMonitoramento&quot; &quot;Tipo&quot;               
+##  [4] &quot;Data&quot;                &quot;Hora&quot;                &quot;CodigoEstação&quot;      
+##  [7] &quot;NomeEstação&quot;         &quot;NomeParâmetro&quot;       &quot;UnidadedeMedida&quot;    
+## [10] &quot;MediaHoraria&quot;        &quot;MediaMovel&quot;          &quot;Valido&quot;             
+## [13] &quot;tempo_char&quot;          &quot;tempo&quot;               &quot;weekdays&quot;           
+## [16] &quot;mes&quot;                 &quot;diajuliano&quot;          &quot;ano&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df[df<span class="op">$</span>mes <span class="op">==</span><span class="st"> &quot;janeiro&quot;</span>, <span class="dv">10</span>]) </code></pre></div>
+<pre><code>## [1] 9 9 5 4 5 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df[df<span class="op">$</span>mes <span class="op">==</span><span class="st"> &quot;janeiro&quot;</span>, <span class="st">&quot;MediaHoraria&quot;</span>])</code></pre></div>
+<pre><code>## [1] 9 9 5 4 5 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df[df<span class="op">$</span>mes <span class="op">==</span><span class="st"> &quot;janeiro&quot;</span>, <span class="st">&quot;MediaHoraria&quot;</span>])</code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p>Mas vamos salvar o nosso “df”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(df, <span class="st">&quot;dados/df.rds&quot;</span>)</code></pre></div>
+</div>
+<div id="data.table-read_xl-e-mais" class="section level3">
+<h3><span class="header-section-number">4.2.7</span> data.table, read_xl e mais</h3>
+<p>data.table é um pacote que apresenta a classe <code>data.table</code>, que é como uma versão melhorada da classe <code>data-frame</code> O termo especifico é que <code>data-table</code> tem herencia (inherits) da classe <code>data.frame</code></p>
+<p>Vamos ver como funciona data.table lendo o dois arquivos e comparar quanto tempo demoram cada um.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
+<pre><code>##    user  system elapsed 
+##   0.048   0.004   0.211</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
+df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
+<pre><code>##    user  system elapsed 
+##   0.048   0.004   0.080</code></pre>
+<p>olha que estamos usando a função <code>fread</code>.</p>
+<p>read_xl é mais uma função do universo tidyverse que permite importar excel no R, diretamente e inteligentemente.</p>
+</div>
+</div>
+<div id="tidyverse" class="section level2">
+<h2><span class="header-section-number">4.3</span> Tidyverse</h2>
+<div id="leitura-processamento" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Leitura <code>%&gt;%</code> Processamento</h3>
+</div>
+</div>
+<div id="outros-tipos-de-dados" class="section level2">
+<h2><span class="header-section-number">4.4</span> Outros Tipos de Dados</h2>
+<div id="netcdf" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> NetCDF</h3>
+<p>O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos compostos por dados, atributos e metadados.</p>
+<p>O pacote <code>ncdf4</code> pode ser usado para acessar a essa biblioteca, os comandos abaixo instalam e carregam esse pacote:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;ncdf4&quot;) # instala o pacote</span>
+<span class="kw">library</span>(<span class="st">&quot;ncdf4&quot;</span>)          <span class="co"># carrega o pacote</span>
+<span class="kw">nc_version</span>()              <span class="co"># que retorna a versão da biblioteca</span></code></pre></div>
+<pre><code>## [1] &quot;ncdf4_1.16_20170401&quot;</code></pre>
+<p>Um exmplo de NetCDF:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://github.com/ibarraespinosa/cursoR/raw/master/dados/met_em.d03.2016-01-10.nc&quot;</span>, <span class="dt">destfile =</span> <span class="st">&quot;~/met_em.d03.2016-01-10.nc&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;~/met_em.d03.2016-01-10.nc&quot;</span>)</code></pre></div>
+<p>O objeto <code>wrf</code> contém algumas informações sobre o conteúdo do arquivo, com um <code>print(wrf)</code> ou simplesmente <code>wrf</code> visualizamos o conteúdo do arquivo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(wrf)</code></pre></div>
+<pre><code>## [1] &quot;ncdf4&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf</code></pre></div>
+<pre><code>## File ~/met_em.d03.2016-01-10.nc (NC_FORMAT_64BIT):
+## 
+##      92 variables (excluding dimension variables):
+##         char Times[DateStrLen,Time]   
+##         float PRES[west_east,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: 
+##             description: 
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOIL_LAYERS[west_east,south_north,num_st_layers,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: 
+##             description: 
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM[west_east,south_north,num_sm_layers,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: 
+##             description: 
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST[west_east,south_north,num_st_layers,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: 
+##             description: 
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float GHT[west_east,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: m
+##             description: Height
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float HGTTROP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m
+##             description: Height of tropopause
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float TTROP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: Temperature at tropopause
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PTROPNN[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: PTROP, used for nearest neighbor interp
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PTROP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: Pressure of tropopause
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VTROP[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m s-1
+##             description: V                 at tropopause
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float UTROP[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m s-1
+##             description: U                 at tropopause
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float HGTMAXW[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m
+##             description: Height of max wind level
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float TMAXW[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: Temperature at max wind level
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PMAXWNN[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: PMAXW, used for nearest neighbor interp
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PMAXW[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: Pressure of max wind level
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VMAXW[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m s-1
+##             description: V                 at max wind
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float UMAXW[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m s-1
+##             description: U                 at max wind
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float SNOWH[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m
+##             description: Physical Snow Depth
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SNOW[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: kg m-2
+##             description: Water equivalent snow depth
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SKINTEMP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: Skin temperature
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOILHGT[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m
+##             description: Terrain field of source analysis
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LANDSEA[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: proprtn
+##             description: Land/Sea flag (1=land, 0 or 2=sea)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SEAICE[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: proprtn
+##             description: Ice flag
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST100200[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: T 100-200 cm below ground layer (Bottom)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST040100[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: T 40-100 cm below ground layer (Upper)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST010040[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: T 10-40 cm below ground layer (Upper)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST000010[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: T 0-10 cm below ground layer (Upper)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM100200[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: fraction
+##             description: Soil Moist 100-200 cm below gr layer
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM040100[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: fraction
+##             description: Soil Moist 40-100 cm below grn layer
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM010040[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: fraction
+##             description: Soil Moist 10-40 cm below grn layer
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM000010[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: fraction
+##             description: Soil Moist 0-10 cm below grn layer (Up)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PSFC[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: Surface Pressure
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float RH[west_east,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: %
+##             description: Relative Humidity
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VV[west_east,south_north_stag,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: m s-1
+##             description: V
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float UU[west_east_stag,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: m s-1
+##             description: U
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float TT[west_east,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: K
+##             description: Temperature
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PMSL[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: Sea-level Pressure
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float URB_PARAM[west_east,south_north,z-dimension0132,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: dimensionless
+##             description: Urban_Parameters
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LAKE_DEPTH[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: meters MSL
+##             description: Topography height
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VAR_SSO[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: meters2 MSL
+##             description: Variance of Subgrid Scale Orography
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OL4[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OL3[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OL2[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OL1[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OA4[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OA3[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OA2[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OA1[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VAR[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float CON[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SLOPECAT[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: category
+##             description: Dominant category
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SNOALB[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: percent
+##             description: Maximum snow albedo
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LAI12M[west_east,south_north,z-dimension0012,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: m^2/m^2
+##             description: MODIS LAI
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float GREENFRAC[west_east,south_north,z-dimension0012,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: fraction
+##             description: MODIS FPAR
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ALBEDO12M[west_east,south_north,z-dimension0012,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: percent
+##             description: Monthly surface albedo
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SCB_DOM[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: category
+##             description: Dominant category
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOILCBOT[west_east,south_north,z-dimension0016,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: category
+##             description: 16-category bottom-layer soil type
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SCT_DOM[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: category
+##             description: Dominant category
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOILCTOP[west_east,south_north,z-dimension0016,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: category
+##             description: 16-category top-layer soil type
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOILTEMP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Kelvin
+##             description: Annual mean deep soil temperature
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float HGT_M[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: meters MSL
+##             description: GMTED2010 30-arc-second topography height
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LU_INDEX[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: category
+##             description: Dominant category
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LANDUSEF[west_east,south_north,z-dimension0024,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: category
+##             description: 24-category USGS landuse
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float COSALPHA_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Cosine of rotation angle on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float SINALPHA_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Sine of rotation angle on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float COSALPHA_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Cosine of rotation angle on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float SINALPHA_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Sine of rotation angle on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float XLONG_C[west_east_stag,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Longitude at grid cell corners
+##             stagger: CORNER
+##             sr_x: 1
+##             sr_y: 1
+##         float XLAT_C[west_east_stag,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Latitude at grid cell corners
+##             stagger: CORNER
+##             sr_x: 1
+##             sr_y: 1
+##         float LANDMASK[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Landmask : 1=land, 0=water
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float COSALPHA[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Cosine of rotation angle
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SINALPHA[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Sine of rotation angle
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float F[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: -
+##             description: Coriolis F parameter
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float E[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: -
+##             description: Coriolis E parameter
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_UY[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (y-dir) on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_VY[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (y-dir) on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_MY[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (y-dir) on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_UX[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (x-dir) on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_VX[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (x-dir) on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_MX[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (x-dir) on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_M[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float CLONG[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Computational longitude on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float CLAT[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Computational latitude on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float XLONG_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Longitude on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float XLAT_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Latitude on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float XLONG_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Longitude on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float XLAT_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Latitude on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float XLONG_M[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Longitude on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float XLAT_M[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Latitude on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+## 
+##      13 dimensions:
+##         Time  Size:1   *** is unlimited ***
+##         DateStrLen  Size:19
+##         west_east  Size:51
+##         south_north  Size:51
+##         num_metgrid_levels  Size:27
+##         num_st_layers  Size:4
+##         num_sm_layers  Size:4
+##         south_north_stag  Size:52
+##         west_east_stag  Size:52
+##         z-dimension0132  Size:132
+##         z-dimension0012  Size:12
+##         z-dimension0016  Size:16
+##         z-dimension0024  Size:24
+## 
+##     76 global attributes:
+##         TITLE: OUTPUT FROM METGRID V3.9.1
+##         SIMULATION_START_DATE: 2016-01-10_00:00:00
+##         WEST-EAST_GRID_DIMENSION: 52
+##         SOUTH-NORTH_GRID_DIMENSION: 52
+##         BOTTOM-TOP_GRID_DIMENSION: 27
+##         WEST-EAST_PATCH_START_UNSTAG: 1
+##         WEST-EAST_PATCH_END_UNSTAG: 51
+##         WEST-EAST_PATCH_START_STAG: 1
+##         WEST-EAST_PATCH_END_STAG: 52
+##         SOUTH-NORTH_PATCH_START_UNSTAG: 1
+##         SOUTH-NORTH_PATCH_END_UNSTAG: 51
+##         SOUTH-NORTH_PATCH_START_STAG: 1
+##         SOUTH-NORTH_PATCH_END_STAG: 52
+##         GRIDTYPE: C
+##         DX: 1000
+##         DY: 1000
+##         DYN_OPT: 2
+##         CEN_LAT: -23.5996932983398
+##         CEN_LON: -46.6294555664062
+##         TRUELAT1: -23
+##         TRUELAT2: -24
+##         MOAD_CEN_LAT: -23.6000061035156
+##         STAND_LON: -45
+##         POLE_LAT: 90
+##         POLE_LON: 0
+##         corner_lats: -23.8218078613281
+##          corner_lats: -23.3720855712891
+##          corner_lats: -23.3771743774414
+##          corner_lats: -23.826904296875
+##          corner_lats: -23.8217391967773
+##          corner_lats: -23.3720245361328
+##          corner_lats: -23.3772277832031
+##          corner_lats: -23.8269424438477
+##          corner_lats: -23.826286315918
+##          corner_lats: -23.3675918579102
+##          corner_lats: -23.372673034668
+##          corner_lats: -23.8314056396484
+##          corner_lats: -23.8262329101562
+##          corner_lats: -23.3675231933594
+##          corner_lats: -23.3727111816406
+##          corner_lats: -23.8314437866211
+##         corner_lons: -46.8780517578125
+##          corner_lons: -46.8716430664062
+##          corner_lons: -46.3817138671875
+##          corner_lons: -46.3864440917969
+##          corner_lons: -46.8829650878906
+##          corner_lons: -46.8765258789062
+##          corner_lons: -46.3768005371094
+##          corner_lons: -46.3815307617188
+##          corner_lons: -46.8781127929688
+##          corner_lons: -46.87158203125
+##          corner_lons: -46.3816528320312
+##          corner_lons: -46.386474609375
+##          corner_lons: -46.8830261230469
+##          corner_lons: -46.87646484375
+##          corner_lons: -46.3767700195312
+##          corner_lons: -46.3815612792969
+##         MAP_PROJ: 1
+##         MMINLU: USGS
+##         NUM_LAND_CAT: 24
+##         ISWATER: 16
+##         ISLAKE: -1
+##         ISICE: 24
+##         ISURBAN: 1
+##         ISOILWATER: 14
+##         grid_id: 3
+##         parent_id: 2
+##         i_parent_start: 35
+##         j_parent_start: 33
+##         i_parent_end: 51
+##         j_parent_end: 49
+##         parent_grid_ratio: 3
+##         sr_x: 1
+##         sr_y: 1
+##         NUM_METGRID_SOIL_LEVELS: 4
+##         FLAG_METGRID: 1
+##         FLAG_EXCLUDED_MIDDLE: 0
+##         FLAG_SOIL_LAYERS: 1
+##         FLAG_SNOW: 1
+##         FLAG_PSFC: 1
+##         FLAG_SM000010: 1
+##         FLAG_SM010040: 1
+##         FLAG_SM040100: 1
+##         FLAG_SM100200: 1
+##         FLAG_ST000010: 1
+##         FLAG_ST010040: 1
+##         FLAG_ST040100: 1
+##         FLAG_ST100200: 1
+##         FLAG_SLP: 1
+##         FLAG_SNOWH: 1
+##         FLAG_SOILHGT: 1
+##         FLAG_UTROP: 1
+##         FLAG_VTROP: 1
+##         FLAG_TTROP: 1
+##         FLAG_PTROP: 1
+##         FLAG_PTROPNN: 1
+##         FLAG_HGTTROP: 1
+##         FLAG_UMAXW: 1
+##         FLAG_VMAXW: 1
+##         FLAG_TMAXW: 1
+##         FLAG_PMAXW: 1
+##         FLAG_PMAXWNN: 1
+##         FLAG_HGTMAXW: 1
+##         FLAG_MF_XY: 1
+##         FLAG_LAI12M: 1
+##         FLAG_LAKE_DEPTH: 1</code></pre>
+<p>que mostra o nome do arquivo (e versão da biblioteca usada para criar), número de variáveis (92 no arquivo de exemplo), uma descrição de cada variável (incluindo atributos) as dimensões (13 para esse arquivo) e os atributos globais.</p>
+<p>Agora vamos abrir alguma variável:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(wrf<span class="op">$</span>var)                <span class="co"># print no nome de cada variavel</span></code></pre></div>
+<pre><code>##  [1] &quot;Times&quot;       &quot;PRES&quot;        &quot;SOIL_LAYERS&quot; &quot;SM&quot;          &quot;ST&quot;         
+##  [6] &quot;GHT&quot;         &quot;HGTTROP&quot;     &quot;TTROP&quot;       &quot;PTROPNN&quot;     &quot;PTROP&quot;      
+## [11] &quot;VTROP&quot;       &quot;UTROP&quot;       &quot;HGTMAXW&quot;     &quot;TMAXW&quot;       &quot;PMAXWNN&quot;    
+## [16] &quot;PMAXW&quot;       &quot;VMAXW&quot;       &quot;UMAXW&quot;       &quot;SNOWH&quot;       &quot;SNOW&quot;       
+## [21] &quot;SKINTEMP&quot;    &quot;SOILHGT&quot;     &quot;LANDSEA&quot;     &quot;SEAICE&quot;      &quot;ST100200&quot;   
+## [26] &quot;ST040100&quot;    &quot;ST010040&quot;    &quot;ST000010&quot;    &quot;SM100200&quot;    &quot;SM040100&quot;   
+## [31] &quot;SM010040&quot;    &quot;SM000010&quot;    &quot;PSFC&quot;        &quot;RH&quot;          &quot;VV&quot;         
+## [36] &quot;UU&quot;          &quot;TT&quot;          &quot;PMSL&quot;        &quot;URB_PARAM&quot;   &quot;LAKE_DEPTH&quot; 
+## [41] &quot;VAR_SSO&quot;     &quot;OL4&quot;         &quot;OL3&quot;         &quot;OL2&quot;         &quot;OL1&quot;        
+## [46] &quot;OA4&quot;         &quot;OA3&quot;         &quot;OA2&quot;         &quot;OA1&quot;         &quot;VAR&quot;        
+## [51] &quot;CON&quot;         &quot;SLOPECAT&quot;    &quot;SNOALB&quot;      &quot;LAI12M&quot;      &quot;GREENFRAC&quot;  
+## [56] &quot;ALBEDO12M&quot;   &quot;SCB_DOM&quot;     &quot;SOILCBOT&quot;    &quot;SCT_DOM&quot;     &quot;SOILCTOP&quot;   
+## [61] &quot;SOILTEMP&quot;    &quot;HGT_M&quot;       &quot;LU_INDEX&quot;    &quot;LANDUSEF&quot;    &quot;COSALPHA_V&quot; 
+## [66] &quot;SINALPHA_V&quot;  &quot;COSALPHA_U&quot;  &quot;SINALPHA_U&quot;  &quot;XLONG_C&quot;     &quot;XLAT_C&quot;     
+## [71] &quot;LANDMASK&quot;    &quot;COSALPHA&quot;    &quot;SINALPHA&quot;    &quot;F&quot;           &quot;E&quot;          
+## [76] &quot;MAPFAC_UY&quot;   &quot;MAPFAC_VY&quot;   &quot;MAPFAC_MY&quot;   &quot;MAPFAC_UX&quot;   &quot;MAPFAC_VX&quot;  
+## [81] &quot;MAPFAC_MX&quot;   &quot;MAPFAC_U&quot;    &quot;MAPFAC_V&quot;    &quot;MAPFAC_M&quot;    &quot;CLONG&quot;      
+## [86] &quot;CLAT&quot;        &quot;XLONG_U&quot;     &quot;XLAT_U&quot;      &quot;XLONG_V&quot;     &quot;XLAT_V&quot;     
+## [91] &quot;XLONG_M&quot;     &quot;XLAT_M&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TEMP &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;TT&quot;</span>)  <span class="co"># escolho você picachu</span>
+<span class="kw">class</span>(TEMP)</code></pre></div>
+<pre><code>## [1] &quot;array&quot;</code></pre>
+<p>Como o NetCDF é organizado para guardar matrizes (arrays), só sabemos que a variável <code>ST</code> é um array</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncatt_get</span>(wrf,<span class="st">&quot;TT&quot;</span>) <span class="co"># ou ncatt_get(wrf,&quot;TT&quot;,verbose = T)</span></code></pre></div>
+<pre><code>## $FieldType
+## [1] 104
+## 
+## $MemoryOrder
+## [1] &quot;XYZ&quot;
+## 
+## $units
+## [1] &quot;K&quot;
+## 
+## $description
+## [1] &quot;Temperature&quot;
+## 
+## $stagger
+## [1] &quot;M&quot;
+## 
+## $sr_x
+## [1] 1
+## 
+## $sr_y
+## [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(TEMP)</code></pre></div>
+<pre><code>## [1] 51 51 27</code></pre>
+<p>praticamente a mesma informação do print anterior:</p>
+<pre><code>float TT[west_east,south_north,num_metgrid_levels,Time]   
+FieldType: 104
+MemoryOrder: XYZ
+units: K
+description: Temperature
+stagger: M
+sr_x: 1
+sr_y: 1</code></pre>
+<p>como temos apenas 1 tempo essa dimensão é desconsiderada para simplificar.</p>
+<p>A latitude de cada ponto de grade, assim como longitude níveis e tempo podem ser extraídas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lat  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;XLAT_M&quot;</span>)
+lon  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;XLONG_M&quot;</span>)
+time &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;Times&quot;</span>)</code></pre></div>
+<p>O metadado de Longitude:</p>
+<pre><code>float XLONG_M[west_east,south_north,Time]   
+FieldType: 104
+MemoryOrder: XY 
+units: degrees longitude
+description: Longitude on mass grid
+stagger: M
+sr_x: 1
+sr_y: 1</code></pre>
+<p>Latitude:</p>
+<pre><code>float XLAT_M[west_east,south_north,Time]   
+FieldType: 104
+MemoryOrder: XY 
+units: degrees latitude
+description: Latitude on mass grid
+stagger: M
+sr_x: 1
+sr_y: 1</code></pre>
+<p>e a altura:</p>
+<pre><code>float GHT[west_east,south_north,num_metgrid_levels,Time]   
+FieldType: 104
+MemoryOrder: XYZ
+units: m
+description: Height
+stagger: M
+sr_x: 1
+sr_y: 1</code></pre>
+<p>Da mesma forma com que podemos acessar variáveis e atributos com <code>ncvar_get</code> e <code>ncatt_get</code>, podemos modificar estes valores com <code>ncvar_put</code> e <code>ncatt_put</code>. Outras operações como renomear (<code>ncvar_rename</code>) e trocar o valor de missval (<code>ncvar_change_missval</code>) também estão disponíveis.</p>
+<p><em>DICA</em>: <code>ncatt_get</code> e <code>ncatt_put</code> acessam e alteram os atributos de váriaveis e também atributos globais do NetCDF usando o argumento <code>varid=0</code>.</p>
+<p>Para salvar as alterações e/ou liberar o acesso ao arquivo use a função <code>nc_close</code> (ou a função <code>nc_sync</code> que sincroniza o NetCDF mas não fecha a conexão com o arquivo).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nc_close</span>(wrf) <span class="co"># ou nc_sync(wrf)</span></code></pre></div>
+<p>Novas dimensões e também novas variáveis podem ser criadas com <code>ncvar_def</code> e <code>ncvar_add</code> em um arquivo aberto com permissão de leitura, como por exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf     &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;~/met_em.d03.2016-01-10.nc&quot;</span>, <span class="dt">write=</span><span class="ot">TRUE</span>)
+extrema &lt;-<span class="st"> </span><span class="kw">ncvar_def</span>(<span class="dt">name =</span> <span class="st">&quot;Tex&quot;</span>,
+                     <span class="dt">units =</span> <span class="st">&quot;K&quot;</span>,
+                     <span class="dt">dim =</span> <span class="kw">list</span>(wrf<span class="op">$</span>dim<span class="op">$</span>west_east,
+                                wrf<span class="op">$</span>dim<span class="op">$</span>south_north,
+                                wrf<span class="op">$</span>dim<span class="op">$</span>Time),
+                     <span class="dt">missval =</span> <span class="op">-</span><span class="dv">999</span>,
+                     <span class="dt">longname =</span> <span class="st">&quot;temperatura extrema&quot;</span>)
+<span class="kw">ncvar_add</span>(wrf, extrema)
+<span class="kw">names</span>(wrf<span class="op">$</span>var)
+<span class="kw">nc_close</span>(wrf)</code></pre></div>
+<p>Se esse arquivo for aberto novamente vai conter 93 variáveis junto com a variável <code>Tex</code> da forma que definimos, caso queria os mesmos atributos que as demais é só usar a função <code>ncatt_get</code> na variável.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf     &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;~/met_em.d03.2016-01-10.nc&quot;</span>,<span class="dt">write=</span>T)
+<span class="kw">print</span>(wrf)</code></pre></div>
+<pre><code>## File ~/met_em.d03.2016-01-10.nc (NC_FORMAT_64BIT):
+## 
+##      92 variables (excluding dimension variables):
+##         char Times[DateStrLen,Time]   
+##         float PRES[west_east,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: 
+##             description: 
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOIL_LAYERS[west_east,south_north,num_st_layers,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: 
+##             description: 
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM[west_east,south_north,num_sm_layers,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: 
+##             description: 
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST[west_east,south_north,num_st_layers,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: 
+##             description: 
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float GHT[west_east,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: m
+##             description: Height
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float HGTTROP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m
+##             description: Height of tropopause
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float TTROP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: Temperature at tropopause
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PTROPNN[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: PTROP, used for nearest neighbor interp
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PTROP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: Pressure of tropopause
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VTROP[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m s-1
+##             description: V                 at tropopause
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float UTROP[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m s-1
+##             description: U                 at tropopause
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float HGTMAXW[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m
+##             description: Height of max wind level
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float TMAXW[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: Temperature at max wind level
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PMAXWNN[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: PMAXW, used for nearest neighbor interp
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PMAXW[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: Pressure of max wind level
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VMAXW[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m s-1
+##             description: V                 at max wind
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float UMAXW[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m s-1
+##             description: U                 at max wind
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float SNOWH[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m
+##             description: Physical Snow Depth
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SNOW[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: kg m-2
+##             description: Water equivalent snow depth
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SKINTEMP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: Skin temperature
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOILHGT[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: m
+##             description: Terrain field of source analysis
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LANDSEA[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: proprtn
+##             description: Land/Sea flag (1=land, 0 or 2=sea)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SEAICE[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: proprtn
+##             description: Ice flag
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST100200[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: T 100-200 cm below ground layer (Bottom)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST040100[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: T 40-100 cm below ground layer (Upper)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST010040[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: T 10-40 cm below ground layer (Upper)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ST000010[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: K
+##             description: T 0-10 cm below ground layer (Upper)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM100200[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: fraction
+##             description: Soil Moist 100-200 cm below gr layer
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM040100[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: fraction
+##             description: Soil Moist 40-100 cm below grn layer
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM010040[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: fraction
+##             description: Soil Moist 10-40 cm below grn layer
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SM000010[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: fraction
+##             description: Soil Moist 0-10 cm below grn layer (Up)
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PSFC[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: Surface Pressure
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float RH[west_east,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: %
+##             description: Relative Humidity
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VV[west_east,south_north_stag,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: m s-1
+##             description: V
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float UU[west_east_stag,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: m s-1
+##             description: U
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float TT[west_east,south_north,num_metgrid_levels,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: K
+##             description: Temperature
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float PMSL[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Pa
+##             description: Sea-level Pressure
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float URB_PARAM[west_east,south_north,z-dimension0132,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: dimensionless
+##             description: Urban_Parameters
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LAKE_DEPTH[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: meters MSL
+##             description: Topography height
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VAR_SSO[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: meters2 MSL
+##             description: Variance of Subgrid Scale Orography
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OL4[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OL3[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OL2[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OL1[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OA4[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OA3[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OA2[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float OA1[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float VAR[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float CON[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: whoknows
+##             description: something
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SLOPECAT[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: category
+##             description: Dominant category
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SNOALB[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: percent
+##             description: Maximum snow albedo
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LAI12M[west_east,south_north,z-dimension0012,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: m^2/m^2
+##             description: MODIS LAI
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float GREENFRAC[west_east,south_north,z-dimension0012,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: fraction
+##             description: MODIS FPAR
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float ALBEDO12M[west_east,south_north,z-dimension0012,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: percent
+##             description: Monthly surface albedo
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SCB_DOM[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: category
+##             description: Dominant category
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOILCBOT[west_east,south_north,z-dimension0016,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: category
+##             description: 16-category bottom-layer soil type
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SCT_DOM[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: category
+##             description: Dominant category
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOILCTOP[west_east,south_north,z-dimension0016,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: category
+##             description: 16-category top-layer soil type
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SOILTEMP[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: Kelvin
+##             description: Annual mean deep soil temperature
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float HGT_M[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: meters MSL
+##             description: GMTED2010 30-arc-second topography height
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LU_INDEX[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: category
+##             description: Dominant category
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float LANDUSEF[west_east,south_north,z-dimension0024,Time]   
+##             FieldType: 104
+##             MemoryOrder: XYZ
+##             units: category
+##             description: 24-category USGS landuse
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float COSALPHA_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Cosine of rotation angle on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float SINALPHA_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Sine of rotation angle on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float COSALPHA_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Cosine of rotation angle on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float SINALPHA_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Sine of rotation angle on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float XLONG_C[west_east_stag,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Longitude at grid cell corners
+##             stagger: CORNER
+##             sr_x: 1
+##             sr_y: 1
+##         float XLAT_C[west_east_stag,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Latitude at grid cell corners
+##             stagger: CORNER
+##             sr_x: 1
+##             sr_y: 1
+##         float LANDMASK[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Landmask : 1=land, 0=water
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float COSALPHA[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Cosine of rotation angle
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float SINALPHA[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Sine of rotation angle
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float F[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: -
+##             description: Coriolis F parameter
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float E[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: -
+##             description: Coriolis E parameter
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_UY[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (y-dir) on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_VY[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (y-dir) on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_MY[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (y-dir) on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_UX[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (x-dir) on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_VX[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (x-dir) on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_MX[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor (x-dir) on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float MAPFAC_M[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: none
+##             description: Mapfactor on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float CLONG[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Computational longitude on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float CLAT[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Computational latitude on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float XLONG_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Longitude on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float XLAT_U[west_east_stag,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Latitude on U grid
+##             stagger: U
+##             sr_x: 1
+##             sr_y: 1
+##         float XLONG_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Longitude on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float XLAT_V[west_east,south_north_stag,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Latitude on V grid
+##             stagger: V
+##             sr_x: 1
+##             sr_y: 1
+##         float XLONG_M[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees longitude
+##             description: Longitude on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+##         float XLAT_M[west_east,south_north,Time]   
+##             FieldType: 104
+##             MemoryOrder: XY 
+##             units: degrees latitude
+##             description: Latitude on mass grid
+##             stagger: M
+##             sr_x: 1
+##             sr_y: 1
+## 
+##      13 dimensions:
+##         Time  Size:1   *** is unlimited ***
+##         DateStrLen  Size:19
+##         west_east  Size:51
+##         south_north  Size:51
+##         num_metgrid_levels  Size:27
+##         num_st_layers  Size:4
+##         num_sm_layers  Size:4
+##         south_north_stag  Size:52
+##         west_east_stag  Size:52
+##         z-dimension0132  Size:132
+##         z-dimension0012  Size:12
+##         z-dimension0016  Size:16
+##         z-dimension0024  Size:24
+## 
+##     76 global attributes:
+##         TITLE: OUTPUT FROM METGRID V3.9.1
+##         SIMULATION_START_DATE: 2016-01-10_00:00:00
+##         WEST-EAST_GRID_DIMENSION: 52
+##         SOUTH-NORTH_GRID_DIMENSION: 52
+##         BOTTOM-TOP_GRID_DIMENSION: 27
+##         WEST-EAST_PATCH_START_UNSTAG: 1
+##         WEST-EAST_PATCH_END_UNSTAG: 51
+##         WEST-EAST_PATCH_START_STAG: 1
+##         WEST-EAST_PATCH_END_STAG: 52
+##         SOUTH-NORTH_PATCH_START_UNSTAG: 1
+##         SOUTH-NORTH_PATCH_END_UNSTAG: 51
+##         SOUTH-NORTH_PATCH_START_STAG: 1
+##         SOUTH-NORTH_PATCH_END_STAG: 52
+##         GRIDTYPE: C
+##         DX: 1000
+##         DY: 1000
+##         DYN_OPT: 2
+##         CEN_LAT: -23.5996932983398
+##         CEN_LON: -46.6294555664062
+##         TRUELAT1: -23
+##         TRUELAT2: -24
+##         MOAD_CEN_LAT: -23.6000061035156
+##         STAND_LON: -45
+##         POLE_LAT: 90
+##         POLE_LON: 0
+##         corner_lats: -23.8218078613281
+##          corner_lats: -23.3720855712891
+##          corner_lats: -23.3771743774414
+##          corner_lats: -23.826904296875
+##          corner_lats: -23.8217391967773
+##          corner_lats: -23.3720245361328
+##          corner_lats: -23.3772277832031
+##          corner_lats: -23.8269424438477
+##          corner_lats: -23.826286315918
+##          corner_lats: -23.3675918579102
+##          corner_lats: -23.372673034668
+##          corner_lats: -23.8314056396484
+##          corner_lats: -23.8262329101562
+##          corner_lats: -23.3675231933594
+##          corner_lats: -23.3727111816406
+##          corner_lats: -23.8314437866211
+##         corner_lons: -46.8780517578125
+##          corner_lons: -46.8716430664062
+##          corner_lons: -46.3817138671875
+##          corner_lons: -46.3864440917969
+##          corner_lons: -46.8829650878906
+##          corner_lons: -46.8765258789062
+##          corner_lons: -46.3768005371094
+##          corner_lons: -46.3815307617188
+##          corner_lons: -46.8781127929688
+##          corner_lons: -46.87158203125
+##          corner_lons: -46.3816528320312
+##          corner_lons: -46.386474609375
+##          corner_lons: -46.8830261230469
+##          corner_lons: -46.87646484375
+##          corner_lons: -46.3767700195312
+##          corner_lons: -46.3815612792969
+##         MAP_PROJ: 1
+##         MMINLU: USGS
+##         NUM_LAND_CAT: 24
+##         ISWATER: 16
+##         ISLAKE: -1
+##         ISICE: 24
+##         ISURBAN: 1
+##         ISOILWATER: 14
+##         grid_id: 3
+##         parent_id: 2
+##         i_parent_start: 35
+##         j_parent_start: 33
+##         i_parent_end: 51
+##         j_parent_end: 49
+##         parent_grid_ratio: 3
+##         sr_x: 1
+##         sr_y: 1
+##         NUM_METGRID_SOIL_LEVELS: 4
+##         FLAG_METGRID: 1
+##         FLAG_EXCLUDED_MIDDLE: 0
+##         FLAG_SOIL_LAYERS: 1
+##         FLAG_SNOW: 1
+##         FLAG_PSFC: 1
+##         FLAG_SM000010: 1
+##         FLAG_SM010040: 1
+##         FLAG_SM040100: 1
+##         FLAG_SM100200: 1
+##         FLAG_ST000010: 1
+##         FLAG_ST010040: 1
+##         FLAG_ST040100: 1
+##         FLAG_ST100200: 1
+##         FLAG_SLP: 1
+##         FLAG_SNOWH: 1
+##         FLAG_SOILHGT: 1
+##         FLAG_UTROP: 1
+##         FLAG_VTROP: 1
+##         FLAG_TTROP: 1
+##         FLAG_PTROP: 1
+##         FLAG_PTROPNN: 1
+##         FLAG_HGTTROP: 1
+##         FLAG_UMAXW: 1
+##         FLAG_VMAXW: 1
+##         FLAG_TMAXW: 1
+##         FLAG_PMAXW: 1
+##         FLAG_PMAXWNN: 1
+##         FLAG_HGTMAXW: 1
+##         FLAG_MF_XY: 1
+##         FLAG_LAI12M: 1
+##         FLAG_LAKE_DEPTH: 1</code></pre>
+<p>O pacote possue ainda funções mais específicas para a criação de arquivos em NetCDF como <code>nc_create</code>, funções que definem dimenções como <code>ncdim_def</code> e funções para colocar e tirar o arquivo de modo de definição <code>nc_redef</code> e <code>nc_enddef</code>.</p>
+<p><em>DICA</em>: o NetCDF no R funciona de forma parecida com ouma lista ou data frame, podemos “ver” ou selecionar suas sub-partes (sub-sub-partes…) com “$” e TAB.</p>
+</div>
+<div id="dados-binarios" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Dados Binários</h3>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plotando.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/iagdevs/cursoR/edit/master/03-import_export.Rmd",
+"text": "Edit"
+},
+"download": ["cursoR.pdf", "cursoR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
