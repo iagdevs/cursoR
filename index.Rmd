@@ -8,7 +8,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: iagdevs/cursoR
 description: "Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação"
 ---
 
@@ -20,9 +20,10 @@ Antes de instalar o R na sua plataforma de interesse, verifique se há recomenda
 
 **Windows**  
 A princípio não há pré-requisitos! Caso fique entusiasmado com o R e queira desenvolver os próprios pacotes, instale o Rtools https://cran.r-project.org/bin/windows/Rtools/
+
+Instale `NetCDF`, `GDAL`, `GEOS`, `udunits` e `PROJ`
   
 **MacOS**  
-Instale `NetCDF4` e:
 
 ```{bash eval = FALSE}
 brew unlink gdal
@@ -33,18 +34,13 @@ brew install udunits
 brew install gdal2 --with-armadillo --with-complete --with-libkml --with-unsupported
 brew link --force gdal2
 ```
+(Veja como instalar NetCDF no MacOS)  
   
 **Linux (Ubuntu e derivados)**
 
 ```{bash eval = FALSE}
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
 sudo apt-get --yes --force-yes update -qq
-# install tmap dependencies
-sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev
-# install tmap dependencies; for 16.04 libjq-dev this ppa is needed:
-sudo add-apt-repository -y ppa:opencpu/jq
-sudo apt-get --yes --force-yes update -qq
-sudo apt-get install libjq-dev
 # units/udunits2 dependency:
 sudo apt-get install --yes libudunits2-dev
 # sf dependencies:
@@ -57,21 +53,21 @@ sudo apt-get install --yes libproj-dev libgeos-dev libgdal-dev libnetcdf-dev  ne
 Para fazer este curso instale os seguintes pacotes como indicado:
 
 ```{r eval = FALSE}
-install.packages("devtools")
-install.packages("tidyverse")
-install.packages("reshape2")
-install.packages("sf")
-install.packages("maptools")
-install.packages("mapview")
-install.packages("fields")
-install.packages("raster")
-install.packages("sp")
-install.packages("rgdal")
-install.packages("ncdf4")
-install.packages("data.table")
-install.packages("openair")
-install.packages("cptcity")
+check.packages <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg))
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+# Usage example
+packages <- c("devtools", "tidyverse", "reshape2", "sf",
+              "maptools", "mapview", "fields", "raster",
+              "sp", "rgdal", "ncdf4", "data.table",
+              "openair", "cptcity")
+check.packages(packages)
 ```
+Fonte: https://gist.github.com/smithdanielle/9913897
 
 Descrição de alguns desses pacotes:
 
