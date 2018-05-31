@@ -14,7 +14,7 @@
   
   
   <meta property="og:description" content="Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="iagdevs/cursoR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Curso de R para Meteorologia IAG/USP" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-05-28">
+<meta name="date" content="2018-05-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="intro.html">
-<link rel="next" href="importando-e-exportando-dados-em-r.html">
+<link rel="next" href="importando-e-exportando-dados.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -103,10 +103,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Curso R DCA/IAG/USP</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pré-requisitos do sistema</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.1</b> Pacotes usados neste curso</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.2</b> Colaborar</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.3</b> Compartilhar dados</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pré-Requisitos</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#sistema-operacional"><i class="fa fa-check"></i><b>1.1</b> Sistema Operacional</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.2</b> Pacotes usados neste curso</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.3</b> Colaborar</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.4</b> Compartilhar dados</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#importante"><i class="fa fa-check"></i><b>2.1</b> IMPORTANTE</a></li>
@@ -126,18 +127,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
 <li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> Data.frames</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html"><i class="fa fa-check"></i><b>4</b> Importando e exportando dados em R</a><ul>
-<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> data-frames</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#qua-dificultades-tu-ja-enfrentou-importando-dados"><i class="fa fa-check"></i><b>4.1.1</b> Qua dificultades tu já enfrentou importando dados?</a></li>
+<li class="chapter" data-level="4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html"><i class="fa fa-check"></i><b>4</b> Importando e Exportando Dados</a><ul>
+<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> Data Frames</a></li>
+<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#base"><i class="fa fa-check"></i><b>4.2</b> BASE</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-texto-com-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Exportando texto com <code>write.table</code></a></li>
+<li class="chapter" data-level="4.2.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-save"><i class="fa fa-check"></i><b>4.2.2</b> Exportando objetos com <code>save</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-saverds"><i class="fa fa-check"></i><b>4.2.3</b> Exportando objetos com <code>saveRDS</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#processing_dfs"><i class="fa fa-check"></i><b>4.2.4</b> Processando nossa data-frame</a></li>
+<li class="chapter" data-level="4.2.5" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#aggregate"><i class="fa fa-check"></i><b>4.2.5</b> aggregate</a></li>
+<li class="chapter" data-level="4.2.6" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#subset"><i class="fa fa-check"></i><b>4.2.6</b> subset</a></li>
+<li class="chapter" data-level="4.2.7" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data.table-read_xl-e-mais"><i class="fa fa-check"></i><b>4.2.7</b> data.table, read_xl e mais</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#exportando-texto-com-write.table"><i class="fa fa-check"></i><b>4.2</b> Exportando texto com <code>write.table</code></a></li>
-<li class="chapter" data-level="4.3" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#exportando-objetos-com-save"><i class="fa fa-check"></i><b>4.3</b> Exportando objetos com <code>save</code></a></li>
-<li class="chapter" data-level="4.4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#exportando-objetos-com-saverds"><i class="fa fa-check"></i><b>4.4</b> Exportando objetos com <code>saveRDS</code></a></li>
-<li class="chapter" data-level="4.5" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#processing_dfs"><i class="fa fa-check"></i><b>4.5</b> Processando nossa data-frame</a></li>
-<li class="chapter" data-level="4.6" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#aggregate"><i class="fa fa-check"></i><b>4.6</b> aggregate</a></li>
-<li class="chapter" data-level="4.7" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#subset"><i class="fa fa-check"></i><b>4.7</b> subset</a></li>
-<li class="chapter" data-level="4.8" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data.table-read_xl-e-mais"><i class="fa fa-check"></i><b>4.8</b> data.table, read_xl e mais</a></li>
-<li class="chapter" data-level="4.9" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#netcdf"><i class="fa fa-check"></i><b>4.9</b> NetCDF</a></li>
+<li class="chapter" data-level="4.3" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#tidyverse"><i class="fa fa-check"></i><b>4.3</b> Tidyverse</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#leitura-processamento"><i class="fa fa-check"></i><b>4.3.1</b> Leitura <code>%&gt;%</code> Processamento</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#outros-tipos-de-dados"><i class="fa fa-check"></i><b>4.4</b> Outros Tipos de Dados</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#netcdf-linux-o-macos"><i class="fa fa-check"></i><b>4.4.1</b> NetCDF (Linux o MacOS)</a></li>
+<li class="chapter" data-level="4.4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#dados-binarios"><i class="fa fa-check"></i><b>4.4.2</b> Dados Binários</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="plotando.html"><a href="plotando.html"><i class="fa fa-check"></i><b>5</b> Plotando</a><ul>
 <li class="chapter" data-level="5.1" data-path="plotando.html"><a href="plotando.html#plot-base"><i class="fa fa-check"></i><b>5.1</b> <code>plot</code> (base)</a></li>
@@ -145,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.2.1" data-path="plotando.html"><a href="plotando.html#explorando-outras-escalas-de-cores-e-temas"><i class="fa fa-check"></i><b>5.2.1</b> Explorando outras escalas de cores e temas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="loop.html"><a href="loop.html"><i class="fa fa-check"></i><b>6</b> Estruturas de control</a><ul>
+<li class="chapter" data-level="6" data-path="loop.html"><a href="loop.html"><i class="fa fa-check"></i><b>6</b> Estruturas de Controle</a><ul>
 <li class="chapter" data-level="6.1" data-path="loop.html"><a href="loop.html#if-else"><i class="fa fa-check"></i><b>6.1</b> if-else</a></li>
 <li class="chapter" data-level="6.2" data-path="loop.html"><a href="loop.html#for"><i class="fa fa-check"></i><b>6.2</b> for</a></li>
 <li class="chapter" data-level="6.3" data-path="loop.html"><a href="loop.html#while"><i class="fa fa-check"></i><b>6.3</b> while</a></li>
@@ -157,11 +164,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.9" data-path="loop.html"><a href="loop.html#apply"><i class="fa fa-check"></i><b>6.9</b> apply</a></li>
 <li class="chapter" data-level="6.10" data-path="loop.html"><a href="loop.html#mapply"><i class="fa fa-check"></i><b>6.10</b> mapply</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="fx.html"><a href="fx.html"><i class="fa fa-check"></i><b>7</b> De scripts a funções e de funções a pacotes</a></li>
+<li class="chapter" data-level="7" data-path="fx.html"><a href="fx.html"><i class="fa fa-check"></i><b>7</b> De Scripts a Funções e de Funções a Pacotes</a></li>
 <li class="chapter" data-level="8" data-path="geo.html"><a href="geo.html"><i class="fa fa-check"></i><b>8</b> Geo Spatial: <code>raster</code>, <code>sf</code> e <code>stars</code></a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
-<li><a href="https://ibarraespinosa.github.io/cursoR" target="blank">Published with bookdown</a></li>
+<li><a href="https://iagdevs.github.io/cursoR" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -350,43 +357,55 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(a)</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(b &lt;-<span class="st"> </span><span class="kw">ISOdate</span>(<span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">month =</span> <span class="dv">4</span>, <span class="dt">day =</span> <span class="dv">5</span>, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>))</code></pre></div>
-<pre><code>## [1] &quot;2018-04-05 12:00:00 Americas&quot;</code></pre>
+<pre><code>## Warning in strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz): unknown timezone
+## &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz), :
+## unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## [1] &quot;2018-04-05 12:00:00 GMT&quot;</code></pre>
 <p>Tempo</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(d &lt;-<span class="st"> </span><span class="kw">ISOdatetime</span>(<span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">month =</span> <span class="dv">4</span>, <span class="dt">day =</span> <span class="dv">5</span>, <span class="dt">hour =</span> <span class="dv">0</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">sec =</span> <span class="dv">0</span>,
                   <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>))</code></pre></div>
-<pre><code>## [1] &quot;2018-04-05 Americas&quot;</code></pre>
+<pre><code>## Warning in strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz): unknown timezone
+## &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz), :
+## unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## [1] &quot;2018-04-05 GMT&quot;</code></pre>
 <p>Caso você precise, o pacote <a href="https://github.com/eddelbuettel/nanotime">nanotime</a> permite trabalhar com nano segundos.</p>
 <p>É possível fazer sequências:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hoje &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 (a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>))</code></pre></div>
-<pre><code>##  [1] &quot;2018-05-28 21:50:49 -03&quot; &quot;2018-05-28 22:50:49 -03&quot;
-##  [3] &quot;2018-05-28 23:50:49 -03&quot; &quot;2018-05-29 00:50:49 -03&quot;
-##  [5] &quot;2018-05-29 01:50:49 -03&quot; &quot;2018-05-29 02:50:49 -03&quot;
-##  [7] &quot;2018-05-29 03:50:49 -03&quot; &quot;2018-05-29 04:50:49 -03&quot;
-##  [9] &quot;2018-05-29 05:50:49 -03&quot; &quot;2018-05-29 06:50:49 -03&quot;
-## [11] &quot;2018-05-29 07:50:49 -03&quot; &quot;2018-05-29 08:50:49 -03&quot;
-## [13] &quot;2018-05-29 09:50:49 -03&quot; &quot;2018-05-29 10:50:49 -03&quot;
-## [15] &quot;2018-05-29 11:50:49 -03&quot; &quot;2018-05-29 12:50:49 -03&quot;
-## [17] &quot;2018-05-29 13:50:49 -03&quot; &quot;2018-05-29 14:50:49 -03&quot;
-## [19] &quot;2018-05-29 15:50:49 -03&quot; &quot;2018-05-29 16:50:49 -03&quot;
-## [21] &quot;2018-05-29 17:50:49 -03&quot; &quot;2018-05-29 18:50:49 -03&quot;
-## [23] &quot;2018-05-29 19:50:49 -03&quot; &quot;2018-05-29 20:50:49 -03&quot;</code></pre>
+<pre><code>##  [1] &quot;2018-05-31 18:38:35 -03&quot; &quot;2018-05-31 19:38:35 -03&quot;
+##  [3] &quot;2018-05-31 20:38:35 -03&quot; &quot;2018-05-31 21:38:35 -03&quot;
+##  [5] &quot;2018-05-31 22:38:35 -03&quot; &quot;2018-05-31 23:38:35 -03&quot;
+##  [7] &quot;2018-06-01 00:38:35 -03&quot; &quot;2018-06-01 01:38:35 -03&quot;
+##  [9] &quot;2018-06-01 02:38:35 -03&quot; &quot;2018-06-01 03:38:35 -03&quot;
+## [11] &quot;2018-06-01 04:38:35 -03&quot; &quot;2018-06-01 05:38:35 -03&quot;
+## [13] &quot;2018-06-01 06:38:35 -03&quot; &quot;2018-06-01 07:38:35 -03&quot;
+## [15] &quot;2018-06-01 08:38:35 -03&quot; &quot;2018-06-01 09:38:35 -03&quot;
+## [17] &quot;2018-06-01 10:38:35 -03&quot; &quot;2018-06-01 11:38:35 -03&quot;
+## [19] &quot;2018-06-01 12:38:35 -03&quot; &quot;2018-06-01 13:38:35 -03&quot;
+## [21] &quot;2018-06-01 14:38:35 -03&quot; &quot;2018-06-01 15:38:35 -03&quot;
+## [23] &quot;2018-06-01 16:38:35 -03&quot; &quot;2018-06-01 17:38:35 -03&quot;</code></pre>
 <p>funções úteis: <strong>weekdays</strong>, <strong>month</strong>, <strong>julian</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
-##  [8] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
-## [15] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
-## [22] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;</code></pre>
+<pre><code>##  [1] &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;quinta-feira&quot;
+##  [5] &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
+##  [9] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
+## [13] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
+## [17] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
+## [21] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot;
-## [11] &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot;
-## [21] &quot;maio&quot; &quot;maio&quot; &quot;maio&quot; &quot;maio&quot;</code></pre>
+<pre><code>##  [1] &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;junho&quot; &quot;junho&quot;
+##  [9] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
+## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano*</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17680.04 17680.08 17680.12 17680.16 17680.20 17680.24 17680.29
-##  [8] 17680.33 17680.37 17680.41 17680.45 17680.49 17680.54 17680.58
-## [15] 17680.62 17680.66 17680.70 17680.74 17680.79 17680.83 17680.87
-## [22] 17680.91 17680.95 17680.99
+##  [1] 17682.90 17682.94 17682.99 17683.03 17683.07 17683.11 17683.15
+##  [8] 17683.19 17683.24 17683.28 17683.32 17683.36 17683.40 17683.44
+## [15] 17683.49 17683.53 17683.57 17683.61 17683.65 17683.69 17683.74
+## [22] 17683.78 17683.82 17683.86
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>*Para mais informações: <a href="https://en.wikipedia.org/wiki/Julian_day" class="uri">https://en.wikipedia.org/wiki/Julian_day</a>:</p>
@@ -400,28 +419,41 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] segunda segunda segunda terça   terça   terça   terça   terça  
-##   [9] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [17] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [25] terça   terça   terça   quarta  quarta  quarta  quarta  quarta 
-##  [33] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [41] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [49] quarta  quarta  quarta  quinta  quinta  quinta  quinta  quinta 
-##  [57] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [65] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [73] quinta  quinta  quinta  sexta   sexta   sexta   sexta   sexta  
-##  [81] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [89] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [97] sexta   sexta   sexta   sábado  sábado  sábado  sábado  sábado 
-## [105] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [113] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [121] sábado  sábado  sábado  domingo domingo domingo domingo domingo
-## [129] domingo domingo domingo domingo domingo domingo domingo domingo
-## [137] domingo domingo domingo domingo domingo domingo domingo domingo
-## [145] domingo domingo domingo segunda segunda segunda segunda segunda
-## [153] segunda segunda segunda segunda segunda segunda segunda segunda
-## [161] segunda segunda segunda segunda segunda segunda segunda segunda
-## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
+<pre><code>##   [1] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+##   [6] quinta-feira  sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [11] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [16] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [21] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [26] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [31] sábado        sábado        sábado        sábado        sábado       
+##  [36] sábado        sábado        sábado        sábado        sábado       
+##  [41] sábado        sábado        sábado        sábado        sábado       
+##  [46] sábado        sábado        sábado        sábado        sábado       
+##  [51] sábado        sábado        sábado        sábado        domingo      
+##  [56] domingo       domingo       domingo       domingo       domingo      
+##  [61] domingo       domingo       domingo       domingo       domingo      
+##  [66] domingo       domingo       domingo       domingo       domingo      
+##  [71] domingo       domingo       domingo       domingo       domingo      
+##  [76] domingo       domingo       domingo       segunda-feira segunda-feira
+##  [81] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+##  [86] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+##  [91] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+##  [96] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+## [101] segunda-feira segunda-feira terça-feira   terça-feira   terça-feira  
+## [106] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [111] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [116] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [121] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [126] terça-feira   quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [131] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [136] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [141] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [146] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [151] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+## [156] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+## [161] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+## [166] quinta-feira  quinta-feira  quinta-feira 
+## 7 Levels: domingo quarta-feira quinta-feira sábado ... terça-feira</code></pre>
 <p>São muito úteis para regressões, plotes e resumos estatísitcos.</p>
 <p>Olhe os <strong>Levels</strong></p>
 <p>Então:</p>
@@ -464,7 +496,7 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="importando-e-exportando-dados-em-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="importando-e-exportando-dados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -494,7 +526,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ibarraespinosa/cursoR/edit/master/02-basicr.Rmd",
+"link": "https://github.com/iagdevs/cursoR/edit/master/02-basicr.Rmd",
 "text": "Edit"
 },
 "download": ["cursoR.pdf", "cursoR.epub"],

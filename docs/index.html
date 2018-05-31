@@ -14,7 +14,7 @@
   
   
   <meta property="og:description" content="Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="iagdevs/cursoR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Curso de R para Meteorologia IAG/USP" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-05-30">
+<meta name="date" content="2018-05-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -142,7 +142,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.3.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#leitura-processamento"><i class="fa fa-check"></i><b>4.3.1</b> Leitura <code>%&gt;%</code> Processamento</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#outros-tipos-de-dados"><i class="fa fa-check"></i><b>4.4</b> Outros Tipos de Dados</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#netcdf"><i class="fa fa-check"></i><b>4.4.1</b> NetCDF</a></li>
+<li class="chapter" data-level="4.4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#netcdf-linux-o-macos"><i class="fa fa-check"></i><b>4.4.1</b> NetCDF (Linux o MacOS)</a></li>
 <li class="chapter" data-level="4.4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#dados-binarios"><i class="fa fa-check"></i><b>4.4.2</b> Dados Binários</a></li>
 </ul></li>
 </ul></li>
@@ -190,7 +190,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Curso de R para Meteorologia IAG/USP</h1>
 <h4 class="author"><em>Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)</em></h4>
-<h4 class="date"><em>2018-05-30</em></h4>
+<h4 class="date"><em>2018-05-31</em></h4>
 </div>
 <div id="primero" class="section level1">
 <h1><span class="header-section-number">Capítulo 1</span> Pré-Requisitos</h1>
@@ -199,8 +199,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Antes de instalar o R na sua plataforma de interesse, verifique se há recomendações abaixo:</p>
 <p><strong>Windows</strong><br />
 A princípio não há pré-requisitos! Caso fique entusiasmado com o R e queira desenvolver os próprios pacotes, instale o Rtools <a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></p>
-<p><strong>MacOS</strong><br />
-Instale <code>NetCDF4</code> e:</p>
+<p>Instale <code>NetCDF</code>, <code>GDAL</code>, <code>GEOS</code>, <code>udunits</code> e <code>PROJ</code></p>
+<p><strong>MacOS</strong></p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">brew</span> unlink gdal
 <span class="ex">brew</span> tap osgeo/osgeo4mac <span class="kw">&amp;&amp;</span> <span class="ex">brew</span> tap --repair
 <span class="ex">brew</span> install proj
@@ -208,15 +208,10 @@ Instale <code>NetCDF4</code> e:</p>
 <span class="ex">brew</span> install udunits
 <span class="ex">brew</span> install gdal2 --with-armadillo --with-complete --with-libkml --with-unsupported
 <span class="ex">brew</span> link --force gdal2</code></pre></div>
+<p>(Veja como instalar NetCDF no MacOS)</p>
 <p><strong>Linux (Ubuntu e derivados)</strong></p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">sudo</span> add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
 <span class="fu">sudo</span> apt-get --yes --force-yes update -qq
-<span class="co"># install tmap dependencies</span>
-<span class="fu">sudo</span> apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev
-<span class="co"># install tmap dependencies; for 16.04 libjq-dev this ppa is needed:</span>
-<span class="fu">sudo</span> add-apt-repository -y ppa:opencpu/jq
-<span class="fu">sudo</span> apt-get --yes --force-yes update -qq
-<span class="fu">sudo</span> apt-get install libjq-dev
 <span class="co"># units/udunits2 dependency:</span>
 <span class="fu">sudo</span> apt-get install --yes libudunits2-dev
 <span class="co"># sf dependencies:</span>
@@ -225,20 +220,21 @@ Instale <code>NetCDF4</code> e:</p>
 <div id="pacotes-usados-neste-curso" class="section level2">
 <h2><span class="header-section-number">1.2</span> Pacotes usados neste curso</h2>
 <p>Para fazer este curso instale os seguintes pacotes como indicado:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;reshape2&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;sf&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;maptools&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;mapview&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;fields&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;raster&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;sp&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;rgdal&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;ncdf4&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;data.table&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;openair&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;cptcity&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">check.packages &lt;-<span class="st"> </span><span class="cf">function</span>(pkg){
+  new.pkg &lt;-<span class="st"> </span>pkg[<span class="op">!</span>(pkg <span class="op">%in%</span><span class="st"> </span><span class="kw">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]
+  <span class="cf">if</span> (<span class="kw">length</span>(new.pkg))
+    <span class="kw">install.packages</span>(new.pkg, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)
+  <span class="kw">sapply</span>(pkg, require, <span class="dt">character.only =</span> <span class="ot">TRUE</span>)
+}
+
+<span class="co"># Usage example</span>
+packages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;devtools&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;reshape2&quot;</span>, <span class="st">&quot;sf&quot;</span>,
+              <span class="st">&quot;maptools&quot;</span>, <span class="st">&quot;mapview&quot;</span>, <span class="st">&quot;fields&quot;</span>, <span class="st">&quot;raster&quot;</span>,
+              <span class="st">&quot;sp&quot;</span>, <span class="st">&quot;rgdal&quot;</span>, <span class="st">&quot;ncdf4&quot;</span>, <span class="st">&quot;data.table&quot;</span>,
+              <span class="st">&quot;openair&quot;</span>, <span class="st">&quot;cptcity&quot;</span>)
+<span class="kw">check.packages</span>(packages)
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;atmoschem/veinreport&quot;</span>)</code></pre></div>
+<p>Fonte: <a href="https://gist.github.com/smithdanielle/9913897" class="uri">https://gist.github.com/smithdanielle/9913897</a></p>
 <p>Descrição de alguns desses pacotes:</p>
 <ul>
 <li><a href="https://CRAN.R-project.org/package=devtools">devtools</a> permite a instalação de versões de desenvolvimento de pacotes de diferentes repositórios</li>
@@ -246,7 +242,7 @@ Instale <code>NetCDF4</code> e:</p>
 <ul>
 <li>Se você quiser plotar os objetos espaciais sf com o pacote <a href="http://ggplot2.tidyverse.org/">ggplot2</a> (que faz parte do tidyverse), ele precisa ser instalado usando o devtools (<code>devtools::install_github(&quot;tidyverse/ggplot2&quot;)</code>), pois a função <a href="https://www.isgeomsfinggplot2yet.site/">geom_sf</a> ainda não está disponível na versão oficial</li>
 </ul></li>
-<li><a href="https://github.com/r-spatial/sf">sf</a>, <a href="https://github.com/r-spatial/mapbiew">mapview</a>, raster, sp, rgdal, maptools e fields tratam dados espaciais. Lembre-se que os objetos em Meteorologia são espaço-temporais</li>
+<li><a href="https://github.com/r-spatial/sf">sf</a>, <a href="https://github.com/r-spatial/mapview">mapview</a>, raster, sp, rgdal, maptools e fields tratam dados espaciais. Lembre-se que os objetos em Meteorologia são espaço-temporais</li>
 <li>ncdf4 é um pacote para manipular arquivos NetCDF</li>
 <li><a href="http://davidcarslaw.github.io/openair/">openair</a> é um pacote para trabalhar com dados de qualidade do ar e Meteorologia</li>
 <li><a href="https://ibarraespinosa.github.io/cptcity/">cptcity</a> é um pacote que tem 7140 paletas de cores do arquivo web <a href="http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html">cpt-city</a></li>

@@ -66,6 +66,7 @@ packages <- c("devtools", "tidyverse", "reshape2", "sf",
               "sp", "rgdal", "ncdf4", "data.table",
               "openair", "cptcity")
 check.packages(packages)
+devtools::install_github("atmoschem/veinreport")
 ```
 Fonte: https://gist.github.com/smithdanielle/9913897
 
@@ -75,7 +76,7 @@ Descrição de alguns desses pacotes:
 * [tidyverse](https://github.com/tidyverse) é o universo de pacotes do Hadley
 Wickham para tratamento e visualização de dados  
     + Se você quiser plotar os objetos espaciais sf com o pacote [ggplot2](http://ggplot2.tidyverse.org/) (que faz parte do tidyverse), ele precisa ser instalado usando o devtools (`devtools::install_github("tidyverse/ggplot2")`), pois a função [geom_sf](https://www.isgeomsfinggplot2yet.site/) ainda não está disponível na versão oficial
-* [sf](https://github.com/r-spatial/sf), [mapview](https://github.com/r-spatial/mapbiew), raster, sp, rgdal, maptools e fields tratam dados espaciais. Lembre-se que os objetos em Meteorologia são espaço-temporais
+* [sf](https://github.com/r-spatial/sf), [mapview](https://github.com/r-spatial/mapview), raster, sp, rgdal, maptools e fields tratam dados espaciais. Lembre-se que os objetos em Meteorologia são espaço-temporais
 * ncdf4 é um pacote para manipular arquivos NetCDF
 * [openair](http://davidcarslaw.github.io/openair/) é um pacote para
 trabalhar com dados de qualidade do ar e Meteorologia

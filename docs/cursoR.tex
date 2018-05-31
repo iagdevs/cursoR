@@ -126,7 +126,7 @@ colaborar)}
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-05-22}
+  \date{2018-05-31}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -137,6 +137,20 @@ colaborar)}
 }
 \makeatother
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -144,7 +158,9 @@ colaborar)}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter{Pré-requisitos do sistema}\label{primero}
+\chapter{Pré-Requisitos}\label{primero}
+
+\section{Sistema Operacional}\label{sistema-operacional}
 
 Antes de instalar o R na sua plataforma de interesse, verifique se há
 recomendações abaixo:
@@ -154,8 +170,10 @@ A princípio não há pré-requisitos! Caso fique entusiasmado com o R e
 queira desenvolver os próprios pacotes, instale o Rtools
 \url{https://cran.r-project.org/bin/windows/Rtools/}
 
-\textbf{MacOS}\\
-Instale \texttt{NetCDF4} e:
+Instale \texttt{NetCDF}, \texttt{GDAL}, \texttt{GEOS}, \texttt{udunits}
+e \texttt{PROJ}
+
+\textbf{MacOS}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -169,18 +187,14 @@ Instale \texttt{NetCDF4} e:
 \end{Highlighting}
 \end{Shaded}
 
+(Veja como instalar NetCDF no MacOS)
+
 \textbf{Linux (Ubuntu e derivados)}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{sudo}\NormalTok{ add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes}
 \FunctionTok{sudo}\NormalTok{ apt-get --yes --force-yes update -qq}
-\CommentTok{# install tmap dependencies}
-\FunctionTok{sudo}\NormalTok{ apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev}
-\CommentTok{# install tmap dependencies; for 16.04 libjq-dev this ppa is needed:}
-\FunctionTok{sudo}\NormalTok{ add-apt-repository -y ppa:opencpu/jq}
-\FunctionTok{sudo}\NormalTok{ apt-get --yes --force-yes update -qq}
-\FunctionTok{sudo}\NormalTok{ apt-get install libjq-dev}
 \CommentTok{# units/udunits2 dependency:}
 \FunctionTok{sudo}\NormalTok{ apt-get install --yes libudunits2-dev}
 \CommentTok{# sf dependencies:}
@@ -194,22 +208,26 @@ Para fazer este curso instale os seguintes pacotes como indicado:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"reshape2"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"sf"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"maptools"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"mapview"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"fields"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"raster"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"sp"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rgdal"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ncdf4"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"data.table"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"openair"}\NormalTok{)}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"cptcity"}\NormalTok{)}
+\NormalTok{check.packages <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(pkg)\{}
+\NormalTok{  new.pkg <-}\StringTok{ }\NormalTok{pkg[}\OperatorTok{!}\NormalTok{(pkg }\OperatorTok{%in%}\StringTok{ }\KeywordTok{installed.packages}\NormalTok{()[, }\StringTok{"Package"}\NormalTok{])]}
+  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{length}\NormalTok{(new.pkg))}
+    \KeywordTok{install.packages}\NormalTok{(new.pkg, }\DataTypeTok{dependencies =} \OtherTok{TRUE}\NormalTok{)}
+  \KeywordTok{sapply}\NormalTok{(pkg, require, }\DataTypeTok{character.only =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{# Usage example}
+\NormalTok{packages <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"devtools"}\NormalTok{, }\StringTok{"tidyverse"}\NormalTok{, }\StringTok{"reshape2"}\NormalTok{, }\StringTok{"sf"}\NormalTok{,}
+              \StringTok{"maptools"}\NormalTok{, }\StringTok{"mapview"}\NormalTok{, }\StringTok{"fields"}\NormalTok{, }\StringTok{"raster"}\NormalTok{,}
+              \StringTok{"sp"}\NormalTok{, }\StringTok{"rgdal"}\NormalTok{, }\StringTok{"ncdf4"}\NormalTok{, }\StringTok{"data.table"}\NormalTok{,}
+              \StringTok{"openair"}\NormalTok{, }\StringTok{"cptcity"}\NormalTok{)}
+\KeywordTok{check.packages}\NormalTok{(packages)}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install_github}\NormalTok{(}\StringTok{"atmoschem/veinreport"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+Fonte: \url{https://gist.github.com/smithdanielle/9913897}
+
+Descrição de alguns desses pacotes:
 
 \begin{itemize}
 \tightlist
@@ -233,18 +251,18 @@ Para fazer este curso instale os seguintes pacotes como indicado:
   \end{itemize}
 \item
   \href{https://github.com/r-spatial/sf}{sf},
-  \href{https://github.com/r-spatial/mapbiew}{mapview}, raster, sp,
+  \href{https://github.com/r-spatial/mapview}{mapview}, raster, sp,
   rgdal, maptools e fields tratam dados espaciais. Lembre-se que os
   objetos em Meteorologia são espaço-temporais
 \item
   ncdf4 é um pacote para manipular arquivos NetCDF
 \item
+  \href{http://davidcarslaw.github.io/openair/}{openair} é um pacote
+  para trabalhar com dados de qualidade do ar e Meteorologia
+\item
   \href{https://ibarraespinosa.github.io/cptcity/}{cptcity} é um pacote
   que tem 7140 paletas de cores do arquivo web
   \href{http://soliton.vm.bytemark.co.uk/pub/cpt-city/index.html}{cpt-city}
-\item
-  \href{http://davidcarslaw.github.io/openair/}{openair} é um pacote
-  para trabalhar com dados de qualidade do ar e Meteorologia
 \end{itemize}
 
 Preste atenção na instalação dos pacotes pois eles podem precisar de
@@ -252,13 +270,13 @@ dependências do sistema.
 
 \section{Colaborar}\label{colaborar}
 
-A melhor forma de colaboração é com \emph{pull requests} em
-\url{https://github.com/ibarraespinosa/cursoR/pull/new/master}. Aplique
-o \href{https://google.github.io/styleguide/Rguide.xml}{Guia de Estilo
-de R do Google} ou o formato
-\href{https://yihui.name/formatr/}{formatR}. Em poucas palavras, lembre
-que seu código vai ser lido por seres humanos. É possível editar
-qualquer página usando um dos botões acima.
+A melhor forma de colaboração é com
+\href{https://github.com/iagdevs/cursoR/pull/new/master}{\emph{pull
+requests} no repositório do curso}. Aplique o
+\href{https://google.github.io/styleguide/Rguide.xml}{Guia de Estilo de
+R do Google} ou o formato \href{https://yihui.name/formatr/}{formatR}.
+Em poucas palavras, lembre que seu código vai ser lido por seres
+humanos. É possível editar qualquer página usando um dos botões acima.
 
 \section{Compartilhar dados}\label{compartilhar-dados}
 
@@ -280,7 +298,7 @@ edite este arquivo e faça um \emph{pull request}.
 
 Este curso é voltado para os alunos de pós-graduação, dessa forma,
 veremos os conceitos rapidamente. Caso não haja tempo, o conteúdo ficará
-online no link: \url{https://github.com/atmoschem/cursorIAG}.
+online no link: \url{https://github.com/iagdevs/cursoR}.
 
 Sempre que tiver uma dúvida, tente utilizar:
 \href{http://stat.ethz.ch/R-manual/R-devel/library/base/html/00Index.html}{BASE}.
@@ -302,22 +320,35 @@ Outros pacotes BASE:
 \href{https://stat.ethz.ch/R-manual/R-devel/library/stats4/html/00Index.html}{stats4}.
 
 Acesse
-\href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{outros}
-para a lista de pacotes disponíveis.
+\href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{aqui}
+a lista de pacotes disponíveis.
 
 Este curso foi baseado no livro
-\href{https://leanpub.com/rprogramming}{R Programming for Data Science}.
+\href{https://leanpub.com/rprogramming}{R Programming for Data Science}
+e possui {exercícios} a serem resolvidos, {perguntas} que ajudam a
+entender conceitos e {desafios} para aprofundar os conhecimentos
+adquiridos.
 
-Neste curso iremos utilizar \href{https://www.rstudio.com/}{Rstudio}
+Neste curso iremos utilizar o software
+\href{https://www.rstudio.com/}{RStudio}. A imagem abaixo resume um
+pouco das funcionalidades disponíveis.
 
-\textbf{Dica:}
+\begin{figure}
+\centering
+\includegraphics{figuras/rstudio_ide.png}
+\caption{Fonte:
+\href{https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf}{RStudio
+IDE Cheatsheet}}
+\end{figure}
+
+\textbf{Dicas:}
 
 \begin{itemize}
 \tightlist
 \item
-  Se não souber usar uma função, escreva: \texttt{?função}.
+  Se não souber usar uma função, escreva: \texttt{?função}
 \item
-  As funções tem argumentos, use \textbf{TAB} para vê-los numa função.
+  As funções tem argumentos, use \textbf{TAB} para vê-los numa função
 \end{itemize}
 
 \section{IMPORTANTE}\label{importante}
@@ -325,15 +356,33 @@ Neste curso iremos utilizar \href{https://www.rstudio.com/}{Rstudio}
 \begin{itemize}
 \tightlist
 \item
-  \textbf{TAB} no \textbf{RSTUDIO}.
+  \textbf{TAB} no \textbf{RStudio}
 \end{itemize}
 
 Isso te ajudará a evitar coisas como: grafia errada da função, verificar
 se a função existe, verificar argumentos, etc\ldots{} Use sempre!
 
-\includegraphics[width=5.88in]{figuras/tab-key-}
+\includegraphics{figuras/tab-key-.jpeg}
 
-Vamos começar!
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Stack Overflow}
+  (\href{https://stackoverflow.com/questions/tagged/r}{Veja as últimas
+  das mais de 240000 (!!!) perguntas sobre R})
+\end{itemize}
+
+Melhor forma de resolver problemas! Acredite, é praticamente impossível
+existir um problema que outra pessoa não tenha resolvido pelo Stack
+Overflow.
+
+\begin{quote}
+\emph{Eu mesma só precisei fazer \textbf{uma} pergunta no Stack Overflow
+(e acabei respondendo eu mesma depois de resolver) usando R há uns 5
+anos!} - Camila.
+\end{quote}
+
+\textbf{Vamos começar!}
 
 \chapter{R!}\label{r}
 
@@ -704,7 +753,21 @@ R também tem classes de tempo e data:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2018-04-05 12:00:00 Americas"
+## Warning in strptime(x, "%Y-%m-%d-%H-%M-%OS", tz = tz): unknown timezone
+## 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(strptime(x, "%Y-%m-%d-%H-%M-%OS", tz = tz), :
+## unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "2018-04-05 12:00:00 GMT"
 \end{verbatim}
 
 Tempo
@@ -717,7 +780,21 @@ Tempo
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2018-04-05 Americas"
+## Warning in strptime(x, "%Y-%m-%d-%H-%M-%OS", tz = tz): unknown timezone
+## 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(strptime(x, "%Y-%m-%d-%H-%M-%OS", tz = tz), :
+## unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "2018-04-05 GMT"
 \end{verbatim}
 
 Caso você precise, o pacote
@@ -734,18 +811,18 @@ trabalhar com nano segundos.
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "2018-05-22 22:10:06 -03" "2018-05-22 23:10:06 -03"
-##  [3] "2018-05-23 00:10:06 -03" "2018-05-23 01:10:06 -03"
-##  [5] "2018-05-23 02:10:06 -03" "2018-05-23 03:10:06 -03"
-##  [7] "2018-05-23 04:10:06 -03" "2018-05-23 05:10:06 -03"
-##  [9] "2018-05-23 06:10:06 -03" "2018-05-23 07:10:06 -03"
-## [11] "2018-05-23 08:10:06 -03" "2018-05-23 09:10:06 -03"
-## [13] "2018-05-23 10:10:06 -03" "2018-05-23 11:10:06 -03"
-## [15] "2018-05-23 12:10:06 -03" "2018-05-23 13:10:06 -03"
-## [17] "2018-05-23 14:10:06 -03" "2018-05-23 15:10:06 -03"
-## [19] "2018-05-23 16:10:06 -03" "2018-05-23 17:10:06 -03"
-## [21] "2018-05-23 18:10:06 -03" "2018-05-23 19:10:06 -03"
-## [23] "2018-05-23 20:10:06 -03" "2018-05-23 21:10:06 -03"
+##  [1] "2018-05-31 18:38:49 -03" "2018-05-31 19:38:49 -03"
+##  [3] "2018-05-31 20:38:49 -03" "2018-05-31 21:38:49 -03"
+##  [5] "2018-05-31 22:38:49 -03" "2018-05-31 23:38:49 -03"
+##  [7] "2018-06-01 00:38:49 -03" "2018-06-01 01:38:49 -03"
+##  [9] "2018-06-01 02:38:49 -03" "2018-06-01 03:38:49 -03"
+## [11] "2018-06-01 04:38:49 -03" "2018-06-01 05:38:49 -03"
+## [13] "2018-06-01 06:38:49 -03" "2018-06-01 07:38:49 -03"
+## [15] "2018-06-01 08:38:49 -03" "2018-06-01 09:38:49 -03"
+## [17] "2018-06-01 10:38:49 -03" "2018-06-01 11:38:49 -03"
+## [19] "2018-06-01 12:38:49 -03" "2018-06-01 13:38:49 -03"
+## [21] "2018-06-01 14:38:49 -03" "2018-06-01 15:38:49 -03"
+## [23] "2018-06-01 16:38:49 -03" "2018-06-01 17:38:49 -03"
 \end{verbatim}
 
 funções úteis: \textbf{weekdays}, \textbf{month}, \textbf{julian}
@@ -757,10 +834,12 @@ funções úteis: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "terça"  "terça"  "quarta" "quarta" "quarta" "quarta" "quarta"
-##  [8] "quarta" "quarta" "quarta" "quarta" "quarta" "quarta" "quarta"
-## [15] "quarta" "quarta" "quarta" "quarta" "quarta" "quarta" "quarta"
-## [22] "quarta" "quarta" "quarta"
+##  [1] "quinta-feira" "quinta-feira" "quinta-feira" "quinta-feira"
+##  [5] "quinta-feira" "quinta-feira" "sexta-feira"  "sexta-feira" 
+##  [9] "sexta-feira"  "sexta-feira"  "sexta-feira"  "sexta-feira" 
+## [13] "sexta-feira"  "sexta-feira"  "sexta-feira"  "sexta-feira" 
+## [17] "sexta-feira"  "sexta-feira"  "sexta-feira"  "sexta-feira" 
+## [21] "sexta-feira"  "sexta-feira"  "sexta-feira"  "sexta-feira"
 \end{verbatim}
 
 \begin{Shaded}
@@ -770,9 +849,9 @@ funções úteis: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio"
-## [11] "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio" "maio"
-## [21] "maio" "maio" "maio" "maio"
+##  [1] "maio"  "maio"  "maio"  "maio"  "maio"  "maio"  "junho" "junho"
+##  [9] "junho" "junho" "junho" "junho" "junho" "junho" "junho" "junho"
+## [17] "junho" "junho" "junho" "junho" "junho" "junho" "junho" "junho"
 \end{verbatim}
 
 \begin{Shaded}
@@ -783,10 +862,10 @@ funções úteis: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 
 \begin{verbatim}
 ## Time differences in days
-##  [1] 17674.05 17674.09 17674.13 17674.17 17674.22 17674.26 17674.30
-##  [8] 17674.34 17674.38 17674.42 17674.47 17674.51 17674.55 17674.59
-## [15] 17674.63 17674.67 17674.72 17674.76 17674.80 17674.84 17674.88
-## [22] 17674.92 17674.97 17675.01
+##  [1] 17682.90 17682.94 17682.99 17683.03 17683.07 17683.11 17683.15
+##  [8] 17683.19 17683.24 17683.28 17683.32 17683.36 17683.40 17683.44
+## [15] 17683.49 17683.53 17683.57 17683.61 17683.65 17683.69 17683.74
+## [22] 17683.78 17683.82 17683.86
 ## attr(,"origin")
 ## [1] "1970-01-01 GMT"
 \end{verbatim}
@@ -821,28 +900,41 @@ semana.
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] terça   terça   quarta  quarta  quarta  quarta  quarta  quarta 
-##   [9] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [17] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [25] quarta  quarta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [33] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [41] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [49] quinta  quinta  sexta   sexta   sexta   sexta   sexta   sexta  
-##  [57] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [65] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [73] sexta   sexta   sábado  sábado  sábado  sábado  sábado  sábado 
-##  [81] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-##  [89] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-##  [97] sábado  sábado  domingo domingo domingo domingo domingo domingo
-## [105] domingo domingo domingo domingo domingo domingo domingo domingo
-## [113] domingo domingo domingo domingo domingo domingo domingo domingo
-## [121] domingo domingo segunda segunda segunda segunda segunda segunda
-## [129] segunda segunda segunda segunda segunda segunda segunda segunda
-## [137] segunda segunda segunda segunda segunda segunda segunda segunda
-## [145] segunda segunda terça   terça   terça   terça   terça   terça  
-## [153] terça   terça   terça   terça   terça   terça   terça   terça  
-## [161] terça   terça   terça   terça   terça   terça   terça   terça  
-## Levels: domingo quarta quinta sábado segunda sexta terça
+##   [1] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+##   [6] quinta-feira  sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [11] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [16] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [21] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [26] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [31] sábado        sábado        sábado        sábado        sábado       
+##  [36] sábado        sábado        sábado        sábado        sábado       
+##  [41] sábado        sábado        sábado        sábado        sábado       
+##  [46] sábado        sábado        sábado        sábado        sábado       
+##  [51] sábado        sábado        sábado        sábado        domingo      
+##  [56] domingo       domingo       domingo       domingo       domingo      
+##  [61] domingo       domingo       domingo       domingo       domingo      
+##  [66] domingo       domingo       domingo       domingo       domingo      
+##  [71] domingo       domingo       domingo       domingo       domingo      
+##  [76] domingo       domingo       domingo       segunda-feira segunda-feira
+##  [81] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+##  [86] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+##  [91] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+##  [96] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+## [101] segunda-feira segunda-feira terça-feira   terça-feira   terça-feira  
+## [106] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [111] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [116] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [121] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [126] terça-feira   quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [131] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [136] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [141] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [146] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [151] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+## [156] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+## [161] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+## [166] quinta-feira  quinta-feira  quinta-feira 
+## 7 Levels: domingo quarta-feira quinta-feira sábado ... terça-feira
 \end{verbatim}
 
 São muito úteis para regressões, plotes e resumos estatísitcos.
@@ -949,10 +1041,10 @@ composto por vetores com comprimento IGUAL
 ## [1] 3 1
 \end{verbatim}
 
-\chapter{Importando e exportando dados em
-R}\label{importando-e-exportando-dados-em-r}
+\chapter{Importando e Exportando
+Dados}\label{importando-e-exportando-dados}
 
-\section{data-frames}\label{data-frames}
+\section{Data Frames}\label{data-frames}
 
 Probabelmente um dos promeiros objetos que vamos usar quando começamos
 usar R. Pensa num data-frame como uma planilha de Libreoffice (o excel).
@@ -1013,22 +1105,22 @@ primeiras e as ultimas 6 linhas do data-frame.
 \end{Shaded}
 
 \begin{verbatim}
-##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
-## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
-## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
-## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
-## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
-## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
-## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
-##   CodigoEstação                NomeEstação              NomeParâmetro
-## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
+## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
+## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
+## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
+## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
+## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
+## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
+##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
+## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido
-## 2             ppb            9          -    Não
+## 2             ppb            9          -   NÃ£o
 ## 3             ppb            9          -    Sim
 ## 4             ppb            5          -    Sim
 ## 5             ppb            4          -    Sim
@@ -1043,27 +1135,34 @@ primeiras e as ultimas 6 linhas do data-frame.
 \end{Shaded}
 
 \begin{verbatim}
-##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
-## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
-## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
-## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
-## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
-## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
-## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
-##      CodigoEstação                NomeEstação              NomeParâmetro
-## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-##      UnidadedeMedida MediaHoraria MediaMovel Valido
-## 8577             ppb            3          -    Sim
-## 8578             ppb            8          -    Sim
-## 8579             ppb           11          -    Sim
-## 8580             ppb           11          -    Sim
-## 8581             ppb           16          -    Sim
-## 8582             ppb           NA          -    Sim
+##       TipodeRede TipodeMonitoramento             Tipo       Data  Hora
+## 8577 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 19:00
+## 8578 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 20:00
+## 8579 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 21:00
+## 8580 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 22:00
+## 8581 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 23:00
+## 8582 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 24:00
+##      CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o
+## 8577              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8578              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8579              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8580              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8581              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8582              95 Cid.UniversitÃ¡ria-USP-Ipen
+##                    NomeParÃ.metro UnidadedeMedida MediaHoraria MediaMovel
+## 8577 NOx (Ã“xidos de NitrogÃªnio)             ppb            3          -
+## 8578 NOx (Ã“xidos de NitrogÃªnio)             ppb            8          -
+## 8579 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
+## 8580 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
+## 8581 NOx (Ã“xidos de NitrogÃªnio)             ppb           16          -
+## 8582 NOx (Ã“xidos de NitrogÃªnio)             ppb           NA          -
+##      Valido
+## 8577    Sim
+## 8578    Sim
+## 8579    Sim
+## 8580    Sim
+## 8581    Sim
+## 8582    Sim
 \end{verbatim}
 
 Agora vamos ler os mesmos dados com outro formato e testar e read.table
@@ -1103,22 +1202,22 @@ lero arquivo assim:
 \end{Shaded}
 
 \begin{verbatim}
-##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
-## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
-## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
-## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
-## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
-## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
-## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
-##   CodigoEstação                NomeEstação              NomeParâmetro
-## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
+## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
+## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
+## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
+## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
+## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
+## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
+##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
+## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido
-## 2             ppb            9          -    Não
+## 2             ppb            9          -   NÃ£o
 ## 3             ppb            9          -    Sim
 ## 4             ppb            5          -    Sim
 ## 5             ppb            4          -    Sim
@@ -1133,33 +1232,41 @@ lero arquivo assim:
 \end{Shaded}
 
 \begin{verbatim}
-##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
-## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
-## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
-## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
-## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
-## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
-## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
-##      CodigoEstação                NomeEstação              NomeParâmetro
-## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-##      UnidadedeMedida MediaHoraria MediaMovel Valido
-## 8577             ppb            3          -    Sim
-## 8578             ppb            8          -    Sim
-## 8579             ppb           11          -    Sim
-## 8580             ppb           11          -    Sim
-## 8581             ppb           16          -    Sim
-## 8582             ppb           NA          -    Sim
+##       TipodeRede TipodeMonitoramento             Tipo       Data  Hora
+## 8577 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 19:00
+## 8578 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 20:00
+## 8579 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 21:00
+## 8580 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 22:00
+## 8581 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 23:00
+## 8582 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 24:00
+##      CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o
+## 8577              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8578              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8579              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8580              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8581              95 Cid.UniversitÃ¡ria-USP-Ipen
+## 8582              95 Cid.UniversitÃ¡ria-USP-Ipen
+##                    NomeParÃ.metro UnidadedeMedida MediaHoraria MediaMovel
+## 8577 NOx (Ã“xidos de NitrogÃªnio)             ppb            3          -
+## 8578 NOx (Ã“xidos de NitrogÃªnio)             ppb            8          -
+## 8579 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
+## 8580 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
+## 8581 NOx (Ã“xidos de NitrogÃªnio)             ppb           16          -
+## 8582 NOx (Ã“xidos de NitrogÃªnio)             ppb           NA          -
+##      Valido
+## 8577    Sim
+## 8578    Sim
+## 8579    Sim
+## 8580    Sim
+## 8581    Sim
+## 8582    Sim
 \end{verbatim}
 
-\subsection{Qua dificultades tu já enfrentou importando
-dados?}\label{qua-dificultades-tu-ja-enfrentou-importando-dados}
+\textbf{Qua dificultades tu já enfrentou importando dados?}
 
-\section{\texorpdfstring{Exportando texto com
+\section{BASE}\label{base}
+
+\subsection{\texorpdfstring{Exportando texto com
 \texttt{write.table}}{Exportando texto com write.table}}\label{exportando-texto-com-write.table}
 
 Exportar é bem facil, mas se sabemos os argumentos das funções, vai ser
@@ -1198,7 +1305,7 @@ col.names se tu quer o nome nas colunas\ldots{}
 
 \textbf{PRATICA!}
 
-\section{\texorpdfstring{Exportando objetos com
+\subsection{\texorpdfstring{Exportando objetos com
 \texttt{save}}{Exportando objetos com save}}\label{exportando-objetos-com-save}
 
 \begin{Shaded}
@@ -1252,7 +1359,7 @@ somos imperfeito, vai dar merda\ldots{}.
 O melhor da função é que permite salvar com tipos de compressão, por
 exemplo compress = ``xz''.
 
-\section{\texorpdfstring{Exportando objetos com
+\subsection{\texorpdfstring{Exportando objetos com
 \texttt{saveRDS}}{Exportando objetos com saveRDS}}\label{exportando-objetos-com-saverds}
 
 Esta é uma das minhas funçoes favoritas no R
@@ -1299,7 +1406,7 @@ quiser.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{processing_dfs}{\section{Processando nossa
+\hypertarget{processing_dfs}{\subsection{Processando nossa
 data-frame}\label{processing_dfs}}
 
 Tem numeroas formas e pacotes para ordenar, arrangiar (Arrange), mutar e
@@ -1320,9 +1427,9 @@ uma olhada em \texttt{?sapply}.
 \begin{verbatim}
 ##          TipodeRede TipodeMonitoramento                Tipo 
 ##            "factor"            "factor"            "factor" 
-##                Data                Hora       CodigoEstação 
+##                Data                Hora     CodigoEstaÃ.Ã.o 
 ##            "factor"            "factor"           "integer" 
-##         NomeEstação       NomeParâmetro     UnidadedeMedida 
+##       NomeEstaÃ.Ã.o      NomeParÃ.metro     UnidadedeMedida 
 ##            "factor"            "factor"            "factor" 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           "integer"            "factor"            "factor"
@@ -1332,7 +1439,7 @@ Quando nos trabalhamos com series de tempo, é importante ter a variabel
 de tempo reconhecida como ``tempo'', especificamente como classe
 ``POSIXct''. Mas, a classe de Data é ``factor'' e de Hora tambem
 ``factor'', o que é ruim. Então, vamos criar uma variabel de tempo mais
-standard com formato 2018-05-22 22:10:09.
+standard com formato 2018-05-31 18:38:52.
 
 Para isso temos que grudar as variabel Data e Hora. Faremios isso numa
 nova varaibel chamada tempo\_char, adicionando ela diretamente no
@@ -1383,14 +1490,33 @@ Então, vamos criar outra variabel tempo o formato POSIXct
 \begin{Highlighting}[]
 \NormalTok{df}\OperatorTok{$}\NormalTok{tempo <-}\StringTok{ }\KeywordTok{as.POSIXct}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df}\OperatorTok{$}\NormalTok{tempo_char, }\DataTypeTok{tz =} \StringTok{"Americas/Sao_Paulo"}\NormalTok{, }
                        \DataTypeTok{format =} \StringTok{"%d/%m/%Y %H:%M"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in strptime(x, format, tz = tz): unknown timezone 'Americas/
+## Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(as.POSIXlt(x, tz, ...), tz, ...): unknown
+## timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{head}\NormalTok{(df}\OperatorTok{$}\NormalTok{tempo)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2014-01-01 01:00:00 Americas" "2014-01-01 02:00:00 Americas"
-## [3] "2014-01-01 03:00:00 Americas" "2014-01-01 04:00:00 Americas"
-## [5] "2014-01-01 05:00:00 Americas" "2014-01-01 06:00:00 Americas"
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "2014-01-01 01:00:00 GMT" "2014-01-01 02:00:00 GMT"
+## [3] "2014-01-01 03:00:00 GMT" "2014-01-01 04:00:00 GMT"
+## [5] "2014-01-01 05:00:00 GMT" "2014-01-01 06:00:00 GMT"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1408,17 +1534,36 @@ Agora, vamos a extraer os dias da semana do tempo, mes e dia juliano:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df}\OperatorTok{$}\NormalTok{weekdays <-}\StringTok{ }\KeywordTok{format}\NormalTok{(df}\OperatorTok{$}\NormalTok{tempo, }\StringTok{"%A"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{head}\NormalTok{(df}\OperatorTok{$}\NormalTok{weekdays)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "quarta" "quarta" "quarta" "quarta" "quarta" "quarta"
+## [1] "quarta-feira" "quarta-feira" "quarta-feira" "quarta-feira"
+## [5] "quarta-feira" "quarta-feira"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df}\OperatorTok{$}\NormalTok{mes <-}\StringTok{ }\KeywordTok{format}\NormalTok{(df}\OperatorTok{$}\NormalTok{tempo, }\StringTok{"%B"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{head}\NormalTok{(df}\OperatorTok{$}\NormalTok{mes)}
 \end{Highlighting}
 \end{Shaded}
@@ -1445,7 +1590,11 @@ Agora, vamos a extraer os dias da semana do tempo, mes e dia juliano:
 \end{Highlighting}
 \end{Shaded}
 
-\section{aggregate}\label{aggregate}
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\subsection{aggregate}\label{aggregate}
 
 Vamos a carregar a nossa data.frame. Primero uma olhada
 
@@ -1456,34 +1605,38 @@ Vamos a carregar a nossa data.frame. Primero uma olhada
 \end{Shaded}
 
 \begin{verbatim}
-##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
-## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
-## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
-## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
-## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
-## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
-## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
-##   CodigoEstação                NomeEstação              NomeParâmetro
-## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
+## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
+## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
+## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
+## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
+## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
+## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
+##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
+## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
-## 2             ppb            9          -    Não 01/01/2014 01:00
+## 2             ppb            9          -   NÃ£o 01/01/2014 01:00
 ## 3             ppb            9          -    Sim 01/01/2014 02:00
 ## 4             ppb            5          -    Sim 01/01/2014 03:00
 ## 5             ppb            4          -    Sim 01/01/2014 04:00
 ## 6             ppb            5          -    Sim 01/01/2014 05:00
 ## 7             ppb            5          -    Sim 01/01/2014 06:00
-##                 tempo weekdays     mes    diajuliano  ano
-## 2 2014-01-01 01:00:00   quarta janeiro 16071.04 days 2014
-## 3 2014-01-01 02:00:00   quarta janeiro 16071.08 days 2014
-## 4 2014-01-01 03:00:00   quarta janeiro 16071.12 days 2014
-## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
-## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
-## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014
+##                 tempo     weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00 quarta-feira janeiro 16071.04 days 2014
+## 3 2014-01-01 02:00:00 quarta-feira janeiro 16071.08 days 2014
+## 4 2014-01-01 03:00:00 quarta-feira janeiro 16071.12 days 2014
+## 5 2014-01-01 04:00:00 quarta-feira janeiro 16071.17 days 2014
+## 6 2014-01-01 05:00:00 quarta-feira janeiro 16071.21 days 2014
+## 7 2014-01-01 06:00:00 quarta-feira janeiro 16071.25 days 2014
 \end{verbatim}
 
 Poderiamos calcular a media horaria por dia da semana. Então:
@@ -1496,14 +1649,14 @@ Poderiamos calcular a media horaria por dia da semana. Então:
 \end{Shaded}
 
 \begin{verbatim}
-##   Group.1     x
-## 1 domingo 20327
-## 2  quarta 40180
-## 3  quinta 41199
-## 4  sábado 32298
-## 5 segunda 34057
-## 6   sexta 42558
-## 7   terça 37904
+##         Group.1     x
+## 1       domingo 20327
+## 2  quarta-feira 40180
+## 3  quinta-feira 41199
+## 4        sábado 32298
+## 5 segunda-feira 34057
+## 6   sexta-feira 42558
+## 7   terça-feira 37904
 \end{verbatim}
 
 \begin{Shaded}
@@ -1522,17 +1675,17 @@ Poderiamos calcular a media horaria por dia da semana. Então:
 \end{Shaded}
 
 \begin{verbatim}
-##      dias MediaHoraria    sd
-## 1 domingo        20327 20327
-## 2  quarta        40180 40180
-## 3  quinta        41199 41199
-## 4  sábado        32298 32298
-## 5 segunda        34057 34057
-## 6   sexta        42558 42558
-## 7   terça        37904 37904
+##            dias MediaHoraria    sd
+## 1       domingo        20327 20327
+## 2  quarta-feira        40180 40180
+## 3  quinta-feira        41199 41199
+## 4        sábado        32298 32298
+## 5 segunda-feira        34057 34057
+## 6   sexta-feira        42558 42558
+## 7   terça-feira        37904 37904
 \end{verbatim}
 
-\section{subset}\label{subset}
+\subsection{subset}\label{subset}
 
 Como poderiamos escolher só o mes de janeiro??
 
@@ -1544,34 +1697,38 @@ Como poderiamos escolher só o mes de janeiro??
 \end{Shaded}
 
 \begin{verbatim}
-##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
-## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
-## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
-## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
-## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
-## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
-## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
-##   CodigoEstação                NomeEstação              NomeParâmetro
-## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
-## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
+## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
+## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
+## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
+## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
+## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
+## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
+##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
+## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
-## 2             ppb            9          -    Não 01/01/2014 01:00
+## 2             ppb            9          -   NÃ£o 01/01/2014 01:00
 ## 3             ppb            9          -    Sim 01/01/2014 02:00
 ## 4             ppb            5          -    Sim 01/01/2014 03:00
 ## 5             ppb            4          -    Sim 01/01/2014 04:00
 ## 6             ppb            5          -    Sim 01/01/2014 05:00
 ## 7             ppb            5          -    Sim 01/01/2014 06:00
-##                 tempo weekdays     mes    diajuliano  ano
-## 2 2014-01-01 01:00:00   quarta janeiro 16071.04 days 2014
-## 3 2014-01-01 02:00:00   quarta janeiro 16071.08 days 2014
-## 4 2014-01-01 03:00:00   quarta janeiro 16071.12 days 2014
-## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
-## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
-## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014
+##                 tempo     weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00 quarta-feira janeiro 16071.04 days 2014
+## 3 2014-01-01 02:00:00 quarta-feira janeiro 16071.08 days 2014
+## 4 2014-01-01 03:00:00 quarta-feira janeiro 16071.12 days 2014
+## 5 2014-01-01 04:00:00 quarta-feira janeiro 16071.17 days 2014
+## 6 2014-01-01 05:00:00 quarta-feira janeiro 16071.21 days 2014
+## 7 2014-01-01 06:00:00 quarta-feira janeiro 16071.25 days 2014
 \end{verbatim}
 
 Mes janeiro pero solo o valor mediahoraria, que retorna um vetor
@@ -1585,8 +1742,8 @@ numerico
 
 \begin{verbatim}
 ##  [1] "TipodeRede"          "TipodeMonitoramento" "Tipo"               
-##  [4] "Data"                "Hora"                "CodigoEstação"      
-##  [7] "NomeEstação"         "NomeParâmetro"       "UnidadedeMedida"    
+##  [4] "Data"                "Hora"                "CodigoEstaÃ.Ã.o"    
+##  [7] "NomeEstaÃ.Ã.o"       "NomeParÃ.metro"      "UnidadedeMedida"    
 ## [10] "MediaHoraria"        "MediaMovel"          "Valido"             
 ## [13] "tempo_char"          "tempo"               "weekdays"           
 ## [16] "mes"                 "diajuliano"          "ano"
@@ -1626,11 +1783,12 @@ Mas vamos salvar o nosso ``df''
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{saveRDS}\NormalTok{(df, }\StringTok{"df.rds"}\NormalTok{)}
+\KeywordTok{saveRDS}\NormalTok{(df, }\StringTok{"dados/df.rds"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\section{data.table, read\_xl e mais}\label{data.table-read_xl-e-mais}
+\subsection{data.table, read\_xl e
+mais}\label{data.table-read_xl-e-mais}
 
 data.table é um pacote que apresenta a classe \texttt{data.table}, que é
 como uma versão melhorada da classe \texttt{data-frame} O termo
@@ -1648,7 +1806,7 @@ quanto tempo demoram cada um.
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.107   0.008   1.275
+##    1.08    0.00    1.08
 \end{verbatim}
 
 \begin{Shaded}
@@ -1660,7 +1818,7 @@ quanto tempo demoram cada um.
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.024   0.000   0.081
+##    0.01    0.00    0.02
 \end{verbatim}
 
 olha que estamos usando a função \texttt{fread}.
@@ -1668,7 +1826,14 @@ olha que estamos usando a função \texttt{fread}.
 read\_xl é mais uma função do universo tidyverse que permite importar
 excel no R, diretamente e inteligentemente.
 
-\section{NetCDF}\label{netcdf}
+\section{Tidyverse}\label{tidyverse}
+
+\subsection{\texorpdfstring{Leitura \texttt{\%\textgreater{}\%}
+Processamento}{Leitura \%\textgreater{}\% Processamento}}\label{leitura-processamento}
+
+\section{Outros Tipos de Dados}\label{outros-tipos-de-dados}
+
+\subsection{NetCDF (Linux o MacOS)}\label{netcdf-linux-o-macos}
 
 O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de
 software e formatos de dados independentes de máquina e autodescritivos
@@ -1696,15 +1861,33 @@ Um exmplo de NetCDF:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{download.file}\NormalTok{(}\StringTok{"https://github.com/ibarraespinosa/cursoR/raw/master/dados/met_em.d03.2016-01-10.nc"}\NormalTok{, }\DataTypeTok{destfile =} \StringTok{"~/met_em.d03.2016-01-10.nc"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{Sys.info}\NormalTok{()[[}\StringTok{"sysname"}\NormalTok{]] }\OperatorTok{==}\StringTok{ "Windows"}\NormalTok{)\{}
+\KeywordTok{print}\NormalTok{(}\StringTok{"Use Linux"}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\KeywordTok{download.file}\NormalTok{(}\StringTok{"https://github.com/iagdevs/cursoR/raw/master/dados/met_em.d03.2016-01-10.nc"}\NormalTok{,}
+                \DataTypeTok{destfile =} \StringTok{"dados/met_em.d03.2016-01-10.nc"}\NormalTok{)}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## [1] "Use Linux"
+\end{verbatim}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wrf <-}\StringTok{ }\NormalTok{ncdf4}\OperatorTok{::}\KeywordTok{nc_open}\NormalTok{(}\StringTok{"~/met_em.d03.2016-01-10.nc"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{Sys.info}\NormalTok{()[[}\StringTok{"sysname"}\NormalTok{]] }\OperatorTok{==}\StringTok{ "Windows"}\NormalTok{)\{}
+  
+  \KeywordTok{print}\NormalTok{(}\StringTok{"Use Linux"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{wrf <-}\StringTok{ }\NormalTok{ncdf4}\OperatorTok{::}\KeywordTok{nc_open}\NormalTok{(}\DataTypeTok{filename =} \StringTok{"dados/met_em.nc"}\NormalTok{, }\DataTypeTok{verbose =}\NormalTok{ T)}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## [1] "Use Linux"
+\end{verbatim}
 
 O objeto \texttt{wrf} contém algumas informações sobre o conteúdo do
 arquivo, com um \texttt{print(wrf)} ou simplesmente \texttt{wrf}
@@ -1713,876 +1896,9 @@ visualizamos o conteúdo do arquivo:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{class}\NormalTok{(wrf)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "ncdf4"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{wrf}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## File ~/met_em.d03.2016-01-10.nc (NC_FORMAT_64BIT):
-## 
-##      92 variables (excluding dimension variables):
-##         char Times[DateStrLen,Time]   
-##         float PRES[west_east,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: 
-##             description: 
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOIL_LAYERS[west_east,south_north,num_st_layers,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: 
-##             description: 
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM[west_east,south_north,num_sm_layers,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: 
-##             description: 
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST[west_east,south_north,num_st_layers,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: 
-##             description: 
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float GHT[west_east,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: m
-##             description: Height
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float HGTTROP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m
-##             description: Height of tropopause
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float TTROP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: Temperature at tropopause
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PTROPNN[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: PTROP, used for nearest neighbor interp
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PTROP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: Pressure of tropopause
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VTROP[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m s-1
-##             description: V                 at tropopause
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float UTROP[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m s-1
-##             description: U                 at tropopause
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float HGTMAXW[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m
-##             description: Height of max wind level
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float TMAXW[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: Temperature at max wind level
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PMAXWNN[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: PMAXW, used for nearest neighbor interp
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PMAXW[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: Pressure of max wind level
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VMAXW[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m s-1
-##             description: V                 at max wind
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float UMAXW[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m s-1
-##             description: U                 at max wind
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float SNOWH[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m
-##             description: Physical Snow Depth
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SNOW[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: kg m-2
-##             description: Water equivalent snow depth
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SKINTEMP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: Skin temperature
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOILHGT[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m
-##             description: Terrain field of source analysis
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LANDSEA[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: proprtn
-##             description: Land/Sea flag (1=land, 0 or 2=sea)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SEAICE[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: proprtn
-##             description: Ice flag
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST100200[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: T 100-200 cm below ground layer (Bottom)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST040100[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: T 40-100 cm below ground layer (Upper)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST010040[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: T 10-40 cm below ground layer (Upper)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST000010[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: T 0-10 cm below ground layer (Upper)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM100200[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: fraction
-##             description: Soil Moist 100-200 cm below gr layer
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM040100[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: fraction
-##             description: Soil Moist 40-100 cm below grn layer
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM010040[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: fraction
-##             description: Soil Moist 10-40 cm below grn layer
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM000010[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: fraction
-##             description: Soil Moist 0-10 cm below grn layer (Up)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PSFC[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: Surface Pressure
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float RH[west_east,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: %
-##             description: Relative Humidity
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VV[west_east,south_north_stag,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: m s-1
-##             description: V
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float UU[west_east_stag,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: m s-1
-##             description: U
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float TT[west_east,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: K
-##             description: Temperature
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PMSL[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: Sea-level Pressure
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float URB_PARAM[west_east,south_north,z-dimension0132,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: dimensionless
-##             description: Urban_Parameters
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LAKE_DEPTH[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: meters MSL
-##             description: Topography height
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VAR_SSO[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: meters2 MSL
-##             description: Variance of Subgrid Scale Orography
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OL4[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OL3[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OL2[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OL1[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OA4[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OA3[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OA2[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OA1[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VAR[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float CON[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SLOPECAT[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: category
-##             description: Dominant category
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SNOALB[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: percent
-##             description: Maximum snow albedo
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LAI12M[west_east,south_north,z-dimension0012,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: m^2/m^2
-##             description: MODIS LAI
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float GREENFRAC[west_east,south_north,z-dimension0012,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: fraction
-##             description: MODIS FPAR
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ALBEDO12M[west_east,south_north,z-dimension0012,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: percent
-##             description: Monthly surface albedo
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SCB_DOM[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: category
-##             description: Dominant category
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOILCBOT[west_east,south_north,z-dimension0016,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: category
-##             description: 16-category bottom-layer soil type
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SCT_DOM[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: category
-##             description: Dominant category
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOILCTOP[west_east,south_north,z-dimension0016,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: category
-##             description: 16-category top-layer soil type
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOILTEMP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Kelvin
-##             description: Annual mean deep soil temperature
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float HGT_M[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: meters MSL
-##             description: GMTED2010 30-arc-second topography height
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LU_INDEX[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: category
-##             description: Dominant category
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LANDUSEF[west_east,south_north,z-dimension0024,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: category
-##             description: 24-category USGS landuse
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float COSALPHA_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Cosine of rotation angle on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float SINALPHA_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Sine of rotation angle on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float COSALPHA_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Cosine of rotation angle on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float SINALPHA_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Sine of rotation angle on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float XLONG_C[west_east_stag,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Longitude at grid cell corners
-##             stagger: CORNER
-##             sr_x: 1
-##             sr_y: 1
-##         float XLAT_C[west_east_stag,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Latitude at grid cell corners
-##             stagger: CORNER
-##             sr_x: 1
-##             sr_y: 1
-##         float LANDMASK[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Landmask : 1=land, 0=water
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float COSALPHA[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Cosine of rotation angle
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SINALPHA[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Sine of rotation angle
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float F[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: -
-##             description: Coriolis F parameter
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float E[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: -
-##             description: Coriolis E parameter
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_UY[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (y-dir) on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_VY[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (y-dir) on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_MY[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (y-dir) on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_UX[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (x-dir) on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_VX[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (x-dir) on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_MX[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (x-dir) on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_M[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float CLONG[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Computational longitude on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float CLAT[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Computational latitude on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float XLONG_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Longitude on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float XLAT_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Latitude on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float XLONG_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Longitude on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float XLAT_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Latitude on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float XLONG_M[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Longitude on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float XLAT_M[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Latitude on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-## 
-##      13 dimensions:
-##         Time  Size:1   *** is unlimited ***
-##         DateStrLen  Size:19
-##         west_east  Size:51
-##         south_north  Size:51
-##         num_metgrid_levels  Size:27
-##         num_st_layers  Size:4
-##         num_sm_layers  Size:4
-##         south_north_stag  Size:52
-##         west_east_stag  Size:52
-##         z-dimension0132  Size:132
-##         z-dimension0012  Size:12
-##         z-dimension0016  Size:16
-##         z-dimension0024  Size:24
-## 
-##     76 global attributes:
-##         TITLE: OUTPUT FROM METGRID V3.9.1
-##         SIMULATION_START_DATE: 2016-01-10_00:00:00
-##         WEST-EAST_GRID_DIMENSION: 52
-##         SOUTH-NORTH_GRID_DIMENSION: 52
-##         BOTTOM-TOP_GRID_DIMENSION: 27
-##         WEST-EAST_PATCH_START_UNSTAG: 1
-##         WEST-EAST_PATCH_END_UNSTAG: 51
-##         WEST-EAST_PATCH_START_STAG: 1
-##         WEST-EAST_PATCH_END_STAG: 52
-##         SOUTH-NORTH_PATCH_START_UNSTAG: 1
-##         SOUTH-NORTH_PATCH_END_UNSTAG: 51
-##         SOUTH-NORTH_PATCH_START_STAG: 1
-##         SOUTH-NORTH_PATCH_END_STAG: 52
-##         GRIDTYPE: C
-##         DX: 1000
-##         DY: 1000
-##         DYN_OPT: 2
-##         CEN_LAT: -23.5996932983398
-##         CEN_LON: -46.6294555664062
-##         TRUELAT1: -23
-##         TRUELAT2: -24
-##         MOAD_CEN_LAT: -23.6000061035156
-##         STAND_LON: -45
-##         POLE_LAT: 90
-##         POLE_LON: 0
-##         corner_lats: -23.8218078613281
-##          corner_lats: -23.3720855712891
-##          corner_lats: -23.3771743774414
-##          corner_lats: -23.826904296875
-##          corner_lats: -23.8217391967773
-##          corner_lats: -23.3720245361328
-##          corner_lats: -23.3772277832031
-##          corner_lats: -23.8269424438477
-##          corner_lats: -23.826286315918
-##          corner_lats: -23.3675918579102
-##          corner_lats: -23.372673034668
-##          corner_lats: -23.8314056396484
-##          corner_lats: -23.8262329101562
-##          corner_lats: -23.3675231933594
-##          corner_lats: -23.3727111816406
-##          corner_lats: -23.8314437866211
-##         corner_lons: -46.8780517578125
-##          corner_lons: -46.8716430664062
-##          corner_lons: -46.3817138671875
-##          corner_lons: -46.3864440917969
-##          corner_lons: -46.8829650878906
-##          corner_lons: -46.8765258789062
-##          corner_lons: -46.3768005371094
-##          corner_lons: -46.3815307617188
-##          corner_lons: -46.8781127929688
-##          corner_lons: -46.87158203125
-##          corner_lons: -46.3816528320312
-##          corner_lons: -46.386474609375
-##          corner_lons: -46.8830261230469
-##          corner_lons: -46.87646484375
-##          corner_lons: -46.3767700195312
-##          corner_lons: -46.3815612792969
-##         MAP_PROJ: 1
-##         MMINLU: USGS
-##         NUM_LAND_CAT: 24
-##         ISWATER: 16
-##         ISLAKE: -1
-##         ISICE: 24
-##         ISURBAN: 1
-##         ISOILWATER: 14
-##         grid_id: 3
-##         parent_id: 2
-##         i_parent_start: 35
-##         j_parent_start: 33
-##         i_parent_end: 51
-##         j_parent_end: 49
-##         parent_grid_ratio: 3
-##         sr_x: 1
-##         sr_y: 1
-##         NUM_METGRID_SOIL_LEVELS: 4
-##         FLAG_METGRID: 1
-##         FLAG_EXCLUDED_MIDDLE: 0
-##         FLAG_SOIL_LAYERS: 1
-##         FLAG_SNOW: 1
-##         FLAG_PSFC: 1
-##         FLAG_SM000010: 1
-##         FLAG_SM010040: 1
-##         FLAG_SM040100: 1
-##         FLAG_SM100200: 1
-##         FLAG_ST000010: 1
-##         FLAG_ST010040: 1
-##         FLAG_ST040100: 1
-##         FLAG_ST100200: 1
-##         FLAG_SLP: 1
-##         FLAG_SNOWH: 1
-##         FLAG_SOILHGT: 1
-##         FLAG_UTROP: 1
-##         FLAG_VTROP: 1
-##         FLAG_TTROP: 1
-##         FLAG_PTROP: 1
-##         FLAG_PTROPNN: 1
-##         FLAG_HGTTROP: 1
-##         FLAG_UMAXW: 1
-##         FLAG_VMAXW: 1
-##         FLAG_TMAXW: 1
-##         FLAG_PMAXW: 1
-##         FLAG_PMAXWNN: 1
-##         FLAG_HGTMAXW: 1
-##         FLAG_MF_XY: 1
-##         FLAG_LAI12M: 1
-##         FLAG_LAKE_DEPTH: 1
-\end{verbatim}
 
 que mostra o nome do arquivo (e versão da biblioteca usada para criar),
 número de variáveis (92 no arquivo de exemplo), uma descrição de cada
@@ -2594,41 +1910,10 @@ Agora vamos abrir alguma variável:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{names}\NormalTok{(wrf}\OperatorTok{$}\NormalTok{var)                }\CommentTok{# print no nome de cada variavel}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "Times"       "PRES"        "SOIL_LAYERS" "SM"          "ST"         
-##  [6] "GHT"         "HGTTROP"     "TTROP"       "PTROPNN"     "PTROP"      
-## [11] "VTROP"       "UTROP"       "HGTMAXW"     "TMAXW"       "PMAXWNN"    
-## [16] "PMAXW"       "VMAXW"       "UMAXW"       "SNOWH"       "SNOW"       
-## [21] "SKINTEMP"    "SOILHGT"     "LANDSEA"     "SEAICE"      "ST100200"   
-## [26] "ST040100"    "ST010040"    "ST000010"    "SM100200"    "SM040100"   
-## [31] "SM010040"    "SM000010"    "PSFC"        "RH"          "VV"         
-## [36] "UU"          "TT"          "PMSL"        "URB_PARAM"   "LAKE_DEPTH" 
-## [41] "VAR_SSO"     "OL4"         "OL3"         "OL2"         "OL1"        
-## [46] "OA4"         "OA3"         "OA2"         "OA1"         "VAR"        
-## [51] "CON"         "SLOPECAT"    "SNOALB"      "LAI12M"      "GREENFRAC"  
-## [56] "ALBEDO12M"   "SCB_DOM"     "SOILCBOT"    "SCT_DOM"     "SOILCTOP"   
-## [61] "SOILTEMP"    "HGT_M"       "LU_INDEX"    "LANDUSEF"    "COSALPHA_V" 
-## [66] "SINALPHA_V"  "COSALPHA_U"  "SINALPHA_U"  "XLONG_C"     "XLAT_C"     
-## [71] "LANDMASK"    "COSALPHA"    "SINALPHA"    "F"           "E"          
-## [76] "MAPFAC_UY"   "MAPFAC_VY"   "MAPFAC_MY"   "MAPFAC_UX"   "MAPFAC_VX"  
-## [81] "MAPFAC_MX"   "MAPFAC_U"    "MAPFAC_V"    "MAPFAC_M"    "CLONG"      
-## [86] "CLAT"        "XLONG_U"     "XLAT_U"      "XLONG_V"     "XLAT_V"     
-## [91] "XLONG_M"     "XLAT_M"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{TEMP <-}\StringTok{ }\NormalTok{ncdf4}\OperatorTok{::}\KeywordTok{ncvar_get}\NormalTok{(wrf, }\StringTok{"TT"}\NormalTok{)  }\CommentTok{# escolho você picachu}
 \KeywordTok{class}\NormalTok{(TEMP)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## [1] "array"
-\end{verbatim}
 
 Como o NetCDF é organizado para guardar matrizes (arrays), só sabemos
 que a variável \texttt{ST} é um array
@@ -2636,41 +1921,9 @@ que a variável \texttt{ST} é um array
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{ncatt_get}\NormalTok{(wrf,}\StringTok{"TT"}\NormalTok{) }\CommentTok{# ou ncatt_get(wrf,"TT",verbose = T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $FieldType
-## [1] 104
-## 
-## $MemoryOrder
-## [1] "XYZ"
-## 
-## $units
-## [1] "K"
-## 
-## $description
-## [1] "Temperature"
-## 
-## $stagger
-## [1] "M"
-## 
-## $sr_x
-## [1] 1
-## 
-## $sr_y
-## [1] 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{dim}\NormalTok{(TEMP)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## [1] 51 51 27
-\end{verbatim}
 
 praticamente a mesma informação do print anterior:
 
@@ -2764,13 +2017,13 @@ permissão de leitura, como por exemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wrf     <-}\StringTok{ }\KeywordTok{nc_open}\NormalTok{(}\StringTok{"~/met_em.d03.2016-01-10.nc"}\NormalTok{, }\DataTypeTok{write=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{wrf     <-}\StringTok{ }\KeywordTok{nc_open}\NormalTok{(}\StringTok{"dados/met_em.nc"}\NormalTok{, }\DataTypeTok{write=}\OtherTok{TRUE}\NormalTok{)}
 \NormalTok{extrema <-}\StringTok{ }\KeywordTok{ncvar_def}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Tex"}\NormalTok{,}
                      \DataTypeTok{units =} \StringTok{"K"}\NormalTok{,}
                      \DataTypeTok{dim =} \KeywordTok{list}\NormalTok{(wrf}\OperatorTok{$}\NormalTok{dim}\OperatorTok{$}\NormalTok{west_east,}
 \NormalTok{                                wrf}\OperatorTok{$}\NormalTok{dim}\OperatorTok{$}\NormalTok{south_north,}
 \NormalTok{                                wrf}\OperatorTok{$}\NormalTok{dim}\OperatorTok{$}\NormalTok{Time),}
-                     \DataTypeTok{missval =} \DecValTok{-999}\NormalTok{,}
+                     \DataTypeTok{missval =} \OperatorTok{-}\DecValTok{999}\NormalTok{,}
                      \DataTypeTok{longname =} \StringTok{"temperatura extrema"}\NormalTok{)}
 \KeywordTok{ncvar_add}\NormalTok{(wrf, extrema)}
 \KeywordTok{names}\NormalTok{(wrf}\OperatorTok{$}\NormalTok{var)}
@@ -2785,868 +2038,10 @@ variável.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wrf     <-}\StringTok{ }\KeywordTok{nc_open}\NormalTok{(}\StringTok{"~/met_em.d03.2016-01-10.nc"}\NormalTok{,}\DataTypeTok{write=}\NormalTok{T)}
+\NormalTok{wrf     <-}\StringTok{ }\NormalTok{ncdf4}\OperatorTok{::}\KeywordTok{nc_open}\NormalTok{(}\StringTok{"dados/met_em.nc"}\NormalTok{,}\DataTypeTok{write=}\NormalTok{T)}
 \KeywordTok{print}\NormalTok{(wrf)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## File ~/met_em.d03.2016-01-10.nc (NC_FORMAT_64BIT):
-## 
-##      92 variables (excluding dimension variables):
-##         char Times[DateStrLen,Time]   
-##         float PRES[west_east,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: 
-##             description: 
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOIL_LAYERS[west_east,south_north,num_st_layers,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: 
-##             description: 
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM[west_east,south_north,num_sm_layers,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: 
-##             description: 
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST[west_east,south_north,num_st_layers,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: 
-##             description: 
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float GHT[west_east,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: m
-##             description: Height
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float HGTTROP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m
-##             description: Height of tropopause
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float TTROP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: Temperature at tropopause
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PTROPNN[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: PTROP, used for nearest neighbor interp
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PTROP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: Pressure of tropopause
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VTROP[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m s-1
-##             description: V                 at tropopause
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float UTROP[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m s-1
-##             description: U                 at tropopause
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float HGTMAXW[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m
-##             description: Height of max wind level
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float TMAXW[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: Temperature at max wind level
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PMAXWNN[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: PMAXW, used for nearest neighbor interp
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PMAXW[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: Pressure of max wind level
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VMAXW[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m s-1
-##             description: V                 at max wind
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float UMAXW[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m s-1
-##             description: U                 at max wind
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float SNOWH[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m
-##             description: Physical Snow Depth
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SNOW[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: kg m-2
-##             description: Water equivalent snow depth
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SKINTEMP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: Skin temperature
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOILHGT[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: m
-##             description: Terrain field of source analysis
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LANDSEA[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: proprtn
-##             description: Land/Sea flag (1=land, 0 or 2=sea)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SEAICE[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: proprtn
-##             description: Ice flag
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST100200[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: T 100-200 cm below ground layer (Bottom)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST040100[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: T 40-100 cm below ground layer (Upper)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST010040[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: T 10-40 cm below ground layer (Upper)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ST000010[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: K
-##             description: T 0-10 cm below ground layer (Upper)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM100200[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: fraction
-##             description: Soil Moist 100-200 cm below gr layer
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM040100[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: fraction
-##             description: Soil Moist 40-100 cm below grn layer
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM010040[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: fraction
-##             description: Soil Moist 10-40 cm below grn layer
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SM000010[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: fraction
-##             description: Soil Moist 0-10 cm below grn layer (Up)
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PSFC[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: Surface Pressure
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float RH[west_east,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: %
-##             description: Relative Humidity
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VV[west_east,south_north_stag,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: m s-1
-##             description: V
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float UU[west_east_stag,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: m s-1
-##             description: U
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float TT[west_east,south_north,num_metgrid_levels,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: K
-##             description: Temperature
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float PMSL[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Pa
-##             description: Sea-level Pressure
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float URB_PARAM[west_east,south_north,z-dimension0132,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: dimensionless
-##             description: Urban_Parameters
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LAKE_DEPTH[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: meters MSL
-##             description: Topography height
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VAR_SSO[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: meters2 MSL
-##             description: Variance of Subgrid Scale Orography
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OL4[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OL3[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OL2[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OL1[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OA4[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OA3[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OA2[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float OA1[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float VAR[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float CON[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: whoknows
-##             description: something
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SLOPECAT[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: category
-##             description: Dominant category
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SNOALB[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: percent
-##             description: Maximum snow albedo
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LAI12M[west_east,south_north,z-dimension0012,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: m^2/m^2
-##             description: MODIS LAI
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float GREENFRAC[west_east,south_north,z-dimension0012,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: fraction
-##             description: MODIS FPAR
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float ALBEDO12M[west_east,south_north,z-dimension0012,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: percent
-##             description: Monthly surface albedo
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SCB_DOM[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: category
-##             description: Dominant category
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOILCBOT[west_east,south_north,z-dimension0016,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: category
-##             description: 16-category bottom-layer soil type
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SCT_DOM[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: category
-##             description: Dominant category
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOILCTOP[west_east,south_north,z-dimension0016,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: category
-##             description: 16-category top-layer soil type
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SOILTEMP[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: Kelvin
-##             description: Annual mean deep soil temperature
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float HGT_M[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: meters MSL
-##             description: GMTED2010 30-arc-second topography height
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LU_INDEX[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: category
-##             description: Dominant category
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float LANDUSEF[west_east,south_north,z-dimension0024,Time]   
-##             FieldType: 104
-##             MemoryOrder: XYZ
-##             units: category
-##             description: 24-category USGS landuse
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float COSALPHA_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Cosine of rotation angle on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float SINALPHA_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Sine of rotation angle on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float COSALPHA_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Cosine of rotation angle on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float SINALPHA_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Sine of rotation angle on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float XLONG_C[west_east_stag,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Longitude at grid cell corners
-##             stagger: CORNER
-##             sr_x: 1
-##             sr_y: 1
-##         float XLAT_C[west_east_stag,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Latitude at grid cell corners
-##             stagger: CORNER
-##             sr_x: 1
-##             sr_y: 1
-##         float LANDMASK[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Landmask : 1=land, 0=water
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float COSALPHA[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Cosine of rotation angle
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float SINALPHA[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Sine of rotation angle
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float F[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: -
-##             description: Coriolis F parameter
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float E[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: -
-##             description: Coriolis E parameter
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_UY[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (y-dir) on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_VY[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (y-dir) on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_MY[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (y-dir) on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_UX[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (x-dir) on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_VX[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (x-dir) on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_MX[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor (x-dir) on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float MAPFAC_M[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: none
-##             description: Mapfactor on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float CLONG[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Computational longitude on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float CLAT[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Computational latitude on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float XLONG_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Longitude on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float XLAT_U[west_east_stag,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Latitude on U grid
-##             stagger: U
-##             sr_x: 1
-##             sr_y: 1
-##         float XLONG_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Longitude on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float XLAT_V[west_east,south_north_stag,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Latitude on V grid
-##             stagger: V
-##             sr_x: 1
-##             sr_y: 1
-##         float XLONG_M[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees longitude
-##             description: Longitude on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-##         float XLAT_M[west_east,south_north,Time]   
-##             FieldType: 104
-##             MemoryOrder: XY 
-##             units: degrees latitude
-##             description: Latitude on mass grid
-##             stagger: M
-##             sr_x: 1
-##             sr_y: 1
-## 
-##      13 dimensions:
-##         Time  Size:1   *** is unlimited ***
-##         DateStrLen  Size:19
-##         west_east  Size:51
-##         south_north  Size:51
-##         num_metgrid_levels  Size:27
-##         num_st_layers  Size:4
-##         num_sm_layers  Size:4
-##         south_north_stag  Size:52
-##         west_east_stag  Size:52
-##         z-dimension0132  Size:132
-##         z-dimension0012  Size:12
-##         z-dimension0016  Size:16
-##         z-dimension0024  Size:24
-## 
-##     76 global attributes:
-##         TITLE: OUTPUT FROM METGRID V3.9.1
-##         SIMULATION_START_DATE: 2016-01-10_00:00:00
-##         WEST-EAST_GRID_DIMENSION: 52
-##         SOUTH-NORTH_GRID_DIMENSION: 52
-##         BOTTOM-TOP_GRID_DIMENSION: 27
-##         WEST-EAST_PATCH_START_UNSTAG: 1
-##         WEST-EAST_PATCH_END_UNSTAG: 51
-##         WEST-EAST_PATCH_START_STAG: 1
-##         WEST-EAST_PATCH_END_STAG: 52
-##         SOUTH-NORTH_PATCH_START_UNSTAG: 1
-##         SOUTH-NORTH_PATCH_END_UNSTAG: 51
-##         SOUTH-NORTH_PATCH_START_STAG: 1
-##         SOUTH-NORTH_PATCH_END_STAG: 52
-##         GRIDTYPE: C
-##         DX: 1000
-##         DY: 1000
-##         DYN_OPT: 2
-##         CEN_LAT: -23.5996932983398
-##         CEN_LON: -46.6294555664062
-##         TRUELAT1: -23
-##         TRUELAT2: -24
-##         MOAD_CEN_LAT: -23.6000061035156
-##         STAND_LON: -45
-##         POLE_LAT: 90
-##         POLE_LON: 0
-##         corner_lats: -23.8218078613281
-##          corner_lats: -23.3720855712891
-##          corner_lats: -23.3771743774414
-##          corner_lats: -23.826904296875
-##          corner_lats: -23.8217391967773
-##          corner_lats: -23.3720245361328
-##          corner_lats: -23.3772277832031
-##          corner_lats: -23.8269424438477
-##          corner_lats: -23.826286315918
-##          corner_lats: -23.3675918579102
-##          corner_lats: -23.372673034668
-##          corner_lats: -23.8314056396484
-##          corner_lats: -23.8262329101562
-##          corner_lats: -23.3675231933594
-##          corner_lats: -23.3727111816406
-##          corner_lats: -23.8314437866211
-##         corner_lons: -46.8780517578125
-##          corner_lons: -46.8716430664062
-##          corner_lons: -46.3817138671875
-##          corner_lons: -46.3864440917969
-##          corner_lons: -46.8829650878906
-##          corner_lons: -46.8765258789062
-##          corner_lons: -46.3768005371094
-##          corner_lons: -46.3815307617188
-##          corner_lons: -46.8781127929688
-##          corner_lons: -46.87158203125
-##          corner_lons: -46.3816528320312
-##          corner_lons: -46.386474609375
-##          corner_lons: -46.8830261230469
-##          corner_lons: -46.87646484375
-##          corner_lons: -46.3767700195312
-##          corner_lons: -46.3815612792969
-##         MAP_PROJ: 1
-##         MMINLU: USGS
-##         NUM_LAND_CAT: 24
-##         ISWATER: 16
-##         ISLAKE: -1
-##         ISICE: 24
-##         ISURBAN: 1
-##         ISOILWATER: 14
-##         grid_id: 3
-##         parent_id: 2
-##         i_parent_start: 35
-##         j_parent_start: 33
-##         i_parent_end: 51
-##         j_parent_end: 49
-##         parent_grid_ratio: 3
-##         sr_x: 1
-##         sr_y: 1
-##         NUM_METGRID_SOIL_LEVELS: 4
-##         FLAG_METGRID: 1
-##         FLAG_EXCLUDED_MIDDLE: 0
-##         FLAG_SOIL_LAYERS: 1
-##         FLAG_SNOW: 1
-##         FLAG_PSFC: 1
-##         FLAG_SM000010: 1
-##         FLAG_SM010040: 1
-##         FLAG_SM040100: 1
-##         FLAG_SM100200: 1
-##         FLAG_ST000010: 1
-##         FLAG_ST010040: 1
-##         FLAG_ST040100: 1
-##         FLAG_ST100200: 1
-##         FLAG_SLP: 1
-##         FLAG_SNOWH: 1
-##         FLAG_SOILHGT: 1
-##         FLAG_UTROP: 1
-##         FLAG_VTROP: 1
-##         FLAG_TTROP: 1
-##         FLAG_PTROP: 1
-##         FLAG_PTROPNN: 1
-##         FLAG_HGTTROP: 1
-##         FLAG_UMAXW: 1
-##         FLAG_VMAXW: 1
-##         FLAG_TMAXW: 1
-##         FLAG_PMAXW: 1
-##         FLAG_PMAXWNN: 1
-##         FLAG_HGTMAXW: 1
-##         FLAG_MF_XY: 1
-##         FLAG_LAI12M: 1
-##         FLAG_LAKE_DEPTH: 1
-\end{verbatim}
 
 O pacote possue ainda funções mais específicas para a criação de
 arquivos em NetCDF como \texttt{nc\_create}, funções que definem
@@ -3657,6 +2052,8 @@ arquivo de modo de definição \texttt{nc\_redef} e \texttt{nc\_enddef}.
 data frame, podemos ``ver'' ou selecionar suas sub-partes
 (sub-sub-partes\ldots{}) com ``\$'' e TAB.
 
+\subsection{Dados Binários}\label{dados-binarios}
+
 \chapter{Plotando}\label{plotando}
 
 \section{\texorpdfstring{\texttt{plot}
@@ -3666,59 +2063,63 @@ data frame, podemos ``ver'' ou selecionar suas sub-partes
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"df.rds"}\NormalTok{)}
+\NormalTok{df <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"dados/df.rds"}\NormalTok{)}
 \KeywordTok{summary}\NormalTok{(df)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##       TipodeRede   TipodeMonitoramento              Tipo     
-##  Automático:8581   CETESB:8581         Dados Primários:8581  
-##                                                              
-##                                                              
-##                                                              
-##                                                              
-##                                                              
-##                                                              
-##          Data           Hora      CodigoEstação
-##  01/01/2014:  24   16:00  : 363   Min.   :95   
-##  01/01/2015:  24   12:00  : 361   1st Qu.:95   
-##  01/02/2014:  24   14:00  : 361   Median :95   
-##  01/04/2014:  24   18:00  : 361   Mean   :95   
-##  01/05/2014:  24   13:00  : 360   3rd Qu.:95   
-##  01/06/2014:  24   17:00  : 360   Max.   :95   
-##  (Other)   :8437   (Other):6415                
-##                      NomeEstação                      NomeParâmetro 
-##  Cid.Universitária-USP-Ipen:8581   NOx (Óxidos de Nitrogênio):8581  
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+##        TipodeRede   TipodeMonitoramento               Tipo     
+##  AutomÃ¡tico:8581   CETESB:8581         Dados PrimÃ¡rios:8581  
+##                                                                
+##                                                                
+##                                                                
+##                                                                
+##                                                                
+##                                                                
+##          Data           Hora      CodigoEstaÃ.Ã.o
+##  01/01/2014:  24   16:00  : 363   Min.   :95     
+##  01/01/2015:  24   12:00  : 361   1st Qu.:95     
+##  01/02/2014:  24   14:00  : 361   Median :95     
+##  01/04/2014:  24   18:00  : 361   Mean   :95     
+##  01/05/2014:  24   13:00  : 360   3rd Qu.:95     
+##  01/06/2014:  24   17:00  : 360   Max.   :95     
+##  (Other)   :8437   (Other):6415                  
+##                      NomeEstaÃ.Ã.o                       NomeParÃ.metro
+##  Cid.UniversitÃ¡ria-USP-Ipen:8581   NOx (Ã“xidos de NitrogÃªnio):8581  
+##                                                                        
+##                                                                        
+##                                                                        
+##                                                                        
+##                                                                        
+##                                                                        
+##  UnidadedeMedida  MediaHoraria    MediaMovel  Valido    
+##  ppb:8581        Min.   :  0.00   -:8581     NÃ£o: 907  
+##                  1st Qu.:  9.00              Sim :7674  
+##                  Median : 18.00                         
+##                  Mean   : 29.87                         
+##                  3rd Qu.: 34.00                         
+##                  Max.   :306.00                         
+##                  NA's   :260                            
+##   tempo_char            tempo                       weekdays        
+##  Length:8581        Min.   :2014-01-01 01:00:00   Length:8581       
+##  Class :character   1st Qu.:2014-04-05 14:00:00   Class :character  
+##  Mode  :character   Median :2014-07-05 23:00:00   Mode  :character  
+##                     Mean   :2014-07-04 20:22:55                     
+##                     3rd Qu.:2014-10-03 10:00:00                     
+##                     Max.   :2015-01-02 00:00:00                     
 ##                                                                     
-##                                                                     
-##                                                                     
-##                                                                     
-##                                                                     
-##                                                                     
-##  UnidadedeMedida  MediaHoraria    MediaMovel Valido      tempo_char       
-##  ppb:8581        Min.   :  0.00   -:8581     Não: 907   Length:8581       
-##                  1st Qu.:  9.00              Sim:7674   Class :character  
-##                  Median : 18.00                         Mode  :character  
-##                  Mean   : 29.87                                           
-##                  3rd Qu.: 34.00                                           
-##                  Max.   :306.00                                           
-##                  NA's   :260                                              
-##      tempo                       weekdays             mes           
-##  Min.   :2014-01-01 01:00:00   Length:8581        Length:8581       
-##  1st Qu.:2014-04-05 14:00:00   Class :character   Class :character  
-##  Median :2014-07-05 23:00:00   Mode  :character   Mode  :character  
-##  Mean   :2014-07-04 20:22:55                                        
-##  3rd Qu.:2014-10-03 10:00:00                                        
-##  Max.   :2015-01-02 00:00:00                                        
-##                                                                     
-##   diajuliano           ano           
-##  Length:8581       Length:8581       
-##  Class :difftime   Class :character  
-##  Mode  :numeric    Mode  :character  
-##                                      
-##                                      
-##                                      
+##      mes             diajuliano           ano           
+##  Length:8581        Length:8581       Length:8581       
+##  Class :character   Class :difftime   Class :character  
+##  Mode  :character   Mode  :numeric    Mode  :character  
+##                                                         
+##                                                         
+##                                                         
 ## 
 \end{verbatim}
 
@@ -3743,6 +2144,18 @@ Então, a forma mais fácil de plotar uma variável em função do tempo é:
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(z): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(zz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-68-1.pdf}
 
 Feio, né?\\
@@ -3759,6 +2172,19 @@ Tentando deixar mais bonito\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(round(z, "days")): unknown timezone
+## 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-69-1.pdf}
 
 Colocando \textbf{DOIS} elementos no mesmo gráfico:
@@ -3771,6 +2197,24 @@ Colocando \textbf{DOIS} elementos no mesmo gráfico:
      \DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{,}
      \DataTypeTok{xlab =} \StringTok{"Data"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"NOx [ppb]"}\NormalTok{,}
      \DataTypeTok{main =} \StringTok{"Dados Válidos e Inválidos"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(round(z, "days")): unknown timezone
+## 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df_parcial}\OperatorTok{$}\NormalTok{tempo[df}\OperatorTok{$}\NormalTok{Valido }\OperatorTok{==}\StringTok{ "Não"}\NormalTok{], }
       \DataTypeTok{y =}\NormalTok{ df_parcial}\OperatorTok{$}\NormalTok{MediaHoraria[df}\OperatorTok{$}\NormalTok{Valido }\OperatorTok{==}\StringTok{ "Não"}\NormalTok{], }
       \DataTypeTok{pch =} \DecValTok{15}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
@@ -3779,8 +2223,12 @@ Colocando \textbf{DOIS} elementos no mesmo gráfico:
 
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-70-1.pdf}
 
-\textbf{Desafio}: Coloque uma legenda na figura especificando que os
-dados válidos estão em azul e os inválidos em vermelho
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+{\textbf{Desafio}: Coloque uma legenda na figura especificando que os
+dados válidos estão em azul e os inválidos em vermelho }
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 A função \texttt{plot} cumpre bem o papel de gerar um gráfico simples, e
 até permite algumas customizações, mas ela exige cada vez mais linhas de
@@ -3827,10 +2275,62 @@ Que tal refazermos os gráficos da seção anterior?
 \end{Shaded}
 
 \begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(to): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(to): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
 ## Warning: Removed 260 rows containing missing values (geom_point).
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-73-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-72-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3842,7 +2342,55 @@ Que tal refazermos os gráficos da seção anterior?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-74-1.pdf}
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-73-1.pdf}
 
 Agora o mais interessante:
 
@@ -3858,10 +2406,36 @@ Agora o mais interessante:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-75-1.pdf}
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
 
-\textbf{Pergunta}: Qual a principal diferença entre o código acima e o
-\protect\hyperlink{plot_base}{código usando \texttt{plot}}?
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-74-1.pdf}
+
+{\textbf{Pergunta}: Qual a principal diferença entre o código acima e o
+\protect\hyperlink{plot_base}{código usando \texttt{plot}}?}
 
 A função \texttt{ggplot} plota apenas data frames, pois ela mapeia as
 variáveis por nomes de colunas. Assim, é preciso
@@ -3871,7 +2445,7 @@ Uma vantagem de trabalharmos com data frames,
 \protect\hyperlink{processing_dfs}{como já vimos antes}, é poder
 manipular esses dados de muitas formas possíveis antes de plotá-los.
 
-\textbf{COntinuação do Exemplo}: Extraindo algumas informações sobre os
+\textbf{Continuação do Exemplo}: Extraindo algumas informações sobre os
 dados
 
 Vamos analisar o ano de 2014:
@@ -3890,64 +2464,43 @@ Vamos analisar o ano de 2014:
   \end{itemize}
 \end{itemize}
 
-Usando algumas funções dentro do pacote \textbf{tidyverse}, como o
-\href{http://r4ds.had.co.nz/pipes.html}{\emph{pipe}
+Usando algumas funções dentro do pacote \textbf{tidyverse}, que
+funcionam bem com o \href{http://r4ds.had.co.nz/pipes.html}{\emph{pipe}
 (\texttt{\%\textgreater{}\%})}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(scales)}
 
 \NormalTok{df_}\DecValTok{2014}\NormalTok{ <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(df, ano }\OperatorTok{==}\StringTok{ "2014"}\NormalTok{)}
-\NormalTok{df_}\DecValTok{2014}\NormalTok{_hour <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}\StringTok{ }\CommentTok{#-- A partir do data frame df_2014...}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- ... agrupe os dados pela coluna hora...}
-\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- ... E calcule as médias, salvando em uma coluna nova}
+\NormalTok{df_2014_hour <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}\StringTok{ }\CommentTok{#-- A partir do data frame df_2014}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Agrupe os dados pela coluna hora}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- E calcule as médias, }
+\StringTok{                                                       }\CommentTok{#-- salvando em uma coluna nova}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Hora =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(Hora, }\StringTok{"%H:%M"}\NormalTok{))) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Transformando em data}
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\CommentTok{#-- Desagrupando}
 
-\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_hour) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(df_2014_hour) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Formato de data que aparecerá no eixo x}
 \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media, }\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-77-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-75-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(tidyverse)}
-
-\NormalTok{df_}\DecValTok{2014}\NormalTok{ <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(df, ano }\OperatorTok{==}\StringTok{ "2014"}\NormalTok{)}
-\NormalTok{df_}\DecValTok{2014}\NormalTok{_hourly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}\StringTok{ }\CommentTok{#-- A partir do data frame df_2014...}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- ... agrupe os dados pela coluna Hora...}
-\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- ... E calcule as médias,}
-\StringTok{                                                       }\CommentTok{#-- salvando em uma coluna nova}
-\StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Desagrupando}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Hora =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(Hora, }\StringTok{"%H:%M"}\NormalTok{))) }\CommentTok{#-- Transformando em data}
-
-\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_hourly) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Formato de data que aparecerá no eixo x}
-\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media), }\DataTypeTok{fill =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-78-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{2014}\NormalTok{_weekly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}\StringTok{ }\CommentTok{#-- }
+\NormalTok{df_2014_weekly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora, weekdays) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Agrupando os dados pelas colunas Hora e weekdays}
 \StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Hora =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(Hora, }\StringTok{"%H:%M"}\NormalTok{))) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{weekdays =} \KeywordTok{factor}\NormalTok{(weekdays,}\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Monday"}\NormalTok{, }\StringTok{"Tuesday"}\NormalTok{, }\StringTok{"Wednesday"}\NormalTok{, }
-                                               \StringTok{"Thursday"}\NormalTok{, }\StringTok{"Friday"}\NormalTok{, }\StringTok{"Saturday"}\NormalTok{, }
-                                               \StringTok{"Sunday"}\NormalTok{))) }\CommentTok{#-- Ordenando os dias da semana}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{weekdays =} \KeywordTok{factor}\NormalTok{(weekdays, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"segunda"}\NormalTok{, }\StringTok{"terça"}\NormalTok{, }\StringTok{"quarta"}\NormalTok{,}
+                                                \StringTok{"quinta"}\NormalTok{, }\StringTok{"sexta"}\NormalTok{, }\StringTok{"sábado"}\NormalTok{, }
+                                                \StringTok{"domingo"}\NormalTok{))) }\CommentTok{#-- Ordenando os dias da semana}
 
-\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_weekly) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(df_2014_weekly) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media), }\DataTypeTok{fill =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Dia da Semana"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}
@@ -3955,44 +2508,44 @@ Usando algumas funções dentro do pacote \textbf{tidyverse}, como o
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-79-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-76-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_}\DecValTok{2014}\NormalTok{_monthly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}
+\NormalTok{df_2014_monthly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora, mes) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Agrupando os dados pelas colunas Hora e mes}
 \StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Hora =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(Hora, }\StringTok{"%H:%M"}\NormalTok{))) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{mes =} \KeywordTok{factor}\NormalTok{(mes, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"January"}\NormalTok{, }\StringTok{"February"}\NormalTok{, }\StringTok{"March"}\NormalTok{, }\StringTok{"April"}\NormalTok{, }\StringTok{"May"}\NormalTok{, }
-                                      \StringTok{"June"}\NormalTok{, }\StringTok{"July"}\NormalTok{, }\StringTok{"August"}\NormalTok{, }\StringTok{"September"}\NormalTok{, }\StringTok{"October"}\NormalTok{, }
-                                      \StringTok{"November"}\NormalTok{, }\StringTok{"December"}\NormalTok{))) }\CommentTok{#-- Ordenando os meses}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{mes =} \KeywordTok{factor}\NormalTok{(mes, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"janeiro"}\NormalTok{, }\StringTok{"fevereiro"}\NormalTok{, }\StringTok{"março"}\NormalTok{, }
+                                      \StringTok{"abril"}\NormalTok{, }\StringTok{"maio"}\NormalTok{, }\StringTok{"junho"}\NormalTok{, }\StringTok{"julho"}\NormalTok{,}
+                                      \StringTok{"agosto"}\NormalTok{, }\StringTok{"setembro"}\NormalTok{, }\StringTok{"outubro"}\NormalTok{,}
+                                      \StringTok{"novembro"}\NormalTok{, }\StringTok{"dezembro"}\NormalTok{))) }\CommentTok{#-- Ordenando os meses}
 
-\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_monthly) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(df_2014_monthly) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media), }\DataTypeTok{fill =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Mês", y = "}\NormalTok{NOx [ppb]}\StringTok{") +}
-\StringTok{  facet_wrap(~ mes) #-- Criando paineis em função do mês}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Mes"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{mes) }\CommentTok{#-- Criando paineis em função do mês}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-80-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-77-1.pdf}
 
-\textbf{Exercício}: \emph{Em média}, como \textbf{os dados válidos} de
-NOx variam mensalmente ao longo do ano de 2014? Faça um gráfico.
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\textbf{Desafio}: Ainda é possível melhorar os gráficos acima! Pesquise
-como:
+{\textbf{Exercício}: \emph{Em média}, como \textbf{os dados válidos} de
+NOx variam mensalmente ao longo do ano de 2014? Faça um gráfico.}
 
-\begin{itemize}
-\tightlist
-\item
-  Diminuir a quantidade de horários no eixo x\\
-\item
-  Separar por dias da semana e meses a partir da coluna ``tempo'', não
-  precisando usar as colunas de caracteres e consequentemente ordená-las
-  manualmente
-\end{itemize}
+{\textbf{Desafio}: Ainda é possível melhorar os gráficos acima! Pesquise
+como:}
+
+{* Diminuir a quantidade de horários no eixo x}\\
+{* Separar por dias da semana e meses a partir da coluna ``tempo'', não
+precisando usar as colunas de caracteres e consequentemente ordená-las
+manualmente}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \subsection{Explorando outras escalas de cores e
 temas}\label{explorando-outras-escalas-de-cores-e-temas}
@@ -4025,37 +2578,89 @@ Refazendo alguns gráficos:
 \end{Shaded}
 
 \begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(to): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(to): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
+\end{verbatim}
+
+\begin{verbatim}
 ## Warning: Removed 1 rows containing missing values (geom_path).
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-86-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-80-1.pdf}
 
 Experimentando escalas de cores com a função \texttt{lucky}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_monthly) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(df_2014_monthly) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media, }\DataTypeTok{fill =}\NormalTok{ Media)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Mês", y = "}\NormalTok{NOx [ppb]}\StringTok{") +}
-\StringTok{  scale_fill_gradientn(colors = lucky()) + #-- Definindo as cores com uma escala gradiente aleatória}
-\StringTok{  theme_black() +}
-\StringTok{  theme(legend.position = "}\NormalTok{bottom}\StringTok{", legend.direction = "}\NormalTok{horizontal}\StringTok{") + #-- Colocando a legenda na parte de baixo da figura}
-\StringTok{  facet_wrap(~ mes) #-- Criando paineis em função do mês}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Mes"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_gradientn}\NormalTok{(}\DataTypeTok{colors =} \KeywordTok{lucky}\NormalTok{()) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Definindo as cores com uma escala gradiente aleatória}
+\StringTok{  }\KeywordTok{theme_black}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{, }\DataTypeTok{legend.direction =} \StringTok{"horizontal"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Colocando a legenda na parte de baixo da figura}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{mes) }\CommentTok{#-- Criando paineis em função do mês}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Colour gradient: es_ocean_breeze_es_ocean_breeze_099, number: 1601
+## Colour gradient: jjg_serrate_seq_srtGnBu06, number: 4403
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-87-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-81-1.pdf}
 
 \textbf{Este é só o começo!}
 \href{http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html}{Veja
 aqui um pouco mais das muitas aplicações do \texttt{ggplot}}.
 
-\chapter{Estruturas de control}\label{loop}
+\chapter{Estruturas de Controle}\label{loop}
 
 \section{if-else}\label{if-else}
 
@@ -4077,14 +2682,57 @@ aqui um pouco mais das muitas aplicações do \texttt{ggplot}}.
 
 \section{mapply}\label{mapply}
 
-\chapter{De scripts a funções e de funções a pacotes}\label{fx}
+\chapter{De Scripts a Funções e de Funções a Pacotes}\label{fx}
 
-Coming soon
+Em breve.
 
 \chapter{\texorpdfstring{Geo Spatial: \texttt{raster}, \texttt{sf} e
 \texttt{stars}}{Geo Spatial: raster, sf e stars}}\label{geo}
 
-Coming soon
+Em breve.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://leanpub.com/rprogramming}{R Programming for Data Science
+  (Leanpub)}\\
+\item
+  \href{http://www.cookbook-r.com/Graphs/}{R Graphics Cookbook (Cookbook
+  for R)}\\
+\item
+  \href{https://cran.r-project.org/doc/manuals/r-release/R-intro.html}{An
+  Introduction to R (CRAN)}\\
+\item
+  \href{https://cran.r-project.org/doc/manuals/r-release/R-data.html}{R
+  Data Import/Export (CRAN)}\\
+\item
+  \href{https://www.rstudio.com/resources/cheatsheets/}{RStudio Cheat
+  Sheets (RStudio)}\\
+\item
+  \href{https://www.rstudio.com/resources/webinars/}{Webinars and Videos
+  On Demand (RStudio)}\\
+\item
+  \href{https://www.rstudio.com/online-learning/}{Online Learning
+  (RStudio)}\\
+\item
+  \href{https://www.tidyverse.org/learn/}{Learn the tidyverse
+  (Tidyverse)}
+\item
+  \href{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}{Writing
+  R Extensions (CRAN)}\\
+\item
+  \href{https://cran.r-project.org/doc/manuals/r-release/R-ints.html}{R
+  Internals (CRAN)}\\
+\item
+  \href{https://cran.r-project.org/doc/manuals/r-release/R-lang.html}{R
+  Language Definition (CRAN)}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\emph{Quer fazer um documento com o mesmo estilo do nosso? Leia}
+\href{https://bookdown.org/yihui/bookdown/}{bookdown: Authoring Books
+and Technical Documents with R Markdown (bookdown.org)}
 
 \bibliography{book.bib,packages.bib}
 

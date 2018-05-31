@@ -14,7 +14,7 @@
   
   
   <meta property="og:description" content="Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação" />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta name="github-repo" content="iagdevs/cursoR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Curso de R para Meteorologia IAG/USP" />
@@ -25,14 +25,14 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-05-28">
+<meta name="date" content="2018-05-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="importando-e-exportando-dados-em-r.html">
+<link rel="prev" href="importando-e-exportando-dados.html">
 <link rel="next" href="loop.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -103,10 +103,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Curso R DCA/IAG/USP</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pré-requisitos do sistema</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.1</b> Pacotes usados neste curso</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.2</b> Colaborar</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.3</b> Compartilhar dados</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pré-Requisitos</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#sistema-operacional"><i class="fa fa-check"></i><b>1.1</b> Sistema Operacional</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.2</b> Pacotes usados neste curso</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.3</b> Colaborar</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.4</b> Compartilhar dados</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#importante"><i class="fa fa-check"></i><b>2.1</b> IMPORTANTE</a></li>
@@ -126,18 +127,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
 <li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> Data.frames</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html"><i class="fa fa-check"></i><b>4</b> Importando e exportando dados em R</a><ul>
-<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> data-frames</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#qua-dificultades-tu-ja-enfrentou-importando-dados"><i class="fa fa-check"></i><b>4.1.1</b> Qua dificultades tu já enfrentou importando dados?</a></li>
+<li class="chapter" data-level="4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html"><i class="fa fa-check"></i><b>4</b> Importando e Exportando Dados</a><ul>
+<li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> Data Frames</a></li>
+<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#base"><i class="fa fa-check"></i><b>4.2</b> BASE</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-texto-com-write.table"><i class="fa fa-check"></i><b>4.2.1</b> Exportando texto com <code>write.table</code></a></li>
+<li class="chapter" data-level="4.2.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-save"><i class="fa fa-check"></i><b>4.2.2</b> Exportando objetos com <code>save</code></a></li>
+<li class="chapter" data-level="4.2.3" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-saverds"><i class="fa fa-check"></i><b>4.2.3</b> Exportando objetos com <code>saveRDS</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#processing_dfs"><i class="fa fa-check"></i><b>4.2.4</b> Processando nossa data-frame</a></li>
+<li class="chapter" data-level="4.2.5" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#aggregate"><i class="fa fa-check"></i><b>4.2.5</b> aggregate</a></li>
+<li class="chapter" data-level="4.2.6" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#subset"><i class="fa fa-check"></i><b>4.2.6</b> subset</a></li>
+<li class="chapter" data-level="4.2.7" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data.table-read_xl-e-mais"><i class="fa fa-check"></i><b>4.2.7</b> data.table, read_xl e mais</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#exportando-texto-com-write.table"><i class="fa fa-check"></i><b>4.2</b> Exportando texto com <code>write.table</code></a></li>
-<li class="chapter" data-level="4.3" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#exportando-objetos-com-save"><i class="fa fa-check"></i><b>4.3</b> Exportando objetos com <code>save</code></a></li>
-<li class="chapter" data-level="4.4" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#exportando-objetos-com-saverds"><i class="fa fa-check"></i><b>4.4</b> Exportando objetos com <code>saveRDS</code></a></li>
-<li class="chapter" data-level="4.5" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#processing_dfs"><i class="fa fa-check"></i><b>4.5</b> Processando nossa data-frame</a></li>
-<li class="chapter" data-level="4.6" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#aggregate"><i class="fa fa-check"></i><b>4.6</b> aggregate</a></li>
-<li class="chapter" data-level="4.7" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#subset"><i class="fa fa-check"></i><b>4.7</b> subset</a></li>
-<li class="chapter" data-level="4.8" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#data.table-read_xl-e-mais"><i class="fa fa-check"></i><b>4.8</b> data.table, read_xl e mais</a></li>
-<li class="chapter" data-level="4.9" data-path="importando-e-exportando-dados-em-r.html"><a href="importando-e-exportando-dados-em-r.html#netcdf"><i class="fa fa-check"></i><b>4.9</b> NetCDF</a></li>
+<li class="chapter" data-level="4.3" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#tidyverse"><i class="fa fa-check"></i><b>4.3</b> Tidyverse</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#leitura-processamento"><i class="fa fa-check"></i><b>4.3.1</b> Leitura <code>%&gt;%</code> Processamento</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#outros-tipos-de-dados"><i class="fa fa-check"></i><b>4.4</b> Outros Tipos de Dados</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#netcdf-linux-o-macos"><i class="fa fa-check"></i><b>4.4.1</b> NetCDF (Linux o MacOS)</a></li>
+<li class="chapter" data-level="4.4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#dados-binarios"><i class="fa fa-check"></i><b>4.4.2</b> Dados Binários</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="plotando.html"><a href="plotando.html"><i class="fa fa-check"></i><b>5</b> Plotando</a><ul>
 <li class="chapter" data-level="5.1" data-path="plotando.html"><a href="plotando.html#plot-base"><i class="fa fa-check"></i><b>5.1</b> <code>plot</code> (base)</a></li>
@@ -145,7 +152,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.2.1" data-path="plotando.html"><a href="plotando.html#explorando-outras-escalas-de-cores-e-temas"><i class="fa fa-check"></i><b>5.2.1</b> Explorando outras escalas de cores e temas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="loop.html"><a href="loop.html"><i class="fa fa-check"></i><b>6</b> Estruturas de control</a><ul>
+<li class="chapter" data-level="6" data-path="loop.html"><a href="loop.html"><i class="fa fa-check"></i><b>6</b> Estruturas de Controle</a><ul>
 <li class="chapter" data-level="6.1" data-path="loop.html"><a href="loop.html#if-else"><i class="fa fa-check"></i><b>6.1</b> if-else</a></li>
 <li class="chapter" data-level="6.2" data-path="loop.html"><a href="loop.html#for"><i class="fa fa-check"></i><b>6.2</b> for</a></li>
 <li class="chapter" data-level="6.3" data-path="loop.html"><a href="loop.html#while"><i class="fa fa-check"></i><b>6.3</b> while</a></li>
@@ -157,9 +164,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.9" data-path="loop.html"><a href="loop.html#apply"><i class="fa fa-check"></i><b>6.9</b> apply</a></li>
 <li class="chapter" data-level="6.10" data-path="loop.html"><a href="loop.html#mapply"><i class="fa fa-check"></i><b>6.10</b> mapply</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="fx.html"><a href="fx.html"><i class="fa fa-check"></i><b>7</b> De scripts a funções e de funções a pacotes</a></li>
+<li class="chapter" data-level="7" data-path="fx.html"><a href="fx.html"><i class="fa fa-check"></i><b>7</b> De Scripts a Funções e de Funções a Pacotes</a></li>
 <li class="chapter" data-level="8" data-path="geo.html"><a href="geo.html"><i class="fa fa-check"></i><b>8</b> Geo Spatial: <code>raster</code>, <code>sf</code> e <code>stars</code></a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="referencias.html"><a href="referencias.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
 <li><a href="https://iagdevs.github.io/cursoR" target="blank">Published with bookdown</a></li>
 
@@ -187,53 +194,54 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Exemplo</strong>: Dados de qualidade do ar</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;dados/df.rds&quot;</span>)
 <span class="kw">summary</span>(df)</code></pre></div>
-<pre><code>##       TipodeRede   TipodeMonitoramento              Tipo     
-##  Automático:8581   CETESB:8581         Dados Primários:8581  
-##                                                              
-##                                                              
-##                                                              
-##                                                              
-##                                                              
-##                                                              
-##          Data           Hora      CodigoEstação
-##  01/01/2014:  24   16:00  : 363   Min.   :95   
-##  01/01/2015:  24   12:00  : 361   1st Qu.:95   
-##  01/02/2014:  24   14:00  : 361   Median :95   
-##  01/04/2014:  24   18:00  : 361   Mean   :95   
-##  01/05/2014:  24   13:00  : 360   3rd Qu.:95   
-##  01/06/2014:  24   17:00  : 360   Max.   :95   
-##  (Other)   :8437   (Other):6415                
-##                      NomeEstação                      NomeParâmetro 
-##  Cid.Universitária-USP-Ipen:8581   NOx (Óxidos de Nitrogênio):8581  
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>##        TipodeRede   TipodeMonitoramento               Tipo     
+##  AutomÃ¡tico:8581   CETESB:8581         Dados PrimÃ¡rios:8581  
+##                                                                
+##                                                                
+##                                                                
+##                                                                
+##                                                                
+##                                                                
+##          Data           Hora      CodigoEstaÃ.Ã.o
+##  01/01/2014:  24   16:00  : 363   Min.   :95     
+##  01/01/2015:  24   12:00  : 361   1st Qu.:95     
+##  01/02/2014:  24   14:00  : 361   Median :95     
+##  01/04/2014:  24   18:00  : 361   Mean   :95     
+##  01/05/2014:  24   13:00  : 360   3rd Qu.:95     
+##  01/06/2014:  24   17:00  : 360   Max.   :95     
+##  (Other)   :8437   (Other):6415                  
+##                      NomeEstaÃ.Ã.o                       NomeParÃ.metro
+##  Cid.UniversitÃ¡ria-USP-Ipen:8581   NOx (Ã“xidos de NitrogÃªnio):8581  
+##                                                                        
+##                                                                        
+##                                                                        
+##                                                                        
+##                                                                        
+##                                                                        
+##  UnidadedeMedida  MediaHoraria    MediaMovel  Valido    
+##  ppb:8581        Min.   :  0.00   -:8581     NÃ£o: 907  
+##                  1st Qu.:  9.00              Sim :7674  
+##                  Median : 18.00                         
+##                  Mean   : 29.87                         
+##                  3rd Qu.: 34.00                         
+##                  Max.   :306.00                         
+##                  NA&#39;s   :260                            
+##   tempo_char            tempo                       weekdays        
+##  Length:8581        Min.   :2014-01-01 01:00:00   Length:8581       
+##  Class :character   1st Qu.:2014-04-05 14:00:00   Class :character  
+##  Mode  :character   Median :2014-07-05 23:00:00   Mode  :character  
+##                     Mean   :2014-07-04 20:22:55                     
+##                     3rd Qu.:2014-10-03 10:00:00                     
+##                     Max.   :2015-01-02 00:00:00                     
 ##                                                                     
-##                                                                     
-##                                                                     
-##                                                                     
-##                                                                     
-##                                                                     
-##  UnidadedeMedida  MediaHoraria    MediaMovel Valido      tempo_char       
-##  ppb:8581        Min.   :  0.00   -:8581     Não: 907   Length:8581       
-##                  1st Qu.:  9.00              Sim:7674   Class :character  
-##                  Median : 18.00                         Mode  :character  
-##                  Mean   : 29.87                                           
-##                  3rd Qu.: 34.00                                           
-##                  Max.   :306.00                                           
-##                  NA&#39;s   :260                                              
-##      tempo                       weekdays             mes           
-##  Min.   :2014-01-01 01:00:00   Length:8581        Length:8581       
-##  1st Qu.:2014-04-05 14:00:00   Class :character   Class :character  
-##  Median :2014-07-05 23:00:00   Mode  :character   Mode  :character  
-##  Mean   :2014-07-04 20:22:55                                        
-##  3rd Qu.:2014-10-03 10:00:00                                        
-##  Max.   :2015-01-02 00:00:00                                        
-##                                                                     
-##   diajuliano           ano           
-##  Length:8581       Length:8581       
-##  Class :difftime   Class :character  
-##  Mode  :numeric    Mode  :character  
-##                                      
-##                                      
-##                                      
+##      mes             diajuliano           ano           
+##  Length:8581        Length:8581       Length:8581       
+##  Class :character   Class :difftime   Class :character  
+##  Mode  :character   Mode  :numeric    Mode  :character  
+##                                                         
+##                                                         
+##                                                         
 ## </code></pre>
 <p>A função <code>plot</code> precisa dos seguintes argumentos:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(plot)</code></pre></div>
@@ -241,7 +249,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## NULL</code></pre>
 <p>Então, a forma mais fácil de plotar uma variável em função do tempo é:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo, <span class="dt">y =</span> df<span class="op">$</span>MediaHoraria)</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre><code>## Warning in as.POSIXlt.POSIXct(z): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(zz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <p>Feio, né?<br />
 Tentando deixar mais bonito…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="dt">y =</span> df<span class="op">$</span>MediaHoraria[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="co">#-- Selecionando uma parte do df!</span>
@@ -250,7 +261,11 @@ Tentando deixar mais bonito…</p>
      <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="co">#-- Cor do elemento (definido pelo type)</span>
      <span class="dt">xlab =</span> <span class="st">&quot;Data&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;NOx [ppb]&quot;</span>, <span class="co">#-- Nome dos eixos x e y</span>
      <span class="dt">main =</span> <span class="st">&quot;Gráfico mais Bonito&quot;</span>) <span class="co">#-- Título do gráfico</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(round(z, &quot;days&quot;)): unknown timezone
+## &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 <p>Colocando <strong>DOIS</strong> elementos no mesmo gráfico:</p>
 <p><a id="plot_base"></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_parcial &lt;-<span class="st"> </span>df[<span class="dv">1</span><span class="op">:</span><span class="dv">180</span>,] <span class="co">#-- Selecionando uma parte do df!</span>
@@ -258,11 +273,15 @@ Tentando deixar mais bonito…</p>
      <span class="dt">y =</span> df_parcial<span class="op">$</span>MediaHoraria[df_parcial<span class="op">$</span>Valido <span class="op">==</span><span class="st"> &quot;Sim&quot;</span>],
      <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,
      <span class="dt">xlab =</span> <span class="st">&quot;Data&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;NOx [ppb]&quot;</span>,
-     <span class="dt">main =</span> <span class="st">&quot;Dados Válidos e Inválidos&quot;</span>)
-<span class="kw">lines</span>(<span class="dt">x =</span> df_parcial<span class="op">$</span>tempo[df<span class="op">$</span>Valido <span class="op">==</span><span class="st"> &quot;Não&quot;</span>], 
+     <span class="dt">main =</span> <span class="st">&quot;Dados Válidos e Inválidos&quot;</span>)</code></pre></div>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(round(z, &quot;days&quot;)): unknown timezone
+## &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lines</span>(<span class="dt">x =</span> df_parcial<span class="op">$</span>tempo[df<span class="op">$</span>Valido <span class="op">==</span><span class="st"> &quot;Não&quot;</span>], 
       <span class="dt">y =</span> df_parcial<span class="op">$</span>MediaHoraria[df<span class="op">$</span>Valido <span class="op">==</span><span class="st"> &quot;Não&quot;</span>], 
       <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <hr />
 <p><span style="color:purple"><strong>Desafio</strong>: Coloque uma legenda na figura especificando que os dados válidos estão em azul e os inválidos em vermelho </span></p>
 <hr />
@@ -281,14 +300,42 @@ Tentando deixar mais bonito…</p>
 <span class="kw">library</span>(ggplot2)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">pch =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(to): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(to): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning: Removed 260 rows containing missing values (geom_point).</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,], <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Linhas...</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- ... com pontos</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Gráfico mais Bonito&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Data&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Títulos</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>)) <span class="co">#-- Centralizando o título</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;
+
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;
+
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>Agora o mais interessante:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df[<span class="dv">1</span><span class="op">:</span><span class="dv">180</span>,], <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Valido)) <span class="op">+</span>
@@ -297,10 +344,18 @@ Tentando deixar mais bonito…</p>
 <span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co">#-- Definindo as cores manualmente</span>
 <span class="st">  </span><span class="kw">scale_shape_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">16</span>)) <span class="op">+</span><span class="st"> </span><span class="co">#-- Definindo as formas manualmente</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>))</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;
+
+## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 <p><span style="color:blue"><strong>Pergunta</strong>: Qual a principal diferença entre o código acima e o <a href="plotando.html#plot_base">código usando <code>plot</code></a>?</span></p>
 <p>A função <code>ggplot</code> plota apenas data frames, pois ela mapeia as variáveis por nomes de colunas. Assim, é preciso <a href="r.html#convert_df">converter matrizes ou arrays em data frames</a>.<br />
-Uma vantagem de trabalharmos com data frames, <a href="importando-e-exportando-dados-em-r.html#processing_dfs">como já vimos antes</a>, é poder manipular esses dados de muitas formas possíveis antes de plotá-los.</p>
+Uma vantagem de trabalharmos com data frames, <a href="importando-e-exportando-dados.html#processing_dfs">como já vimos antes</a>, é poder manipular esses dados de muitas formas possíveis antes de plotá-los.</p>
 <p><strong>Continuação do Exemplo</strong>: Extraindo algumas informações sobre os dados</p>
 <p>Vamos analisar o ano de 2014:</p>
 <ul>
@@ -326,7 +381,7 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <span class="st">  </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%H:%M&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Formato de data que aparecerá no eixo x</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media, <span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>)</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_2014_weekly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(Hora, weekdays) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- Agrupando os dados pelas colunas Hora e weekdays</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Media =</span> <span class="kw">mean</span>(MediaHoraria, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -341,7 +396,7 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media), <span class="dt">fill =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual por Dia da Semana&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>weekdays) <span class="co">#-- Criando paineis em função do dia da semana</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_2014_monthly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(Hora, mes) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- Agrupando os dados pelas colunas Hora e mes</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Media =</span> <span class="kw">mean</span>(MediaHoraria, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span>
@@ -357,7 +412,7 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media), <span class="dt">fill =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual por Mes&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>mes) <span class="co">#-- Criando paineis em função do mês</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <hr />
 <p><span style="color:red"><strong>Exercício</strong>: <em>Em média</em>, como <strong>os dados válidos</strong> de NOx variam mensalmente ao longo do ano de 2014? Faça um gráfico.</span></p>
 <p><span style="color:purple"><strong>Desafio</strong>: Ainda é possível melhorar os gráficos acima! Pesquise como:</span></p>
@@ -376,8 +431,21 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Data&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_gradientn</span>(<span class="dt">colours =</span> <span class="kw">cpt</span>()) <span class="op">+</span><span class="st"> </span><span class="co">#-- Definindo as cores com uma escala gradiente</span>
 <span class="st">  </span><span class="kw">theme_black</span>()</code></pre></div>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(to): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(to): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <p>Experimentando escalas de cores com a função <code>lucky</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df_2014_monthly) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%H:%M&quot;</span>) <span class="op">+</span>
@@ -387,8 +455,8 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, <span class="dt">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Colocando a legenda na parte de baixo da figura</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>mes) <span class="co">#-- Criando paineis em função do mês</span></code></pre></div>
-<pre><code>## Colour gradient: jjg_cbac_seq_cbacPuRd08, number: 3776</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre><code>## Colour gradient: nd_rich_Split_Complementary_01, number: 5709</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p><strong>Este é só o começo!</strong> <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">Veja aqui um pouco mais das muitas aplicações do <code>ggplot</code></a>.</p>
 
 </div>
@@ -399,7 +467,7 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
           </div>
         </div>
       </div>
-<a href="importando-e-exportando-dados-em-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importando-e-exportando-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="loop.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -430,7 +498,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/iagsdevs/cursoR/edit/master/04-plotting_ggplotting.Rmd",
+"link": "https://github.com/iagdevs/cursoR/edit/master/04-plotting_ggplotting.Rmd",
 "text": "Edit"
 },
 "download": ["cursoR.pdf", "cursoR.epub"],
