@@ -106,8 +106,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pré-Requisitos</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#sistema-operacional"><i class="fa fa-check"></i><b>1.1</b> Sistema Operacional</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.2</b> Pacotes usados neste curso</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.3</b> Colaborar</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.4</b> Compartilhar dados</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#dados-usados-neste-curso"><i class="fa fa-check"></i><b>1.3</b> Dados usados neste curso</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.4</b> Colaborar</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.5</b> Compartilhar dados</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#importante"><i class="fa fa-check"></i><b>2.1</b> IMPORTANTE</a></li>
@@ -392,7 +393,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
-<p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-05-31 18:38:38.</p>
+<p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-05-31 21:39:31.</p>
 <p>Para isso temos que grudar as variabel Data e Hora. Faremios isso numa nova varaibel chamada tempo_char, adicionando ela diretamente no <code>df</code> com o cifrão DOLLAR $. O grude pode ser feito com as funções <code>paste</code> ou <code>paste0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo_char &lt;-<span class="st"> </span><span class="kw">paste</span>(df<span class="op">$</span>Data, df<span class="op">$</span>Hora)
 <span class="kw">head</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
@@ -551,11 +552,11 @@ dff</code></pre></div>
 <p>Vamos ver como funciona data.table lendo o dois arquivos e comparar quanto tempo demoram cada um.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##    1.05    0.02    1.08</code></pre>
+##    1.06    0.00    1.06</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##    0.02    0.02    0.05</code></pre>
+##    0.03    0.00    0.03</code></pre>
 <p>olha que estamos usando a função <code>fread</code>.</p>
 <p>read_xl é mais uma função do universo tidyverse que permite importar excel no R, diretamente e inteligentemente.</p>
 </div>
@@ -667,6 +668,58 @@ extrema &lt;-<span class="st"> </span><span class="kw">ncvar_def</span>(<span cl
 </div>
 <div id="dados-binarios" class="section level3">
 <h3><span class="header-section-number">4.4.2</span> Dados Binários</h3>
+<p><strong>Ler dados binários no R</strong></p>
+<p>Em meteorologia, frequentemente os dados estão em formato binário. A maior “dificuldade” em ler estes dados está em conhecer como eles foram gerados.</p>
+<p>Repare que a função <code>readBin</code> requer vários argumentos para ler estes dados da forma correta:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(readBin)</code></pre></div>
+<pre><code>## function (con, what, n = 1L, size = NA_integer_, signed = TRUE, 
+##     endian = .Platform$endian) 
+## NULL</code></pre>
+<p>Neste curso, o arquivo binário que vamos abrir como exemplo contém dados de temperatura de brilho obtidas com o satélite GOES-13 (informações em: <a href="https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary" class="uri">https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary</a>).</p>
+<p>Lembrem-se de baixar o dado em: <a href="https://github.com/iagdevs/cursoR/tree/master/dados" class="uri">https://github.com/iagdevs/cursoR/tree/master/dados</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ler o arquivo binário</span>
+l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st">&quot;dados/gs.140422.1900g.ch4&quot;</span>, 
+              <span class="dt">what=</span><span class="st">&quot;int&quot;</span>, 
+              <span class="dt">n =</span> <span class="dv">1349</span><span class="op">*</span><span class="dv">1613</span>,
+              <span class="dt">size =</span> <span class="dv">2</span>)
+<span class="kw">class</span>(l1)</code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p>Note que o argumento <code>endian</code> por default é <code>.Platform$endian</code>. Se rodarmos <code>.Platform$endian</code> no R obteremos a ordenação dos bytes (“big” ou “little”) utilizada pela plataforma que estamos usando.</p>
+<p>Uma forma rápida para verificarmos os nossos dados é gráfica. Logo, que tal um plot?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(l1, <span class="dt">ncol=</span><span class="dv">1613</span>, <span class="dt">nrow=</span><span class="dv">1349</span>)
+<span class="kw">class</span>(l2)</code></pre></div>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vamos chamar o pacote cptcity para selecionar facilmente uma paleta de cores legal.</span>
+<span class="kw">library</span>(cptcity)   
+<span class="kw">image</span>(l2,
+      <span class="dt">col =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
+      <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho&quot;</span>) </code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p>Tem algo estranho com esta imagem. O que é? (valendo um sticker).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)</code></pre></div>
+<pre><code>## Loading required package: sp</code></pre>
+<pre><code>## 
+## Attaching package: &#39;raster&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:data.table&#39;:
+## 
+##     shift</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">t</span>(l2[<span class="dv">1</span><span class="op">:</span><span class="dv">1349</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">1613</span>]),
+                     <span class="dt">xmn=</span><span class="op">-</span><span class="fl">82.00</span>,
+                     <span class="dt">ymn=</span><span class="op">-</span><span class="fl">44.96</span>,
+                     <span class="dt">xmx=</span><span class="op">-</span><span class="fl">82.0</span>  <span class="op">+</span><span class="st"> </span>(<span class="fl">0.03593245</span><span class="op">*</span><span class="dv">1349</span>), 
+                     <span class="dt">ymx=</span><span class="op">-</span><span class="fl">44.96</span> <span class="op">+</span><span class="st"> </span>(<span class="fl">0.03593245</span><span class="op">*</span><span class="dv">1613</span>),
+                     <span class="dt">crs =</span> <span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>))
+<span class="kw">class</span>(l3)</code></pre></div>
+<pre><code>## [1] &quot;RasterLayer&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;raster&quot;</code></pre>
+<p>O capítulo geoespacial será visto no final deste curso. Porém, nesta etapa vamos usar o pacote <code>raster</code> somente para analisar se os dados binários foram lidos corretamente.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sp<span class="op">::</span><span class="kw">spplot</span>(((l3 <span class="op">+</span><span class="st"> </span><span class="dv">75</span>)<span class="op">/</span><span class="dv">100</span>)<span class="op">-</span><span class="dv">273</span>, <span class="co"># Estas correções são necessárias. Veja: http://www.cpc.ncep.noaa.gov/products/global_precip/html/README</span>
+           <span class="dt">col.regions =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
+           <span class="dt">at =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">80</span>,<span class="dv">0</span>,<span class="dv">1</span>),
+           <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho (ºC)&quot;</span>) </code></pre></div>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><strong>Escrever dados binários no R</strong></p>
 
 </div>
 </div>

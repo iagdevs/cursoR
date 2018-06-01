@@ -90,6 +90,9 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
 ), 'packages.bib')
 ```
+## Dados usados neste curso
+Os exemplos mostrados neste curso usarão os dados que vocês podem baixar em:
+https://github.com/iagdevs/cursoR/tree/master/dados
 
 ## Colaborar
 

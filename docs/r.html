@@ -106,8 +106,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pré-Requisitos</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#sistema-operacional"><i class="fa fa-check"></i><b>1.1</b> Sistema Operacional</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.2</b> Pacotes usados neste curso</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.3</b> Colaborar</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.4</b> Compartilhar dados</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#dados-usados-neste-curso"><i class="fa fa-check"></i><b>1.3</b> Dados usados neste curso</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.4</b> Colaborar</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.5</b> Compartilhar dados</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#importante"><i class="fa fa-check"></i><b>2.1</b> IMPORTANTE</a></li>
@@ -376,36 +377,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>É possível fazer sequências:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hoje &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 (a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>))</code></pre></div>
-<pre><code>##  [1] &quot;2018-05-31 18:38:35 -03&quot; &quot;2018-05-31 19:38:35 -03&quot;
-##  [3] &quot;2018-05-31 20:38:35 -03&quot; &quot;2018-05-31 21:38:35 -03&quot;
-##  [5] &quot;2018-05-31 22:38:35 -03&quot; &quot;2018-05-31 23:38:35 -03&quot;
-##  [7] &quot;2018-06-01 00:38:35 -03&quot; &quot;2018-06-01 01:38:35 -03&quot;
-##  [9] &quot;2018-06-01 02:38:35 -03&quot; &quot;2018-06-01 03:38:35 -03&quot;
-## [11] &quot;2018-06-01 04:38:35 -03&quot; &quot;2018-06-01 05:38:35 -03&quot;
-## [13] &quot;2018-06-01 06:38:35 -03&quot; &quot;2018-06-01 07:38:35 -03&quot;
-## [15] &quot;2018-06-01 08:38:35 -03&quot; &quot;2018-06-01 09:38:35 -03&quot;
-## [17] &quot;2018-06-01 10:38:35 -03&quot; &quot;2018-06-01 11:38:35 -03&quot;
-## [19] &quot;2018-06-01 12:38:35 -03&quot; &quot;2018-06-01 13:38:35 -03&quot;
-## [21] &quot;2018-06-01 14:38:35 -03&quot; &quot;2018-06-01 15:38:35 -03&quot;
-## [23] &quot;2018-06-01 16:38:35 -03&quot; &quot;2018-06-01 17:38:35 -03&quot;</code></pre>
+<pre><code>##  [1] &quot;2018-05-31 21:39:28 -03&quot; &quot;2018-05-31 22:39:28 -03&quot;
+##  [3] &quot;2018-05-31 23:39:28 -03&quot; &quot;2018-06-01 00:39:28 -03&quot;
+##  [5] &quot;2018-06-01 01:39:28 -03&quot; &quot;2018-06-01 02:39:28 -03&quot;
+##  [7] &quot;2018-06-01 03:39:28 -03&quot; &quot;2018-06-01 04:39:28 -03&quot;
+##  [9] &quot;2018-06-01 05:39:28 -03&quot; &quot;2018-06-01 06:39:28 -03&quot;
+## [11] &quot;2018-06-01 07:39:28 -03&quot; &quot;2018-06-01 08:39:28 -03&quot;
+## [13] &quot;2018-06-01 09:39:28 -03&quot; &quot;2018-06-01 10:39:28 -03&quot;
+## [15] &quot;2018-06-01 11:39:28 -03&quot; &quot;2018-06-01 12:39:28 -03&quot;
+## [17] &quot;2018-06-01 13:39:28 -03&quot; &quot;2018-06-01 14:39:28 -03&quot;
+## [19] &quot;2018-06-01 15:39:28 -03&quot; &quot;2018-06-01 16:39:28 -03&quot;
+## [21] &quot;2018-06-01 17:39:28 -03&quot; &quot;2018-06-01 18:39:28 -03&quot;
+## [23] &quot;2018-06-01 19:39:28 -03&quot; &quot;2018-06-01 20:39:28 -03&quot;</code></pre>
 <p>funções úteis: <strong>weekdays</strong>, <strong>month</strong>, <strong>julian</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;quinta-feira&quot;
-##  [5] &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
+<pre><code>##  [1] &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;sexta-feira&quot; 
+##  [5] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
 ##  [9] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
 ## [13] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
 ## [17] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
 ## [21] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;junho&quot; &quot;junho&quot;
+<pre><code>##  [1] &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ##  [9] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano*</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17682.90 17682.94 17682.99 17683.03 17683.07 17683.11 17683.15
-##  [8] 17683.19 17683.24 17683.28 17683.32 17683.36 17683.40 17683.44
-## [15] 17683.49 17683.53 17683.57 17683.61 17683.65 17683.69 17683.74
-## [22] 17683.78 17683.82 17683.86
+##  [1] 17683.03 17683.07 17683.11 17683.15 17683.19 17683.24 17683.28
+##  [8] 17683.32 17683.36 17683.40 17683.44 17683.49 17683.53 17683.57
+## [15] 17683.61 17683.65 17683.69 17683.74 17683.78 17683.82 17683.86
+## [22] 17683.90 17683.94 17683.99
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>*Para mais informações: <a href="https://en.wikipedia.org/wiki/Julian_day" class="uri">https://en.wikipedia.org/wiki/Julian_day</a>:</p>
@@ -419,36 +420,36 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##   [6] quinta-feira  sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+<pre><code>##   [1] quinta-feira  quinta-feira  quinta-feira  sexta-feira   sexta-feira  
+##   [6] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
 ##  [11] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
 ##  [16] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
 ##  [21] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [26] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [26] sexta-feira   sexta-feira   sábado        sábado        sábado       
 ##  [31] sábado        sábado        sábado        sábado        sábado       
 ##  [36] sábado        sábado        sábado        sábado        sábado       
 ##  [41] sábado        sábado        sábado        sábado        sábado       
 ##  [46] sábado        sábado        sábado        sábado        sábado       
-##  [51] sábado        sábado        sábado        sábado        domingo      
+##  [51] sábado        domingo       domingo       domingo       domingo      
 ##  [56] domingo       domingo       domingo       domingo       domingo      
 ##  [61] domingo       domingo       domingo       domingo       domingo      
 ##  [66] domingo       domingo       domingo       domingo       domingo      
 ##  [71] domingo       domingo       domingo       domingo       domingo      
-##  [76] domingo       domingo       domingo       segunda-feira segunda-feira
+##  [76] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
 ##  [81] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
 ##  [86] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
 ##  [91] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-##  [96] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [101] segunda-feira segunda-feira terça-feira   terça-feira   terça-feira  
+##  [96] segunda-feira segunda-feira segunda-feira segunda-feira terça-feira  
+## [101] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
 ## [106] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
 ## [111] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
 ## [116] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [121] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [126] terça-feira   quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [121] terça-feira   terça-feira   terça-feira   quarta-feira  quarta-feira 
+## [126] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
 ## [131] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
 ## [136] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
 ## [141] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-## [146] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+## [146] quarta-feira  quarta-feira  quinta-feira  quinta-feira  quinta-feira 
 ## [151] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
 ## [156] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
 ## [161] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 

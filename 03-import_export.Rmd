@@ -452,3 +452,61 @@ O pacote possue ainda funções mais específicas para a criação de arquivos e
 *DICA*: o NetCDF no R funciona de forma parecida com ouma lista ou data frame, podemos "ver" ou selecionar suas sub-partes (sub-sub-partes...) com "$" e TAB.
 
 ### Dados Binários
+
+**Ler dados binários no R**
+
+Em meteorologia, frequentemente os dados estão em formato binário. A maior "dificuldade" em ler estes dados está em conhecer como eles foram gerados. 
+
+Repare que a função `readBin` requer vários argumentos para ler estes dados da forma correta:
+
+```{r}
+args(readBin)
+```
+
+Neste curso, o arquivo binário que vamos abrir como exemplo contém dados de temperatura de brilho obtidas com o satélite GOES-13 (informações em: https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary).
+
+Lembrem-se de baixar o dado em: https://github.com/iagdevs/cursoR/tree/master/dados
+
+```{r}
+# Ler o arquivo binário
+l1 <- readBin("dados/gs.140422.1900g.ch4", 
+              what="int", 
+              n = 1349*1613,
+              size = 2)
+class(l1)
+```
+
+Note que o argumento `endian` por default é `.Platform$endian`. Se rodarmos `.Platform$endian` no R obteremos a ordenação dos bytes ("big" ou "little") utilizada pela plataforma que estamos usando.  
+
+Uma forma rápida para verificarmos os nossos dados é gráfica. Logo, que tal um plot?
+```{r}
+l2 <- matrix(l1, ncol=1613, nrow=1349)
+class(l2)
+# Vamos chamar o pacote cptcity para selecionar facilmente uma paleta de cores legal.
+library(cptcity)   
+image(l2,
+      col = cpt(find_cpt("sat")[8]),
+      main = "Temperatura de brilho") 
+```
+
+Tem algo estranho com esta imagem. O que é? (valendo um sticker).
+
+```{r}
+library(raster)
+l3 <- raster(t(l2[1:1349,1:1613]),
+                     xmn=-82.00,
+                     ymn=-44.96,
+                     xmx=-82.0  + (0.03593245*1349), 
+                     ymx=-44.96 + (0.03593245*1613),
+                     crs = CRS("+init=epsg:4326"))
+class(l3)
+```
+O capítulo geoespacial será visto no final deste curso. Porém, nesta etapa vamos usar o pacote `raster` somente para analisar se os dados binários foram lidos corretamente.
+```{r}
+sp::spplot(((l3 + 75)/100)-273, # Estas correções são necessárias. Veja: http://www.cpc.ncep.noaa.gov/products/global_precip/html/README
+           col.regions = cpt(find_cpt("sat")[8]),
+           at = seq(-80,0,1),
+           main = "Temperatura de brilho (ºC)") 
+```
+
+**Escrever dados binários no R**

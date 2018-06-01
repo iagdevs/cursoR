@@ -106,8 +106,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Pré-Requisitos</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#sistema-operacional"><i class="fa fa-check"></i><b>1.1</b> Sistema Operacional</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#pacotes-usados-neste-curso"><i class="fa fa-check"></i><b>1.2</b> Pacotes usados neste curso</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.3</b> Colaborar</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.4</b> Compartilhar dados</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#dados-usados-neste-curso"><i class="fa fa-check"></i><b>1.3</b> Dados usados neste curso</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#colaborar"><i class="fa fa-check"></i><b>1.4</b> Colaborar</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#compartilhar-dados"><i class="fa fa-check"></i><b>1.5</b> Compartilhar dados</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Intro</a><ul>
 <li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#importante"><i class="fa fa-check"></i><b>2.1</b> IMPORTANTE</a></li>
@@ -252,7 +253,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>## Warning in as.POSIXlt.POSIXct(z): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning in as.POSIXct.POSIXlt(zz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>Feio, né?<br />
 Tentando deixar mais bonito…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="dt">y =</span> df<span class="op">$</span>MediaHoraria[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], <span class="co">#-- Selecionando uma parte do df!</span>
@@ -265,7 +266,7 @@ Tentando deixar mais bonito…</p>
 <pre><code>## Warning in as.POSIXct.POSIXlt(round(z, &quot;days&quot;)): unknown timezone
 ## &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 <p>Colocando <strong>DOIS</strong> elementos no mesmo gráfico:</p>
 <p><a id="plot_base"></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_parcial &lt;-<span class="st"> </span>df[<span class="dv">1</span><span class="op">:</span><span class="dv">180</span>,] <span class="co">#-- Selecionando uma parte do df!</span>
@@ -281,7 +282,7 @@ Tentando deixar mais bonito…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lines</span>(<span class="dt">x =</span> df_parcial<span class="op">$</span>tempo[df<span class="op">$</span>Valido <span class="op">==</span><span class="st"> &quot;Não&quot;</span>], 
       <span class="dt">y =</span> df_parcial<span class="op">$</span>MediaHoraria[df<span class="op">$</span>Valido <span class="op">==</span><span class="st"> &quot;Não&quot;</span>], 
       <span class="dt">pch =</span> <span class="dv">15</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <hr />
 <p><span style="color:purple"><strong>Desafio</strong>: Coloque uma legenda na figura especificando que os dados válidos estão em azul e os inválidos em vermelho </span></p>
 <hr />
@@ -314,7 +315,7 @@ Tentando deixar mais bonito…</p>
 <pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning: Removed 260 rows containing missing values (geom_point).</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,], <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Linhas...</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- ... com pontos</span>
@@ -335,7 +336,7 @@ Tentando deixar mais bonito…</p>
 <pre><code>## Warning in as.POSIXlt.POSIXct(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
 <p>Agora o mais interessante:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df[<span class="dv">1</span><span class="op">:</span><span class="dv">180</span>,], <span class="kw">aes</span>(<span class="dt">x =</span> tempo, <span class="dt">y =</span> MediaHoraria)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> Valido)) <span class="op">+</span>
@@ -352,7 +353,7 @@ Tentando deixar mais bonito…</p>
 <pre><code>## Warning in as.POSIXlt.POSIXct(from): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 <p><span style="color:blue"><strong>Pergunta</strong>: Qual a principal diferença entre o código acima e o <a href="plotando.html#plot_base">código usando <code>plot</code></a>?</span></p>
 <p>A função <code>ggplot</code> plota apenas data frames, pois ela mapeia as variáveis por nomes de colunas. Assim, é preciso <a href="r.html#convert_df">converter matrizes ou arrays em data frames</a>.<br />
 Uma vantagem de trabalharmos com data frames, <a href="importando-e-exportando-dados.html#processing_dfs">como já vimos antes</a>, é poder manipular esses dados de muitas formas possíveis antes de plotá-los.</p>
@@ -381,7 +382,7 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <span class="st">  </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%H:%M&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Formato de data que aparecerá no eixo x</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media, <span class="dt">group =</span> <span class="dv">1</span>), <span class="dt">color =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>)</code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_2014_weekly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(Hora, weekdays) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- Agrupando os dados pelas colunas Hora e weekdays</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Media =</span> <span class="kw">mean</span>(MediaHoraria, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -396,7 +397,7 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media), <span class="dt">fill =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual por Dia da Semana&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>weekdays) <span class="co">#-- Criando paineis em função do dia da semana</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_2014_monthly &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(Hora, mes) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- Agrupando os dados pelas colunas Hora e mes</span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Media =</span> <span class="kw">mean</span>(MediaHoraria, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span>
@@ -412,7 +413,7 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Hora, <span class="dt">y =</span> Media), <span class="dt">fill =</span> <span class="st">&quot;purple&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Média Horária Anual por Mes&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;NOx [ppb]&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>mes) <span class="co">#-- Criando paineis em função do mês</span></code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <hr />
 <p><span style="color:red"><strong>Exercício</strong>: <em>Em média</em>, como <strong>os dados válidos</strong> de NOx variam mensalmente ao longo do ano de 2014? Faça um gráfico.</span></p>
 <p><span style="color:purple"><strong>Desafio</strong>: Ainda é possível melhorar os gráficos acima! Pesquise como:</span></p>
@@ -445,7 +446,7 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <pre><code>## Warning in as.POSIXct.POSIXlt(r1): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 <p>Experimentando escalas de cores com a função <code>lucky</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df_2014_monthly) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_labels =</span> <span class="st">&quot;%H:%M&quot;</span>) <span class="op">+</span>
@@ -455,8 +456,8 @@ df_2014_hour &lt;-<span class="st"> </span>df_<span class="dv">2014</span> <span
 <span class="st">  </span><span class="kw">theme_black</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, <span class="dt">legend.direction =</span> <span class="st">&quot;horizontal&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#-- Colocando a legenda na parte de baixo da figura</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>mes) <span class="co">#-- Criando paineis em função do mês</span></code></pre></div>
-<pre><code>## Colour gradient: nd_rich_Split_Complementary_01, number: 5709</code></pre>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<pre><code>## Colour gradient: es_landscape_es_landscape_01, number: 1403</code></pre>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 <p><strong>Este é só o começo!</strong> <a href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">Veja aqui um pouco mais das muitas aplicações do <code>ggplot</code></a>.</p>
 
 </div>
