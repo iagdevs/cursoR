@@ -326,7 +326,7 @@ Um exmplo de NetCDF:
 wrfinput <- paste0(system.file("extdata", package = "eixport"), "/wrfinput_d01")
 ```
 
-Abre o arquivo .nc
+Abre o arquivo .nc  
 
 ```{r eval = TRUE}
 wrf <- ncdf4::nc_open(wrfinput)

@@ -302,7 +302,7 @@ Algumas operações que pode fazer com data.frames são:
 
 faza?
 
-```{r}
+```{reval = FALSE}
 ?rbind
 ?cbind
 ?merge
@@ -314,6 +314,6 @@ Exemplo:
 ```{r}
 a <- data.frame(id = c("a", "b", "c"))
 b <- data.frame(id = c("Z", "b", "D"))
-merge(x = a, y = b, by = "id")
+merge(x = a, y = b, by = "id") 
 ```
 
