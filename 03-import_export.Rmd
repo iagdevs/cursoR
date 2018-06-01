@@ -491,8 +491,8 @@ image(l2,
 
 Tem algo estranho com esta imagem. O que é? (valendo um sticker).
 
-```{r}
-library(raster)
+```{r message=FALSE, warning=FALSE}
+library(raster, quietly = TRUE)
 l3 <- raster(t(l2[1:1349,1:1613]),
                      xmn=-82.00,
                      ymn=-44.96,
