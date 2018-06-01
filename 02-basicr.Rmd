@@ -183,13 +183,101 @@ ab <- factor(x = aa,
 levels(ab)
 ```
 
+## Paste!!
+
+Como concatenar, juntar, grudar arquivos, palavras, etc etc... é com `paste` e
+`paste0`. Estas funções são muito simples mas muito úteis!!!
+
+```{r}
+args(paste0)
+```
+
+```{r}
+args(paste)
+```
+
+
+A diferença entre `paste0` e `paste`, é que `paste0` não tem uma separação
+de characteres por default, mas `paste` usa espaço.
+
+```{r}
+path <- getwd()
+nome <- "SeuNome"
+paste(path, nome)
+paste0(path, nome)
+paste(path, "/", nome)
+paste(path, "/-/_****;;;////", nome)
+class(paste(path, "/-/_****;;;////", nome))
+paste0(nome, "_", 1:10) #Função vetorizada
+paste0(1:10) #Função vetorizada
+class(paste0(1:10))
+```
+
+## Substituindo caracteres
+
+Vamos supor que tu vai ler um banco de dados, e uma coluna tem o character "BB".
+Vamos supor que nessa coluna tem um numero, mas tu precisa **remover** o simbolo
+"BB" para logo convertir para numero. A função que vamos usar que podemos usar é
+`gsub`.
+
+```{r}
+numeros <- 1:50
+b <- round(runif(n = 10, min = 1, max = 50))
+numeros[b] <- paste0(numeros, "BB")
+numeros
+```
+
+
+```{r}
+args(gsub)
+```
+
+
+```{r}
+nn <- gsub(pattern = "BB", replacement = "", x = numeros)
+class(nn)
+as.numeric(nn)
+```
+
+## Substraindo caracteres
+
+
+Agora vamos supor que temos grudado ultimo character com BB, A função que vamos usar
+é `substr`:
+
+```{r}
+args(substr)
+```
+
+Com `x` é o vetor, `start` primeiro elemento em ser reemplazado e `stop` ultimo
+elemento em ser reemplazado
+
+Vamos super uma sequenciea de 1 ate 10 e tem grudados as letras BB
+
+```{r}
+(numeros<- paste0(1:9, "BB"))
+```
+
+Para remover os ultimos dois characters sería:
+```{r}
+substr(numeros, 0, 1)
+substr(numeros, 2, 3)
+```
+
+
 ## Data.frames
 
 _lembre ?data.frame_
 
 Lembram uma planilha EXCEL... Mais ou menos
 
+
 É uma classe bem especial, tem elementos de matriz mas o modo é lista
+```{r}
+args(data.frame)
+```
+
+
 
 ```{r}
 (df <- data.frame(a = 1:3))
@@ -205,3 +293,27 @@ nrow(df)
 ncol(df)
 dim(df)
 ```
+
+Algumas operações que pode fazer com data.frames são:
+
+- rbind: une verticalmente (por linhas... row) duas data.frames
+- cbind: Une horizontalmente duas data.frames por colunas
+- merge: Une horizontalmente data.frames por coincidencia de dados nas colunas
+
+faza?
+
+```{r}
+?rbind
+?cbind
+?merge
+```
+
+
+Exemplo:
+
+```{r}
+a <- data.frame(id = c("a", "b", "c"))
+b <- data.frame(id = c("Z", "b", "D"))
+merge(x = a, y = b, by = "id")
+```
+

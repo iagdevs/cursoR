@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-05-31">
+<meta name="date" content="2018-06-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -126,7 +126,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.7" data-path="r.html"><a href="r.html#list"><i class="fa fa-check"></i><b>3.7</b> <code>list</code></a></li>
 <li class="chapter" data-level="3.8" data-path="r.html"><a href="r.html#tempo-e-data"><i class="fa fa-check"></i><b>3.8</b> Tempo e Data</a></li>
 <li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
-<li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> Data.frames</a></li>
+<li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#paste"><i class="fa fa-check"></i><b>3.10</b> Paste!!</a></li>
+<li class="chapter" data-level="3.11" data-path="r.html"><a href="r.html#substituindo-caracteres"><i class="fa fa-check"></i><b>3.11</b> Substituindo caracteres</a></li>
+<li class="chapter" data-level="3.12" data-path="r.html"><a href="r.html#substraindo-caracteres"><i class="fa fa-check"></i><b>3.12</b> Substraindo caracteres</a></li>
+<li class="chapter" data-level="3.13" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.13</b> Data.frames</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html"><i class="fa fa-check"></i><b>4</b> Importando e Exportando Dados</a><ul>
 <li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> Data Frames</a></li>
@@ -358,55 +361,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(a)</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(b &lt;-<span class="st"> </span><span class="kw">ISOdate</span>(<span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">month =</span> <span class="dv">4</span>, <span class="dt">day =</span> <span class="dv">5</span>, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>))</code></pre></div>
-<pre><code>## Warning in strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz): unknown timezone
-## &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>## Warning in as.POSIXct.POSIXlt(strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz), :
-## unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>## [1] &quot;2018-04-05 12:00:00 GMT&quot;</code></pre>
+<pre><code>## [1] &quot;2018-04-05 12:00:00 Americas&quot;</code></pre>
 <p>Tempo</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(d &lt;-<span class="st"> </span><span class="kw">ISOdatetime</span>(<span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">month =</span> <span class="dv">4</span>, <span class="dt">day =</span> <span class="dv">5</span>, <span class="dt">hour =</span> <span class="dv">0</span>, <span class="dt">min =</span> <span class="dv">0</span>, <span class="dt">sec =</span> <span class="dv">0</span>,
                   <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>))</code></pre></div>
-<pre><code>## Warning in strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz): unknown timezone
-## &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>## Warning in as.POSIXct.POSIXlt(strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz), :
-## unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>## [1] &quot;2018-04-05 GMT&quot;</code></pre>
+<pre><code>## [1] &quot;2018-04-05 Americas&quot;</code></pre>
 <p>Caso você precise, o pacote <a href="https://github.com/eddelbuettel/nanotime">nanotime</a> permite trabalhar com nano segundos.</p>
 <p>É possível fazer sequências:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hoje &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 (a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>))</code></pre></div>
-<pre><code>##  [1] &quot;2018-05-31 21:39:28 -03&quot; &quot;2018-05-31 22:39:28 -03&quot;
-##  [3] &quot;2018-05-31 23:39:28 -03&quot; &quot;2018-06-01 00:39:28 -03&quot;
-##  [5] &quot;2018-06-01 01:39:28 -03&quot; &quot;2018-06-01 02:39:28 -03&quot;
-##  [7] &quot;2018-06-01 03:39:28 -03&quot; &quot;2018-06-01 04:39:28 -03&quot;
-##  [9] &quot;2018-06-01 05:39:28 -03&quot; &quot;2018-06-01 06:39:28 -03&quot;
-## [11] &quot;2018-06-01 07:39:28 -03&quot; &quot;2018-06-01 08:39:28 -03&quot;
-## [13] &quot;2018-06-01 09:39:28 -03&quot; &quot;2018-06-01 10:39:28 -03&quot;
-## [15] &quot;2018-06-01 11:39:28 -03&quot; &quot;2018-06-01 12:39:28 -03&quot;
-## [17] &quot;2018-06-01 13:39:28 -03&quot; &quot;2018-06-01 14:39:28 -03&quot;
-## [19] &quot;2018-06-01 15:39:28 -03&quot; &quot;2018-06-01 16:39:28 -03&quot;
-## [21] &quot;2018-06-01 17:39:28 -03&quot; &quot;2018-06-01 18:39:28 -03&quot;
-## [23] &quot;2018-06-01 19:39:28 -03&quot; &quot;2018-06-01 20:39:28 -03&quot;</code></pre>
+<pre><code>##  [1] &quot;2018-06-01 00:24:37 -03&quot; &quot;2018-06-01 01:24:37 -03&quot;
+##  [3] &quot;2018-06-01 02:24:37 -03&quot; &quot;2018-06-01 03:24:37 -03&quot;
+##  [5] &quot;2018-06-01 04:24:37 -03&quot; &quot;2018-06-01 05:24:37 -03&quot;
+##  [7] &quot;2018-06-01 06:24:37 -03&quot; &quot;2018-06-01 07:24:37 -03&quot;
+##  [9] &quot;2018-06-01 08:24:37 -03&quot; &quot;2018-06-01 09:24:37 -03&quot;
+## [11] &quot;2018-06-01 10:24:37 -03&quot; &quot;2018-06-01 11:24:37 -03&quot;
+## [13] &quot;2018-06-01 12:24:37 -03&quot; &quot;2018-06-01 13:24:37 -03&quot;
+## [15] &quot;2018-06-01 14:24:37 -03&quot; &quot;2018-06-01 15:24:37 -03&quot;
+## [17] &quot;2018-06-01 16:24:37 -03&quot; &quot;2018-06-01 17:24:37 -03&quot;
+## [19] &quot;2018-06-01 18:24:37 -03&quot; &quot;2018-06-01 19:24:37 -03&quot;
+## [21] &quot;2018-06-01 20:24:37 -03&quot; &quot;2018-06-01 21:24:37 -03&quot;
+## [23] &quot;2018-06-01 22:24:37 -03&quot; &quot;2018-06-01 23:24:37 -03&quot;</code></pre>
 <p>funções úteis: <strong>weekdays</strong>, <strong>month</strong>, <strong>julian</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;quinta-feira&quot; &quot;sexta-feira&quot; 
-##  [5] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
-##  [9] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
-## [13] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
-## [17] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot; 
-## [21] &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;  &quot;sexta-feira&quot;</code></pre>
+<pre><code>##  [1] &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot;
+##  [9] &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot;
+## [17] &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot; &quot;sexta&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;maio&quot;  &quot;maio&quot;  &quot;maio&quot;  &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
+<pre><code>##  [1] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ##  [9] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano*</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17683.03 17683.07 17683.11 17683.15 17683.19 17683.24 17683.28
-##  [8] 17683.32 17683.36 17683.40 17683.44 17683.49 17683.53 17683.57
-## [15] 17683.61 17683.65 17683.69 17683.74 17683.78 17683.82 17683.86
-## [22] 17683.90 17683.94 17683.99
+##  [1] 17683.14 17683.18 17683.23 17683.27 17683.31 17683.35 17683.39
+##  [8] 17683.43 17683.48 17683.52 17683.56 17683.60 17683.64 17683.68
+## [15] 17683.73 17683.77 17683.81 17683.85 17683.89 17683.93 17683.98
+## [22] 17684.02 17684.06 17684.10
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>*Para mais informações: <a href="https://en.wikipedia.org/wiki/Julian_day" class="uri">https://en.wikipedia.org/wiki/Julian_day</a>:</p>
@@ -420,41 +410,28 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] quinta-feira  quinta-feira  quinta-feira  sexta-feira   sexta-feira  
-##   [6] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [11] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [16] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [21] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [26] sexta-feira   sexta-feira   sábado        sábado        sábado       
-##  [31] sábado        sábado        sábado        sábado        sábado       
-##  [36] sábado        sábado        sábado        sábado        sábado       
-##  [41] sábado        sábado        sábado        sábado        sábado       
-##  [46] sábado        sábado        sábado        sábado        sábado       
-##  [51] sábado        domingo       domingo       domingo       domingo      
-##  [56] domingo       domingo       domingo       domingo       domingo      
-##  [61] domingo       domingo       domingo       domingo       domingo      
-##  [66] domingo       domingo       domingo       domingo       domingo      
-##  [71] domingo       domingo       domingo       domingo       domingo      
-##  [76] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-##  [81] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-##  [86] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-##  [91] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-##  [96] segunda-feira segunda-feira segunda-feira segunda-feira terça-feira  
-## [101] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [106] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [111] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [116] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [121] terça-feira   terça-feira   terça-feira   quarta-feira  quarta-feira 
-## [126] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-## [131] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-## [136] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-## [141] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-## [146] quarta-feira  quarta-feira  quinta-feira  quinta-feira  quinta-feira 
-## [151] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-## [156] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-## [161] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-## [166] quinta-feira  quinta-feira  quinta-feira 
-## 7 Levels: domingo quarta-feira quinta-feira sábado ... terça-feira</code></pre>
+<pre><code>##   [1] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##   [9] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [17] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [25] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [33] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [41] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [49] domingo domingo domingo domingo domingo domingo domingo domingo
+##  [57] domingo domingo domingo domingo domingo domingo domingo domingo
+##  [65] domingo domingo domingo domingo domingo domingo domingo domingo
+##  [73] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [81] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [89] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [97] terça   terça   terça   terça   terça   terça   terça   terça  
+## [105] terça   terça   terça   terça   terça   terça   terça   terça  
+## [113] terça   terça   terça   terça   terça   terça   terça   terça  
+## [121] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## [129] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## [137] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## [145] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+## [153] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+## [161] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
 <p>São muito úteis para regressões, plotes e resumos estatísitcos.</p>
 <p>Olhe os <strong>Levels</strong></p>
 <p>Então:</p>
@@ -465,11 +442,87 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <pre><code>## [1] &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;    &quot;Saturday&quot; 
 ## [7] &quot;Sunday&quot;</code></pre>
 </div>
+<div id="paste" class="section level2">
+<h2><span class="header-section-number">3.10</span> Paste!!</h2>
+<p>Como concatenar, juntar, grudar arquivos, palavras, etc etc… é com <code>paste</code> e <code>paste0</code>. Estas funções são muito simples mas muito úteis!!!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(paste0)</code></pre></div>
+<pre><code>## function (..., collapse = NULL) 
+## NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(paste)</code></pre></div>
+<pre><code>## function (..., sep = &quot; &quot;, collapse = NULL) 
+## NULL</code></pre>
+<p>A diferença entre <code>paste0</code> e <code>paste</code>, é que <code>paste0</code> não tem uma separação de characteres por default, mas <code>paste</code> usa espaço.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">path &lt;-<span class="st"> </span><span class="kw">getwd</span>()
+nome &lt;-<span class="st"> &quot;SeuNome&quot;</span>
+<span class="kw">paste</span>(path, nome)</code></pre></div>
+<pre><code>## [1] &quot;/home/sergio/Documentos/cursoR SeuNome&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste0</span>(path, nome)</code></pre></div>
+<pre><code>## [1] &quot;/home/sergio/Documentos/cursoRSeuNome&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(path, <span class="st">&quot;/&quot;</span>, nome)</code></pre></div>
+<pre><code>## [1] &quot;/home/sergio/Documentos/cursoR / SeuNome&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(path, <span class="st">&quot;/-/_****;;;////&quot;</span>, nome)</code></pre></div>
+<pre><code>## [1] &quot;/home/sergio/Documentos/cursoR /-/_****;;;//// SeuNome&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">paste</span>(path, <span class="st">&quot;/-/_****;;;////&quot;</span>, nome))</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste0</span>(nome, <span class="st">&quot;_&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="co">#Função vetorizada</span></code></pre></div>
+<pre><code>##  [1] &quot;SeuNome_1&quot;  &quot;SeuNome_2&quot;  &quot;SeuNome_3&quot;  &quot;SeuNome_4&quot;  &quot;SeuNome_5&quot; 
+##  [6] &quot;SeuNome_6&quot;  &quot;SeuNome_7&quot;  &quot;SeuNome_8&quot;  &quot;SeuNome_9&quot;  &quot;SeuNome_10&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste0</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="co">#Função vetorizada</span></code></pre></div>
+<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">paste0</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="substituindo-caracteres" class="section level2">
+<h2><span class="header-section-number">3.11</span> Substituindo caracteres</h2>
+<p>Vamos supor que tu vai ler um banco de dados, e uma coluna tem o character “BB”. Vamos supor que nessa coluna tem um numero, mas tu precisa <strong>remover</strong> o simbolo “BB” para logo convertir para numero. A função que vamos usar que podemos usar é <code>gsub</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">numeros &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">50</span>
+b &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">runif</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">min =</span> <span class="dv">1</span>, <span class="dt">max =</span> <span class="dv">50</span>))
+numeros[b] &lt;-<span class="st"> </span><span class="kw">paste0</span>(numeros, <span class="st">&quot;BB&quot;</span>)</code></pre></div>
+<pre><code>## Warning in numeros[b] &lt;- paste0(numeros, &quot;BB&quot;): número de itens para para
+## substituir não é um múltiplo do comprimento do substituto</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">numeros</code></pre></div>
+<pre><code>##  [1] &quot;1&quot;    &quot;2&quot;    &quot;9BB&quot;  &quot;4&quot;    &quot;5&quot;    &quot;6&quot;    &quot;7&quot;    &quot;8&quot;    &quot;9&quot;    &quot;10&quot;  
+## [11] &quot;11&quot;   &quot;12&quot;   &quot;8BB&quot;  &quot;14&quot;   &quot;15&quot;   &quot;16&quot;   &quot;17&quot;   &quot;18&quot;   &quot;19&quot;   &quot;10BB&quot;
+## [21] &quot;21&quot;   &quot;22&quot;   &quot;6BB&quot;  &quot;24&quot;   &quot;25&quot;   &quot;4BB&quot;  &quot;27&quot;   &quot;28&quot;   &quot;29&quot;   &quot;30&quot;  
+## [31] &quot;31&quot;   &quot;32&quot;   &quot;33&quot;   &quot;7BB&quot;  &quot;5BB&quot;  &quot;36&quot;   &quot;3BB&quot;  &quot;38&quot;   &quot;39&quot;   &quot;40&quot;  
+## [41] &quot;41&quot;   &quot;42&quot;   &quot;43&quot;   &quot;2BB&quot;  &quot;45&quot;   &quot;46&quot;   &quot;47&quot;   &quot;48&quot;   &quot;49&quot;   &quot;50&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(gsub)</code></pre></div>
+<pre><code>## function (pattern, replacement, x, ignore.case = FALSE, perl = FALSE, 
+##     fixed = FALSE, useBytes = FALSE) 
+## NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nn &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="dt">pattern =</span> <span class="st">&quot;BB&quot;</span>, <span class="dt">replacement =</span> <span class="st">&quot;&quot;</span>, <span class="dt">x =</span> numeros)
+<span class="kw">class</span>(nn)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(nn)</code></pre></div>
+<pre><code>##  [1]  1  2  9  4  5  6  7  8  9 10 11 12  8 14 15 16 17 18 19 10 21 22  6
+## [24] 24 25  4 27 28 29 30 31 32 33  7  5 36  3 38 39 40 41 42 43  2 45 46
+## [47] 47 48 49 50</code></pre>
+</div>
+<div id="substraindo-caracteres" class="section level2">
+<h2><span class="header-section-number">3.12</span> Substraindo caracteres</h2>
+<p>Agora vamos supor que temos grudado ultimo character com BB, A função que vamos usar é <code>substr</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(substr)</code></pre></div>
+<pre><code>## function (x, start, stop) 
+## NULL</code></pre>
+<p>Com <code>x</code> é o vetor, <code>start</code> primeiro elemento em ser reemplazado e <code>stop</code> ultimo elemento em ser reemplazado</p>
+<p>Vamos super uma sequenciea de 1 ate 10 e tem grudados as letras BB</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(numeros&lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="st">&quot;BB&quot;</span>))</code></pre></div>
+<pre><code>## [1] &quot;1BB&quot; &quot;2BB&quot; &quot;3BB&quot; &quot;4BB&quot; &quot;5BB&quot; &quot;6BB&quot; &quot;7BB&quot; &quot;8BB&quot; &quot;9BB&quot;</code></pre>
+<p>Para remover os ultimos dois characters sería:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">substr</span>(numeros, <span class="dv">0</span>, <span class="dv">1</span>)</code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot; &quot;7&quot; &quot;8&quot; &quot;9&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">substr</span>(numeros, <span class="dv">2</span>, <span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] &quot;BB&quot; &quot;BB&quot; &quot;BB&quot; &quot;BB&quot; &quot;BB&quot; &quot;BB&quot; &quot;BB&quot; &quot;BB&quot; &quot;BB&quot;</code></pre>
+</div>
 <div id="data.frames" class="section level2">
-<h2><span class="header-section-number">3.10</span> Data.frames</h2>
+<h2><span class="header-section-number">3.13</span> Data.frames</h2>
 <p><em>lembre ?data.frame</em></p>
 <p>Lembram uma planilha EXCEL… Mais ou menos</p>
 <p>É uma classe bem especial, tem elementos de matriz mas o modo é lista</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(data.frame)</code></pre></div>
+<pre><code>## function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE, 
+##     fix.empty.names = TRUE, stringsAsFactors = default.stringsAsFactors()) 
+## NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))</code></pre></div>
 <pre><code>##   a
 ## 1 1
@@ -488,6 +541,22 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <pre><code>## [1] 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(df)</code></pre></div>
 <pre><code>## [1] 3 1</code></pre>
+<p>Algumas operações que pode fazer com data.frames são:</p>
+<ul>
+<li>rbind: une verticalmente (por linhas… row) duas data.frames</li>
+<li>cbind: Une horizontalmente duas data.frames por colunas</li>
+<li>merge: Une horizontalmente data.frames por coincidencia de dados nas colunas</li>
+</ul>
+<p>faza?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?rbind
+?cbind
+?merge</code></pre></div>
+<p>Exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>))
+b &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="kw">c</span>(<span class="st">&quot;Z&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;D&quot;</span>))
+<span class="kw">merge</span>(<span class="dt">x =</span> a, <span class="dt">y =</span> b, <span class="dt">by =</span> <span class="st">&quot;id&quot;</span>)</code></pre></div>
+<pre><code>##   id
+## 1  b</code></pre>
 
 </div>
 </div>

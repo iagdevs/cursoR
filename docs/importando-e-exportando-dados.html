@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-05-31">
+<meta name="date" content="2018-06-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -126,7 +126,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.7" data-path="r.html"><a href="r.html#list"><i class="fa fa-check"></i><b>3.7</b> <code>list</code></a></li>
 <li class="chapter" data-level="3.8" data-path="r.html"><a href="r.html#tempo-e-data"><i class="fa fa-check"></i><b>3.8</b> Tempo e Data</a></li>
 <li class="chapter" data-level="3.9" data-path="r.html"><a href="r.html#fatores"><i class="fa fa-check"></i><b>3.9</b> Fatores</a></li>
-<li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.10</b> Data.frames</a></li>
+<li class="chapter" data-level="3.10" data-path="r.html"><a href="r.html#paste"><i class="fa fa-check"></i><b>3.10</b> Paste!!</a></li>
+<li class="chapter" data-level="3.11" data-path="r.html"><a href="r.html#substituindo-caracteres"><i class="fa fa-check"></i><b>3.11</b> Substituindo caracteres</a></li>
+<li class="chapter" data-level="3.12" data-path="r.html"><a href="r.html#substraindo-caracteres"><i class="fa fa-check"></i><b>3.12</b> Substraindo caracteres</a></li>
+<li class="chapter" data-level="3.13" data-path="r.html"><a href="r.html#data.frames"><i class="fa fa-check"></i><b>3.13</b> Data.frames</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html"><i class="fa fa-check"></i><b>4</b> Importando e Exportando Dados</a><ul>
 <li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data-frames"><i class="fa fa-check"></i><b>4.1</b> Data Frames</a></li>
@@ -213,56 +216,49 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>)</code></pre></div>
 <p>Agora vamos usar a funções <code>head</code> and <code>tail</code> para ver as primeiras e as ultimas 6 linhas do data-frame.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df)</code></pre></div>
-<pre><code>##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
-## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
-## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
-## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
-## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
-## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
-##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
-## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido
-## 2             ppb            9          -   NÃ£o
+## 2             ppb            9          -    Não
 ## 3             ppb            9          -    Sim
 ## 4             ppb            5          -    Sim
 ## 5             ppb            4          -    Sim
 ## 6             ppb            5          -    Sim
 ## 7             ppb            5          -    Sim</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(df)</code></pre></div>
-<pre><code>##       TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 8577 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 19:00
-## 8578 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 20:00
-## 8579 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 21:00
-## 8580 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 22:00
-## 8581 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 23:00
-## 8582 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 24:00
-##      CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o
-## 8577              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8578              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8579              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8580              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8581              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8582              95 Cid.UniversitÃ¡ria-USP-Ipen
-##                    NomeParÃ.metro UnidadedeMedida MediaHoraria MediaMovel
-## 8577 NOx (Ã“xidos de NitrogÃªnio)             ppb            3          -
-## 8578 NOx (Ã“xidos de NitrogÃªnio)             ppb            8          -
-## 8579 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
-## 8580 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
-## 8581 NOx (Ã“xidos de NitrogÃªnio)             ppb           16          -
-## 8582 NOx (Ã“xidos de NitrogÃªnio)             ppb           NA          -
-##      Valido
-## 8577    Sim
-## 8578    Sim
-## 8579    Sim
-## 8580    Sim
-## 8581    Sim
-## 8582    Sim</code></pre>
+<pre><code>##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim</code></pre>
 <p>Agora vamos ler os mesmos dados com outro formato e testar e read.table funciona do mesmo jeito</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt&quot;</span>)
 <span class="co"># Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : </span>
@@ -277,56 +273,49 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Como vemos o segundo arquivo tem separação de “;”, entao, temos que lero arquivo assim:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
 <span class="kw">head</span>(df2)</code></pre></div>
-<pre><code>##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
-## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
-## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
-## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
-## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
-## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
-##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
-## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido
-## 2             ppb            9          -   NÃ£o
+## 2             ppb            9          -    Não
 ## 3             ppb            9          -    Sim
 ## 4             ppb            5          -    Sim
 ## 5             ppb            4          -    Sim
 ## 6             ppb            5          -    Sim
 ## 7             ppb            5          -    Sim</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(df2)</code></pre></div>
-<pre><code>##       TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 8577 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 19:00
-## 8578 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 20:00
-## 8579 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 21:00
-## 8580 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 22:00
-## 8581 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 23:00
-## 8582 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 24:00
-##      CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o
-## 8577              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8578              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8579              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8580              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8581              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8582              95 Cid.UniversitÃ¡ria-USP-Ipen
-##                    NomeParÃ.metro UnidadedeMedida MediaHoraria MediaMovel
-## 8577 NOx (Ã“xidos de NitrogÃªnio)             ppb            3          -
-## 8578 NOx (Ã“xidos de NitrogÃªnio)             ppb            8          -
-## 8579 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
-## 8580 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
-## 8581 NOx (Ã“xidos de NitrogÃªnio)             ppb           16          -
-## 8582 NOx (Ã“xidos de NitrogÃªnio)             ppb           NA          -
-##      Valido
-## 8577    Sim
-## 8578    Sim
-## 8579    Sim
-## 8580    Sim
-## 8581    Sim
-## 8582    Sim</code></pre>
+<pre><code>##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim</code></pre>
 <p><strong>Qua dificultades tu já enfrentou importando dados?</strong></p>
 </div>
 <div id="base" class="section level2">
@@ -387,13 +376,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(df, class)</code></pre></div>
 <pre><code>##          TipodeRede TipodeMonitoramento                Tipo 
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
-##                Data                Hora     CodigoEstaÃ.Ã.o 
+##                Data                Hora       CodigoEstação 
 ##            &quot;factor&quot;            &quot;factor&quot;           &quot;integer&quot; 
-##       NomeEstaÃ.Ã.o      NomeParÃ.metro     UnidadedeMedida 
+##         NomeEstação       NomeParâmetro     UnidadedeMedida 
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
-<p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-05-31 22:09:04.</p>
+<p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-06-01 00:24:40.</p>
 <p>Para isso temos que grudar as variabel Data e Hora. Faremios isso numa nova varaibel chamada tempo_char, adicionando ela diretamente no <code>df</code> com o cifrão DOLLAR $. O grude pode ser feito com as funções <code>paste</code> ou <code>paste0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo_char &lt;-<span class="st"> </span><span class="kw">paste</span>(df<span class="op">$</span>Data, df<span class="op">$</span>Hora)
 <span class="kw">head</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
@@ -408,132 +397,121 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## NULL</code></pre>
 <p>Então, vamos criar outra variabel tempo o formato POSIXct</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo_char, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>, 
-                       <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)</code></pre></div>
-<pre><code>## Warning in strptime(x, format, tz = tz): unknown timezone &#39;Americas/
-## Sao_Paulo&#39;</code></pre>
-<pre><code>## Warning in as.POSIXct.POSIXlt(as.POSIXlt(x, tz, ...), tz, ...): unknown
-## timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df<span class="op">$</span>tempo)</code></pre></div>
-<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>## [1] &quot;2014-01-01 01:00:00 GMT&quot; &quot;2014-01-01 02:00:00 GMT&quot;
-## [3] &quot;2014-01-01 03:00:00 GMT&quot; &quot;2014-01-01 04:00:00 GMT&quot;
-## [5] &quot;2014-01-01 05:00:00 GMT&quot; &quot;2014-01-01 06:00:00 GMT&quot;</code></pre>
+                       <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)
+<span class="kw">head</span>(df<span class="op">$</span>tempo)</code></pre></div>
+<pre><code>## [1] &quot;2014-01-01 01:00:00 Americas&quot; &quot;2014-01-01 02:00:00 Americas&quot;
+## [3] &quot;2014-01-01 03:00:00 Americas&quot; &quot;2014-01-01 04:00:00 Americas&quot;
+## [5] &quot;2014-01-01 05:00:00 Americas&quot; &quot;2014-01-01 06:00:00 Americas&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df<span class="op">$</span>tempo)</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <p>Agora, vamos a extraer os dias da semana do tempo, mes e dia juliano:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>weekdays &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%A&quot;</span>)</code></pre></div>
-<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df<span class="op">$</span>weekdays)</code></pre></div>
-<pre><code>## [1] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
-## [5] &quot;quarta-feira&quot; &quot;quarta-feira&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>mes &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%B&quot;</span>)</code></pre></div>
-<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df<span class="op">$</span>mes)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>weekdays &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%A&quot;</span>)
+<span class="kw">head</span>(df<span class="op">$</span>weekdays)</code></pre></div>
+<pre><code>## [1] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>mes &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%B&quot;</span>)
+<span class="kw">head</span>(df<span class="op">$</span>mes)</code></pre></div>
 <pre><code>## [1] &quot;janeiro&quot; &quot;janeiro&quot; &quot;janeiro&quot; &quot;janeiro&quot; &quot;janeiro&quot; &quot;janeiro&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>diajuliano &lt;-<span class="st"> </span><span class="kw">julian</span>(df<span class="op">$</span>tempo)
 <span class="kw">head</span>(df<span class="op">$</span>diajuliano)</code></pre></div>
 <pre><code>## Time differences in days
 ## [1] 16071.04 16071.08 16071.12 16071.17 16071.21 16071.25</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>ano &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%Y&quot;</span>)</code></pre></div>
-<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 </div>
 <div id="aggregate" class="section level3">
 <h3><span class="header-section-number">4.2.5</span> aggregate</h3>
 <p>Vamos a carregar a nossa data.frame. Primero uma olhada</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df)</code></pre></div>
-<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
-## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
-## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
-## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
-## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
-## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
-##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
-## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
-## 2             ppb            9          -   NÃ£o 01/01/2014 01:00
+## 2             ppb            9          -    Não 01/01/2014 01:00
 ## 3             ppb            9          -    Sim 01/01/2014 02:00
 ## 4             ppb            5          -    Sim 01/01/2014 03:00
 ## 5             ppb            4          -    Sim 01/01/2014 04:00
 ## 6             ppb            5          -    Sim 01/01/2014 05:00
 ## 7             ppb            5          -    Sim 01/01/2014 06:00
-##                 tempo     weekdays     mes    diajuliano  ano
-## 2 2014-01-01 01:00:00 quarta-feira janeiro 16071.04 days 2014
-## 3 2014-01-01 02:00:00 quarta-feira janeiro 16071.08 days 2014
-## 4 2014-01-01 03:00:00 quarta-feira janeiro 16071.12 days 2014
-## 5 2014-01-01 04:00:00 quarta-feira janeiro 16071.17 days 2014
-## 6 2014-01-01 05:00:00 quarta-feira janeiro 16071.21 days 2014
-## 7 2014-01-01 06:00:00 quarta-feira janeiro 16071.25 days 2014</code></pre>
+##                 tempo weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00   quarta janeiro 16071.04 days 2014
+## 3 2014-01-01 02:00:00   quarta janeiro 16071.08 days 2014
+## 4 2014-01-01 03:00:00   quarta janeiro 16071.12 days 2014
+## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
+## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
+## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014</code></pre>
 <p>Poderiamos calcular a media horaria por dia da semana. Então:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria, <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays), sum, <span class="dt">na.rm =</span> T)
 dff</code></pre></div>
-<pre><code>##         Group.1     x
-## 1       domingo 20327
-## 2  quarta-feira 40180
-## 3  quinta-feira 41199
-## 4        sábado 32298
-## 5 segunda-feira 34057
-## 6   sexta-feira 42558
-## 7   terça-feira 37904</code></pre>
+<pre><code>##   Group.1     x
+## 1 domingo 20327
+## 2  quarta 40180
+## 3  quinta 41199
+## 4  sábado 32298
+## 5 segunda 34057
+## 6   sexta 42558
+## 7   terça 37904</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(dff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dias&quot;</span>, <span class="st">&quot;MediaHoraria&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff<span class="op">$</span>sd &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria, 
                     <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays), 
                     sum, <span class="dt">na.rm =</span> T)<span class="op">$</span>x
 dff</code></pre></div>
-<pre><code>##            dias MediaHoraria    sd
-## 1       domingo        20327 20327
-## 2  quarta-feira        40180 40180
-## 3  quinta-feira        41199 41199
-## 4        sábado        32298 32298
-## 5 segunda-feira        34057 34057
-## 6   sexta-feira        42558 42558
-## 7   terça-feira        37904 37904</code></pre>
+<pre><code>##      dias MediaHoraria    sd
+## 1 domingo        20327 20327
+## 2  quarta        40180 40180
+## 3  quinta        41199 41199
+## 4  sábado        32298 32298
+## 5 segunda        34057 34057
+## 6   sexta        42558 42558
+## 7   terça        37904 37904</code></pre>
 </div>
 <div id="subset" class="section level3">
 <h3><span class="header-section-number">4.2.6</span> subset</h3>
 <p>Como poderiamos escolher só o mes de janeiro??</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#[     LINHAS    ,  COLUNAS   ]</span>
 <span class="kw">head</span>(df[df<span class="op">$</span>mes <span class="op">==</span><span class="st"> &quot;janeiro&quot;</span>, ]) <span class="co">#TODAS AS COLUNAS</span></code></pre></div>
-<pre><code>## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
-## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
-## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
-## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
-## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
-## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
-##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
-## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+<pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
-## 2             ppb            9          -   NÃ£o 01/01/2014 01:00
+## 2             ppb            9          -    Não 01/01/2014 01:00
 ## 3             ppb            9          -    Sim 01/01/2014 02:00
 ## 4             ppb            5          -    Sim 01/01/2014 03:00
 ## 5             ppb            4          -    Sim 01/01/2014 04:00
 ## 6             ppb            5          -    Sim 01/01/2014 05:00
 ## 7             ppb            5          -    Sim 01/01/2014 06:00
-##                 tempo     weekdays     mes    diajuliano  ano
-## 2 2014-01-01 01:00:00 quarta-feira janeiro 16071.04 days 2014
-## 3 2014-01-01 02:00:00 quarta-feira janeiro 16071.08 days 2014
-## 4 2014-01-01 03:00:00 quarta-feira janeiro 16071.12 days 2014
-## 5 2014-01-01 04:00:00 quarta-feira janeiro 16071.17 days 2014
-## 6 2014-01-01 05:00:00 quarta-feira janeiro 16071.21 days 2014
-## 7 2014-01-01 06:00:00 quarta-feira janeiro 16071.25 days 2014</code></pre>
+##                 tempo weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00   quarta janeiro 16071.04 days 2014
+## 3 2014-01-01 02:00:00   quarta janeiro 16071.08 days 2014
+## 4 2014-01-01 03:00:00   quarta janeiro 16071.12 days 2014
+## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
+## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
+## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014</code></pre>
 <p>Mes janeiro pero solo o valor mediahoraria, que retorna um vetor numerico</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(df)</code></pre></div>
 <pre><code>##  [1] &quot;TipodeRede&quot;          &quot;TipodeMonitoramento&quot; &quot;Tipo&quot;               
-##  [4] &quot;Data&quot;                &quot;Hora&quot;                &quot;CodigoEstaÃ.Ã.o&quot;    
-##  [7] &quot;NomeEstaÃ.Ã.o&quot;       &quot;NomeParÃ.metro&quot;      &quot;UnidadedeMedida&quot;    
+##  [4] &quot;Data&quot;                &quot;Hora&quot;                &quot;CodigoEstação&quot;      
+##  [7] &quot;NomeEstação&quot;         &quot;NomeParâmetro&quot;       &quot;UnidadedeMedida&quot;    
 ## [10] &quot;MediaHoraria&quot;        &quot;MediaMovel&quot;          &quot;Valido&quot;             
 ## [13] &quot;tempo_char&quot;          &quot;tempo&quot;               &quot;weekdays&quot;           
 ## [16] &quot;mes&quot;                 &quot;diajuliano&quot;          &quot;ano&quot;</code></pre>
@@ -552,11 +530,11 @@ dff</code></pre></div>
 <p>Vamos ver como funciona data.table lendo o dois arquivos e comparar quanto tempo demoram cada um.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##    1.09    0.00    1.09</code></pre>
+##   0.137   0.026   1.220</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##    0.03    0.01    0.36</code></pre>
+##   0.080   0.007   0.201</code></pre>
 <p>olha que estamos usando a função <code>fread</code>.</p>
 <p>read_xl é mais uma função do universo tidyverse que permite importar excel no R, diretamente e inteligentemente.</p>
 </div>
@@ -578,32 +556,137 @@ df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw"
 <span class="kw">nc_version</span>()              <span class="co"># que retorna a versão da biblioteca</span></code></pre></div>
 <pre><code>## [1] &quot;ncdf4_1.16_20170401&quot;</code></pre>
 <p>Um exmplo de NetCDF:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="kw">Sys.info</span>()[[<span class="st">&quot;sysname&quot;</span>]] <span class="op">==</span><span class="st"> &quot;Windows&quot;</span>){
-<span class="kw">print</span>(<span class="st">&quot;Use Linux&quot;</span>)
-  } <span class="cf">else</span> {
-<span class="kw">download.file</span>(<span class="st">&quot;https://github.com/iagdevs/cursoR/raw/master/dados/met_em.d03.2016-01-10.nc&quot;</span>,
-                <span class="dt">destfile =</span> <span class="st">&quot;dados/met_em.d03.2016-01-10.nc&quot;</span>)
-}</code></pre></div>
-<pre><code>## [1] &quot;Use Linux&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="kw">Sys.info</span>()[[<span class="st">&quot;sysname&quot;</span>]] <span class="op">==</span><span class="st"> &quot;Windows&quot;</span>){
-  
-  <span class="kw">print</span>(<span class="st">&quot;Use Linux&quot;</span>)
-} <span class="cf">else</span> {
-wrf &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="dt">filename =</span> <span class="st">&quot;dados/met_em.nc&quot;</span>, <span class="dt">verbose =</span> T)
-}</code></pre></div>
-<pre><code>## [1] &quot;Use Linux&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrfinput &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;eixport&quot;</span>), <span class="st">&quot;/wrfinput_d01&quot;</span>)</code></pre></div>
+<p>Abre o arquivo .nc</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(wrfinput)
+<span class="kw">print</span>(wrf)</code></pre></div>
+<pre><code>## File /home/sergio/R/x86_64-pc-linux-gnu-library/3.4/eixport/extdata/wrfinput_d01 (NC_FORMAT_CLASSIC):
+## 
+##      3 variables (excluding dimension variables):
+##         char Times[DateStrLen,Time]   
+##         float XLAT[west_east,south_north]   
+##             MemoryOrder: XY
+##             description: LATITUDE, SOUTH IS NEGATIVE
+##             units: degree north
+##             stagger: 
+##             FieldType: 104
+##         float XLONG[west_east,south_north]   
+##             MemoryOrder: XY
+##             description: LONGITUDE, WEST IS NEGATIVE
+##             units: degree east
+##             stagger: 
+##             FieldType: 104
+## 
+##      4 dimensions:
+##         DateStrLen  Size:19
+##         Time  Size:1   *** is unlimited ***
+##         west_east  Size:149
+##         south_north  Size:99
+## 
+##     79 global attributes:
+##         TITLE:  OUTPUT FROM REAL_EM V3.9.1.1 PREPROCESSOR
+##         START_DATE: 2011-08-01_00:00:00
+##         SIMULATION_START_DATE: 2011-08-01_00:00:00
+##         WEST-EAST_GRID_DIMENSION: 150
+##         SOUTH-NORTH_GRID_DIMENSION: 100
+##         BOTTOM-TOP_GRID_DIMENSION: 35
+##         DX: 9000
+##         DY: 9000
+##         GRIDTYPE: C
+##         DIFF_OPT: 1
+##         KM_OPT: 4
+##         DAMP_OPT: 3
+##         DAMPCOEF: 0.200000002980232
+##         KHDIF: 0
+##         KVDIF: 0
+##         MP_PHYSICS: 10
+##         RA_LW_PHYSICS: 4
+##         RA_SW_PHYSICS: 4
+##         SF_SFCLAY_PHYSICS: 1
+##         SF_SURFACE_PHYSICS: 2
+##         BL_PBL_PHYSICS: 1
+##         CU_PHYSICS: 11
+##         SF_LAKE_PHYSICS: 0
+##         SURFACE_INPUT_SOURCE: 1
+##         SST_UPDATE: 0
+##         GRID_FDDA: 0
+##         GFDDA_INTERVAL_M: 0
+##         GFDDA_END_H: 0
+##         GRID_SFDDA: 0
+##         SGFDDA_INTERVAL_M: 0
+##         SGFDDA_END_H: 0
+##         HYPSOMETRIC_OPT: 2
+##         USE_THETA_M: 0
+##         USE_MAXW_LEVEL: 0
+##         USE_TROP_LEVEL: 0
+##         GWD_OPT: 0
+##         SF_URBAN_PHYSICS: 1
+##         SF_OCEAN_PHYSICS: 0
+##         SIMULATION_INITIALIZATION_TYPE: REAL-DATA CASE
+##         WEST-EAST_PATCH_START_UNSTAG: 1
+##         WEST-EAST_PATCH_END_UNSTAG: 149
+##         WEST-EAST_PATCH_START_STAG: 1
+##         WEST-EAST_PATCH_END_STAG: 150
+##         SOUTH-NORTH_PATCH_START_UNSTAG: 1
+##         SOUTH-NORTH_PATCH_END_UNSTAG: 99
+##         SOUTH-NORTH_PATCH_START_STAG: 1
+##         SOUTH-NORTH_PATCH_END_STAG: 100
+##         BOTTOM-TOP_PATCH_START_UNSTAG: 1
+##         BOTTOM-TOP_PATCH_END_UNSTAG: 34
+##         BOTTOM-TOP_PATCH_START_STAG: 1
+##         BOTTOM-TOP_PATCH_END_STAG: 35
+##         GRID_ID: 1
+##         PARENT_ID: 1
+##         I_PARENT_START: 1
+##         J_PARENT_START: 1
+##         PARENT_GRID_RATIO: 1
+##         DT: 45
+##         CEN_LAT: -23.5499954223633
+##         CEN_LON: -45
+##         TRUELAT1: -23
+##         TRUELAT2: -24
+##         MOAD_CEN_LAT: -23.5499954223633
+##         STAND_LON: -45
+##         POLE_LAT: 90
+##         POLE_LON: 0
+##         GMT: 0
+##         JULYR: 2011
+##         JULDAY: 213
+##         MAP_PROJ: 1
+##         MAP_PROJ_CHAR: Lambert Conformal
+##         MMINLU: MODIFIED_IGBP_MODIS_NOAH
+##         NUM_LAND_CAT: 21
+##         ISWATER: 17
+##         ISLAKE: 21
+##         ISICE: 15
+##         ISURBAN: 13
+##         ISOILWATER: 14
+##         HYBRID_OPT: -1
+##         ETAC: 0</code></pre>
 <p>O objeto <code>wrf</code> contém algumas informações sobre o conteúdo do arquivo, com um <code>print(wrf)</code> ou simplesmente <code>wrf</code> visualizamos o conteúdo do arquivo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(wrf)
-wrf</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(wrf)</code></pre></div>
+<pre><code>## [1] &quot;ncdf4&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># fazer print(wrf)</span></code></pre></div>
 <p>que mostra o nome do arquivo (e versão da biblioteca usada para criar), número de variáveis (92 no arquivo de exemplo), uma descrição de cada variável (incluindo atributos) as dimensões (13 para esse arquivo) e os atributos globais.</p>
 <p>Agora vamos abrir alguma variável:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(wrf<span class="op">$</span>var)                <span class="co"># print no nome de cada variavel</span>
-TEMP &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;TT&quot;</span>)  <span class="co"># escolho você picachu</span>
-<span class="kw">class</span>(TEMP)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(wrf<span class="op">$</span>var)                <span class="co"># print no nome de cada variavel</span></code></pre></div>
+<pre><code>## [1] &quot;Times&quot; &quot;XLAT&quot;  &quot;XLONG&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Times &lt;- ncdf4::ncvar_get(wrf, varid = &quot;Times&quot;)  # escolho você picachu</span>
+<span class="co">#class(Times)</span></code></pre></div>
 <p>Como o NetCDF é organizado para guardar matrizes (arrays), só sabemos que a variável <code>ST</code> é um array</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncatt_get</span>(wrf,<span class="st">&quot;TT&quot;</span>) <span class="co"># ou ncatt_get(wrf,&quot;TT&quot;,verbose = T)</span>
-<span class="kw">dim</span>(TEMP)</code></pre></div>
-<p>praticamente a mesma informação do print anterior:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncatt_get</span>(wrf,<span class="st">&quot;Times&quot;</span>, <span class="dt">verbose =</span> T) <span class="co"># ou ncatt_get(wrf,&quot;TT&quot;,verbose = T)</span></code></pre></div>
+<pre><code>## [1] &quot;ncatt_get: entering&quot;
+## [1] &quot;ncatt_get: is NOT a global att&quot;
+## [1] &quot;ncatt_get: getting object id&quot;
+## [1] &quot;vobjtovarid4: entering&quot;
+## [1] &quot;Variable named Times found in file with varid= 65536 2&quot;
+## [1] &quot;ncatt_get: calling ncatt_get_inner for a non-global att&quot;
+## [1] &quot;ncatt_get_inner: entering with ncid= 65536 varid= 2 attname= NA&quot;
+## [1] &quot;ncatt_get_inner: no attname specified, returning a list with name/value pairs *******&quot;
+## [1] &quot;ncatt_get_inner: number of atts for this var [or file, if global]: 0&quot;
+## [1] &quot;ncatt_get_inner: no attributes for this var/file, returning empty list&quot;</code></pre>
+<pre><code>## list()</code></pre>
+<p>praticamente a mesma informação do outro caso:</p>
 <pre><code>float TT[west_east,south_north,num_metgrid_levels,Time]   
 FieldType: 104
 MemoryOrder: XYZ
@@ -614,11 +697,11 @@ sr_x: 1
 sr_y: 1</code></pre>
 <p>como temos apenas 1 tempo essa dimensão é desconsiderada para simplificar.</p>
 <p>A latitude de cada ponto de grade, assim como longitude níveis e tempo podem ser extraídas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lat  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;XLAT_M&quot;</span>)
-lon  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;XLONG_M&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lat  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;XLAT&quot;</span>)
+lon  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;XLONG&quot;</span>)
 time &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;Times&quot;</span>)</code></pre></div>
 <p>O metadado de Longitude:</p>
-<pre><code>float XLONG_M[west_east,south_north,Time]   
+<pre><code>float XLONG[west_east,south_north,Time]   
 FieldType: 104
 MemoryOrder: XY 
 units: degrees longitude
@@ -627,7 +710,7 @@ stagger: M
 sr_x: 1
 sr_y: 1</code></pre>
 <p>Latitude:</p>
-<pre><code>float XLAT_M[west_east,south_north,Time]   
+<pre><code>float XLAT[west_east,south_north,Time]   
 FieldType: 104
 MemoryOrder: XY 
 units: degrees latitude
@@ -649,20 +732,20 @@ sr_y: 1</code></pre>
 <p>Para salvar as alterações e/ou liberar o acesso ao arquivo use a função <code>nc_close</code> (ou a função <code>nc_sync</code> que sincroniza o NetCDF mas não fecha a conexão com o arquivo).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nc_close</span>(wrf) <span class="co"># ou nc_sync(wrf)</span></code></pre></div>
 <p>Novas dimensões e também novas variáveis podem ser criadas com <code>ncvar_def</code> e <code>ncvar_add</code> em um arquivo aberto com permissão de leitura, como por exemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf     &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;dados/met_em.nc&quot;</span>, <span class="dt">write=</span><span class="ot">TRUE</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf     &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;dados/met_em.d03.2016-01-10.nc&quot;</span>, <span class="dt">write =</span> <span class="ot">TRUE</span>)
 extrema &lt;-<span class="st"> </span><span class="kw">ncvar_def</span>(<span class="dt">name =</span> <span class="st">&quot;Tex&quot;</span>,
                      <span class="dt">units =</span> <span class="st">&quot;K&quot;</span>,
                      <span class="dt">dim =</span> <span class="kw">list</span>(wrf<span class="op">$</span>dim<span class="op">$</span>west_east,
                                 wrf<span class="op">$</span>dim<span class="op">$</span>south_north,
                                 wrf<span class="op">$</span>dim<span class="op">$</span>Time),
-                     <span class="dt">missval =</span> <span class="op">-</span><span class="dv">999</span>,
+                     <span class="dt">missval =</span> <span class="dv">-999</span>,
                      <span class="dt">longname =</span> <span class="st">&quot;temperatura extrema&quot;</span>)
 <span class="kw">ncvar_add</span>(wrf, extrema)
 <span class="kw">names</span>(wrf<span class="op">$</span>var)
 <span class="kw">nc_close</span>(wrf)</code></pre></div>
 <p>Se esse arquivo for aberto novamente vai conter 93 variáveis junto com a variável <code>Tex</code> da forma que definimos, caso queria os mesmos atributos que as demais é só usar a função <code>ncatt_get</code> na variável.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf     &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;dados/met_em.nc&quot;</span>,<span class="dt">write=</span>T)
-<span class="kw">print</span>(wrf)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf     &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;dados/met_em.d03.2016-01-10.nc&quot;</span>, <span class="dt">write=</span>T)
+<span class="kw">print</span>(wrf)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre></div>
 <p>O pacote possue ainda funções mais específicas para a criação de arquivos em NetCDF como <code>nc_create</code>, funções que definem dimenções como <code>ncdim_def</code> e funções para colocar e tirar o arquivo de modo de definição <code>nc_redef</code> e <code>nc_enddef</code>.</p>
 <p><em>DICA</em>: o NetCDF no R funciona de forma parecida com ouma lista ou data frame, podemos “ver” ou selecionar suas sub-partes (sub-sub-partes…) com “$” e TAB.</p>
 </div>
@@ -694,7 +777,7 @@ l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st
 <span class="kw">image</span>(l2,
       <span class="dt">col =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
       <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <p>Tem algo estranho com esta imagem. O que é? (valendo um sticker).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)
 l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">t</span>(l2[<span class="dv">1</span><span class="op">:</span><span class="dv">1349</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">1613</span>]),
@@ -712,7 +795,7 @@ l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw"
            <span class="dt">col.regions =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
            <span class="dt">at =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">80</span>,<span class="dv">0</span>,<span class="dv">1</span>),
            <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho (ºC)&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p><strong>Escrever dados binários no R</strong></p>
 
 </div>
