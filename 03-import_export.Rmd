@@ -280,7 +280,7 @@ saveRDS(df, "dados/df.rds")
 ```
 
 
-### data.table, read_xl e mais
+### data.table e mais
 
 data.table é um pacote que apresenta a classe `data.table`, que é como uma versão
 melhorada da classe `data-frame` O termo especifico é que `data-table` tem 
@@ -303,25 +303,85 @@ df2 <- print(system.time(fread("https://raw.githubusercontent.com/ibarraespinosa
 
 olha que estamos usando a função `fread`.
 
-read_xl é mais uma função do universo tidyverse que permite importar excel no R, diretamente e inteligentemente.
+
 
 ## Tidyverse
-  
+
+Um método mais recente (e muito interessante!) de tratar data frames é usando os pacotes dentro do [Tidyverse](https://www.tidyverse.org/).  
+Usando diversas funções dos pacotes **readr**, **tidyr** e **dplyr**, por exemplo, é possível ler e processar dados de uma maneira mais *user-friendly* devido à sintaxe das funções e de como elas podem ser usadas em conjunto.  
+Note que muitas das funções usadas abaixo podem ser encontradas em Base ou em outros pacotes.
+
+### Importando dados
+
+Todas as funções de leitura possuem a mesma estrutura:  
+
+```{r, eval = F}
+read_*(arquivo, col_names = TRUE, col_types = NULL, locale = default_locale(), na = c("", "NA"),
+quoted_na = TRUE, comment = "", trim_ws = TRUE, skip = 0, n_max = Inf, guess_max = min(1000,
+n_max), progress = interactive())
+```
+
+*Dica: Quando a descrição de uma função mostra os argumentos já definidos (`col_names = TRUE`), isso significa que esses são os valores padrão e que você não precisa escrever os argumentos se não quiser mudá-los*  
+
+Assim, todas as funções de leitura só precisam do nome do arquivo!  
+
+Então como ler diferentes arquivos? Usando diferentes funções.
+
+- `read_csv` lê arquivos .csv **separados por $,$**  
+- `read_csv2` lê arquivos .csv **separados por $;$**  
+- `read_delim` lê arquivos **com outros separadores** (definidos com o argumento `delim`)  
+- `read_fwf` lê arquivos **com delimitação fixa** (definidos com o argumento `col_positions`)  
+- `read_xl` lê arquivos **Excel** (.xls e .xlsx)  
+
 ### Leitura `%>%` Processamento
+
+Existem funções de leitura e modificação de data frames. Muitas vezes, você precisa lidar com dados "brutos" e que precisam de um certo processamento antes de serem utilizados em cálculos e gráficos. Isso exige no mínimo duas funções em duas linhas de código (uma para ler e outra para modificar), mas em geral esse processo precisa de bem mais do que isso.  
+
+O operador `%>%` (chamada de *pipe*) está dentro do pacote magnittr (dentro do Tidyverse) e é muito útil nesse processo! ([Leia um pouco sobre ele aqui](https://www.datacamp.com/community/tutorials/pipe-r-tutorial))  
+
+Como ele funciona?  
+
+> variável %>% função1(., faz a modificação 1) %>% função2(., faz a modificação 2) %>% ... funçãon(., faz a modificação n)
+
+O ponto (.) acima indica que a função será aplicada na versão da variável que chega nela.  
+Em notação matemática, podemos dizer que $x \ \ \%>\% \ \ f(y) = f(x,y)$.  
+Por exemplo, observe o código abaixo:
+
+```{r, message=F}
+library("tidyverse")
+
+seq(1, 10) %>% order(., decreasing = T) %>% paste(., "vezes")
+```
+
+O vetor (que não precisa necessariamente ser definido como uma variável) é primeiro ordenado de forma decrescente e, a partir dessa modificação, é transformado em um vetor de caracteres ao colar a string "vezes" a ele.  
+
+Uma forma de fazer isso sem usar `%>%` seria:  
+
+```{r}
+paste(order(seq(1, 10), decreasing = T), "vezes")
+```
+
+<span style="color:blue">**Pergunta**: Na sua opinião, qual é o código mais fácil e rápido de ser entendido?</span>  
+
+Como isso pode ser aplicado a data frames?
+
+
 
 ## Outros Tipos de Dados
   
-### NetCDF (Linux o MacOS)
+### NetCDF
 
 O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos compostos por dados, atributos e metadados.
 
 O pacote `ncdf4` pode ser usado para acessar a essa biblioteca, os comandos abaixo instalam e carregam esse pacote:
 ```{r  eval = TRUE}
-#install.packages("ncdf4") # instala o pacote
-library("ncdf4")          # carrega o pacote
-nc_version()              # que retorna a versão da biblioteca
+#install.packages("ncdf4")  # instala o pacote
+install.packages("eixport") # pacote onde estão os dados que iremos utilizar
+library("ncdf4")            # carrega os pacotes
+library("eixport")          # carrega os pacotes
+nc_version()                # que retorna a versão da biblioteca
 ```
-Um exmplo de NetCDF:
+Um exemplo de NetCDF:
 ```{r}
 wrfinput <- paste0(system.file("extdata", package = "eixport"), "/wrfinput_d01")
 ```
