@@ -24,7 +24,7 @@ argumento é sep, com valores por default = "".
 
 
 ```{r}
-df <- read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt")
+df <- read.table("dados/NOXIPEN2014.txt")
 ```
 
 Agora vamos usar a funções `head` and `tail` para ver as primeiras e as ultimas
@@ -39,7 +39,7 @@ tail(df)
 Agora vamos ler os mesmos dados com outro formato e testar e read.table funciona
 do mesmo jeito
 ```{r eval = FALSE}
-df2 <- read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt")
+df2 <- read.table("dados/NOXIPEN2014v2.txt")
 # Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : 
 # linha 1 não tinha 6 elementos
 ```
@@ -68,7 +68,7 @@ Como vemos o segundo arquivo tem separação de ";", entao, temos que lero arqui
 assim:
 
 ```{r}
-df2 <- read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt", sep = ";")
+df2 <- read.table("dados/NOXIPEN2014v2.txt", sep = ";")
 head(df2)
 tail(df2)
 ```
