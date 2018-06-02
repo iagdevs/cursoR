@@ -1,51 +1,154 @@
 # R! {#r}
 
+A linguagem R pode ser usada desde uma simples calculadora até uma poderosa ferramenta estatística, seja para análise de dados, seja para machine learning, ou seja, com R você pode alcançar tudo o que sempre sonhou. Focaremos em Linux, mas R e RStudio estão disponíveis para Windows e Mac também.
 
-- Iremos focar no Linux, mas R e RStudio estão disponíveis para Windows e Mac também.
 - Documentação:
-- [Intro](http://cran.r-project.org/doc/manuals/r-release/R-intro.html).
-- [I/O](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
+    - [Intro](http://cran.r-project.org/doc/manuals/r-release/R-intro.html).
+    - [I/O](http://cran.r-project.org/doc/manuals/r-release/R-data.html).
 - Quer fazer um pacote? [Veja](http://cran.r-project.org/doc/manuals/r-release/R-exts.html),
 [aqui](http://cran.r-project.org/doc/manuals/r-release/R-ints.html) e [aqui](http://cran.r-project.org/doc/manuals/r-release/R-lang.html).
 - [Stackoverflow](https://stackoverflow.com/questions/tagged/r) te ajudará em horas de desespero.
 
-## Objetos do R
+Nesse capítulo veremos o básico da linguagem, como a idéia é cobrir o máximo de conteúdo possível, passaremos bem rápido pelos objetos e pelas variáveis, com alguns exercícios para melhor entendimento.
 
-- Character `r "a"`
-- Numeric `r 1`
-- Integer `r 1`
-- Complex `r 1i`
-- Logical `r TRUE`
+## Variáveis Básicas
 
-## Classe
+Podemos armazenar valores, strings ou operadores lógicos nas chamadas variáveis básicas, é com elas que podemos fazer operações básicas e transformar o RStudio em uma calculadora superpoderosa. Existem 5 tipos de variáveis básicas, sendo elas:
 
-`class` essa função permite ver a classe dos objetos
+- Numeric `r 1`: valores numéricos com ou sem casa decimal
+```{r}
+5+2.3
+pi
+```
+- Character `r "a"`: com eles podemos armazenar strings, como o título de um gráfico
+```{r}
+titulo <- "Isso é uma string"
+titulo
+```
+- Integer `r 1`: são valores inteiros
+
+- Complex `r 1i`: também é possível armazenar valores complexos nas variáveis básicas
+```{r}
+3 + 4i
+```
+
+- Logical `r TRUE`: são os famosos operadores Booleanos, que permitem realizar comparações entre variáveis ou dados (**Você não pode criar uma variável com os nome TRUE ou FALSE, esses nomes são reservados pelo R**)
+```{r}
+1 == 2
+```
 
 ## Vetores
+Vetores permitem que você armazene dados em uma sequência 1D de qualquer um dos tipos listados nas variáveis básicas mais o formato "cru" (raw) que o modo de rmazenamento de bytes, por exemplo:
 
 - c("A", "C", "D")
 - 1:5 = c(1, 2, 3, 4, 5)
 - c(TRUE, FALSE)
 - c(1i, -1i)
-- c(1, "C", "D") qual é a classe???
-- c(1, NA, "D") qual é a classe???
-- c(1, NA, NaN) qual é a classe???
+
+**Importante: ao contrário do C ou do Python, na linguagem R, a contagem das posições dos vetores começa do 1 e NÃO do zero!**
+
+## Classe
+
+Como foi possível notar, todas as variáveis pertencem a alguma classe, dessa forma, a função `class` permite descobrir qual o tipo de variável que se está utilizando:
+
+```{r}
+x <- c(1,2,3)
+class(x)
+```
+
+```{block2}
+**Exercício** Qual a classe dos seguintes vetores?
+
+* c(1, “C”, “D”)
+* c(1, NA, “D”)
+* c(1, NA, NaN)
+```
 
 ## Converter objetos 
+Às vezes quando trabalhamos com dados, podemos precisar "arredondar" valores ou converter vetores em listas, para isso existem algumas funções especiais.
 
 ### `as`
 
+Um modo de forçar um objeto a assumir outra classe é por meio da função `as`:
+
 ```{r}
-as.numeric(c(1, "C", "D"))
+as.integer(c(1.5, 2.9, 1))
+```
+
+Note que a função apenas converte os números de decimais para inteiros, sem arredondar para o número mais próximo.
+
+```{block2}
+**Pergunta:** o que acontece quando se tenta converter o seguinte vetor? as.numeric(c(1, "C", "D"))
 ```
 
 ### `merge` e `melt` {#convert_df}
 
+Nem sempre os conjuntos de dados que você encontrar pela vida estarão no formato desejado para plotar e/ou analisar estatísticamente, dessa forma, essas duas funções poderão ajudar na sua jornada:
+
+-  Merge: permite a união entre dois Data.frames ([3.10])(#Data.frames), seja por colunas em comum ou linhas em comum
+-  Melt: do pacote [reshape2](https://cran.r-project.org/web/packages/reshape2/reshape2.pdf), permite que você armazene colunas iguais em uma única, de acordo com o nome especificado
+
+## Array
+
+Ao contrário do unidimensional vetor, arrays permitm que você armazene dados em diversas dimensões, sendo sempre com o mesmo comprimento.
+
+```{r}
+# Vamos dar uma olhada nos argumentos da função
+args(array)
+```
+
+Não esqueça do TAB
+Dessa forma, é preciso "informar" ao R qual o número de dimensões que você quer no seu array:
+
+```{r}
+(a <- array(data = 0, dim = c(1,1)))
+class(a)
+```
+
+No caso acima como só foram desiginadas duas dimensões, o array é igual a uma matriz.
+
+```{r}
+(a <- array(data = 0, dim = c(3,3,1)))
+class(a)
+```
+
+Como dá pra ver acima, é possível armazenar diversos elementos num array, como por exemplo as dimensões que utilizamos no dia-a-dia de modelos numéricos: espaço (x,y,z) e tempo (z). Dessa forma, podemos criar arrays a partir de vetores e armazená-los em diverssas dimensões.
+
+```{r}
+vetor1 <- c(1,2,3,4,5)
+vetor2 <- c(10,12,14,16,18,20,22,24)
+
+(a <- array(data = c(vetor1,vetor2), dim = c(3,3,2)))
+class(a)
+```
+
+Se você quiser, também é possível nomear as colunas e linhas do seu array:
+
+```{r}
+colunas <- c("col1", "col2", "col3")
+linhas <- c("lin1", "lin2", "lin3")
+
+array(data = c(vetor1,vetor2),dim = c(3,3,2),dimnames = list(linhas,colunas))
+```
+
+Além disso, sempre que precisar acessar elementos do seu array é só especificar aas dimensões como para mostrar o elemento de um vetor.
+
+```{r}
+a[1,2,2] #(linha, coluna, matriz)
+```
+
+```{block2}
+**Exercício:** Crie um array com 3 dimensões, contendo três linhas e 4 quatro colunas, acesse o elemento da segunda linha e terceira coluna desse array. Não esqueça de verificar a classe desse objeto!
+```
+
+
 ## Matrizes e a função `matrix`
+
+Uma matriz é um array com duas dimensões, sendo necessário informar o número de colunas e linhas, mas não o de dimensões.
 
 **[linhas, colunas]**
 
-- Só são permitidos elementos **da mesma clase**!
+Assim como nos array, só são permitidos elementos **da mesma clase**!
 
 Argumentos da função `matrix`
 
@@ -53,143 +156,51 @@ Argumentos da função `matrix`
 args(matrix)
 ```
 
-usando TAB
-
-```{r}
-(m <- matrix(data = 0, nrow = 4, ncol = 4))
-```
-
+Colocando dados numa matriz:
 
 ```{r}
 (m1 <- matrix(data = 1:(4*4), nrow = 4, ncol = 4))
 dim(m1)
 ```
 
+Por padrão, a opção "byrow" é igual a **FALSE**, quando passamos para **TRUE**, é possível organizar os dados por linha.
 
 ```{r}
 (m2 <- matrix(data = 1:(4*4), nrow = 4, ncol = 4, byrow = TRUE))
 ```
 
-## Array
-
-Permite armazenar diversos elementos, com diversas dimensões. Dessa forma, um array com duas dimensões é o mesmo que uma matriz, dessa forma, podemos armazenar diversas matrizes dentro de um array, mas suas dimensões são pré-estabelecidas.
-
-```{r}
-args(array)
-```
-
-Não esqueça do TAB
-
-```{r}
-(a <- array(data = 0, dim = c(1,1)))
-class(a)
-```
-
-```{r}
-(a <- array(data = 0, dim = c(1,1,1)))
-class(a)
+```{block2}
+**Exercício:** Construa uma  matriz com três linhas que contenha os números de 1 a 9.
 ```
 
 
+## Listas
 
-```{r}
-(a <- array(data = 0, dim = c(2,2,2)))
-```
-
-
-```{r}
-(a <- array(data = 0, dim = c(2,4,4)))
-dim(a)
-```
-
-
-```{r eval = FALSE}
-(a <- array(data = 0, dim = c(2, 2,2,2)))
-```
-
-## `list`
-
-Já as listas permitem que você armazene qualquer tipo de ojeto, independente da classe, dessa forma, podemos colocar numa lista: número, caracteres, argumentos lógicos, ou que você quiser:
+Já as listas permitem que você armazene qualquer tipo de variável básica, independente da classe, dessa forma, podemos colocar numa lista: número, caracteres, argumentos lógicos, ou que você quiser:
 
 ```{r}
 list(list(list(list(1))))
 ```
-Isso faz com que elas sejam bastante versáteis e sirvam para armazenar o que você precisar, mas elas só podem ter uma dimensão, como uma fila.
+
+Isso faz com que elas sejam bastante versáteis e sirvam para armazenar o que você precisar, mas elas só podem ter uma dimensão, como uma fia. Já os objetos armazenados dentro da lista não precisam ter a mesma dimensão.
 
 ```{r}
 (x <- list(1, "a", TRUE, 1 + 4i))
 ```
 
-## Tempo e Data
-
-R também tem classes de tempo e data:
-
-```{r}
-(a <- ISOdate(year = 2018, month = 4, day = 5))
-class(a)
-(b <- ISOdate(year = 2018, month = 4, day = 5, tz = "Americas/Sao_Paulo"))
+```{block2}
+**Exercício:**Crie uma lista contendo um vetor, uma matriz e um data frame e acesse o segundo elemento dela.
 ```
 
-Tempo
-
 ```{r}
-(d <- ISOdatetime(year = 2018, month = 4, day = 5, hour = 0, min = 0, sec = 0,
-                  tz = "Americas/Sao_Paulo"))
-```
+#Para facilitar, já vamos te dar o data frame:
 
-Caso você precise, o pacote [nanotime](https://github.com/eddelbuettel/nanotime) permite trabalhar com nano segundos.
-
-É possível fazer sequências:
-
-```{r}
-hoje <- Sys.time()
-(a <- seq.POSIXt(from = hoje, by = 3600, length.out = 24))
-
-```
-
-funções úteis: **weekdays**, **month**, **julian**
-
-```{r}
-weekdays(a)
-months(a)
-julian(a) #dia Juliano*
-```
-*Para mais informações: https://en.wikipedia.org/wiki/Julian_day:
-
-
-
-## Fatores
-
-Os `factors` podem ser um pouco infernais. Dê uma olhada em [R INFERNO](http://www.burns-stat.com/documents/books/the-r-inferno/)
-
-São variáveis que representam categorias, como por exemplo, dias da semana.
-
-```{r}
-a <- seq.POSIXt(from = hoje, by = 3600, length.out = 24*7)
-aa <- weekdays(a)
-class(aa)
-factor(aa)
-```
-São muito úteis para regressões, plotes e resumos estatísitcos.
-
-Olhe os **Levels**
-
-Então: 
-
-```{r}
-ab <- factor(x = aa,
-             levels = c("Monday", "Tuesday",  "Wednesday",  "Thursday",
-                        "Friday", "Saturday", "Sunday"))
-levels(ab)
+my_df <- mtcars[1:10,]
 ```
 
 ## Data.frames
 
-_lembre ?data.frame_
-
-Lembram uma planilha EXCEL... Mais ou menos
-
-É uma classe bem especial, tem elementos de matriz mas o modo é lista
+Os data frames são uma forma de armazenar seus dados em um formato parecido com uma planilha de excel. Você pode pensar num data frame como uma matriz que armazena em cala coluna um dado diferente, ou como uma lista onde todos os elementos tem o mesmo comprimento.
 
 ```{r}
 (df <- data.frame(a = 1:3))
@@ -198,10 +209,84 @@ class(df)
 mode(df)
 ```
 
-Podemos utilizar para armazenar dados, sendo que um data.frame é sempre composto por vetores com comprimento IGUAL
+É normalmente num data frame que você importará os seus dados e vale saber como visualizar algumas informações básicas sobre ele direto no seu console, para isso, vamos pegar como exemplo o conjunto `mtcars` da base de dados do R:
 
 ```{r}
-nrow(df)
-ncol(df)
-dim(df)
+df <- mtcars
+head(df) #mostra as sete primeiras linhas do data frame
 ```
+
+Para ver as últimas linahs do data frame basta usar a função `tail()`, já uma função muito útil é a `summary()` que apresenta um "resumo" dos seus dados, como média, mediana, mínimos e máximos para cada **coluna** do data frame.
+
+```{r}
+summary(df)
+```
+
+Iremos trabalhar bastante com data frames daqui pra frente, eles se tornarão aliados muito poderosos.
+
+## Tempo e Data
+
+O R trabalha com três classe de tempo: `POSIXct`, `POSIXlt` e `Date`, sendo que `POSIXct` se refere ao número de segundos desde o início de 1970 no modo UTC, enquanto que `POSIXct` armazena as datas como uma lista, contendo segundos, minutos, horas, dias, meses, etc.
+
+```{r}
+(a <- ISOdate(year = 2018, month = 4, day = 5))
+class(a)
+(b <- ISOdate(year = 2018, month = 4, day = 5, tz = "Americas/Sao_Paulo"))
+```
+
+Já a classe `Date`, armazena as datas como o número de dias contados a partir de 1970.
+
+```{r}
+(c <- as.Date(Sys.time()))
+class(c)
+```
+
+Caso você precise, o pacote [nanotime](https://github.com/eddelbuettel/nanotime) permite trabalhar com nano segundos.
+
+Também é possível fazer sequências:
+
+```{r}
+hoje <- Sys.time()
+(a <- seq.POSIXt(from = hoje, by = 3600, length.out = 24))
+
+```
+
+Funções úteis: **weekdays**, **month**, **julian**
+
+```{r}
+weekdays(a)
+months(a)
+julian(a) #dia Juliano*
+```
+
+*Para mais informações: https://en.wikipedia.org/wiki/Julian_day:
+
+## Fatores
+
+Os `factors` podem ser um pouco infernais. Dê uma olhada em [R INFERNO](http://www.burns-stat.com/documents/books/the-r-inferno/). Usados em análise estatísica, fatores são usados para armazenar variáveis categóricas, ou seja, é uma variável que pode pertencer a um número limitado de categorias, como por exemplo, dias da semana. Já uma variável contínua pode assumir um um número infinito de valores.
+
+```{r}
+a <- seq.POSIXt(from = hoje , by = 3600, length.out = 24*7)
+aa <- weekdays(a)
+class(aa)
+```
+```{r}
+factor(aa)
+```
+
+São muito úteis para regressões, plotes e resumos estatísitcos, uma vez que limita o número de possibilidades para a qual o dado pertença. Além disso, é possível estabelecer "níveis" que vão designar a categoria do seu dado.
+
+```{r}
+ab <- factor(x = aa,
+             levels = c("Monday", "Tuesday",  "Wednesday",  "Thursday",
+                        "Friday", "Saturday", "Sunday"))
+levels(ab)
+```
+
+```{block2}
+**Exercício:** Converta o vetor abaixo em um fator e mostre os seus níveis
+
+- genero <- c("Masculino", "Masculino", "Feminino", "Masculino", "Feminino", "Feminino")
+```
+
+Se tudo pareceu muito corrido, não se preocupe, todos esses conceitos serão praticados mais adiante!
