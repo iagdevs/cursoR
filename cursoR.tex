@@ -627,7 +627,7 @@ dados em diversas dimensões, sendo sempre com o mesmo comprimento.
 \end{Shaded}
 
 \begin{verbatim}
-## function (data = NA, dim = length(data), dimnames = NULL) 
+## function (data = NA, dim = length(data), dimnames = NULL)
 ## NULL
 \end{verbatim}
 
@@ -666,7 +666,7 @@ a uma matriz.
 
 \begin{verbatim}
 ## , , 1
-## 
+##
 ##      [,1] [,2] [,3]
 ## [1,]    0    0    0
 ## [2,]    0    0    0
@@ -699,14 +699,14 @@ criar arrays a partir de vetores e armazená-los em diverssas dimensões.
 
 \begin{verbatim}
 ## , , 1
-## 
+##
 ##      [,1] [,2] [,3]
 ## [1,]    1    4   12
 ## [2,]    2    5   14
 ## [3,]    3   10   16
-## 
+##
 ## , , 2
-## 
+##
 ##      [,1] [,2] [,3]
 ## [1,]   18   24    3
 ## [2,]   20    1    4
@@ -737,14 +737,14 @@ array:
 
 \begin{verbatim}
 ## , , 1
-## 
+##
 ##      col1 col2 col3
 ## lin1    1    4   12
 ## lin2    2    5   14
 ## lin3    3   10   16
-## 
+##
 ## , , 2
-## 
+##
 ##      col1 col2 col3
 ## lin1   18   24    3
 ## lin2   20    1    4
@@ -788,7 +788,7 @@ Argumentos da função \texttt{matrix}
 \end{Shaded}
 
 \begin{verbatim}
-## function (data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL) 
+## function (data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
 ## NULL
 \end{verbatim}
 
@@ -872,13 +872,13 @@ dimensão.
 \begin{verbatim}
 ## [[1]]
 ## [1] 1
-## 
+##
 ## [[2]]
 ## [1] "a"
-## 
+##
 ## [[3]]
 ## [1] TRUE
-## 
+##
 ## [[4]]
 ## [1] 1+4i
 \end{verbatim}
@@ -978,26 +978,26 @@ máximos para cada \textbf{coluna} do data frame.
 \end{Shaded}
 
 \begin{verbatim}
-##       mpg             cyl             disp             hp       
-##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
-##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
-##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
-##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
-##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
-##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
-##       drat             wt             qsec             vs        
-##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
-##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
-##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
-##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
-##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
-##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
-##        am              gear            carb      
-##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
-##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
-##  Median :0.0000   Median :4.000   Median :2.000  
-##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
-##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##       mpg             cyl             disp             hp
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0
+##       drat             wt             qsec             vs
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000
+##        am              gear            carb
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000
+##  Median :0.0000   Median :4.000   Median :2.000
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000
 ##  Max.   :1.0000   Max.   :5.000   Max.   :8.000
 \end{verbatim}
 
@@ -1173,21 +1173,21 @@ valores.
 ##  [25] domingo domingo domingo segunda segunda segunda segunda segunda
 ##  [33] segunda segunda segunda segunda segunda segunda segunda segunda
 ##  [41] segunda segunda segunda segunda segunda segunda segunda segunda
-##  [49] segunda segunda segunda terça   terça   terça   terça   terça  
-##  [57] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [65] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [73] terça   terça   terça   quarta  quarta  quarta  quarta  quarta 
-##  [81] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [89] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [97] quarta  quarta  quarta  quinta  quinta  quinta  quinta  quinta 
-## [105] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-## [113] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-## [121] quinta  quinta  quinta  sexta   sexta   sexta   sexta   sexta  
-## [129] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-## [137] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-## [145] sexta   sexta   sexta   sábado  sábado  sábado  sábado  sábado 
-## [153] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [161] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [49] segunda segunda segunda terça   terça   terça   terça   terça
+##  [57] terça   terça   terça   terça   terça   terça   terça   terça
+##  [65] terça   terça   terça   terça   terça   terça   terça   terça
+##  [73] terça   terça   terça   quarta  quarta  quarta  quarta  quarta
+##  [81] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta
+##  [89] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta
+##  [97] quarta  quarta  quarta  quinta  quinta  quinta  quinta  quinta
+## [105] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta
+## [113] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta
+## [121] quinta  quinta  quinta  sexta   sexta   sexta   sexta   sexta
+## [129] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta
+## [137] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta
+## [145] sexta   sexta   sexta   sábado  sábado  sábado  sábado  sábado
+## [153] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado
+## [161] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado
 ## Levels: domingo quarta quinta sábado segunda sexta terça
 \end{verbatim}
 
@@ -1206,7 +1206,7 @@ seu dado.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday" 
+## [1] "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday"
 ## [7] "Sunday"
 \end{verbatim}
 
@@ -1256,14 +1256,14 @@ função:
 \end{Shaded}
 
 \begin{verbatim}
-## function (file, header = FALSE, sep = "", quote = "\"'", dec = ".", 
-##     numerals = c("allow.loss", "warn.loss", "no.loss"), row.names, 
-##     col.names, as.is = !stringsAsFactors, na.strings = "NA", 
-##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE, 
-##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE, 
-##     comment.char = "#", allowEscapes = FALSE, flush = FALSE, 
-##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = "", 
-##     encoding = "unknown", text, skipNul = FALSE) 
+## function (file, header = FALSE, sep = "", quote = "\"'", dec = ".",
+##     numerals = c("allow.loss", "warn.loss", "no.loss"), row.names,
+##     col.names, as.is = !stringsAsFactors, na.strings = "NA",
+##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE,
+##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE,
+##     comment.char = "#", allowEscapes = FALSE, flush = FALSE,
+##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = "",
+##     encoding = "unknown", text, skipNul = FALSE)
 ## NULL
 \end{verbatim}
 
@@ -1447,9 +1447,9 @@ mais eficiente ainda. Vamos \texttt{write.table}
 \end{Shaded}
 
 \begin{verbatim}
-## function (x, file = "", append = FALSE, quote = TRUE, sep = " ", 
-##     eol = "\n", na = "NA", dec = ".", row.names = TRUE, col.names = TRUE, 
-##     qmethod = c("escape", "double"), fileEncoding = "") 
+## function (x, file = "", append = FALSE, quote = TRUE, sep = " ",
+##     eol = "\n", na = "NA", dec = ".", row.names = TRUE, col.names = TRUE,
+##     qmethod = c("escape", "double"), fileEncoding = "")
 ## NULL
 \end{verbatim}
 
@@ -1483,9 +1483,9 @@ col.names se tu quer o nome nas colunas\ldots{}
 \end{Shaded}
 
 \begin{verbatim}
-## function (..., list = character(), file = stop("'file' must be specified"), 
-##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii), 
-##     compression_level, eval.promises = TRUE, precheck = TRUE) 
+## function (..., list = character(), file = stop("'file' must be specified"),
+##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii),
+##     compression_level, eval.promises = TRUE, precheck = TRUE)
 ## NULL
 \end{verbatim}
 
@@ -1499,7 +1499,7 @@ o objeto, tem que ser feito com a função \texttt{load}
 \end{Shaded}
 
 \begin{verbatim}
-## function (file, envir = parent.frame(), verbose = FALSE) 
+## function (file, envir = parent.frame(), verbose = FALSE)
 ## NULL
 \end{verbatim}
 
@@ -1539,8 +1539,8 @@ Esta é uma das minhas funçoes favoritas no R
 \end{Shaded}
 
 \begin{verbatim}
-## function (object, file = "", ascii = FALSE, version = NULL, compress = TRUE, 
-##     refhook = NULL) 
+## function (object, file = "", ascii = FALSE, version = NULL, compress = TRUE,
+##     refhook = NULL)
 ## NULL
 \end{verbatim}
 
@@ -1553,7 +1553,7 @@ e
 \end{Shaded}
 
 \begin{verbatim}
-## function (file, refhook = NULL) 
+## function (file, refhook = NULL)
 ## NULL
 \end{verbatim}
 
@@ -1593,13 +1593,13 @@ uma olhada em \texttt{?sapply}.
 \end{Shaded}
 
 \begin{verbatim}
-##          TipodeRede TipodeMonitoramento                Tipo 
-##            "factor"            "factor"            "factor" 
-##                Data                Hora       CodigoEstação 
-##            "factor"            "factor"           "integer" 
-##         NomeEstação       NomeParâmetro     UnidadedeMedida 
-##            "factor"            "factor"            "factor" 
-##        MediaHoraria          MediaMovel              Valido 
+##          TipodeRede TipodeMonitoramento                Tipo
+##            "factor"            "factor"            "factor"
+##                Data                Hora       CodigoEstação
+##            "factor"            "factor"           "integer"
+##         NomeEstação       NomeParâmetro     UnidadedeMedida
+##            "factor"            "factor"            "factor"
+##        MediaHoraria          MediaMovel              Valido
 ##           "integer"            "factor"            "factor"
 \end{verbatim}
 
@@ -1648,7 +1648,7 @@ Para convertir a nossa classe POSIXct podemos usar a função
 \end{Shaded}
 
 \begin{verbatim}
-## function (x, tz = "", ...) 
+## function (x, tz = "", ...)
 ## NULL
 \end{verbatim}
 
@@ -1859,11 +1859,11 @@ numerico
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "TipodeRede"          "TipodeMonitoramento" "Tipo"               
-##  [4] "Data"                "Hora"                "CodigoEstação"      
-##  [7] "NomeEstação"         "NomeParâmetro"       "UnidadedeMedida"    
-## [10] "MediaHoraria"        "MediaMovel"          "Valido"             
-## [13] "tempo_char"          "tempo"               "weekdays"           
+##  [1] "TipodeRede"          "TipodeMonitoramento" "Tipo"
+##  [4] "Data"                "Hora"                "CodigoEstação"
+##  [7] "NomeEstação"         "NomeParâmetro"       "UnidadedeMedida"
+## [10] "MediaHoraria"        "MediaMovel"          "Valido"
+## [13] "tempo_char"          "tempo"               "weekdays"
 ## [16] "mes"                 "diajuliano"          "ano"
 \end{verbatim}
 
@@ -1922,7 +1922,7 @@ quanto tempo demoram cada um.
 \end{Shaded}
 
 \begin{verbatim}
-##    user  system elapsed 
+##    user  system elapsed
 ##   0.140   0.032  58.350
 \end{verbatim}
 
@@ -1934,7 +1934,7 @@ quanto tempo demoram cada um.
 \end{Shaded}
 
 \begin{verbatim}
-##    user  system elapsed 
+##    user  system elapsed
 ##   0.037   0.008   3.174
 \end{verbatim}
 
@@ -2028,7 +2028,7 @@ Por exemplo, observe o código abaixo:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "10 vezes" "9 vezes"  "8 vezes"  "7 vezes"  "6 vezes"  "5 vezes" 
+##  [1] "10 vezes" "9 vezes"  "8 vezes"  "7 vezes"  "6 vezes"  "5 vezes"
 ##  [7] "4 vezes"  "3 vezes"  "2 vezes"  "1 vezes"
 \end{verbatim}
 
@@ -2046,7 +2046,7 @@ Uma forma de fazer isso sem usar \texttt{\%\textgreater{}\%} seria:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "10 vezes" "9 vezes"  "8 vezes"  "7 vezes"  "6 vezes"  "5 vezes" 
+##  [1] "10 vezes" "9 vezes"  "8 vezes"  "7 vezes"  "6 vezes"  "5 vezes"
 ##  [7] "4 vezes"  "3 vezes"  "2 vezes"  "1 vezes"
 \end{verbatim}
 
@@ -2112,28 +2112,28 @@ Abre o arquivo .nc
 
 \begin{verbatim}
 ## File /home/ccl/R/x86_64-pc-linux-gnu-library/3.4/eixport/extdata/wrfinput_d01 (NC_FORMAT_CLASSIC):
-## 
+##
 ##      3 variables (excluding dimension variables):
-##         char Times[DateStrLen,Time]   
-##         float XLAT[west_east,south_north]   
+##         char Times[DateStrLen,Time]
+##         float XLAT[west_east,south_north]
 ##             MemoryOrder: XY
 ##             description: LATITUDE, SOUTH IS NEGATIVE
 ##             units: degree north
-##             stagger: 
+##             stagger:
 ##             FieldType: 104
-##         float XLONG[west_east,south_north]   
+##         float XLONG[west_east,south_north]
 ##             MemoryOrder: XY
 ##             description: LONGITUDE, WEST IS NEGATIVE
 ##             units: degree east
-##             stagger: 
+##             stagger:
 ##             FieldType: 104
-## 
+##
 ##      4 dimensions:
 ##         DateStrLen  Size:19
 ##         Time  Size:1   *** is unlimited ***
 ##         west_east  Size:149
 ##         south_north  Size:99
-## 
+##
 ##     79 global attributes:
 ##         TITLE:  OUTPUT FROM REAL_EM V3.9.1.1 PREPROCESSOR
 ##         START_DATE: 2011-08-01_00:00:00
@@ -2289,7 +2289,7 @@ que a variável \texttt{ST} é um array
 praticamente a mesma informação do outro caso:
 
 \begin{verbatim}
-float TT[west_east,south_north,num_metgrid_levels,Time]   
+float TT[west_east,south_north,num_metgrid_levels,Time]
 FieldType: 104
 MemoryOrder: XYZ
 units: K
@@ -2316,9 +2316,9 @@ podem ser extraídas:
 O metadado de Longitude:
 
 \begin{verbatim}
-float XLONG[west_east,south_north,Time]   
+float XLONG[west_east,south_north,Time]
 FieldType: 104
-MemoryOrder: XY 
+MemoryOrder: XY
 units: degrees longitude
 description: Longitude on mass grid
 stagger: M
@@ -2329,9 +2329,9 @@ sr_y: 1
 Latitude:
 
 \begin{verbatim}
-float XLAT[west_east,south_north,Time]   
+float XLAT[west_east,south_north,Time]
 FieldType: 104
-MemoryOrder: XY 
+MemoryOrder: XY
 units: degrees latitude
 description: Latitude on mass grid
 stagger: M
@@ -2342,7 +2342,7 @@ sr_y: 1
 e a altura:
 
 \begin{verbatim}
-float GHT[west_east,south_north,num_metgrid_levels,Time]   
+float GHT[west_east,south_north,num_metgrid_levels,Time]
 FieldType: 104
 MemoryOrder: XYZ
 units: m
@@ -2431,8 +2431,8 @@ estes dados da forma correta:
 \end{Shaded}
 
 \begin{verbatim}
-## function (con, what, n = 1L, size = NA_integer_, signed = TRUE, 
-##     endian = .Platform$endian) 
+## function (con, what, n = 1L, size = NA_integer_, signed = TRUE,
+##     endian = .Platform$endian)
 ## NULL
 \end{verbatim}
 
@@ -2542,54 +2542,54 @@ dados binários foram lidos corretamente.
 \end{Shaded}
 
 \begin{verbatim}
-##       TipodeRede   TipodeMonitoramento              Tipo     
-##  Automático:8581   CETESB:8581         Dados Primários:8581  
-##                                                              
-##                                                              
-##                                                              
-##                                                              
-##                                                              
-##                                                              
+##       TipodeRede   TipodeMonitoramento              Tipo
+##  Automático:8581   CETESB:8581         Dados Primários:8581
+##
+##
+##
+##
+##
+##
 ##          Data           Hora      CodigoEstação
-##  01/01/2014:  24   16:00  : 363   Min.   :95   
-##  01/01/2015:  24   12:00  : 361   1st Qu.:95   
-##  01/02/2014:  24   14:00  : 361   Median :95   
-##  01/04/2014:  24   18:00  : 361   Mean   :95   
-##  01/05/2014:  24   13:00  : 360   3rd Qu.:95   
-##  01/06/2014:  24   17:00  : 360   Max.   :95   
-##  (Other)   :8437   (Other):6415                
-##                      NomeEstação                      NomeParâmetro 
-##  Cid.Universitária-USP-Ipen:8581   NOx (Óxidos de Nitrogênio):8581  
-##                                                                     
-##                                                                     
-##                                                                     
-##                                                                     
-##                                                                     
-##                                                                     
-##  UnidadedeMedida  MediaHoraria    MediaMovel Valido      tempo_char       
-##  ppb:8581        Min.   :  0.00   -:8581     Não: 907   Length:8581       
-##                  1st Qu.:  9.00              Sim:7674   Class :character  
-##                  Median : 18.00                         Mode  :character  
-##                  Mean   : 29.87                                           
-##                  3rd Qu.: 34.00                                           
-##                  Max.   :306.00                                           
-##                  NA's   :260                                              
-##      tempo                       weekdays             mes           
-##  Min.   :2014-01-01 01:00:00   Length:8581        Length:8581       
-##  1st Qu.:2014-04-05 14:00:00   Class :character   Class :character  
-##  Median :2014-07-05 23:00:00   Mode  :character   Mode  :character  
-##  Mean   :2014-07-04 20:22:55                                        
-##  3rd Qu.:2014-10-03 10:00:00                                        
-##  Max.   :2015-01-02 00:00:00                                        
-##                                                                     
-##   diajuliano           ano           
-##  Length:8581       Length:8581       
-##  Class :difftime   Class :character  
-##  Mode  :numeric    Mode  :character  
-##                                      
-##                                      
-##                                      
-## 
+##  01/01/2014:  24   16:00  : 363   Min.   :95
+##  01/01/2015:  24   12:00  : 361   1st Qu.:95
+##  01/02/2014:  24   14:00  : 361   Median :95
+##  01/04/2014:  24   18:00  : 361   Mean   :95
+##  01/05/2014:  24   13:00  : 360   3rd Qu.:95
+##  01/06/2014:  24   17:00  : 360   Max.   :95
+##  (Other)   :8437   (Other):6415
+##                      NomeEstação                      NomeParâmetro
+##  Cid.Universitária-USP-Ipen:8581   NOx (Óxidos de Nitrogênio):8581
+##
+##
+##
+##
+##
+##
+##  UnidadedeMedida  MediaHoraria    MediaMovel Valido      tempo_char
+##  ppb:8581        Min.   :  0.00   -:8581     Não: 907   Length:8581
+##                  1st Qu.:  9.00              Sim:7674   Class :character
+##                  Median : 18.00                         Mode  :character
+##                  Mean   : 29.87
+##                  3rd Qu.: 34.00
+##                  Max.   :306.00
+##                  NA's   :260
+##      tempo                       weekdays             mes
+##  Min.   :2014-01-01 01:00:00   Length:8581        Length:8581
+##  1st Qu.:2014-04-05 14:00:00   Class :character   Class :character
+##  Median :2014-07-05 23:00:00   Mode  :character   Mode  :character
+##  Mean   :2014-07-04 20:22:55
+##  3rd Qu.:2014-10-03 10:00:00
+##  Max.   :2015-01-02 00:00:00
+##
+##   diajuliano           ano
+##  Length:8581       Length:8581
+##  Class :difftime   Class :character
+##  Mode  :numeric    Mode  :character
+##
+##
+##
+##
 \end{verbatim}
 
 A função \texttt{plot} precisa dos seguintes argumentos:
@@ -2601,7 +2601,7 @@ A função \texttt{plot} precisa dos seguintes argumentos:
 \end{Shaded}
 
 \begin{verbatim}
-## function (x, y, ...) 
+## function (x, y, ...)
 ## NULL
 \end{verbatim}
 

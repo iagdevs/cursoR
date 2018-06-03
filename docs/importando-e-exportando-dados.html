@@ -11,16 +11,16 @@
 
   <meta property="og:title" content="Curso de R para Meteorologia IAG/USP" />
   <meta property="og:type" content="book" />
-  
-  
+
+
   <meta property="og:description" content="Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação" />
   <meta name="github-repo" content="iagdevs/cursoR" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Curso de R para Meteorologia IAG/USP" />
-  
+
   <meta name="twitter:description" content="Este é um curso de R para Meteorologia. O curso tenta ser abrangente, desde interessados sem formação, passando por graduação e pós-graduação" />
-  
+
 
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
@@ -30,8 +30,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  
-  
+
+
 <link rel="prev" href="r.html">
 <link rel="next" href="plotando.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -201,14 +201,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>Agora vamos a ler dados do repositorio usando read.table, mas primeiro vamos lembrar que se tu precisar ver a ajuda da função, tem que escrever no R <code>?read.table</code>. Então, agora vamos ver os argumentos da função:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(read.table)</code></pre></div>
-<pre><code>## function (file, header = FALSE, sep = &quot;&quot;, quote = &quot;\&quot;&#39;&quot;, dec = &quot;.&quot;, 
-##     numerals = c(&quot;allow.loss&quot;, &quot;warn.loss&quot;, &quot;no.loss&quot;), row.names, 
-##     col.names, as.is = !stringsAsFactors, na.strings = &quot;NA&quot;, 
-##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE, 
-##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE, 
-##     comment.char = &quot;#&quot;, allowEscapes = FALSE, flush = FALSE, 
-##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = &quot;&quot;, 
-##     encoding = &quot;unknown&quot;, text, skipNul = FALSE) 
+<pre><code>## function (file, header = FALSE, sep = &quot;&quot;, quote = &quot;\&quot;&#39;&quot;, dec = &quot;.&quot;,
+##     numerals = c(&quot;allow.loss&quot;, &quot;warn.loss&quot;, &quot;no.loss&quot;), row.names,
+##     col.names, as.is = !stringsAsFactors, na.strings = &quot;NA&quot;,
+##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE,
+##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE,
+##     comment.char = &quot;#&quot;, allowEscapes = FALSE, flush = FALSE,
+##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = &quot;&quot;,
+##     encoding = &quot;unknown&quot;, text, skipNul = FALSE)
 ## NULL</code></pre>
 <p>Aqui vem-se os valores default dos argumentos da função <code>read.table</code>. O terceiro argumento é sep, com valores por default = “”.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>)</code></pre></div>
@@ -322,9 +322,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">4.2.1</span> Exportando texto com <code>write.table</code></h3>
 <p>Exportar é bem facil, mas se sabemos os argumentos das funções, vai ser mais eficiente ainda. Vamos <code>write.table</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(write.table)</code></pre></div>
-<pre><code>## function (x, file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot; &quot;, 
-##     eol = &quot;\n&quot;, na = &quot;NA&quot;, dec = &quot;.&quot;, row.names = TRUE, col.names = TRUE, 
-##     qmethod = c(&quot;escape&quot;, &quot;double&quot;), fileEncoding = &quot;&quot;) 
+<pre><code>## function (x, file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot; &quot;,
+##     eol = &quot;\n&quot;, na = &quot;NA&quot;, dec = &quot;.&quot;, row.names = TRUE, col.names = TRUE,
+##     qmethod = c(&quot;escape&quot;, &quot;double&quot;), fileEncoding = &quot;&quot;)
 ## NULL</code></pre>
 <p>Se temos um data-frame com colunas de classe character, <code>quote = TRUE</code> quer dizer que o arquivo de texto resultante vai ter aspas nas colunas de caracter.</p>
 <p><code>sep</code> é como vão ser separadas as colunas. Se tu quer abrir o arquivo com Excel, poderia separar com “,”, “;”, &quot; “,”“… Depende como tu quer.</p>
@@ -337,13 +337,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="exportando-objetos-com-save" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Exportando objetos com <code>save</code></h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(save)</code></pre></div>
-<pre><code>## function (..., list = character(), file = stop(&quot;&#39;file&#39; must be specified&quot;), 
-##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii), 
-##     compression_level, eval.promises = TRUE, precheck = TRUE) 
+<pre><code>## function (..., list = character(), file = stop(&quot;&#39;file&#39; must be specified&quot;),
+##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii),
+##     compression_level, eval.promises = TRUE, precheck = TRUE)
 ## NULL</code></pre>
 <p><code>save</code> salva o objeto com a extensão .rda. Para carregar de volta o objeto, tem que ser feito com a função <code>load</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(load)</code></pre></div>
-<pre><code>## function (file, envir = parent.frame(), verbose = FALSE) 
+<pre><code>## function (file, envir = parent.frame(), verbose = FALSE)
 ## NULL</code></pre>
 <p>O que pode ser ruim, porque as vezes tu esqueceu o nome do objeto no ambiente de R. Por exemplo, tu salvou o arquivo</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(frenteFria, <span class="dt">file =</span> <span class="st">&quot;FrenteQuente.rda&quot;</span>)</code></pre></div>
@@ -356,12 +356,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">4.2.3</span> Exportando objetos com <code>saveRDS</code></h3>
 <p>Esta é uma das minhas funçoes favoritas no R</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(saveRDS)</code></pre></div>
-<pre><code>## function (object, file = &quot;&quot;, ascii = FALSE, version = NULL, compress = TRUE, 
-##     refhook = NULL) 
+<pre><code>## function (object, file = &quot;&quot;, ascii = FALSE, version = NULL, compress = TRUE,
+##     refhook = NULL)
 ## NULL</code></pre>
 <p>e</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(readRDS)</code></pre></div>
-<pre><code>## function (file, refhook = NULL) 
+<pre><code>## function (file, refhook = NULL)
 ## NULL</code></pre>
 <p>Tu consegue salvar o objeto R de forma serializada e compactada com o argumento <code>compress</code> mas o melhor é quando vai chamar o objeto de volta ao R. Agora tu usa o <code>readRDS</code> e coloca o nome que tu quiser.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(FrenteQuente, <span class="st">&quot;FrenteQuente.rds&quot;</span>)</code></pre></div>
@@ -372,13 +372,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Tem numeroas formas e pacotes para ordenar, arrangiar (Arrange), mutar e cambiar as data-frames. As mais conhecidas são provablemente do universe <em>tidyverse</em> com o famoso pacote <em>dplyr</em>. Mas, nesta curso vamos focar em <strong>base</strong>.</p>
 <p>Vamos então revisar a classe de cada columna do nosso data-frame com a função <code>sapply</code>, apresentada em outro capitulo, mas se quiser, da uma olhada em <code>?sapply</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(df, class)</code></pre></div>
-<pre><code>##          TipodeRede TipodeMonitoramento                Tipo 
-##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
-##                Data                Hora       CodigoEstação 
-##            &quot;factor&quot;            &quot;factor&quot;           &quot;integer&quot; 
-##         NomeEstação       NomeParâmetro     UnidadedeMedida 
-##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
-##        MediaHoraria          MediaMovel              Valido 
+<pre><code>##          TipodeRede TipodeMonitoramento                Tipo
+##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot;
+##                Data                Hora       CodigoEstação
+##            &quot;factor&quot;            &quot;factor&quot;           &quot;integer&quot;
+##         NomeEstação       NomeParâmetro     UnidadedeMedida
+##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot;
+##        MediaHoraria          MediaMovel              Valido
 ##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
 <p>Quando nos trabalhamos com series de tempo, é importante ter a variabel de tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Mas, a classe de Data é “factor” e de Hora tambem “factor”, o que é ruim. Então, vamos criar uma variabel de tempo mais standard com formato 2018-06-02 21:01:26.</p>
 <p>Para isso temos que grudar as variabel Data e Hora. Faremios isso numa nova varaibel chamada tempo_char, adicionando ela diretamente no <code>df</code> com o cifrão DOLLAR $. O grude pode ser feito com as funções <code>paste</code> ou <code>paste0</code>.</p>
@@ -391,10 +391,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Esta melhorando mas ainda tem clase character.</p>
 <p>Para convertir a nossa classe POSIXct podemos usar a função <code>as.POSIXct</code> (olha <code>as.POSIXct</code>). Seus argumentos são:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(as.POSIXct)</code></pre></div>
-<pre><code>## function (x, tz = &quot;&quot;, ...) 
+<pre><code>## function (x, tz = &quot;&quot;, ...)
 ## NULL</code></pre>
 <p>Então, vamos criar outra variabel tempo o formato POSIXct</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo_char, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>, 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo_char, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>,
                        <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)
 <span class="kw">head</span>(df<span class="op">$</span>tempo)</code></pre></div>
 <pre><code>## [1] &quot;2014-01-01 01:00:00 Americas&quot; &quot;2014-01-01 02:00:00 Americas&quot;
@@ -459,8 +459,8 @@ dff</code></pre></div>
 ## 6   sexta 42558
 ## 7   terça 37904</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(dff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dias&quot;</span>, <span class="st">&quot;MediaHoraria&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff<span class="op">$</span>sd &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria, 
-                    <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays), 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff<span class="op">$</span>sd &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria,
+                    <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays),
                     sum, <span class="dt">na.rm =</span> T)<span class="op">$</span>x
 dff</code></pre></div>
 <pre><code>##      dias MediaHoraria    sd
@@ -507,11 +507,11 @@ dff</code></pre></div>
 ## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014</code></pre>
 <p>Mes janeiro pero solo o valor mediahoraria, que retorna um vetor numerico</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(df)</code></pre></div>
-<pre><code>##  [1] &quot;TipodeRede&quot;          &quot;TipodeMonitoramento&quot; &quot;Tipo&quot;               
-##  [4] &quot;Data&quot;                &quot;Hora&quot;                &quot;CodigoEstação&quot;      
-##  [7] &quot;NomeEstação&quot;         &quot;NomeParâmetro&quot;       &quot;UnidadedeMedida&quot;    
-## [10] &quot;MediaHoraria&quot;        &quot;MediaMovel&quot;          &quot;Valido&quot;             
-## [13] &quot;tempo_char&quot;          &quot;tempo&quot;               &quot;weekdays&quot;           
+<pre><code>##  [1] &quot;TipodeRede&quot;          &quot;TipodeMonitoramento&quot; &quot;Tipo&quot;
+##  [4] &quot;Data&quot;                &quot;Hora&quot;                &quot;CodigoEstação&quot;
+##  [7] &quot;NomeEstação&quot;         &quot;NomeParâmetro&quot;       &quot;UnidadedeMedida&quot;
+## [10] &quot;MediaHoraria&quot;        &quot;MediaMovel&quot;          &quot;Valido&quot;
+## [13] &quot;tempo_char&quot;          &quot;tempo&quot;               &quot;weekdays&quot;
 ## [16] &quot;mes&quot;                 &quot;diajuliano&quot;          &quot;ano&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df[df<span class="op">$</span>mes <span class="op">==</span><span class="st"> &quot;janeiro&quot;</span>, <span class="dv">10</span>]) </code></pre></div>
 <pre><code>## [1] 9 9 5 4 5 5</code></pre>
@@ -527,11 +527,11 @@ dff</code></pre></div>
 <p>data.table é um pacote que apresenta a classe <code>data.table</code>, que é como uma versão melhorada da classe <code>data-frame</code> O termo especifico é que <code>data-table</code> tem herencia (inherits) da classe <code>data.frame</code></p>
 <p>Vamos ver como funciona data.table lendo o dois arquivos e comparar quanto tempo demoram cada um.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
-<pre><code>##    user  system elapsed 
+<pre><code>##    user  system elapsed
 ##   0.289   0.054  51.425</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
-<pre><code>##    user  system elapsed 
+<pre><code>##    user  system elapsed
 ##   0.148   0.019  11.630</code></pre>
 <p>olha que estamos usando a função <code>fread</code>.</p>
 </div>
@@ -576,12 +576,12 @@ Por exemplo, observe o código abaixo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
 
 <span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">order</span>(., <span class="dt">decreasing =</span> T) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">paste</span>(., <span class="st">&quot;vezes&quot;</span>)</code></pre></div>
-<pre><code>##  [1] &quot;10 vezes&quot; &quot;9 vezes&quot;  &quot;8 vezes&quot;  &quot;7 vezes&quot;  &quot;6 vezes&quot;  &quot;5 vezes&quot; 
+<pre><code>##  [1] &quot;10 vezes&quot; &quot;9 vezes&quot;  &quot;8 vezes&quot;  &quot;7 vezes&quot;  &quot;6 vezes&quot;  &quot;5 vezes&quot;
 ##  [7] &quot;4 vezes&quot;  &quot;3 vezes&quot;  &quot;2 vezes&quot;  &quot;1 vezes&quot;</code></pre>
 <p>O vetor (que não precisa necessariamente ser definido como uma variável) é primeiro ordenado de forma decrescente e, a partir dessa modificação, é transformado em um vetor de caracteres ao colar a string “vezes” a ele.</p>
 <p>Uma forma de fazer isso sem usar <code>%&gt;%</code> seria:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(<span class="kw">order</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">decreasing =</span> T), <span class="st">&quot;vezes&quot;</span>)</code></pre></div>
-<pre><code>##  [1] &quot;10 vezes&quot; &quot;9 vezes&quot;  &quot;8 vezes&quot;  &quot;7 vezes&quot;  &quot;6 vezes&quot;  &quot;5 vezes&quot; 
+<pre><code>##  [1] &quot;10 vezes&quot; &quot;9 vezes&quot;  &quot;8 vezes&quot;  &quot;7 vezes&quot;  &quot;6 vezes&quot;  &quot;5 vezes&quot;
 ##  [7] &quot;4 vezes&quot;  &quot;3 vezes&quot;  &quot;2 vezes&quot;  &quot;1 vezes&quot;</code></pre>
 <p><span style="color:blue"><strong>Pergunta</strong>: Na sua opinião, qual é o código mais fácil e rápido de ser entendido?</span></p>
 <p>Como isso pode ser aplicado a data frames?</p>
@@ -607,28 +607,28 @@ Por exemplo, observe o código abaixo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(wrfinput)
 <span class="kw">print</span>(wrf)</code></pre></div>
 <pre><code>## File /home/ccl/R/x86_64-pc-linux-gnu-library/3.4/eixport/extdata/wrfinput_d01 (NC_FORMAT_CLASSIC):
-## 
+##
 ##      3 variables (excluding dimension variables):
-##         char Times[DateStrLen,Time]   
-##         float XLAT[west_east,south_north]   
+##         char Times[DateStrLen,Time]
+##         float XLAT[west_east,south_north]
 ##             MemoryOrder: XY
 ##             description: LATITUDE, SOUTH IS NEGATIVE
 ##             units: degree north
-##             stagger: 
+##             stagger:
 ##             FieldType: 104
-##         float XLONG[west_east,south_north]   
+##         float XLONG[west_east,south_north]
 ##             MemoryOrder: XY
 ##             description: LONGITUDE, WEST IS NEGATIVE
 ##             units: degree east
-##             stagger: 
+##             stagger:
 ##             FieldType: 104
-## 
+##
 ##      4 dimensions:
 ##         DateStrLen  Size:19
 ##         Time  Size:1   *** is unlimited ***
 ##         west_east  Size:149
 ##         south_north  Size:99
-## 
+##
 ##     79 global attributes:
 ##         TITLE:  OUTPUT FROM REAL_EM V3.9.1.1 PREPROCESSOR
 ##         START_DATE: 2011-08-01_00:00:00
@@ -733,7 +733,7 @@ Por exemplo, observe o código abaixo:</p>
 ## [1] &quot;ncatt_get_inner: no attributes for this var/file, returning empty list&quot;</code></pre>
 <pre><code>## list()</code></pre>
 <p>praticamente a mesma informação do outro caso:</p>
-<pre><code>float TT[west_east,south_north,num_metgrid_levels,Time]   
+<pre><code>float TT[west_east,south_north,num_metgrid_levels,Time]
 FieldType: 104
 MemoryOrder: XYZ
 units: K
@@ -747,25 +747,25 @@ sr_y: 1</code></pre>
 lon  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;XLONG&quot;</span>)
 time &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;Times&quot;</span>)</code></pre></div>
 <p>O metadado de Longitude:</p>
-<pre><code>float XLONG[west_east,south_north,Time]   
+<pre><code>float XLONG[west_east,south_north,Time]
 FieldType: 104
-MemoryOrder: XY 
+MemoryOrder: XY
 units: degrees longitude
 description: Longitude on mass grid
 stagger: M
 sr_x: 1
 sr_y: 1</code></pre>
 <p>Latitude:</p>
-<pre><code>float XLAT[west_east,south_north,Time]   
+<pre><code>float XLAT[west_east,south_north,Time]
 FieldType: 104
-MemoryOrder: XY 
+MemoryOrder: XY
 units: degrees latitude
 description: Latitude on mass grid
 stagger: M
 sr_x: 1
 sr_y: 1</code></pre>
 <p>e a altura:</p>
-<pre><code>float GHT[west_east,south_north,num_metgrid_levels,Time]   
+<pre><code>float GHT[west_east,south_north,num_metgrid_levels,Time]
 FieldType: 104
 MemoryOrder: XYZ
 units: m
@@ -801,14 +801,14 @@ extrema &lt;-<span class="st"> </span><span class="kw">ncvar_def</span>(<span cl
 <p>Em meteorologia, frequentemente os dados estão em formato binário. A maior “dificuldade” em ler estes dados está em conhecer como eles foram gerados.</p>
 <p>Repare que a função <code>readBin</code> requer vários argumentos para ler estes dados da forma correta:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(readBin)</code></pre></div>
-<pre><code>## function (con, what, n = 1L, size = NA_integer_, signed = TRUE, 
-##     endian = .Platform$endian) 
+<pre><code>## function (con, what, n = 1L, size = NA_integer_, signed = TRUE,
+##     endian = .Platform$endian)
 ## NULL</code></pre>
 <p>Neste curso, o arquivo binário que vamos abrir como exemplo contém dados de temperatura de brilho obtidas com o satélite GOES-13 (informações em: <a href="https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary" class="uri">https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary</a>).</p>
 <p>Lembrem-se de baixar o dado em: <a href="https://github.com/iagdevs/cursoR/tree/master/dados" class="uri">https://github.com/iagdevs/cursoR/tree/master/dados</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ler o arquivo binário</span>
-l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st">&quot;dados/gs.140422.1900g.ch4&quot;</span>, 
-              <span class="dt">what=</span><span class="st">&quot;int&quot;</span>, 
+l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st">&quot;dados/gs.140422.1900g.ch4&quot;</span>,
+              <span class="dt">what=</span><span class="st">&quot;int&quot;</span>,
               <span class="dt">n =</span> <span class="dv">1349</span><span class="op">*</span><span class="dv">1613</span>,
               <span class="dt">size =</span> <span class="dv">2</span>)
 <span class="kw">class</span>(l1)</code></pre></div>
@@ -819,7 +819,7 @@ l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st
 <span class="kw">class</span>(l2)</code></pre></div>
 <pre><code>## [1] &quot;matrix&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vamos chamar o pacote cptcity para selecionar facilmente uma paleta de cores legal.</span>
-<span class="kw">library</span>(cptcity)   
+<span class="kw">library</span>(cptcity)
 <span class="kw">image</span>(l2,
       <span class="dt">col =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
       <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho&quot;</span>) </code></pre></div>
@@ -829,7 +829,7 @@ l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st
 l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">t</span>(l2[<span class="dv">1</span><span class="op">:</span><span class="dv">1349</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">1613</span>]),
                      <span class="dt">xmn=</span><span class="op">-</span><span class="fl">82.00</span>,
                      <span class="dt">ymn=</span><span class="op">-</span><span class="fl">44.96</span>,
-                     <span class="dt">xmx=</span><span class="op">-</span><span class="fl">82.0</span>  <span class="op">+</span><span class="st"> </span>(<span class="fl">0.03593245</span><span class="op">*</span><span class="dv">1349</span>), 
+                     <span class="dt">xmx=</span><span class="op">-</span><span class="fl">82.0</span>  <span class="op">+</span><span class="st"> </span>(<span class="fl">0.03593245</span><span class="op">*</span><span class="dv">1349</span>),
                      <span class="dt">ymx=</span><span class="op">-</span><span class="fl">44.96</span> <span class="op">+</span><span class="st"> </span>(<span class="fl">0.03593245</span><span class="op">*</span><span class="dv">1613</span>),
                      <span class="dt">crs =</span> <span class="kw">CRS</span>(<span class="st">&quot;+init=epsg:4326&quot;</span>))
 <span class="kw">class</span>(l3)</code></pre></div>
