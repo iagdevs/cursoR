@@ -417,64 +417,58 @@ nc_version()               # versão da biblioteca
 Um exemplo de NetCDF:
 
 ```{r, eval=F}
-wrf <- ncdf4::nc_open("dados/met_em.d03.2016-01-10.nc")
+edgar <- nc_open(filename = "~/Downloads/v431_v2_REFERENCE_CO_2010_10_AGR.0.1x0.1.nc")
 ```
 
-O objeto `wrf` contém algumas informações sobre o conteúdo do arquivo, com um `print(wrf)` ou simplesmente `wrf` visualizamos o conteúdo do arquivo:
+O objeto `edgar` contém algumas informações sobre o conteúdo do arquivo, com um `print(edgar)` ou simplesmente `edgar` visualizamos o conteúdo do arquivo:
 
 ```{r, eval=F}
-class(wrf)
-wrf
+class(edgar)
+edgar
 ```
 
-Isso mostra o nome do arquivo (e versão da biblioteca usada para criar), número de variáveis (92 no arquivo de exemplo), uma descrição de cada variável (incluindo atributos) as dimensões (13 para esse arquivo) e os atributos globais.
+Isso mostra o nome do arquivo (e versão da biblioteca usada para criar), número de variáveis (1 variável neste exemplo), uma descrição de cada variável (incluindo atributos) as dimensões (2 para esse arquivo) e atributos globais.
 
 Agora vamos abrir alguma variável:
 
 ```{r, eval=F}
-names(wrf$var)                # print no nome de cada variavel
-TEMP <- ncdf4::ncvar_get(wrf, "TT")  # escolho você picachu
-class(TEMP)
+names(edgar$var)
+co <- ncdf4::ncvar_get(edgar, "emi_co")  
+class(co)
 ```
 
-Como o NetCDF é organizado para guardar matrizes (arrays), só sabemos que a variável `ST` é um array
+Como o NetCDF é organizado para guardar matrizes (arrays), só sabemos que a variável `emi_co` é um array
 
 ```{r, eval=F}
-ncatt_get(wrf,"TT") # ou ncatt_get(wrf,"TT",verbose = T)
-dim(TEMP)
+ncatt_get(edgar,"emi_co") # ou ncatt_get(edgar,"emi_co",verbose = T)
 ```
 
 praticamente a mesma informação do print anterior:
 ```
-float TT[west_east,south_north,num_metgrid_levels,Time]   
-FieldType: 104
-MemoryOrder: XYZ
-units: K
-description: Temperature
-stagger: M
-sr_x: 1
-sr_y: 1
+# $standard_name
+# [1] "tendency_of_atmosphere_mass_content_of_carbon_monoxide_due_to_emission"
+# $long_name
+# [1] "Emissions of CO - "
+# $units
+# [1] "kg m-2 s-1"
+# $cell_method
+# [1] "time: mean (interval: 1 month,  31 days)"
+# $total_emi_co
+# [1] "   6.32889e+009 kg/month"
+# $comment
+# [1] " (see http://edgar.jrc.ec.europa.eu/methodology.php#12sou for the definitions of the single sources)"
 ```
-
 como temos apenas 1 tempo essa dimensão é desconsiderada para simplificar.
 
-A latitude de cada ponto de grade, assim como longitude níveis e tempo podem ser extraídas:
+A latitude de cada ponto de grade, assim como longitude níveis (tempo em outros casos) o podem ser extraídas:
 
 ```{r, eval=F}
-lat  <- ncvar_get(wrf, "XLAT_M")
-lon  <- ncvar_get(wrf, "XLONG_M")
-time <- ncvar_get(wrf, "Times")
+lat  <- ncvar_get(wrf, "lat")
+lon  <- ncvar_get(wrf, "lon")
 ```
 O metadado de Longitude:
 ```
-float XLONG_M[west_east,south_north,Time]   
-FieldType: 104
-MemoryOrder: XY 
-units: degrees longitude
-description: Longitude on mass grid
-stagger: M
-sr_x: 1
-sr_y: 1
+
 ```
 Latitude:
 ```
