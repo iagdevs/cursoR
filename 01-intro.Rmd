@@ -11,10 +11,12 @@ Acesse [aqui](https://cran.r-project.org/web/packages/available_packages_by_name
 
 Este curso foi baseado no livro [R Programming for Data Science](https://leanpub.com/rprogramming) e possui <span style="color:red">exercícios</span> a serem resolvidos, <span style="color:blue">perguntas</span> que ajudam a entender conceitos e <span style="color:purple">desafios</span> para aprofundar os conhecimentos adquiridos.
 
-Neste curso iremos utilizar [Rstudio](https://www.rstudio.com/), além de poder baixar o programa utilizado nesse curso, você também pode acessar muitos materiais como as [Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) e [Webnários](https://www.rstudio.com/resources/webinars/) que cobrem desde itens básicos como funções essenciais do Rstudio até desenvolvimento de páginas para Web ou apps com Shiny. Explore o máximo que puder!
-A imagem abaixo resume um pouco das funcionalidades disponíveis.
+Neste curso iremos utilizar o software [RStudio](https://www.rstudio.com/). A imagem abaixo resume um pouco das funcionalidades disponíveis.
 
-![Fonte: [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)](figuras/rstudio_ide.png)
+![Fonte: [RStudio IDE Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)](figuras/rstudio_ide.png)  
+
+Além de poder baixar o programa utilizado nesse curso, você também pode acessar muitos materiais como as [Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) e [Webnários](https://www.rstudio.com/resources/webinars/) que cobrem desde itens básicos como funções essenciais do RStudio até desenvolvimento de páginas para Web ou apps com Shiny. Explore o máximo que puder!  
+
 
 **Dicas:**
 

@@ -126,7 +126,7 @@ colaborar)}
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-06-02}
+  \date{2018-06-04}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -334,15 +334,9 @@ e possui {exercícios} a serem resolvidos, {perguntas} que ajudam a
 entender conceitos e {desafios} para aprofundar os conhecimentos
 adquiridos.
 
-Neste curso iremos utilizar \href{https://www.rstudio.com/}{Rstudio},
-além de poder baixar o programa utilizado nesse curso, você também pode
-acessar muitos materiais como as
-\href{https://www.rstudio.com/resources/cheatsheets/}{Cheatsheets} e
-\href{https://www.rstudio.com/resources/webinars/}{Webnários} que cobrem
-desde itens básicos como funções essenciais do Rstudio até
-desenvolvimento de páginas para Web ou apps com Shiny. Explore o máximo
-que puder! A imagem abaixo resume um pouco das funcionalidades
-disponíveis.
+Neste curso iremos utilizar o software
+\href{https://www.rstudio.com/}{RStudio}. A imagem abaixo resume um
+pouco das funcionalidades disponíveis.
 
 \begin{figure}
 \centering
@@ -351,6 +345,14 @@ disponíveis.
 \href{https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf}{RStudio
 IDE Cheatsheet}}
 \end{figure}
+
+Além de poder baixar o programa utilizado nesse curso, você também pode
+acessar muitos materiais como as
+\href{https://www.rstudio.com/resources/cheatsheets/}{Cheatsheets} e
+\href{https://www.rstudio.com/resources/webinars/}{Webnários} que cobrem
+desde itens básicos como funções essenciais do RStudio até
+desenvolvimento de páginas para Web ou apps com Shiny. Explore o máximo
+que puder!
 
 \textbf{Dicas:}
 
@@ -399,31 +401,7 @@ anos!} - Camila.
 
 A linguagem R pode ser usada desde uma simples calculadora até uma
 poderosa ferramenta estatística, seja para análise de dados, seja para
-machine learning. Focaremos em Linux, mas R e RStudio estão disponíveis
-para Windows e Mac também.
-
-\begin{itemize}
-\tightlist
-\item
-  Documentação:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{http://cran.r-project.org/doc/manuals/r-release/R-intro.html}{Intro}.
-  \item
-    \href{http://cran.r-project.org/doc/manuals/r-release/R-data.html}{I/O}.
-  \end{itemize}
-\item
-  Quer fazer um pacote?
-  \href{http://cran.r-project.org/doc/manuals/r-release/R-exts.html}{Veja},
-  \href{http://cran.r-project.org/doc/manuals/r-release/R-ints.html}{aqui}
-  e
-  \href{http://cran.r-project.org/doc/manuals/r-release/R-lang.html}{aqui}.
-\item
-  \href{https://stackoverflow.com/questions/tagged/r}{Stackoverflow} te
-  ajudará em horas de desespero.
-\end{itemize}
+machine learning.
 
 Nesse capítulo veremos o básico da linguagem. Como a ideia é cobrir o
 máximo de conteúdo possível, passaremos bem rápido pelos conceitos
@@ -432,14 +410,14 @@ básicos, com alguns exercícios para melhor entendimento.
 \section{Variáveis Básicas}\label{variaveis-basicas}
 
 Podemos armazenar valores, strings ou operadores lógicos nas chamadas
-variáveis básicas, é com elas que podemos fazer operações básicas e
+variáveis básicas. É com elas que podemos fazer operações básicas e
 transformar o RStudio em uma calculadora superpoderosa. Existem 5 tipos
 de variáveis básicas, sendo elas:
 
 \begin{itemize}
 \tightlist
 \item
-  Numeric 1: valores numéricos com ou sem casa decimal
+  Numeric (1): valores numéricos com ou sem casa decimal
 \end{itemize}
 
 \begin{Shaded}
@@ -465,8 +443,8 @@ de variáveis básicas, sendo elas:
 \begin{itemize}
 \tightlist
 \item
-  Character a: com eles podemos armazenar strings, como o título de um
-  gráfico
+  \emph{Character} (a): com eles podemos armazenar strings, como o
+  título de um gráfico
 \end{itemize}
 
 \begin{Shaded}
@@ -482,10 +460,10 @@ de variáveis básicas, sendo elas:
 
 \begin{itemize}
 \item
-  Integer 1: são valores inteiros
+  \emph{Integer} (1): são valores inteiros
 \item
-  Complex 0+1i: também é possível armazenar valores complexos nas
-  variáveis básicas
+  \emph{Complex} (0+1i): também é possível armazenar valores complexos
+  nas variáveis básicas
 \end{itemize}
 
 \begin{Shaded}
@@ -501,10 +479,10 @@ de variáveis básicas, sendo elas:
 \begin{itemize}
 \tightlist
 \item
-  Logical TRUE: são os famosos operadores Booleanos, que permitem
-  realizar comparações entre variáveis ou dados (\textbf{Você não pode
-  criar uma variável com os nome TRUE ou FALSE, esses nomes são
-  reservados pelo R})
+  \emph{Logical} (TRUE): são os famosos operadores Booleanos, que
+  permitem realizar comparações entre variáveis ou dados (\textbf{Você
+  não pode criar uma variável com os nomes TRUE ou FALSE, esses nomes
+  são reservados pelo R})
 \end{itemize}
 
 \begin{Shaded}
@@ -521,7 +499,7 @@ de variáveis básicas, sendo elas:
 
 Vetores permitem que você armazene dados em uma sequência 1D de qualquer
 um dos tipos listados nas variáveis básicas, mais o formato ``cru''
-(raw) que é o modo de rmazenamento de bytes, por exemplo:
+(raw) que é o modo de armazenamento de bytes. Por exemplo:
 
 \begin{itemize}
 \tightlist
@@ -555,17 +533,15 @@ variável que se está utilizando:
 ## [1] "numeric"
 \end{verbatim}
 
-\textbf{Exercício} Qual a classe dos seguintes vetores?
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\begin{itemize}
-\tightlist
-\item
-  c(1, ``C'', ``D'')
-\item
-  c(1, NA, ``D'')
-\item
-  c(1, NA, NaN)
-\end{itemize}
+{\textbf{Exercício}: Qual a classe dos seguintes vetores?}
+
+\texttt{c(1,\ “C”,\ “D”)}\\
+\texttt{c(1,\ NA,\ “D”)}\\
+\texttt{c(1,\ NA,\ NaN)}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \section{Converter objetos}\label{converter-objetos}
 
@@ -591,62 +567,59 @@ Um modo de forçar um objeto a assumir outra classe é por meio da função
 Note que a função apenas converte os números de decimais para inteiros,
 sem arredondar para o número mais próximo.
 
-\textbf{Pergunta:} o que acontece quando se tenta converter o seguinte
-vetor? as.numeric(c(1, ``C'', ``D''))
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+{\textbf{Pergunta}: O que acontece quando se tenta converter o seguinte
+vetor?}
+
+\texttt{as.numeric(c(1,\ "C",\ "D"))}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \hypertarget{convert_df}{\subsection{\texorpdfstring{\texttt{merge} e
 \texttt{melt}}{merge e melt}}\label{convert_df}}
 
 Nem sempre os conjuntos de dados que você encontrar pela vida estarão no
-formato desejado para plotar e/ou analisar estatísticamente, dessa
+formato desejado para plotar e/ou analisar estatisticamente, dessa
 forma, essas duas funções poderão ajudar na sua jornada:
 
 \begin{itemize}
 \tightlist
 \item
-  Merge: permite a união entre dois Data.frames
-  ({[}3.10{]})(\#Data.frames), seja por colunas em comum ou linhas em
-  comum
+  \texttt{merge}: permite a união entre dois
+  \protect\hyperlink{dataframes}{data frames}, seja por colunas em comum
+  ou linhas em comum
 \item
-  Melt: do pacote
+  \texttt{melt}: do pacote
   \href{https://cran.r-project.org/web/packages/reshape2/reshape2.pdf}{reshape2},
-  permite que você armazene colunas iguais em uma única, de acordo com o
-  nome especificado
+  permite que você agrupe várias colunas em função de outra coluna em
+  comum, de acordo com o nome especificado
 \end{itemize}
 
 \section{Array}\label{array}
 
-Ao contrário do unidimensional vetor, arrays permietm que você armazene
-dados em diversas dimensões, sendo sempre com o mesmo comprimento.
+Ao contrário do vetor unidimensional, arrays permietm que você armazene
+dados em diversas dimensões, sendo todas com o mesmo comprimento.
+
+Vamos dar uma olhada nos argumentos da função:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Vamos dar uma olhada nos argumentos da função}
 \KeywordTok{args}\NormalTok{(array)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## function (data = NA, dim = length(data), dimnames = NULL)
+## function (data = NA, dim = length(data), dimnames = NULL) 
 ## NULL
 \end{verbatim}
 
-Não esqueça do TAB Dessa forma, é preciso ``informar'' ao R qual o
-número de dimensões que você quer no seu array:
+Dessa forma, é preciso ``informar'' ao R qual o número de dimensões que
+você quer no seu array:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      [,1]
-## [1,]    0
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \KeywordTok{class}\NormalTok{(a)}
 \end{Highlighting}
 \end{Shaded}
@@ -655,26 +628,12 @@ número de dimensões que você quer no seu array:
 ## [1] "matrix"
 \end{verbatim}
 
-No caso acima como só foram desiginadas duas dimensões, o array é igual
+No caso acima, como só foram desiginadas duas dimensões, o array é igual
 a uma matriz.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## , , 1
-##
-##      [,1] [,2] [,3]
-## [1,]    0    0    0
-## [2,]    0    0    0
-## [3,]    0    0    0
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \DecValTok{0}\NormalTok{, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{))}
 \KeywordTok{class}\NormalTok{(a)}
 \end{Highlighting}
 \end{Shaded}
@@ -683,7 +642,7 @@ a uma matriz.
 ## [1] "array"
 \end{verbatim}
 
-Como dá pra ver acima, é possível armazenar diversos elementos num
+Como dá pra ver acima, é possível armazenar diversos elementos em um
 array, como por exemplo as dimensões que utilizamos no dia-a-dia de
 modelos numéricos: espaço (x,y,z) e tempo (z). Dessa forma, podemos
 criar arrays a partir de vetores e armazená-los em diverssas dimensões.
@@ -693,28 +652,7 @@ criar arrays a partir de vetores e armazená-los em diverssas dimensões.
 \NormalTok{vetor1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
 \NormalTok{vetor2 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DecValTok{14}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{18}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{22}\NormalTok{,}\DecValTok{24}\NormalTok{)}
 
-\NormalTok{(a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{c}\NormalTok{(vetor1,vetor2), }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## , , 1
-##
-##      [,1] [,2] [,3]
-## [1,]    1    4   12
-## [2,]    2    5   14
-## [3,]    3   10   16
-##
-## , , 2
-##
-##      [,1] [,2] [,3]
-## [1,]   18   24    3
-## [2,]   20    1    4
-## [3,]   22    2    5
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{c}\NormalTok{(vetor1,vetor2), }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{))}
 \KeywordTok{class}\NormalTok{(a)}
 \end{Highlighting}
 \end{Shaded}
@@ -731,20 +669,20 @@ array:
 \NormalTok{colunas <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"col1"}\NormalTok{, }\StringTok{"col2"}\NormalTok{, }\StringTok{"col3"}\NormalTok{)}
 \NormalTok{linhas <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"lin1"}\NormalTok{, }\StringTok{"lin2"}\NormalTok{, }\StringTok{"lin3"}\NormalTok{)}
 
-\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{c}\NormalTok{(vetor1,vetor2),}\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{),}\DataTypeTok{dimnames =} \KeywordTok{list}\NormalTok{(linhas,colunas))}
+\KeywordTok{array}\NormalTok{(}\DataTypeTok{data =} \KeywordTok{c}\NormalTok{(vetor1, vetor2), }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{dimnames =} \KeywordTok{list}\NormalTok{(linhas, colunas))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## , , 1
-##
+## 
 ##      col1 col2 col3
 ## lin1    1    4   12
 ## lin2    2    5   14
 ## lin3    3   10   16
-##
+## 
 ## , , 2
-##
+## 
 ##      col1 col2 col3
 ## lin1   18   24    3
 ## lin2   20    1    4
@@ -764,9 +702,13 @@ especificar aas dimensões como para mostrar o elemento de um vetor.
 ## [1] 24
 \end{verbatim}
 
-\textbf{Exercício:} Crie um array com 3 dimensões, contendo três linhas
-e 4 quatro colunas, acesse o elemento da segunda linha e terceira coluna
-desse array. Não esqueça de verificar a classe desse objeto!
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+{\textbf{Exercício}: Crie um array com 3 dimensões, contendo três linhas
+e 4 quatro colunas. Acesse o elemento da segunda linha e terceira coluna
+desse array. Não esqueça de verificar a classe desse objeto!}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \section{\texorpdfstring{Matrizes e a função
 \texttt{matrix}}{Matrizes e a função matrix}}\label{matrizes-e-a-funcao-matrix}
@@ -774,12 +716,10 @@ desse array. Não esqueça de verificar a classe desse objeto!
 Uma matriz é um array com duas dimensões, sendo necessário informar o
 número de colunas e linhas, mas não o de dimensões.
 
-\textbf{{[}linhas, colunas{]}}
-
-Assim como nos array, só são permitidos elementos \textbf{da mesma
+Assim como em arrays, só são permitidos elementos \textbf{da mesma
 clase}!
 
-Argumentos da função \texttt{matrix}
+Argumentos da função \texttt{matrix}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -788,28 +728,15 @@ Argumentos da função \texttt{matrix}
 \end{Shaded}
 
 \begin{verbatim}
-## function (data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
+## function (data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL) 
 ## NULL
 \end{verbatim}
 
-Colocando dados numa matriz:
+Colocando dados em uma matriz:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(m1 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data =} \DecValTok{1}\OperatorTok{:}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\DecValTok{4}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{4}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      [,1] [,2] [,3] [,4]
-## [1,]    1    5    9   13
-## [2,]    2    6   10   14
-## [3,]    3    7   11   15
-## [4,]    4    8   12   16
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{m1 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data =} \DecValTok{1}\OperatorTok{:}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\DecValTok{4}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{4}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{)}
 \KeywordTok{dim}\NormalTok{(m1)}
 \end{Highlighting}
 \end{Shaded}
@@ -818,30 +745,26 @@ Colocando dados numa matriz:
 ## [1] 4 4
 \end{verbatim}
 
-Por padrão, a opção ``byrow'' é igual a \textbf{FALSE}, quando passamos
+Por padrão, a opção ``byrow'' é igual a \textbf{FALSE}. Quando passamos
 para \textbf{TRUE}, é possível organizar os dados por linha.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(m2 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data =} \DecValTok{1}\OperatorTok{:}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\DecValTok{4}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{4}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{, }\DataTypeTok{byrow =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{m2 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{data =} \DecValTok{1}\OperatorTok{:}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\DecValTok{4}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{4}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{, }\DataTypeTok{byrow =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##      [,1] [,2] [,3] [,4]
-## [1,]    1    2    3    4
-## [2,]    5    6    7    8
-## [3,]    9   10   11   12
-## [4,]   13   14   15   16
-\end{verbatim}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\textbf{Exercício:} Construa uma matriz com três linhas que contenha os
-números de 1 a 9.
+{\textbf{Exercício}: Construa uma matriz com três linhas que contenha os
+números de 1 a 9.}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \section{Listas}\label{listas}
 
 Já as listas permitem que você armazene qualquer tipo de variável
-básica, independente da classe, dessa forma, podemos colocar numa lista:
+básica, independente da classe. Dessa forma, podemos colocar numa lista:
 número, caracteres, argumentos lógicos, ou que você quiser:
 
 \begin{Shaded}
@@ -859,63 +782,41 @@ número, caracteres, argumentos lógicos, ou que você quiser:
 \end{verbatim}
 
 Isso faz com que elas sejam bastante versáteis e sirvam para armazenar o
-que você precisar, mas elas só podem ter uma dimensão, como uma fia. Já
+que você precisar, mas elas só podem ter uma dimensão, como uma fila. Já
 os objetos armazenados dentro da lista não precisam ter a mesma
 dimensão.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{4i))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\OtherTok{TRUE}\NormalTok{, }\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{4i)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [[1]]
-## [1] 1
-##
-## [[2]]
-## [1] "a"
-##
-## [[3]]
-## [1] TRUE
-##
-## [[4]]
-## [1] 1+4i
-\end{verbatim}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\textbf{Exercício:}Crie uma lista contendo um vetor, uma matriz e um
-data frame e acesse o segundo elemento dela.
+{\textbf{Exercício}: Crie uma lista contendo um vetor, uma matriz e um
+data frame e acesse o segundo elemento dela.}
+
+{Para facilitar, já vamos te dar o data frame:}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#Para facilitar, já vamos te dar o data frame:}
-
 \NormalTok{my_df <-}\StringTok{ }\NormalTok{mtcars[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,]}
 \end{Highlighting}
 \end{Shaded}
 
-\section{Data.frames}\label{data.frames}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\hypertarget{dataframes}{\section{Data Frames}\label{dataframes}}
 
 Os data frames são uma forma de armazenar seus dados em um formato
-parecido com uma planilha de excel. Você pode pensar num data frame como
-uma matriz que armazena em cala coluna um dado diferente, ou como uma
-lista onde todos os elementos tem o mesmo comprimento.
+parecido com uma planilha de excel. Você pode pensar em um data frame
+como uma matriz que armazena em cada coluna um dado diferente, ou como
+uma lista onde todos os elementos tem o mesmo comprimento.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   a
-## 1 1
-## 2 2
-## 3 3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
 \KeywordTok{names}\NormalTok{(df)}
 \end{Highlighting}
 \end{Shaded}
@@ -944,9 +845,9 @@ lista onde todos os elementos tem o mesmo comprimento.
 ## [1] "list"
 \end{verbatim}
 
-É normalmente num data frame que você importará os seus dados e vale
+É normalmente em um data frame que você importará os seus dados e vale
 saber como visualizar algumas informações básicas sobre ele direto no
-seu console, para isso, vamos pegar como exemplo o conjunto
+seu console. Para isso, vamos pegar como exemplo o conjunto
 \texttt{mtcars} da base de dados do R:
 
 \begin{Shaded}
@@ -966,8 +867,8 @@ seu console, para isso, vamos pegar como exemplo o conjunto
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 \end{verbatim}
 
-Para ver as últimas linahs do data frame basta usar a função
-\texttt{tail()}, já uma função muito útil é a \texttt{summary()} que
+Para ver as últimas linhas do data frame basta usar a função
+\texttt{tail}. Já uma função muito útil é a \texttt{summary}, que
 apresenta um ``resumo'' dos seus dados, como média, mediana, mínimos e
 máximos para cada \textbf{coluna} do data frame.
 
@@ -978,26 +879,26 @@ máximos para cada \textbf{coluna} do data frame.
 \end{Shaded}
 
 \begin{verbatim}
-##       mpg             cyl             disp             hp
-##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0
-##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5
-##  Median :19.20   Median :6.000   Median :196.3   Median :123.0
-##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7
-##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0
-##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0
-##       drat             wt             qsec             vs
-##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000
-##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000
-##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000
-##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375
-##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000
-##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000
-##        am              gear            carb
-##  Min.   :0.0000   Min.   :3.000   Min.   :1.000
-##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000
-##  Median :0.0000   Median :4.000   Median :2.000
-##  Mean   :0.4062   Mean   :3.688   Mean   :2.812
-##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000
+##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
 ##  Max.   :1.0000   Max.   :5.000   Max.   :8.000
 \end{verbatim}
 
@@ -1014,16 +915,7 @@ minutos, horas, dias, meses, etc.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(a <-}\StringTok{ }\KeywordTok{ISOdate}\NormalTok{(}\DataTypeTok{year =} \DecValTok{2018}\NormalTok{, }\DataTypeTok{month =} \DecValTok{4}\NormalTok{, }\DataTypeTok{day =} \DecValTok{5}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "2018-04-05 12:00:00 GMT"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{ISOdate}\NormalTok{(}\DataTypeTok{year =} \DecValTok{2018}\NormalTok{, }\DataTypeTok{month =} \DecValTok{4}\NormalTok{, }\DataTypeTok{day =} \DecValTok{5}\NormalTok{)}
 \KeywordTok{class}\NormalTok{(a)}
 \end{Highlighting}
 \end{Shaded}
@@ -1034,29 +926,16 @@ minutos, horas, dias, meses, etc.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(b <-}\StringTok{ }\KeywordTok{ISOdate}\NormalTok{(}\DataTypeTok{year =} \DecValTok{2018}\NormalTok{, }\DataTypeTok{month =} \DecValTok{4}\NormalTok{, }\DataTypeTok{day =} \DecValTok{5}\NormalTok{, }\DataTypeTok{tz =} \StringTok{"Americas/Sao_Paulo"}\NormalTok{))}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{ISOdate}\NormalTok{(}\DataTypeTok{year =} \DecValTok{2018}\NormalTok{, }\DataTypeTok{month =} \DecValTok{4}\NormalTok{, }\DataTypeTok{day =} \DecValTok{5}\NormalTok{, }\DataTypeTok{tz =} \StringTok{"Americas/Sao_Paulo"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## [1] "2018-04-05 12:00:00 Americas"
-\end{verbatim}
 
 Já a classe \texttt{Date}, armazena as datas como o número de dias
 contados a partir de 1970.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(c <-}\StringTok{ }\KeywordTok{as.Date}\NormalTok{(}\KeywordTok{Sys.time}\NormalTok{()))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "2018-06-03"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{c <-}\StringTok{ }\KeywordTok{as.Date}\NormalTok{(}\KeywordTok{Sys.time}\NormalTok{())}
 \KeywordTok{class}\NormalTok{(c)}
 \end{Highlighting}
 \end{Shaded}
@@ -1074,26 +953,12 @@ Também é possível fazer sequências:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{hoje <-}\StringTok{ }\KeywordTok{Sys.time}\NormalTok{()}
-\NormalTok{(a <-}\StringTok{ }\KeywordTok{seq.POSIXt}\NormalTok{(}\DataTypeTok{from =}\NormalTok{ hoje, }\DataTypeTok{by =} \DecValTok{3600}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{24}\NormalTok{))}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{seq.POSIXt}\NormalTok{(}\DataTypeTok{from =}\NormalTok{ hoje, }\DataTypeTok{by =} \DecValTok{3600}\NormalTok{, }\DataTypeTok{length.out =} \DecValTok{24}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##  [1] "2018-06-02 21:03:22 -03" "2018-06-02 22:03:22 -03"
-##  [3] "2018-06-02 23:03:22 -03" "2018-06-03 00:03:22 -03"
-##  [5] "2018-06-03 01:03:22 -03" "2018-06-03 02:03:22 -03"
-##  [7] "2018-06-03 03:03:22 -03" "2018-06-03 04:03:22 -03"
-##  [9] "2018-06-03 05:03:22 -03" "2018-06-03 06:03:22 -03"
-## [11] "2018-06-03 07:03:22 -03" "2018-06-03 08:03:22 -03"
-## [13] "2018-06-03 09:03:22 -03" "2018-06-03 10:03:22 -03"
-## [15] "2018-06-03 11:03:22 -03" "2018-06-03 12:03:22 -03"
-## [17] "2018-06-03 13:03:22 -03" "2018-06-03 14:03:22 -03"
-## [19] "2018-06-03 15:03:22 -03" "2018-06-03 16:03:22 -03"
-## [21] "2018-06-03 17:03:22 -03" "2018-06-03 18:03:22 -03"
-## [23] "2018-06-03 19:03:22 -03" "2018-06-03 20:03:22 -03"
-\end{verbatim}
-
-Funções úteis: \textbf{weekdays}, \textbf{month}, \textbf{julian}
+Funções úteis: \texttt{weekdays}, \texttt{month} e
+\href{https://en.wikipedia.org/wiki/Julian_day}{\texttt{julian}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1102,10 +967,10 @@ Funções úteis: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "sábado"  "sábado"  "sábado"  "domingo" "domingo" "domingo" "domingo"
-##  [8] "domingo" "domingo" "domingo" "domingo" "domingo" "domingo" "domingo"
-## [15] "domingo" "domingo" "domingo" "domingo" "domingo" "domingo" "domingo"
-## [22] "domingo" "domingo" "domingo"
+##  [1] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
+##  [8] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
+## [15] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
+## [22] "segunda" "segunda" "segunda"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1122,31 +987,32 @@ Funções úteis: \textbf{weekdays}, \textbf{month}, \textbf{julian}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{julian}\NormalTok{(a) }\CommentTok{#dia Juliano*}
+\KeywordTok{julian}\NormalTok{(a) }\CommentTok{#dia Juliano}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## Time differences in days
-##  [1] 17685.00 17685.04 17685.09 17685.13 17685.17 17685.21 17685.25
-##  [8] 17685.29 17685.34 17685.38 17685.42 17685.46 17685.50 17685.54
-## [15] 17685.59 17685.63 17685.67 17685.71 17685.75 17685.79 17685.84
-## [22] 17685.88 17685.92 17685.96
+##  [1] 17686.16 17686.20 17686.24 17686.28 17686.32 17686.37 17686.41
+##  [8] 17686.45 17686.49 17686.53 17686.57 17686.62 17686.66 17686.70
+## [15] 17686.74 17686.78 17686.82 17686.87 17686.91 17686.95 17686.99
+## [22] 17687.03 17687.07 17687.12
 ## attr(,"origin")
 ## [1] "1970-01-01 GMT"
 \end{verbatim}
 
-*Para mais informações: \url{https://en.wikipedia.org/wiki/Julian_day}:
+O formato \texttt{POSIXct} é o mais comumente usado principalmente se os
+dados analisados serão plotados.
 
 \section{Fatores}\label{fatores}
 
 Os \texttt{factors} podem ser um pouco infernais. Dê uma olhada em
 \href{http://www.burns-stat.com/documents/books/the-r-inferno/}{R
-INFERNO}. Usados em análise estatísica, fatores são usados para
-armazenar variáveis categóricas, ou seja, é uma variável que pode
-pertencer a um número limitado de categorias, como por exemplo, dias da
-semana. Já uma variável contínua pode assumir um um número infinito de
-valores.
+INFERNO}.\\
+Usados em análise estatísica, fatores são usados para armazenar
+variáveis categóricas, ou seja, é uma variável que pode pertencer a um
+número limitado de categorias, como por exemplo, dias da semana. Já uma
+variável contínua pode assumir um um número infinito de valores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1167,34 +1033,34 @@ valores.
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] sábado  sábado  sábado  domingo domingo domingo domingo domingo
-##   [9] domingo domingo domingo domingo domingo domingo domingo domingo
-##  [17] domingo domingo domingo domingo domingo domingo domingo domingo
-##  [25] domingo domingo domingo segunda segunda segunda segunda segunda
-##  [33] segunda segunda segunda segunda segunda segunda segunda segunda
-##  [41] segunda segunda segunda segunda segunda segunda segunda segunda
-##  [49] segunda segunda segunda terça   terça   terça   terça   terça
-##  [57] terça   terça   terça   terça   terça   terça   terça   terça
-##  [65] terça   terça   terça   terça   terça   terça   terça   terça
-##  [73] terça   terça   terça   quarta  quarta  quarta  quarta  quarta
-##  [81] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta
-##  [89] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta
-##  [97] quarta  quarta  quarta  quinta  quinta  quinta  quinta  quinta
-## [105] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta
-## [113] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta
-## [121] quinta  quinta  quinta  sexta   sexta   sexta   sexta   sexta
-## [129] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta
-## [137] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta
-## [145] sexta   sexta   sexta   sábado  sábado  sábado  sábado  sábado
-## [153] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado
-## [161] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado
+##   [1] segunda segunda segunda segunda segunda segunda segunda segunda
+##   [9] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [17] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [25] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [33] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [41] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [49] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [57] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [73] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [81] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [97] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [105] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [121] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [129] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [145] domingo domingo domingo domingo domingo domingo domingo domingo
+## [153] domingo domingo domingo domingo domingo domingo domingo domingo
+## [161] domingo domingo domingo domingo domingo domingo domingo domingo
 ## Levels: domingo quarta quinta sábado segunda sexta terça
 \end{verbatim}
 
-São muito úteis para regressões, plotes e resumos estatísitcos, uma vez
-que limita o número de possibilidades para a qual o dado pertença. Além
-disso, é possível estabelecer ``níveis'' que vão designar a categoria do
-seu dado.
+São muito úteis para regressões, gráficos e resumos estatísitcos, uma
+vez que limita o número de possibilidades para a qual o dado pertença.
+Além disso, é possível estabelecer ``níveis'' que vão designar a
+categoria do seu dado.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1206,19 +1072,18 @@ seu dado.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday"
+## [1] "Monday"    "Tuesday"   "Wednesday" "Thursday"  "Friday"    "Saturday" 
 ## [7] "Sunday"
 \end{verbatim}
 
-\textbf{Exercício:} Converta o vetor abaixo em um fator e mostre os seus
-níveis
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\begin{itemize}
-\tightlist
-\item
-  genero \textless{}- c(``Masculino'', ``Masculino'', ``Feminino'',
-  ``Masculino'', ``Feminino'', ``Feminino'')
-\end{itemize}
+{\textbf{Exercício}: Converta o vetor abaixo em um fator e mostre os
+seus níveis}
+
+\texttt{genero\ \textless{}-\ c("Masculino",\ "Masculino",\ "Feminino",\ "Masculino",\ "Feminino",\ "Feminino")}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 Se tudo pareceu muito corrido, não se preocupe, todos esses conceitos
 serão praticados mais adiante!
@@ -1226,13 +1091,14 @@ serão praticados mais adiante!
 \chapter{Importando e Exportando
 Dados}\label{importando-e-exportando-dados}
 
-\section{Data Frames}\label{data-frames}
+\section{Base}\label{base}
 
-Probabelmente um dos promeiros objetos que vamos usar quando começamos
-usar R. Pensa num data-frame como uma planilha de Libreoffice (o excel).
-Os data-frame pode ser criaos como foi visto na seção anterior. O
-principal, é que temos varias funções para ler data-frames no R, entre
-elas
+\subsection{\texorpdfstring{Importando com
+\texttt{read.*}}{Importando com read.*}}\label{importando-com-read.}
+
+Como vimos anteriormente, na maioria dos casos, iremos usar data frames
+par lidar com dados em R, sendo assim, podemos utilizar os seguintes
+modos de leitura:
 
 \begin{itemize}
 \tightlist
@@ -1244,10 +1110,8 @@ elas
   read.table
 \end{itemize}
 
-Agora vamos a ler dados do repositorio usando read.table, mas primeiro
-vamos lembrar que se tu precisar ver a ajuda da função, tem que escrever
-no R \texttt{?read.table}. Então, agora vamos ver os argumentos da
-função:
+Vamos ler alguns dados usando read.table, para saber o que a função faz,
+use \texttt{?read.table}. Os argumentos da função são:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1256,20 +1120,20 @@ função:
 \end{Shaded}
 
 \begin{verbatim}
-## function (file, header = FALSE, sep = "", quote = "\"'", dec = ".",
-##     numerals = c("allow.loss", "warn.loss", "no.loss"), row.names,
-##     col.names, as.is = !stringsAsFactors, na.strings = "NA",
-##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE,
-##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE,
-##     comment.char = "#", allowEscapes = FALSE, flush = FALSE,
-##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = "",
-##     encoding = "unknown", text, skipNul = FALSE)
+## function (file, header = FALSE, sep = "", quote = "\"'", dec = ".", 
+##     numerals = c("allow.loss", "warn.loss", "no.loss"), row.names, 
+##     col.names, as.is = !stringsAsFactors, na.strings = "NA", 
+##     colClasses = NA, nrows = -1, skip = 0, check.names = TRUE, 
+##     fill = !blank.lines.skip, strip.white = FALSE, blank.lines.skip = TRUE, 
+##     comment.char = "#", allowEscapes = FALSE, flush = FALSE, 
+##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = "", 
+##     encoding = "unknown", text, skipNul = FALSE) 
 ## NULL
 \end{verbatim}
 
-Aqui vem-se os valores default dos argumentos da função
-\texttt{read.table}. O terceiro argumento é sep, com valores por default
-= ``''.
+O terceiro argumento é sep, com valores por default = ``''. Esse
+argumento indica para o R qual o tipo de separador utilizado entre as
+colunas dos dados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1277,8 +1141,8 @@ Aqui vem-se os valores default dos argumentos da função
 \end{Highlighting}
 \end{Shaded}
 
-Agora vamos usar a funções \texttt{head} and \texttt{tail} para ver as
-primeiras e as ultimas 6 linhas do data-frame.
+Lembre-se que as funções head e tail permitem que você veja as primeiras
+ou últimas linhas do data frame.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1340,8 +1204,8 @@ primeiras e as ultimas 6 linhas do data-frame.
 ## 8582             ppb           NA          -    Sim
 \end{verbatim}
 
-Agora vamos ler os mesmos dados com outro formato e testar e read.table
-funciona do mesmo jeito
+O que acontece se tentarmos ler os mesmo dados utilizando a função
+read.table?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1351,23 +1215,24 @@ funciona do mesmo jeito
 \end{Highlighting}
 \end{Shaded}
 
-Vemos a mensagem de error, mas o que quer dizer.
+Apareceu uma mensagem de erro, você saberia dizer o porquê?
 
-\textbf{Se tu recever um banco de dados tipo .txt e quer abrir no
-R\ldots{} ABRE ELE COM BLOCO DE NOTAS PRIMEIRO!!!}
+\textbf{Caso você trabalhe com algum banco de dados em formato .txt e
+quiser abrir no R\ldots{} Abra-os no bloco de notas primeiro}
 
-O primeiro arquivo:
+Vamos dar uma olhada em alguns dados, o primeiro tem uma cara assim:
 
 \includegraphics[width=18.47in]{figuras/f1}
 
-O segundo arquivo é:
+Já o segundo arquivo é assim:
 
 \includegraphics[width=15.33in]{figuras/f2}
 
-qual é a diferença?
-
-Como vemos o segundo arquivo tem separação de ``;'', entao, temos que
-lero arquivo assim:
+Você notou a diferença? Como vimos anteriormente, para importar os dados
+no R é super importante que você especifique o tipo de separador
+utilizado, como o segundo arquivo tem separação de ``;'', precisamos
+espercificar o argumento \texttt{sep} na hora de usar o comando
+\texttt{read.table}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1430,15 +1295,18 @@ lero arquivo assim:
 ## 8582             ppb           NA          -    Sim
 \end{verbatim}
 
-\textbf{Qua dificultades tu já enfrentou importando dados?}
+Além desses comandos, vocês também pode utilizar a opção \textbf{Import
+Dataset} do Rstudio, permitindo que você tenha um ``preview'' dos dados,
+como no excel, mas melhor!
 
-\section{BASE}\label{base}
+Para mais informações sobre importar dados no R, dê uma olha nesse
+\href{https://www.rstudio.com/resources/webinars/importing-data-into-r/}{webnário}
 
 \subsection{\texorpdfstring{Exportando texto com
 \texttt{write.table}}{Exportando texto com write.table}}\label{exportando-texto-com-write.table}
 
-Exportar é bem facil, mas se sabemos os argumentos das funções, vai ser
-mais eficiente ainda. Vamos \texttt{write.table}
+Exportar é bem facil. Vamos dar uma olhada nos argumentos da função
+\texttt{write.table}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1447,34 +1315,36 @@ mais eficiente ainda. Vamos \texttt{write.table}
 \end{Shaded}
 
 \begin{verbatim}
-## function (x, file = "", append = FALSE, quote = TRUE, sep = " ",
-##     eol = "\n", na = "NA", dec = ".", row.names = TRUE, col.names = TRUE,
-##     qmethod = c("escape", "double"), fileEncoding = "")
+## function (x, file = "", append = FALSE, quote = TRUE, sep = " ", 
+##     eol = "\n", na = "NA", dec = ".", row.names = TRUE, col.names = TRUE, 
+##     qmethod = c("escape", "double"), fileEncoding = "") 
 ## NULL
 \end{verbatim}
 
 Se temos um data-frame com colunas de classe character,
 \texttt{quote\ =\ TRUE} quer dizer que o arquivo de texto resultante vai
-ter aspas nas colunas de caracter.
+ter aspas nas colunas de caractere. Novamente, o argumento \texttt{sep}
+indica como podemos separar as colunas. Se você quiser abrir esses dados
+no excel, uma boa opção é utilizar os separadores ``,''/``;''/"
+``/''\t``, sendo o último o separador que indica o espaçamento criado
+pela tecla TAB.
 
-\texttt{sep} é como vão ser separadas as colunas. Se tu quer abrir o
-arquivo com Excel, poderia separar com ``,'', ``;'', " ``,''\t``\ldots{}
-Depende como tu quer.
+Já o argumento \texttt{eol} quer dizer \emph{end of line}, e é uma forma
+de dizer ao R que a linha acaba ali. Por padrão, a opção
+\texttt{row.names} vem com a opção TRUE, mas sempre coloque a opção
+FALSE, caso contrário, será adicionada uma coluna com os índices das
+linhas. O argumento \texttt{col.names} indica se você quer nomear as
+suas colunas, o que é sempre uma boa ideia.
 
-eol quer dizer \emph{end of line}, e é para ver a forma de colocar o
-``end of line''
-
-\textbf{row.names}.. esta TRUE mas SEMPRE SEMPRE SEMPRE COLOCA:
-
-\textbf{row.names = FALSE}. Se não, R vai adiiconar uma coluna com os
-indices das linhas\ldots{}.
-
-col.names se tu quer o nome nas colunas\ldots{}
-
-\textbf{PRATICA!}
+\textbf{Exercício:} Usando o conjunto de dados \texttt{mtcars} da base
+do R, vamos exportá-lo de uma forma que ele possa ser lido em algum
+Excel genérico. Não esqueça de usar o que foi ensinado acima.
 
 \subsection{\texorpdfstring{Exportando objetos com
 \texttt{save}}{Exportando objetos com save}}\label{exportando-objetos-com-save}
+
+Podemos salvar objetos do R com o comando \texttt{save}, ele permite que
+você recarregue o objeto mais tarde.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1483,14 +1353,14 @@ col.names se tu quer o nome nas colunas\ldots{}
 \end{Shaded}
 
 \begin{verbatim}
-## function (..., list = character(), file = stop("'file' must be specified"),
-##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii),
-##     compression_level, eval.promises = TRUE, precheck = TRUE)
+## function (..., list = character(), file = stop("'file' must be specified"), 
+##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii), 
+##     compression_level, eval.promises = TRUE, precheck = TRUE) 
 ## NULL
 \end{verbatim}
 
-\texttt{save} salva o objeto com a extensão .rda. Para carregar de volta
-o objeto, tem que ser feito com a função \texttt{load}
+Essa função salva o objeto com a extensão .rda sendo que para carregá-lo
+de volta usamos a função \texttt{load}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1499,92 +1369,73 @@ o objeto, tem que ser feito com a função \texttt{load}
 \end{Shaded}
 
 \begin{verbatim}
-## function (file, envir = parent.frame(), verbose = FALSE)
+## function (file, envir = parent.frame(), verbose = FALSE) 
 ## NULL
 \end{verbatim}
 
-O que pode ser ruim, porque as vezes tu esqueceu o nome do objeto no
-ambiente de R. Por exemplo, tu salvou o arquivo
+Muito cuidado ao utilizar esse comando, pois podemos cometer alguns
+delizes, como trocar o nome do objeto. Veja esse exemplo abaixo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{save}\NormalTok{(frenteFria, }\DataTypeTok{file =} \StringTok{"FrenteQuente.rda"}\NormalTok{)}
+\CommentTok{#Primeiro vamos ler os dados do dia 01/06/2016 para uma estação automática do INMET de Paracatu:}
+\NormalTok{paracatu <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\DataTypeTok{file =} \StringTok{"dados/paracatu.csv"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{","}\NormalTok{) }\CommentTok{#lendo como csv}
+
+\CommentTok{# Vamos dizer que queremos salvar apenas a coluna correspondente à temperatura máxima horária:}
+\NormalTok{paracatu_temp <-}\StringTok{ }\NormalTok{paracatu}\OperatorTok{$}\NormalTok{temp_max  }
+
+\CommentTok{#Agora vamos salvar o objeto do tipo numeric com o nome especificado:}
+\KeywordTok{save}\NormalTok{(paracatu_temp, }\DataTypeTok{file =} \StringTok{"Temp_max.rda"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-logo tu carrega
+Passado um tempo, queremos acessar de volta esse objeto, mas não
+lembramos se salvamos a temperatura máxima ou mínima, vamos confiar que
+foi a mínima:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\StringTok{"FrenteQuente.rda"}\NormalTok{)}
+\KeywordTok{load}\NormalTok{(}\StringTok{"Temp_min.rda"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-acreditando que vai ter tua frente quente, mas o nome do objeto no
-ambiente de R é frenteDria\ldots{} então, tem que ficar de olho, e como
-somos imperfeito, vai dar merda\ldots{}.
-
-O melhor da função é que permite salvar com tipos de compressão, por
+E assim descobrimos que não era\ldots{} O que nos ensina a sempre
+guardar na memória quais variáveis que salvamos no ambiente R. O bom
+dessa função é que ela permite salvar com tipos de compressão, por
 exemplo compress = ``xz''.
 
 \subsection{\texorpdfstring{Exportando objetos com
 \texttt{saveRDS}}{Exportando objetos com saveRDS}}\label{exportando-objetos-com-saverds}
 
-Esta é uma das minhas funçoes favoritas no R
+Esta é uma das minhas funçoes favoritas no R, veja só o porquê:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{args}\NormalTok{(saveRDS)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## function (object, file = "", ascii = FALSE, version = NULL, compress = TRUE,
-##     refhook = NULL)
-## NULL
-\end{verbatim}
-
-e
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{args}\NormalTok{(readRDS)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## function (file, refhook = NULL)
-## NULL
-\end{verbatim}
-
-Tu consegue salvar o objeto R de forma serializada e compactada com o
-argumento \texttt{compress} mas o melhor é quando vai chamar o objeto de
-volta ao R. Agora tu usa o \texttt{readRDS} e coloca o nome que tu
-quiser.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{saveRDS}\NormalTok{(FrenteQuente, }\StringTok{"FrenteQuente.rds"}\NormalTok{)}
+\KeywordTok{saveRDS}\NormalTok{(paracatu_temp, }\StringTok{"Temperatura.rds"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{frenteQ <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"FremteQuente.rds"}\NormalTok{)}
+\NormalTok{frenteQ <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"Temperatura.rds"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+Você pode salvar seu objeto R de forma serializada e compactada com o
+argumento \texttt{compress} e na hora de chamar o objeto de volta é só
+usar \texttt{readRDS} e colocar o nome que você quiser.
 
 \hypertarget{processing_dfs}{\subsection{Processando nossa
 data-frame}\label{processing_dfs}}
 
-Tem numeroas formas e pacotes para ordenar, arrangiar (Arrange), mutar e
-cambiar as data-frames. As mais conhecidas são provablemente do universe
-\emph{tidyverse} com o famoso pacote \emph{dplyr}. Mas, nesta curso
-vamos focar em \textbf{base}.
+Existem inúmeros pacotes para organizar (Arrange) e modificar data
+frames. As mais conhecidas são provavelmente do universe
+\emph{tidyverse} como o famoso pacote \emph{dplyr}. Mas, neste curso
+vamos focar no \textbf{base}.
 
-Vamos então revisar a classe de cada columna do nosso data-frame com a
-função \texttt{sapply}, apresentada em outro capitulo, mas se quiser, da
-uma olhada em \texttt{?sapply}.
+Vamos então revisar a classe de cada coluna do nosso data-frame com a
+função \texttt{sapply}, que será revisada em putro capítuo, mas lembre,
+qualquer dúvida é só usar \texttt{?sapply}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1593,26 +1444,26 @@ uma olhada em \texttt{?sapply}.
 \end{Shaded}
 
 \begin{verbatim}
-##          TipodeRede TipodeMonitoramento                Tipo
-##            "factor"            "factor"            "factor"
-##                Data                Hora       CodigoEstação
-##            "factor"            "factor"           "integer"
-##         NomeEstação       NomeParâmetro     UnidadedeMedida
-##            "factor"            "factor"            "factor"
-##        MediaHoraria          MediaMovel              Valido
+##          TipodeRede TipodeMonitoramento                Tipo 
+##            "factor"            "factor"            "factor" 
+##                Data                Hora       CodigoEstação 
+##            "factor"            "factor"           "integer" 
+##         NomeEstação       NomeParâmetro     UnidadedeMedida 
+##            "factor"            "factor"            "factor" 
+##        MediaHoraria          MediaMovel              Valido 
 ##           "integer"            "factor"            "factor"
 \end{verbatim}
 
-Quando nos trabalhamos com series de tempo, é importante ter a variabel
-de tempo reconhecida como ``tempo'', especificamente como classe
-``POSIXct''. Mas, a classe de Data é ``factor'' e de Hora tambem
-``factor'', o que é ruim. Então, vamos criar uma variabel de tempo mais
-standard com formato 2018-06-02 21:03:23.
+Quando trabalhamos com séries temporais, é importante ter a variável
+tempo reconhecida como ``tempo'', especificamente como classe
+``POSIXct'', porém, a calsse do tipo Data é ``factor'' assim como a
+Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais
+padronizada com o formato 2018-06-04 00:46:31.
 
-Para isso temos que grudar as variabel Data e Hora. Faremios isso numa
-nova varaibel chamada tempo\_char, adicionando ela diretamente no
-\texttt{df} com o cifrão DOLLAR \$. O grude pode ser feito com as
-funções \texttt{paste} ou \texttt{paste0}.
+Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa
+nova varável chamada ``tempo\_char''``, adicionando-a diretamente no
+data frame com o cifrão DOLLAR''\$``. Podemos fazer isso com as funções
+\texttt{paste} ou \texttt{paste0}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1636,10 +1487,11 @@ funções \texttt{paste} ou \texttt{paste0}.
 ## [1] "character"
 \end{verbatim}
 
-Esta melhorando mas ainda tem clase character.
+Melhorou, mas ainda tem clase character.
 
-Para convertir a nossa classe POSIXct podemos usar a função
-\texttt{as.POSIXct} (olha \texttt{as.POSIXct}). Seus argumentos são:
+Para converter a nossa classe para POSIXct podemos usar a função
+\texttt{as.POSIXct} (olhe\\
+\texttt{?as.POSIXct}). Seus argumentos são:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1648,11 +1500,11 @@ Para convertir a nossa classe POSIXct podemos usar a função
 \end{Shaded}
 
 \begin{verbatim}
-## function (x, tz = "", ...)
+## function (x, tz = "", ...) 
 ## NULL
 \end{verbatim}
 
-Então, vamos criar outra variabel tempo o formato POSIXct
+Então, vamos criar outra variável tempo o formato POSIXct:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1678,7 +1530,7 @@ Então, vamos criar outra variabel tempo o formato POSIXct
 ## [1] "POSIXct" "POSIXt"
 \end{verbatim}
 
-Agora, vamos a extraer os dias da semana do tempo, mes e dia juliano:
+Agora, vamos a extrair os dias da semana do tempo, mes e dia juliano:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1720,9 +1572,11 @@ Agora, vamos a extraer os dias da semana do tempo, mes e dia juliano:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{aggregate}\label{aggregate}
+Pronto! Agora temos o tempo no formato que desejamos.
 
-Vamos a carregar a nossa data.frame. Primero uma olhada
+\subsubsection{Aggregate}\label{aggregate}
+
+Vamos a carregar o nosso data frame e daruma olhada nele:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1761,7 +1615,7 @@ Vamos a carregar a nossa data.frame. Primero uma olhada
 ## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014
 \end{verbatim}
 
-Poderiamos calcular a media horaria por dia da semana. Então:
+Podemos calcular a média horaria por dia da semana:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1807,9 +1661,9 @@ Poderiamos calcular a media horaria por dia da semana. Então:
 ## 7   terça        37904 37904
 \end{verbatim}
 
-\subsection{subset}\label{subset}
+\subsubsection{Subset}\label{subset}
 
-Como poderiamos escolher só o mes de janeiro??
+Como podemos escolher só o mês de janeiro??
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1849,8 +1703,8 @@ Como poderiamos escolher só o mes de janeiro??
 ## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014
 \end{verbatim}
 
-Mes janeiro pero solo o valor mediahoraria, que retorna um vetor
-numerico
+Só que agora temos só a média horária para esse mês, que retorna um
+vetor numérico:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1859,11 +1713,11 @@ numerico
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "TipodeRede"          "TipodeMonitoramento" "Tipo"
-##  [4] "Data"                "Hora"                "CodigoEstação"
-##  [7] "NomeEstação"         "NomeParâmetro"       "UnidadedeMedida"
-## [10] "MediaHoraria"        "MediaMovel"          "Valido"
-## [13] "tempo_char"          "tempo"               "weekdays"
+##  [1] "TipodeRede"          "TipodeMonitoramento" "Tipo"               
+##  [4] "Data"                "Hora"                "CodigoEstação"      
+##  [7] "NomeEstação"         "NomeParâmetro"       "UnidadedeMedida"    
+## [10] "MediaHoraria"        "MediaMovel"          "Valido"             
+## [13] "tempo_char"          "tempo"               "weekdays"           
 ## [16] "mes"                 "diajuliano"          "ano"
 \end{verbatim}
 
@@ -1897,7 +1751,7 @@ numerico
 ## [1] "integer"
 \end{verbatim}
 
-Mas vamos salvar o nosso ``df''
+Dessa forma, vamos salvar nosso data frame:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1905,40 +1759,40 @@ Mas vamos salvar o nosso ``df''
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{data.table e mais}\label{data.table-e-mais}
+\subsection{Data.table e mais}\label{data.table-e-mais}
 
-data.table é um pacote que apresenta a classe \texttt{data.table}, que é
-como uma versão melhorada da classe \texttt{data-frame} O termo
-especifico é que \texttt{data-table} tem herencia (inherits) da classe
-\texttt{data.frame}
+O data.table é um pacote que apresenta a classe \texttt{data.table}, que
+é como uma versão melhorada da classe \texttt{data-frame} O termo
+especifico é que \texttt{data-table} tem um ``parentesco'' (inherits)
+com a classe \texttt{data.frame}
 
-Vamos ver como funciona data.table lendo o dois arquivos e comparar
-quanto tempo demoram cada um.
+Vamos ver como funciona data.table lendo os dois arquivos e comparar
+quanto tempo demora cada um.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df1 <-}\StringTok{ }\KeywordTok{print}\NormalTok{(}\KeywordTok{system.time}\NormalTok{(}\KeywordTok{read.table}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt"}\NormalTok{, }\DataTypeTok{h =}\NormalTok{ T)))}
+\NormalTok{df1 <-}\StringTok{ }\KeywordTok{print}\NormalTok{(}\KeywordTok{system.time}\NormalTok{(}\KeywordTok{read.table}\NormalTok{(}\StringTok{"dados/NOXIPEN2014.txt"}\NormalTok{, }\DataTypeTok{h =}\NormalTok{ T)))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    user  system elapsed
-##   0.140   0.032  58.350
+##    user  system elapsed 
+##   0.071   0.000   0.071
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(data.table)}
-\NormalTok{df2 <-}\StringTok{ }\KeywordTok{print}\NormalTok{(}\KeywordTok{system.time}\NormalTok{(}\KeywordTok{fread}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt"}\NormalTok{, }\DataTypeTok{h =}\NormalTok{ T)))}
+\NormalTok{df2 <-}\StringTok{ }\KeywordTok{print}\NormalTok{(}\KeywordTok{system.time}\NormalTok{(}\KeywordTok{fread}\NormalTok{(}\StringTok{"dados/NOXIPEN2014.txt"}\NormalTok{, }\DataTypeTok{h =}\NormalTok{ T)))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##    user  system elapsed
-##   0.037   0.008   3.174
+##    user  system elapsed 
+##   0.011   0.000   0.011
 \end{verbatim}
 
-olha que estamos usando a função \texttt{fread}.
+Para isso usamos a função \texttt{fread}.
 
 \section{Tidyverse}\label{tidyverse}
 
@@ -1958,9 +1812,17 @@ Todas as funções de leitura possuem a mesma estrutura:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{read_}\OperatorTok{*}\NormalTok{(arquivo, }\DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col_types =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{locale =} \KeywordTok{default_locale}\NormalTok{(), }\DataTypeTok{na =} \KeywordTok{c}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"NA"}\NormalTok{),}
-\DataTypeTok{quoted_na =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{comment =} \StringTok{""}\NormalTok{, }\DataTypeTok{trim_ws =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{skip =} \DecValTok{0}\NormalTok{, }\DataTypeTok{n_max =} \OtherTok{Inf}\NormalTok{, }\DataTypeTok{guess_max =} \KeywordTok{min}\NormalTok{(}\DecValTok{1000}\NormalTok{,}
-\NormalTok{n_max), }\DataTypeTok{progress =} \KeywordTok{interactive}\NormalTok{())}
+\NormalTok{read_}\OperatorTok{*}\NormalTok{(arquivo, }
+       \DataTypeTok{col_names =} \OtherTok{TRUE}\NormalTok{, }
+       \DataTypeTok{col_types =} \OtherTok{NULL}\NormalTok{, }
+       \DataTypeTok{locale =} \KeywordTok{default_locale}\NormalTok{(), }
+       \DataTypeTok{na =} \KeywordTok{c}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"NA"}\NormalTok{),}
+       \DataTypeTok{quoted_na =} \OtherTok{TRUE}\NormalTok{, }
+       \DataTypeTok{comment =} \StringTok{""}\NormalTok{, }
+       \DataTypeTok{trim_ws =} \OtherTok{TRUE}\NormalTok{, }
+       \DataTypeTok{skip =} \DecValTok{0}\NormalTok{, }
+       \DataTypeTok{n_max =} \OtherTok{Inf}\NormalTok{, }
+       \DataTypeTok{guess_max =} \KeywordTok{min}\NormalTok{(}\DecValTok{1000}\NormalTok{, n_max), }\DataTypeTok{progress =} \KeywordTok{interactive}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2028,7 +1890,7 @@ Por exemplo, observe o código abaixo:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "10 vezes" "9 vezes"  "8 vezes"  "7 vezes"  "6 vezes"  "5 vezes"
+##  [1] "10 vezes" "9 vezes"  "8 vezes"  "7 vezes"  "6 vezes"  "5 vezes" 
 ##  [7] "4 vezes"  "3 vezes"  "2 vezes"  "1 vezes"
 \end{verbatim}
 
@@ -2046,7 +1908,7 @@ Uma forma de fazer isso sem usar \texttt{\%\textgreater{}\%} seria:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "10 vezes" "9 vezes"  "8 vezes"  "7 vezes"  "6 vezes"  "5 vezes"
+##  [1] "10 vezes" "9 vezes"  "8 vezes"  "7 vezes"  "6 vezes"  "5 vezes" 
 ##  [7] "4 vezes"  "3 vezes"  "2 vezes"  "1 vezes"
 \end{verbatim}
 
@@ -2071,21 +1933,9 @@ os comandos abaixo instalam e carregam esse pacote:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{#install.packages("ncdf4")  # instala o pacote}
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"eixport"}\NormalTok{) }\CommentTok{# pacote onde estão os dados que iremos utilizar}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Installing package into '/home/ccl/R/x86_64-pc-linux-gnu-library/3.4'
-## (as 'lib' is unspecified)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(}\StringTok{"ncdf4"}\NormalTok{)            }\CommentTok{# carrega os pacotes}
-\KeywordTok{library}\NormalTok{(}\StringTok{"eixport"}\NormalTok{)          }\CommentTok{# carrega os pacotes}
-\KeywordTok{nc_version}\NormalTok{()                }\CommentTok{# que retorna a versão da biblioteca}
+\CommentTok{#install.packages("ncdf4") # instala o pacote}
+\KeywordTok{library}\NormalTok{(}\StringTok{"ncdf4"}\NormalTok{)          }\CommentTok{# carrega o pacote}
+\KeywordTok{nc_version}\NormalTok{()              }\CommentTok{# que retorna a versão da biblioteca}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2097,124 +1947,9 @@ Um exemplo de NetCDF:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wrfinput <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(}\KeywordTok{system.file}\NormalTok{(}\StringTok{"extdata"}\NormalTok{, }\DataTypeTok{package =} \StringTok{"eixport"}\NormalTok{), }\StringTok{"/wrfinput_d01"}\NormalTok{)}
+\NormalTok{wrf <-}\StringTok{ }\NormalTok{ncdf4}\OperatorTok{::}\KeywordTok{nc_open}\NormalTok{(}\StringTok{"dados/met_em.d03.2016-01-10.nc"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-Abre o arquivo .nc
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{wrf <-}\StringTok{ }\NormalTok{ncdf4}\OperatorTok{::}\KeywordTok{nc_open}\NormalTok{(wrfinput)}
-\KeywordTok{print}\NormalTok{(wrf)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## File /home/ccl/R/x86_64-pc-linux-gnu-library/3.4/eixport/extdata/wrfinput_d01 (NC_FORMAT_CLASSIC):
-##
-##      3 variables (excluding dimension variables):
-##         char Times[DateStrLen,Time]
-##         float XLAT[west_east,south_north]
-##             MemoryOrder: XY
-##             description: LATITUDE, SOUTH IS NEGATIVE
-##             units: degree north
-##             stagger:
-##             FieldType: 104
-##         float XLONG[west_east,south_north]
-##             MemoryOrder: XY
-##             description: LONGITUDE, WEST IS NEGATIVE
-##             units: degree east
-##             stagger:
-##             FieldType: 104
-##
-##      4 dimensions:
-##         DateStrLen  Size:19
-##         Time  Size:1   *** is unlimited ***
-##         west_east  Size:149
-##         south_north  Size:99
-##
-##     79 global attributes:
-##         TITLE:  OUTPUT FROM REAL_EM V3.9.1.1 PREPROCESSOR
-##         START_DATE: 2011-08-01_00:00:00
-##         SIMULATION_START_DATE: 2011-08-01_00:00:00
-##         WEST-EAST_GRID_DIMENSION: 150
-##         SOUTH-NORTH_GRID_DIMENSION: 100
-##         BOTTOM-TOP_GRID_DIMENSION: 35
-##         DX: 9000
-##         DY: 9000
-##         GRIDTYPE: C
-##         DIFF_OPT: 1
-##         KM_OPT: 4
-##         DAMP_OPT: 3
-##         DAMPCOEF: 0.200000002980232
-##         KHDIF: 0
-##         KVDIF: 0
-##         MP_PHYSICS: 10
-##         RA_LW_PHYSICS: 4
-##         RA_SW_PHYSICS: 4
-##         SF_SFCLAY_PHYSICS: 1
-##         SF_SURFACE_PHYSICS: 2
-##         BL_PBL_PHYSICS: 1
-##         CU_PHYSICS: 11
-##         SF_LAKE_PHYSICS: 0
-##         SURFACE_INPUT_SOURCE: 1
-##         SST_UPDATE: 0
-##         GRID_FDDA: 0
-##         GFDDA_INTERVAL_M: 0
-##         GFDDA_END_H: 0
-##         GRID_SFDDA: 0
-##         SGFDDA_INTERVAL_M: 0
-##         SGFDDA_END_H: 0
-##         HYPSOMETRIC_OPT: 2
-##         USE_THETA_M: 0
-##         USE_MAXW_LEVEL: 0
-##         USE_TROP_LEVEL: 0
-##         GWD_OPT: 0
-##         SF_URBAN_PHYSICS: 1
-##         SF_OCEAN_PHYSICS: 0
-##         SIMULATION_INITIALIZATION_TYPE: REAL-DATA CASE
-##         WEST-EAST_PATCH_START_UNSTAG: 1
-##         WEST-EAST_PATCH_END_UNSTAG: 149
-##         WEST-EAST_PATCH_START_STAG: 1
-##         WEST-EAST_PATCH_END_STAG: 150
-##         SOUTH-NORTH_PATCH_START_UNSTAG: 1
-##         SOUTH-NORTH_PATCH_END_UNSTAG: 99
-##         SOUTH-NORTH_PATCH_START_STAG: 1
-##         SOUTH-NORTH_PATCH_END_STAG: 100
-##         BOTTOM-TOP_PATCH_START_UNSTAG: 1
-##         BOTTOM-TOP_PATCH_END_UNSTAG: 34
-##         BOTTOM-TOP_PATCH_START_STAG: 1
-##         BOTTOM-TOP_PATCH_END_STAG: 35
-##         GRID_ID: 1
-##         PARENT_ID: 1
-##         I_PARENT_START: 1
-##         J_PARENT_START: 1
-##         PARENT_GRID_RATIO: 1
-##         DT: 45
-##         CEN_LAT: -23.5499954223633
-##         CEN_LON: -45
-##         TRUELAT1: -23
-##         TRUELAT2: -24
-##         MOAD_CEN_LAT: -23.5499954223633
-##         STAND_LON: -45
-##         POLE_LAT: 90
-##         POLE_LON: 0
-##         GMT: 0
-##         JULYR: 2011
-##         JULDAY: 213
-##         MAP_PROJ: 1
-##         MAP_PROJ_CHAR: Lambert Conformal
-##         MMINLU: MODIFIED_IGBP_MODIS_NOAH
-##         NUM_LAND_CAT: 21
-##         ISWATER: 17
-##         ISLAKE: 21
-##         ISICE: 15
-##         ISURBAN: 13
-##         ISOILWATER: 14
-##         HYBRID_OPT: -1
-##         ETAC: 0
-\end{verbatim}
 
 O objeto \texttt{wrf} contém algumas informações sobre o conteúdo do
 arquivo, com um \texttt{print(wrf)} ou simplesmente \texttt{wrf}
@@ -2223,20 +1958,11 @@ visualizamos o conteúdo do arquivo:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{class}\NormalTok{(wrf)}
+\NormalTok{wrf}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [1] "ncdf4"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# fazer print(wrf)}
-\end{Highlighting}
-\end{Shaded}
-
-que mostra o nome do arquivo (e versão da biblioteca usada para criar),
+Isso mostra o nome do arquivo (e versão da biblioteca usada para criar),
 número de variáveis (92 no arquivo de exemplo), uma descrição de cada
 variável (incluindo atributos) as dimensões (13 para esse arquivo) e os
 atributos globais.
@@ -2246,17 +1972,8 @@ Agora vamos abrir alguma variável:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{names}\NormalTok{(wrf}\OperatorTok{$}\NormalTok{var)                }\CommentTok{# print no nome de cada variavel}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Times" "XLAT"  "XLONG"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{#Times <- ncdf4::ncvar_get(wrf, varid = "Times")  # escolho você picachu}
-\CommentTok{#class(Times)}
+\NormalTok{TEMP <-}\StringTok{ }\NormalTok{ncdf4}\OperatorTok{::}\KeywordTok{ncvar_get}\NormalTok{(wrf, }\StringTok{"TT"}\NormalTok{)  }\CommentTok{# escolho você picachu}
+\KeywordTok{class}\NormalTok{(TEMP)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2265,31 +1982,15 @@ que a variável \texttt{ST} é um array
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ncatt_get}\NormalTok{(wrf,}\StringTok{"Times"}\NormalTok{, }\DataTypeTok{verbose =}\NormalTok{ T) }\CommentTok{# ou ncatt_get(wrf,"TT",verbose = T)}
+\KeywordTok{ncatt_get}\NormalTok{(wrf,}\StringTok{"TT"}\NormalTok{) }\CommentTok{# ou ncatt_get(wrf,"TT",verbose = T)}
+\KeywordTok{dim}\NormalTok{(TEMP)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [1] "ncatt_get: entering"
-## [1] "ncatt_get: is NOT a global att"
-## [1] "ncatt_get: getting object id"
-## [1] "vobjtovarid4: entering"
-## [1] "Variable named Times found in file with varid= 65536 2"
-## [1] "ncatt_get: calling ncatt_get_inner for a non-global att"
-## [1] "ncatt_get_inner: entering with ncid= 65536 varid= 2 attname= NA"
-## [1] "ncatt_get_inner: no attname specified, returning a list with name/value pairs *******"
-## [1] "ncatt_get_inner: number of atts for this var [or file, if global]: 0"
-## [1] "ncatt_get_inner: no attributes for this var/file, returning empty list"
-\end{verbatim}
+praticamente a mesma informação do print anterior:
 
 \begin{verbatim}
-## list()
-\end{verbatim}
-
-praticamente a mesma informação do outro caso:
-
-\begin{verbatim}
-float TT[west_east,south_north,num_metgrid_levels,Time]
+float TT[west_east,south_north,num_metgrid_levels,Time]   
 FieldType: 104
 MemoryOrder: XYZ
 units: K
@@ -2307,8 +2008,8 @@ podem ser extraídas:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lat  <-}\StringTok{ }\KeywordTok{ncvar_get}\NormalTok{(wrf, }\StringTok{"XLAT"}\NormalTok{)}
-\NormalTok{lon  <-}\StringTok{ }\KeywordTok{ncvar_get}\NormalTok{(wrf, }\StringTok{"XLONG"}\NormalTok{)}
+\NormalTok{lat  <-}\StringTok{ }\KeywordTok{ncvar_get}\NormalTok{(wrf, }\StringTok{"XLAT_M"}\NormalTok{)}
+\NormalTok{lon  <-}\StringTok{ }\KeywordTok{ncvar_get}\NormalTok{(wrf, }\StringTok{"XLONG_M"}\NormalTok{)}
 \NormalTok{time <-}\StringTok{ }\KeywordTok{ncvar_get}\NormalTok{(wrf, }\StringTok{"Times"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2316,9 +2017,9 @@ podem ser extraídas:
 O metadado de Longitude:
 
 \begin{verbatim}
-float XLONG[west_east,south_north,Time]
+float XLONG_M[west_east,south_north,Time]   
 FieldType: 104
-MemoryOrder: XY
+MemoryOrder: XY 
 units: degrees longitude
 description: Longitude on mass grid
 stagger: M
@@ -2329,9 +2030,9 @@ sr_y: 1
 Latitude:
 
 \begin{verbatim}
-float XLAT[west_east,south_north,Time]
+float XLAT_M[west_east,south_north,Time]   
 FieldType: 104
-MemoryOrder: XY
+MemoryOrder: XY 
 units: degrees latitude
 description: Latitude on mass grid
 stagger: M
@@ -2342,7 +2043,7 @@ sr_y: 1
 e a altura:
 
 \begin{verbatim}
-float GHT[west_east,south_north,num_metgrid_levels,Time]
+float GHT[west_east,south_north,num_metgrid_levels,Time]   
 FieldType: 104
 MemoryOrder: XYZ
 units: m
@@ -2378,7 +2079,7 @@ permissão de leitura, como por exemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wrf     <-}\StringTok{ }\KeywordTok{nc_open}\NormalTok{(}\StringTok{"dados/met_em.d03.2016-01-10.nc"}\NormalTok{, }\DataTypeTok{write =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{wrf     <-}\StringTok{ }\KeywordTok{nc_open}\NormalTok{(}\StringTok{"~/met_em.d03.2016-01-10.nc"}\NormalTok{, }\DataTypeTok{write=}\OtherTok{TRUE}\NormalTok{)}
 \NormalTok{extrema <-}\StringTok{ }\KeywordTok{ncvar_def}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Tex"}\NormalTok{,}
                      \DataTypeTok{units =} \StringTok{"K"}\NormalTok{,}
                      \DataTypeTok{dim =} \KeywordTok{list}\NormalTok{(wrf}\OperatorTok{$}\NormalTok{dim}\OperatorTok{$}\NormalTok{west_east,}
@@ -2399,8 +2100,8 @@ variável.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{wrf     <-}\StringTok{ }\NormalTok{ncdf4}\OperatorTok{::}\KeywordTok{nc_open}\NormalTok{(}\StringTok{"dados/met_em.d03.2016-01-10.nc"}\NormalTok{, }\DataTypeTok{write=}\NormalTok{T)}
-\KeywordTok{print}\NormalTok{(wrf)[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+\NormalTok{wrf <-}\StringTok{ }\KeywordTok{nc_open}\NormalTok{(}\StringTok{"dados/met_em.d03.2016-01-10.nc"}\NormalTok{, }\DataTypeTok{write =}\NormalTok{ T)}
+\KeywordTok{print}\NormalTok{(wrf)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2431,8 +2132,8 @@ estes dados da forma correta:
 \end{Shaded}
 
 \begin{verbatim}
-## function (con, what, n = 1L, size = NA_integer_, signed = TRUE,
-##     endian = .Platform$endian)
+## function (con, what, n = 1L, size = NA_integer_, signed = TRUE, 
+##     endian = .Platform$endian) 
 ## NULL
 \end{verbatim}
 
@@ -2487,7 +2188,7 @@ tal um plot?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-84-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-76-1.pdf}
 
 Tem algo estranho com esta imagem. O que é? (valendo um sticker).
 
@@ -2523,7 +2224,7 @@ dados binários foram lidos corretamente.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-86-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-78-1.pdf}
 
 \textbf{Escrever dados binários no R}
 
@@ -2542,54 +2243,54 @@ dados binários foram lidos corretamente.
 \end{Shaded}
 
 \begin{verbatim}
-##       TipodeRede   TipodeMonitoramento              Tipo
-##  Automático:8581   CETESB:8581         Dados Primários:8581
-##
-##
-##
-##
-##
-##
+##       TipodeRede   TipodeMonitoramento              Tipo     
+##  Automático:8581   CETESB:8581         Dados Primários:8581  
+##                                                              
+##                                                              
+##                                                              
+##                                                              
+##                                                              
+##                                                              
 ##          Data           Hora      CodigoEstação
-##  01/01/2014:  24   16:00  : 363   Min.   :95
-##  01/01/2015:  24   12:00  : 361   1st Qu.:95
-##  01/02/2014:  24   14:00  : 361   Median :95
-##  01/04/2014:  24   18:00  : 361   Mean   :95
-##  01/05/2014:  24   13:00  : 360   3rd Qu.:95
-##  01/06/2014:  24   17:00  : 360   Max.   :95
-##  (Other)   :8437   (Other):6415
-##                      NomeEstação                      NomeParâmetro
-##  Cid.Universitária-USP-Ipen:8581   NOx (Óxidos de Nitrogênio):8581
-##
-##
-##
-##
-##
-##
-##  UnidadedeMedida  MediaHoraria    MediaMovel Valido      tempo_char
-##  ppb:8581        Min.   :  0.00   -:8581     Não: 907   Length:8581
-##                  1st Qu.:  9.00              Sim:7674   Class :character
-##                  Median : 18.00                         Mode  :character
-##                  Mean   : 29.87
-##                  3rd Qu.: 34.00
-##                  Max.   :306.00
-##                  NA's   :260
-##      tempo                       weekdays             mes
-##  Min.   :2014-01-01 01:00:00   Length:8581        Length:8581
-##  1st Qu.:2014-04-05 14:00:00   Class :character   Class :character
-##  Median :2014-07-05 23:00:00   Mode  :character   Mode  :character
-##  Mean   :2014-07-04 20:22:55
-##  3rd Qu.:2014-10-03 10:00:00
-##  Max.   :2015-01-02 00:00:00
-##
-##   diajuliano           ano
-##  Length:8581       Length:8581
-##  Class :difftime   Class :character
-##  Mode  :numeric    Mode  :character
-##
-##
-##
-##
+##  01/01/2014:  24   16:00  : 363   Min.   :95   
+##  01/01/2015:  24   12:00  : 361   1st Qu.:95   
+##  01/02/2014:  24   14:00  : 361   Median :95   
+##  01/04/2014:  24   18:00  : 361   Mean   :95   
+##  01/05/2014:  24   13:00  : 360   3rd Qu.:95   
+##  01/06/2014:  24   17:00  : 360   Max.   :95   
+##  (Other)   :8437   (Other):6415                
+##                      NomeEstação                      NomeParâmetro 
+##  Cid.Universitária-USP-Ipen:8581   NOx (Óxidos de Nitrogênio):8581  
+##                                                                     
+##                                                                     
+##                                                                     
+##                                                                     
+##                                                                     
+##                                                                     
+##  UnidadedeMedida  MediaHoraria    MediaMovel Valido      tempo_char       
+##  ppb:8581        Min.   :  0.00   -:8581     Não: 907   Length:8581       
+##                  1st Qu.:  9.00              Sim:7674   Class :character  
+##                  Median : 18.00                         Mode  :character  
+##                  Mean   : 29.87                                           
+##                  3rd Qu.: 34.00                                           
+##                  Max.   :306.00                                           
+##                  NA's   :260                                              
+##      tempo                       weekdays             mes           
+##  Min.   :2014-01-01 01:00:00   Length:8581        Length:8581       
+##  1st Qu.:2014-04-05 14:00:00   Class :character   Class :character  
+##  Median :2014-07-05 23:00:00   Mode  :character   Mode  :character  
+##  Mean   :2014-07-04 20:22:55                                        
+##  3rd Qu.:2014-10-03 10:00:00                                        
+##  Max.   :2015-01-02 00:00:00                                        
+##                                                                     
+##   diajuliano           ano           
+##  Length:8581       Length:8581       
+##  Class :difftime   Class :character  
+##  Mode  :numeric    Mode  :character  
+##                                      
+##                                      
+##                                      
+## 
 \end{verbatim}
 
 A função \texttt{plot} precisa dos seguintes argumentos:
@@ -2601,7 +2302,7 @@ A função \texttt{plot} precisa dos seguintes argumentos:
 \end{Shaded}
 
 \begin{verbatim}
-## function (x, y, ...)
+## function (x, y, ...) 
 ## NULL
 \end{verbatim}
 
@@ -2613,7 +2314,7 @@ Então, a forma mais fácil de plotar uma variável em função do tempo é:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-89-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-81-1.pdf}
 
 Feio, né?\\
 Tentando deixar mais bonito\ldots{}
@@ -2629,7 +2330,7 @@ Tentando deixar mais bonito\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-90-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-82-1.pdf}
 
 Colocando \textbf{DOIS} elementos no mesmo gráfico:
 
@@ -2647,7 +2348,7 @@ Colocando \textbf{DOIS} elementos no mesmo gráfico:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-91-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-83-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2704,7 +2405,7 @@ Que tal refazermos os gráficos da seção anterior?
 ## Warning: Removed 260 rows containing missing values (geom_point).
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-93-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-85-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2716,7 +2417,7 @@ Que tal refazermos os gráficos da seção anterior?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-94-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-86-1.pdf}
 
 Agora o mais interessante:
 
@@ -2732,7 +2433,7 @@ Agora o mais interessante:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-95-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-87-1.pdf}
 
 {\textbf{Pergunta}: Qual a principal diferença entre o código acima e o
 \protect\hyperlink{plot_base}{código usando \texttt{plot}}?}
@@ -2787,7 +2488,7 @@ funcionam bem com o \href{http://r4ds.had.co.nz/pipes.html}{\emph{pipe}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-96-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-88-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2808,7 +2509,7 @@ funcionam bem com o \href{http://r4ds.had.co.nz/pipes.html}{\emph{pipe}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-97-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-89-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2830,7 +2531,7 @@ funcionam bem com o \href{http://r4ds.had.co.nz/pipes.html}{\emph{pipe}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-98-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-90-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2881,7 +2582,7 @@ Refazendo alguns gráficos:
 ## Warning: Removed 1 rows containing missing values (geom_path).
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-101-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-93-1.pdf}
 
 Experimentando escalas de cores com a função \texttt{lucky}:
 
@@ -2899,16 +2600,18 @@ Experimentando escalas de cores com a função \texttt{lucky}:
 \end{Shaded}
 
 \begin{verbatim}
-## Colour gradient: gacruxa_sulz_sulz_17, number: 2987
+## Colour gradient: imagej_cmy, number: 3489
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-102-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-94-1.pdf}
 
 \textbf{Este é só o começo!}
 \href{http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html}{Veja
 aqui um pouco mais das muitas aplicações do \texttt{ggplot}}.
 
 \chapter{Estruturas de Controle}\label{loop}
+
+Em breve.
 
 \section{if-else}\label{if-else}
 

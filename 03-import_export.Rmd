@@ -1,6 +1,8 @@
-# Importando e exportando dados em R
+# Importando e Exportando Dados
 
-## Revendo Data frames
+## Base
+
+### Importando com `read.*`
 
 Como vimos anteriormente, na maioria dos casos, iremos usar data frames par lidar com dados em R, sendo assim, podemos utilizar os seguintes modos de leitura: 
 
@@ -17,7 +19,7 @@ args(read.table)
 O terceiro argumento é sep, com valores por default = "". Esse argumento indica para o R qual o tipo de separador utilizado entre as colunas dos dados.
 
 ```{r}
-df <- read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt")
+df <- read.table("dados/NOXIPEN2014.txt")
 ```
 
 Lembre-se que as funções head e tail permitem que você veja as primeiras ou últimas linhas do data frame.
@@ -30,7 +32,7 @@ tail(df)
 O que acontece se tentarmos ler os mesmo dados utilizando a função read.table?
 
 ```{r eval = FALSE}
-df2 <- read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt")
+df2 <- read.table("dados/NOXIPEN2014v2.txt")
 # Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : 
 # linha 1 não tinha 6 elementos
 ```
@@ -54,7 +56,7 @@ knitr::include_graphics("figuras/f2.png")
 Você notou a diferença? Como vimos anteriormente, para importar os dados no R é super importante que você especifique o tipo de separador utilizado, como o segundo arquivo tem separação de ";", precisamos espercificar o argumento `sep` na hora de usar o comando `read.table`:
 
 ```{r}
-df2 <- read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014v2.txt", sep = ";")
+df2 <- read.table("dados/NOXIPEN2014v2.txt", sep = ";")
 head(df2)
 tail(df2)
 ```
@@ -63,7 +65,7 @@ Além desses comandos, vocês também pode utilizar a opção **Import Dataset**
 
 Para mais informações sobre importar dados no R, dê uma olha nesse [webnário](https://www.rstudio.com/resources/webinars/importing-data-into-r/)
 
-## Exportando texto com `write.table`
+### Exportando texto com `write.table`
 
 Exportar é bem facil. Vamos dar uma olhada nos argumentos da função `write.table`:
 
@@ -81,7 +83,7 @@ Por padrão, a opção `row.names` vem com a opção TRUE, mas sempre coloque a 
 ```
 
 
-## Exportando objetos com `save`
+### Exportando objetos com `save`
 
 Podemos salvar objetos do R com o comando `save`, ele permite que você recarregue o objeto mais tarde.
 
@@ -99,7 +101,7 @@ Muito cuidado ao utilizar esse comando, pois podemos cometer alguns delizes, com
 
 ```{r eval=FALSE}
 #Primeiro vamos ler os dados do dia 01/06/2016 para uma estação automática do INMET de Paracatu:
-paracatu <- read.csv(file = "./dados/paracatu.csv", sep = ",") #lendo como csv
+paracatu <- read.csv(file = "dados/paracatu.csv", sep = ",") #lendo como csv
 
 # Vamos dizer que queremos salvar apenas a coluna correspondente à temperatura máxima horária:
 paracatu_temp <- paracatu$temp_max  
@@ -117,7 +119,7 @@ load("Temp_min.rda")
 E assim descobrimos que não era... O que nos ensina a sempre guardar na memória quais variáveis que salvamos no ambiente R. O bom dessa função é que ela permite salvar com tipos de compressão, por 
 exemplo compress = "xz".
 
-## Exportando objetos com `saveRDS`
+### Exportando objetos com `saveRDS`
 
 Esta é uma das minhas funçoes favoritas no R, veja só o porquê:
 
@@ -132,7 +134,7 @@ frenteQ <- readRDS("Temperatura.rds")
 Você pode salvar seu objeto R de forma serializada e compactada
 com o argumento `compress` e na hora de chamar o objeto de volta é só usar `readRDS` e colocar o nome que você quiser.
 
-## Processando nossa data-frame {#processing_dfs}
+### Processando nossa data-frame {#processing_dfs}
 
 Existem inúmeros pacotes para organizar (Arrange) e modificar data frames. As mais conhecidas são provavelmente do universe *tidyverse* como o famoso pacote _dplyr_. Mas, neste curso vamos focar no **base**.
 
@@ -190,7 +192,7 @@ df$ano <- format(df$tempo, "%Y")
 
 Pronto! Agora temos o tempo no formato que desejamos.
 
-## Aggregate
+#### Aggregate
 
 Vamos a carregar o nosso data frame e daruma olhada nele:
 
@@ -214,7 +216,7 @@ dff
 ```
 
 
-## Subset
+#### Subset
 
 Como podemos escolher só o mês de janeiro??
 
@@ -235,33 +237,100 @@ class(df[df$mes == "janeiro", "MediaHoraria"])
 Dessa forma, vamos salvar nosso data frame:
 
 ```{r}
-saveRDS(df, "df.rds")
+saveRDS(df, "dados/df.rds")
 ```
 
-## Data.table, read_xl e mais
+### Data.table e mais
 
-O data.table é um pacote que apresenta a classe `data.table`, que é como uma versão
-melhorada da classe `data-frame` O termo especifico é que `data-table` tem 
-um "parentesco" (inherits) com a classe `data.frame`
+O data.table é um pacote que apresenta a classe `data.table`, que é como uma versão melhorada da classe `data-frame` O termo especifico é que `data-table` tem um "parentesco" (inherits) com a classe `data.frame`
 
-Vamos ver como funciona data.table lendo o dois arquivos e comparar quanto tempo
-demora cada um.
+Vamos ver como funciona data.table lendo os dois arquivos e comparar quanto tempo demora cada um.
 
 ```{r}
-df1 <- print(system.time(read.table("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt", h = T)))
+df1 <- print(system.time(read.table("dados/NOXIPEN2014.txt", h = T)))
 ```
 
 ```{r}
 library(data.table)
-df2 <- print(system.time(fread("https://raw.githubusercontent.com/ibarraespinosa/cursoR/master/dados/NOXIPEN2014.txt", h = T)))
-
+df2 <- print(system.time(fread("dados/NOXIPEN2014.txt", h = T)))
 ```
 
 Para isso usamos a função `fread`.
 
-Já o read_xl é mais uma função do universo tidyverse que permite importar excel no R, diretamente e de forma eficiente.
+## Tidyverse
 
-## NetCDF
+Um método mais recente (e muito interessante!) de tratar data frames é usando os pacotes dentro do [Tidyverse](https://www.tidyverse.org/).  
+Usando diversas funções dos pacotes **readr**, **tidyr** e **dplyr**, por exemplo, é possível ler e processar dados de uma maneira mais *user-friendly* devido à sintaxe das funções e de como elas podem ser usadas em conjunto.  
+Note que muitas das funções usadas abaixo podem ser encontradas em Base ou em outros pacotes.
+
+### Importando dados
+
+Todas as funções de leitura possuem a mesma estrutura:  
+
+```{r, eval = F}
+read_*(arquivo, 
+       col_names = TRUE, 
+       col_types = NULL, 
+       locale = default_locale(), 
+       na = c("", "NA"),
+       quoted_na = TRUE, 
+       comment = "", 
+       trim_ws = TRUE, 
+       skip = 0, 
+       n_max = Inf, 
+       guess_max = min(1000, n_max), progress = interactive())
+```
+
+*Dica: Quando a descrição de uma função mostra os argumentos já definidos (`col_names = TRUE`), isso significa que esses são os valores padrão e que você não precisa escrever os argumentos se não quiser mudá-los*  
+
+Assim, todas as funções de leitura só precisam do nome do arquivo!  
+
+Então como ler diferentes arquivos? Usando diferentes funções.
+
+- `read_csv` lê arquivos .csv **separados por $,$**  
+- `read_csv2` lê arquivos .csv **separados por $;$**  
+- `read_delim` lê arquivos **com outros separadores** (definidos com o argumento `delim`)  
+- `read_fwf` lê arquivos **com delimitação fixa** (definidos com o argumento `col_positions`)  
+- `read_xl` lê arquivos **Excel** (.xls e .xlsx)  
+
+### Leitura `%>%` Processamento
+
+Existem funções de leitura e modificação de data frames. Muitas vezes, você precisa lidar com dados "brutos" e que precisam de um certo processamento antes de serem utilizados em cálculos e gráficos. Isso exige no mínimo duas funções em duas linhas de código (uma para ler e outra para modificar), mas em geral esse processo precisa de bem mais do que isso.  
+
+O operador `%>%` (chamada de *pipe*) está dentro do pacote magnittr (dentro do Tidyverse) e é muito útil nesse processo! ([Leia um pouco sobre ele aqui](https://www.datacamp.com/community/tutorials/pipe-r-tutorial))  
+
+Como ele funciona?  
+
+> variável %>% função1(., faz a modificação 1) %>% função2(., faz a modificação 2) %>% ... funçãon(., faz a modificação n)
+
+O ponto (.) acima indica que a função será aplicada na versão da variável que chega nela.  
+Em notação matemática, podemos dizer que $x \ \ \%>\% \ \ f(y) = f(x,y)$.  
+Por exemplo, observe o código abaixo:
+
+```{r, message=F}
+library("tidyverse")
+
+seq(1, 10) %>% order(., decreasing = T) %>% paste(., "vezes")
+```
+
+O vetor (que não precisa necessariamente ser definido como uma variável) é primeiro ordenado de forma decrescente e, a partir dessa modificação, é transformado em um vetor de caracteres ao colar a string "vezes" a ele.  
+
+Uma forma de fazer isso sem usar `%>%` seria:  
+
+```{r}
+paste(order(seq(1, 10), decreasing = T), "vezes")
+```
+
+<span style="color:blue">**Pergunta**: Na sua opinião, qual é o código mais fácil e rápido de ser entendido?</span>  
+
+Como isso pode ser aplicado a data frames?
+
+
+
+## Outros Tipos de Dados
+
+
+### NetCDF
 
 O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos compostos por dados, atributos e metadados.
 
@@ -273,19 +342,15 @@ library("ncdf4")          # carrega o pacote
 nc_version()              # que retorna a versão da biblioteca
 ```
 
-Um exmplo de NetCDF:
+Um exemplo de NetCDF:
 
-```{r}
-download.file("https://github.com/ibarraespinosa/cursoR/raw/master/dados/met_em.d03.2016-01-10.nc", destfile = "~/met_em.d03.2016-01-10.nc")
-```
-
-```{r}
-wrf <- ncdf4::nc_open("./dados/met_em.d03.2016-01-10.nc")
+```{r, eval=F}
+wrf <- ncdf4::nc_open("dados/met_em.d03.2016-01-10.nc")
 ```
 
 O objeto `wrf` contém algumas informações sobre o conteúdo do arquivo, com um `print(wrf)` ou simplesmente `wrf` visualizamos o conteúdo do arquivo:
 
-```{r}
+```{r, eval=F}
 class(wrf)
 wrf
 ```
@@ -294,7 +359,7 @@ Isso mostra o nome do arquivo (e versão da biblioteca usada para criar), númer
 
 Agora vamos abrir alguma variável:
 
-```{r}
+```{r, eval=F}
 names(wrf$var)                # print no nome de cada variavel
 TEMP <- ncdf4::ncvar_get(wrf, "TT")  # escolho você picachu
 class(TEMP)
@@ -302,7 +367,7 @@ class(TEMP)
 
 Como o NetCDF é organizado para guardar matrizes (arrays), só sabemos que a variável `ST` é um array
 
-```{r}
+```{r, eval=F}
 ncatt_get(wrf,"TT") # ou ncatt_get(wrf,"TT",verbose = T)
 dim(TEMP)
 ```
@@ -323,7 +388,7 @@ como temos apenas 1 tempo essa dimensão é desconsiderada para simplificar.
 
 A latitude de cada ponto de grade, assim como longitude níveis e tempo podem ser extraídas:
 
-```{r}
+```{r, eval=F}
 lat  <- ncvar_get(wrf, "XLAT_M")
 lon  <- ncvar_get(wrf, "XLONG_M")
 time <- ncvar_get(wrf, "Times")
@@ -367,7 +432,7 @@ Da mesma forma com que podemos acessar variáveis e atributos com `ncvar_get` e 
 
 Para salvar as alterações e/ou liberar o acesso ao arquivo use a função `nc_close` (ou a função `nc_sync` que sincroniza o NetCDF mas não fecha a conexão com o arquivo).
 
-```{r}
+```{r, eval=F}
 nc_close(wrf) # ou nc_sync(wrf)
 ```
 
@@ -387,12 +452,70 @@ nc_close(wrf)
 ```
 Se esse arquivo for aberto novamente vai conter 93 variáveis junto com a variável `Tex` da forma que definimos, caso queria os mesmos atributos que as demais é só usar a função `ncatt_get` na variável.
 
-```{r}
-wrf     <- nc_open("~/met_em.d03.2016-01-10.nc",write=T)
+```{r, eval=F}
+wrf <- nc_open("dados/met_em.d03.2016-01-10.nc", write = T)
 print(wrf)
 ```
 O pacote possue ainda funções mais específicas para a criação de arquivos em NetCDF como `nc_create`, funções que definem dimenções como `ncdim_def` e funções para colocar e tirar o arquivo de modo de definição `nc_redef` e `nc_enddef`.
 
 *DICA*: o NetCDF no R funciona de forma parecida com ouma lista ou data frame, podemos "ver" ou selecionar suas sub-partes (sub-sub-partes...) com "$" e TAB.
 
+### Dados Binários
 
+**Ler dados binários no R**
+
+Em meteorologia, frequentemente os dados estão em formato binário. A maior "dificuldade" em ler estes dados está em conhecer como eles foram gerados. 
+
+Repare que a função `readBin` requer vários argumentos para ler estes dados da forma correta:
+
+```{r}
+args(readBin)
+```
+
+Neste curso, o arquivo binário que vamos abrir como exemplo contém dados de temperatura de brilho obtidas com o satélite GOES-13 (informações em: https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary).
+
+Lembrem-se de baixar o dado em: https://github.com/iagdevs/cursoR/tree/master/dados
+
+```{r}
+# Ler o arquivo binário
+l1 <- readBin("dados/gs.140422.1900g.ch4", 
+              what="int", 
+              n = 1349*1613,
+              size = 2)
+class(l1)
+```
+
+Note que o argumento `endian` por default é `.Platform$endian`. Se rodarmos `.Platform$endian` no R obteremos a ordenação dos bytes ("big" ou "little") utilizada pela plataforma que estamos usando.  
+
+Uma forma rápida para verificarmos os nossos dados é gráfica. Logo, que tal um plot?
+```{r}
+l2 <- matrix(l1, ncol=1613, nrow=1349)
+class(l2)
+# Vamos chamar o pacote cptcity para selecionar facilmente uma paleta de cores legal.
+library(cptcity)   
+image(l2,
+      col = cpt(find_cpt("sat")[8]),
+      main = "Temperatura de brilho") 
+```
+
+Tem algo estranho com esta imagem. O que é? (valendo um sticker).
+
+```{r message=FALSE, warning=FALSE}
+library(raster, quietly = TRUE)
+l3 <- raster(t(l2[1:1349,1:1613]),
+                     xmn=-82.00,
+                     ymn=-44.96,
+                     xmx=-82.0  + (0.03593245*1349), 
+                     ymx=-44.96 + (0.03593245*1613),
+                     crs = CRS("+init=epsg:4326"))
+class(l3)
+```
+O capítulo geoespacial será visto no final deste curso. Porém, nesta etapa vamos usar o pacote `raster` somente para analisar se os dados binários foram lidos corretamente.
+```{r}
+sp::spplot(((l3 + 75)/100)-273, # Estas correções são necessárias. Veja: http://www.cpc.ncep.noaa.gov/products/global_precip/html/README
+           col.regions = cpt(find_cpt("sat")[8]),
+           at = seq(-80,0,1),
+           main = "Temperatura de brilho (ºC)") 
+```
+
+**Escrever dados binários no R**
