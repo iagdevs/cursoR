@@ -406,7 +406,7 @@ summary(paracatu)
 
 O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos compostos por dados, atributos e metadados.
 
-O pacote `ncdf4` pode ser usado para acessar essa biblioteca, os comandos abaixo instalam e carregam esse pacote:
+O pacote `ncdf4` é um exemplo de interface do R com a biblioteca NetCDF 4, os comandos abaixo instalam e carregam esse pacote:
 
 ```{r }
 #install.packages("ncdf4") # instala o pacote
@@ -414,7 +414,7 @@ library("ncdf4")           # carrega o pacote
 nc_version()               # versão da biblioteca
 ```
 
-Um exemplo de NetCDF:
+Um exemplo de NetCDF (arquivo está disponivel na pasta dados deste repositório):
 
 ```{r, eval=F}
 edgar <- nc_open(filename = "~/Downloads/v431_v2_REFERENCE_CO_2010_10_AGR.0.1x0.1.nc")
@@ -443,7 +443,7 @@ Como o NetCDF é organizado para guardar matrizes (arrays), só sabemos que a va
 ncatt_get(edgar,"emi_co") # ou ncatt_get(edgar,"emi_co",verbose = T)
 ```
 
-praticamente a mesma informação do print anterior:
+repete a informação do print anterior, mas sem os atributos globais:
 ```
 # $standard_name
 # [1] "tendency_of_atmosphere_mass_content_of_carbon_monoxide_due_to_emission"
@@ -458,7 +458,6 @@ praticamente a mesma informação do print anterior:
 # $comment
 # [1] " (see http://edgar.jrc.ec.europa.eu/methodology.php#12sou for the definitions of the single sources)"
 ```
-como temos apenas 1 tempo essa dimensão é desconsiderada para simplificar.
 
 A latitude de cada ponto de grade, assim como longitude níveis (tempo em outros casos) o podem ser extraídas:
 
@@ -491,7 +490,7 @@ ncatt_get(edgar,"lat")
 # [1] "center_of_cell"
 ```
 
-e também os atributos globais:
+e também os atributos globais podem ser acessados separadamante:
 ```{r, eval=F}
 ncatt_get(edgar,varid = 0)
 # $Conventions
