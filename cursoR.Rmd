@@ -451,6 +451,11 @@ Se tudo pareceu muito corrido, não se preocupe, todos esses conceitos serão pr
 
 <!--chapter:end:02-basicr.Rmd-->
 
+```{r setup, cache = F}
+#-- Opção para deixar possível visualizar erros
+knitr::opts_chunk$set(error = TRUE)
+```
+
 # Importando e Exportando Dados
 
 ## Base
@@ -459,40 +464,39 @@ Se tudo pareceu muito corrido, não se preocupe, todos esses conceitos serão pr
 
 Como vimos anteriormente, na maioria dos casos, iremos usar data frames par lidar com dados em R, sendo assim, podemos utilizar os seguintes modos de leitura: 
 
-- read.csv
-- read.csv2
-- read.table
+- `read.csv`  
+- `read.csv2`  
+- `read.table`  
 
-Vamos ler alguns dados usando read.table, para saber o que a função faz, use `?read.table`. Os argumentos da função são:
+Vamos ler alguns dados usando `read.table`. Para saber o que a função faz, use `?read.table`.  
+Os argumentos da função são:
 
 ```{r}
 args(read.table)
 ```
 
-O terceiro argumento é sep, com valores por default = "". Esse argumento indica para o R qual o tipo de separador utilizado entre as colunas dos dados.
+O terceiro argumento é `sep`, definido como `""` por padrão. Esse argumento indica para o R qual o tipo de separador utilizado entre as colunas dos dados.
 
 ```{r}
 df <- read.table("dados/NOXIPEN2014.txt")
 ```
 
-Lembre-se que as funções head e tail permitem que você veja as primeiras ou últimas linhas do data frame.
+Lembre-se que as funções `head` e `tail` permitem que você veja as primeiras ou últimas linhas do data frame.
 
 ```{r}
 head(df)
 tail(df)
 ```
 
-O que acontece se tentarmos ler os mesmo dados utilizando a função read.table?
+Vamos tentar ler outra versão dos mesmos dados utilizando a mesma função `read.table`:
 
-```{r eval = FALSE}
+```{r}
 df2 <- read.table("dados/NOXIPEN2014v2.txt")
-# Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : 
-# linha 1 não tinha 6 elementos
 ```
 
-Apareceu uma mensagem de erro, você saberia dizer o porquê?
+Apareceu uma mensagem de erro, <span style="color:blue">você saberia dizer o porquê?</span>  
 
-**Caso você trabalhe com algum banco de dados em formato .txt e quiser abrir no R... Abra-os no bloco de notas primeiro**
+**Caso você trabalhe com algum banco de dados em formato .txt e quiser abrir no R... Abra-os no bloco de notas primeiro!**
 
 Vamos dar uma olhada em alguns dados, o primeiro tem uma cara assim:
 
@@ -506,7 +510,7 @@ Já o segundo arquivo é assim:
 knitr::include_graphics("figuras/f2.png")
 ```
 
-Você notou a diferença? Como vimos anteriormente, para importar os dados no R é super importante que você especifique o tipo de separador utilizado, como o segundo arquivo tem separação de ";", precisamos espercificar o argumento `sep` na hora de usar o comando `read.table`:
+Você notou a diferença? Como vimos anteriormente, para importar os dados no R é super importante que você especifique o tipo de separador utilizado. Como o segundo arquivo é separado por ";", precisamos espercificar o argumento `sep` na hora de usar o comando `read.table`:
 
 ```{r}
 df2 <- read.table("dados/NOXIPEN2014v2.txt", sep = ";")
@@ -514,11 +518,11 @@ head(df2)
 tail(df2)
 ```
 
-Além desses comandos, vocês também pode utilizar a opção **Import Dataset** do Rstudio, permitindo que você tenha um "preview" dos dados, como no excel, mas melhor!
+Além desses comandos, vocês também pode utilizar a opção **Import Dataset** do RStudio, permitindo que você tenha um "preview" dos dados - como no Excel, mas melhor!
 
-Para mais informações sobre importar dados no R, dê uma olha nesse [webnário](https://www.rstudio.com/resources/webinars/importing-data-into-r/)
+Para mais informações sobre importar dados no R, dê uma olha nesse [webnário](https://www.rstudio.com/resources/webinars/importing-data-into-r/).
 
-### Exportando texto com `write.table`
+### Exportando com `write.table`
 
 Exportar é bem facil. Vamos dar uma olhada nos argumentos da função `write.table`:
 
@@ -526,19 +530,19 @@ Exportar é bem facil. Vamos dar uma olhada nos argumentos da função `write.ta
 args(write.table)
 ```
 
-Se temos um data-frame com colunas de classe character, `quote = TRUE` quer dizer que o arquivo de texto resultante vai ter aspas nas colunas de caractere. Novamente, o argumento `sep` indica como podemos separar as colunas. Se você quiser abrir esses dados no excel, uma boa opção é utilizar os separadores ","/";"/" "/"\t", sendo o último o separador que indica o espaçamento criado pela tecla TAB.
+Se temos um data frame com colunas de classe character, `quote = TRUE` quer dizer que o arquivo de texto resultante vai ter aspas nas colunas de caractere. Novamente, o argumento `sep` indica como podemos separar as colunas. Se você quiser abrir esses dados no excel, uma boa opção é utilizar os separadores ","/";"/" "/"\t", sendo o último o separador que indica o espaçamento criado pela tecla TAB.
 
 Já o argumento `eol` quer dizer _end of line_, e é uma forma de dizer ao R que a linha acaba ali. 
 Por padrão, a opção `row.names` vem com a opção TRUE, mas sempre coloque a opção FALSE, caso contrário, será adicionada uma coluna com os índices das linhas. O argumento `col.names` indica se você quer nomear as suas colunas, o que é sempre uma boa ideia.
 
-```{block2}
-**Exercício:** Usando o conjunto de dados `mtcars` da base do R, vamos exportá-lo de uma forma que ele possa ser lido em algum Excel genérico. Não esqueça de usar o que foi ensinado acima.
-```
+***  
+<span style="color:red">**Exercício**: Usando o conjunto de dados `mtcars` da base do R, exporte-o de uma forma que ele possa ser lido em algum Excel genérico. Não esqueça de usar o que foi ensinado acima.
 
+***
 
 ### Exportando objetos com `save`
 
-Podemos salvar objetos do R com o comando `save`, ele permite que você recarregue o objeto mais tarde.
+Podemos salvar objetos do R com o comando `save`. Ele permite que você recarregue o objeto mais tarde.
 
 ```{r}
 args(save)
@@ -550,7 +554,7 @@ Essa função salva o objeto com a extensão .rda sendo que para carregá-lo de 
 args(load)
 ```
 
-Muito cuidado ao utilizar esse comando, pois podemos cometer alguns delizes, como trocar o nome do objeto. Veja esse exemplo abaixo:
+Muito cuidado ao utilizar esse comando, pois é bem possível cometer alguns deslizes, como trocar o nome do objeto. Veja esse exemplo abaixo:
 
 ```{r eval=FALSE}
 #Primeiro vamos ler os dados do dia 01/06/2016 para uma estação automática do INMET de Paracatu:
@@ -569,8 +573,7 @@ Passado um tempo, queremos acessar de volta esse objeto, mas não lembramos se s
 load("Temp_min.rda")
 ```
 
-E assim descobrimos que não era... O que nos ensina a sempre guardar na memória quais variáveis que salvamos no ambiente R. O bom dessa função é que ela permite salvar com tipos de compressão, por 
-exemplo compress = "xz".
+E assim descobrimos que não era... O que nos ensina a sempre guardar na memória quais variáveis que salvamos no ambiente R. O bom dessa função é que ela permite salvar com tipos de compressão, por exemplo `compress = "xz"`.
 
 ### Exportando objetos com `saveRDS`
 
@@ -584,26 +587,19 @@ saveRDS(paracatu_temp, "Temperatura.rds")
 frenteQ <- readRDS("Temperatura.rds")
 ```
 
-Você pode salvar seu objeto R de forma serializada e compactada
-com o argumento `compress` e na hora de chamar o objeto de volta é só usar `readRDS` e colocar o nome que você quiser.
+Você pode salvar seu objeto R de forma serializada e compactada com o argumento `compress` e na hora de chamar o objeto de volta é só usar `readRDS` e colocar o nome que você quiser.
 
-### Processando nossa data-frame {#processing_dfs}
+### Processando nossa data frame {#processing_dfs}
 
-Existem inúmeros pacotes para organizar (Arrange) e modificar data frames. As mais conhecidas são provavelmente do universe *tidyverse* como o famoso pacote _dplyr_. Mas, neste curso vamos focar no **base**.
-
-Vamos então revisar a classe de cada coluna do nosso data-frame com a função
-`sapply`, que será revisada em putro capítuo, mas lembre, qualquer dúvida é só usar `?sapply`.
+Vamos revisar a classe de cada coluna do nosso data-frame com a função `sapply`, que será explicada em outro capítulo. Lembre-se, qualquer dúvida é só usar `?sapply`.
 
 ```{r}
 sapply(df, class)
 ```
 
-Quando trabalhamos com séries temporais, é importante ter a variável tempo
-reconhecida como "tempo", especificamente como classe "POSIXct", porém, a calsse do tipo Data é "factor" assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato `r Sys.time()`.
+Quando trabalhamos com séries temporais, é importante ter a variável tempo reconhecida como "tempo", especificamente como classe "POSIXct". Porém, a classe do tipo Data é "factor" assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato `r Sys.time()`.
 
-Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa nova
-varável chamada "tempo_char"", adicionando-a diretamente no data frame com o cifrão 
-DOLLAR "$". Podemos fazer isso com as funções `paste` ou `paste0`.
+Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa nova varável chamada "tempo_char", adicionando-a diretamente no data frame com o cifrão ("$"). Podemos fazer isso com as funções `paste` ou `paste0`.
 
 ```{r}
 df$tempo_char <- paste(df$Data, df$Hora)
@@ -620,8 +616,7 @@ Para converter a nossa classe para POSIXct podemos usar a função `as.POSIXct` 
 args(as.POSIXct)
 ```
 
-
-Então, vamos criar outra variável tempo o formato POSIXct:
+Então, vamos criar outra variável tempo com o formato POSIXct:
 
 ```{r}
 df$tempo <- as.POSIXct(x = df$tempo_char, tz = "Americas/Sao_Paulo", 
@@ -630,13 +625,15 @@ head(df$tempo)
 class(df$tempo)
 ```
 
-Agora, vamos a extrair os dias da semana do tempo, mes e dia juliano:
+Agora, vamos extrair os dias da semana do tempo, mes e dia juliano:
 
 ```{r}
 df$weekdays <- format(df$tempo, "%A")
 head(df$weekdays)
+
 df$mes <- format(df$tempo, "%B")
 head(df$mes)
+
 df$diajuliano <- julian(df$tempo)
 head(df$diajuliano)
 
@@ -645,9 +642,9 @@ df$ano <- format(df$tempo, "%Y")
 
 Pronto! Agora temos o tempo no formato que desejamos.
 
-#### Aggregate
+#### `aggregate`
 
-Vamos a carregar o nosso data frame e daruma olhada nele:
+Vamos dar uma olhada no nosso data frame:
 
 ```{r}
 head(df)

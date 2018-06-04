@@ -131,10 +131,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html"><i class="fa fa-check"></i><b>4</b> Importando e Exportando Dados</a><ul>
 <li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#base"><i class="fa fa-check"></i><b>4.1</b> Base</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#importando-com-read."><i class="fa fa-check"></i><b>4.1.1</b> Importando com <code>read.*</code></a></li>
-<li class="chapter" data-level="4.1.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-texto-com-write.table"><i class="fa fa-check"></i><b>4.1.2</b> Exportando texto com <code>write.table</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-com-write.table"><i class="fa fa-check"></i><b>4.1.2</b> Exportando com <code>write.table</code></a></li>
 <li class="chapter" data-level="4.1.3" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-save"><i class="fa fa-check"></i><b>4.1.3</b> Exportando objetos com <code>save</code></a></li>
 <li class="chapter" data-level="4.1.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-saverds"><i class="fa fa-check"></i><b>4.1.4</b> Exportando objetos com <code>saveRDS</code></a></li>
-<li class="chapter" data-level="4.1.5" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#processing_dfs"><i class="fa fa-check"></i><b>4.1.5</b> Processando nossa data-frame</a></li>
+<li class="chapter" data-level="4.1.5" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#processing_dfs"><i class="fa fa-check"></i><b>4.1.5</b> Processando nossa data frame</a></li>
 <li class="chapter" data-level="4.1.6" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data.table-e-mais"><i class="fa fa-check"></i><b>4.1.6</b> Data.table e mais</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#tidyverse"><i class="fa fa-check"></i><b>4.2</b> Tidyverse</a><ul>
@@ -413,17 +413,17 @@ a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="
 <pre><code>##  [1] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;
 ##  [8] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;
 ## [15] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;
-## [22] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;</code></pre>
+## [22] &quot;segunda&quot; &quot;segunda&quot; &quot;terça&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
 <pre><code>##  [1] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ##  [9] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17686.16 17686.20 17686.24 17686.28 17686.32 17686.37 17686.41
-##  [8] 17686.45 17686.49 17686.53 17686.57 17686.62 17686.66 17686.70
-## [15] 17686.74 17686.78 17686.82 17686.87 17686.91 17686.95 17686.99
-## [22] 17687.03 17687.07 17687.12
+##  [1] 17686.19 17686.23 17686.27 17686.31 17686.36 17686.40 17686.44
+##  [8] 17686.48 17686.52 17686.56 17686.61 17686.65 17686.69 17686.73
+## [15] 17686.77 17686.81 17686.86 17686.90 17686.94 17686.98 17687.02
+## [22] 17687.06 17687.11 17687.15
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>O formato <code>POSIXct</code> é o mais comumente usado principalmente se os dados analisados serão plotados.</p>
@@ -439,25 +439,25 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
 <pre><code>##   [1] segunda segunda segunda segunda segunda segunda segunda segunda
 ##   [9] segunda segunda segunda segunda segunda segunda segunda segunda
-##  [17] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [17] segunda segunda segunda segunda segunda segunda segunda terça  
 ##  [25] terça   terça   terça   terça   terça   terça   terça   terça  
 ##  [33] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [41] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [41] terça   terça   terça   terça   terça   terça   terça   quarta 
 ##  [49] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
 ##  [57] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quinta 
 ##  [73] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
 ##  [81] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  sexta  
 ##  [97] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
 ## [105] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sábado 
 ## [121] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
 ## [129] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  domingo
 ## [145] domingo domingo domingo domingo domingo domingo domingo domingo
 ## [153] domingo domingo domingo domingo domingo domingo domingo domingo
-## [161] domingo domingo domingo domingo domingo domingo domingo domingo
+## [161] domingo domingo domingo domingo domingo domingo domingo segunda
 ## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
 <p>São muito úteis para regressões, gráficos e resumos estatísitcos, uma vez que limita o número de possibilidades para a qual o dado pertença. Além disso, é possível estabelecer “níveis” que vão designar a categoria do seu dado.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ab &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> aa,
@@ -472,6 +472,8 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <hr />
 <p>Se tudo pareceu muito corrido, não se preocupe, todos esses conceitos serão praticados mais adiante!</p>
 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#-- Opção para deixar possível visualizar erros</span>
+knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">error =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 </div>
             </section>

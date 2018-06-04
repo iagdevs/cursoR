@@ -970,7 +970,7 @@ Funções úteis: \texttt{weekdays}, \texttt{month} e
 ##  [1] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
 ##  [8] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
 ## [15] "segunda" "segunda" "segunda" "segunda" "segunda" "segunda" "segunda"
-## [22] "segunda" "segunda" "segunda"
+## [22] "segunda" "segunda" "terça"
 \end{verbatim}
 
 \begin{Shaded}
@@ -993,10 +993,10 @@ Funções úteis: \texttt{weekdays}, \texttt{month} e
 
 \begin{verbatim}
 ## Time differences in days
-##  [1] 17686.16 17686.20 17686.24 17686.28 17686.32 17686.37 17686.41
-##  [8] 17686.45 17686.49 17686.53 17686.57 17686.62 17686.66 17686.70
-## [15] 17686.74 17686.78 17686.82 17686.87 17686.91 17686.95 17686.99
-## [22] 17687.03 17687.07 17687.12
+##  [1] 17686.19 17686.23 17686.27 17686.32 17686.36 17686.40 17686.44
+##  [8] 17686.48 17686.52 17686.57 17686.61 17686.65 17686.69 17686.73
+## [15] 17686.77 17686.82 17686.86 17686.90 17686.94 17686.98 17687.02
+## [22] 17687.07 17687.11 17687.15
 ## attr(,"origin")
 ## [1] "1970-01-01 GMT"
 \end{verbatim}
@@ -1035,25 +1035,25 @@ variável contínua pode assumir um um número infinito de valores.
 \begin{verbatim}
 ##   [1] segunda segunda segunda segunda segunda segunda segunda segunda
 ##   [9] segunda segunda segunda segunda segunda segunda segunda segunda
-##  [17] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [17] segunda segunda segunda segunda segunda segunda segunda terça  
 ##  [25] terça   terça   terça   terça   terça   terça   terça   terça  
 ##  [33] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [41] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [41] terça   terça   terça   terça   terça   terça   terça   quarta 
 ##  [49] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
 ##  [57] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [65] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quinta 
 ##  [73] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
 ##  [81] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [89] quinta  quinta  quinta  quinta  quinta  quinta  quinta  sexta  
 ##  [97] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
 ## [105] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [113] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sábado 
 ## [121] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
 ## [129] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [137] sábado  sábado  sábado  sábado  sábado  sábado  sábado  domingo
 ## [145] domingo domingo domingo domingo domingo domingo domingo domingo
 ## [153] domingo domingo domingo domingo domingo domingo domingo domingo
-## [161] domingo domingo domingo domingo domingo domingo domingo domingo
+## [161] domingo domingo domingo domingo domingo domingo domingo segunda
 ## Levels: domingo quarta quinta sábado segunda sexta terça
 \end{verbatim}
 
@@ -1088,6 +1088,13 @@ seus níveis}
 Se tudo pareceu muito corrido, não se preocupe, todos esses conceitos
 serão praticados mais adiante!
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#-- Opção para deixar possível visualizar erros}
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{error =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \chapter{Importando e Exportando
 Dados}\label{importando-e-exportando-dados}
 
@@ -1103,15 +1110,16 @@ modos de leitura:
 \begin{itemize}
 \tightlist
 \item
-  read.csv
+  \texttt{read.csv}\\
 \item
-  read.csv2
+  \texttt{read.csv2}\\
 \item
-  read.table
+  \texttt{read.table}
 \end{itemize}
 
-Vamos ler alguns dados usando read.table, para saber o que a função faz,
-use \texttt{?read.table}. Os argumentos da função são:
+Vamos ler alguns dados usando \texttt{read.table}. Para saber o que a
+função faz, use \texttt{?read.table}.\\
+Os argumentos da função são:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1131,9 +1139,9 @@ use \texttt{?read.table}. Os argumentos da função são:
 ## NULL
 \end{verbatim}
 
-O terceiro argumento é sep, com valores por default = ``''. Esse
-argumento indica para o R qual o tipo de separador utilizado entre as
-colunas dos dados.
+O terceiro argumento é \texttt{sep}, definido como \texttt{""} por
+padrão. Esse argumento indica para o R qual o tipo de separador
+utilizado entre as colunas dos dados.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1141,8 +1149,8 @@ colunas dos dados.
 \end{Highlighting}
 \end{Shaded}
 
-Lembre-se que as funções head e tail permitem que você veja as primeiras
-ou últimas linhas do data frame.
+Lembre-se que as funções \texttt{head} e \texttt{tail} permitem que você
+veja as primeiras ou últimas linhas do data frame.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1204,21 +1212,23 @@ ou últimas linhas do data frame.
 ## 8582             ppb           NA          -    Sim
 \end{verbatim}
 
-O que acontece se tentarmos ler os mesmo dados utilizando a função
-read.table?
+Vamos tentar ler outra versão dos mesmos dados utilizando a mesma função
+\texttt{read.table}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df2 <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"dados/NOXIPEN2014v2.txt"}\NormalTok{)}
-\CommentTok{# Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : }
-\CommentTok{# linha 1 não tinha 6 elementos}
 \end{Highlighting}
 \end{Shaded}
 
-Apareceu uma mensagem de erro, você saberia dizer o porquê?
+\begin{verbatim}
+## Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : linha 1 não tinha 6 elementos
+\end{verbatim}
+
+Apareceu uma mensagem de erro, {você saberia dizer o porquê?}
 
 \textbf{Caso você trabalhe com algum banco de dados em formato .txt e
-quiser abrir no R\ldots{} Abra-os no bloco de notas primeiro}
+quiser abrir no R\ldots{} Abra-os no bloco de notas primeiro!}
 
 Vamos dar uma olhada em alguns dados, o primeiro tem uma cara assim:
 
@@ -1230,7 +1240,7 @@ Já o segundo arquivo é assim:
 
 Você notou a diferença? Como vimos anteriormente, para importar os dados
 no R é super importante que você especifique o tipo de separador
-utilizado, como o segundo arquivo tem separação de ``;'', precisamos
+utilizado. Como o segundo arquivo é separado por ``;'', precisamos
 espercificar o argumento \texttt{sep} na hora de usar o comando
 \texttt{read.table}:
 
@@ -1296,14 +1306,14 @@ espercificar o argumento \texttt{sep} na hora de usar o comando
 \end{verbatim}
 
 Além desses comandos, vocês também pode utilizar a opção \textbf{Import
-Dataset} do Rstudio, permitindo que você tenha um ``preview'' dos dados,
-como no excel, mas melhor!
+Dataset} do RStudio, permitindo que você tenha um ``preview'' dos dados
+- como no Excel, mas melhor!
 
 Para mais informações sobre importar dados no R, dê uma olha nesse
-\href{https://www.rstudio.com/resources/webinars/importing-data-into-r/}{webnário}
+\href{https://www.rstudio.com/resources/webinars/importing-data-into-r/}{webnário}.
 
-\subsection{\texorpdfstring{Exportando texto com
-\texttt{write.table}}{Exportando texto com write.table}}\label{exportando-texto-com-write.table}
+\subsection{\texorpdfstring{Exportando com
+\texttt{write.table}}{Exportando com write.table}}\label{exportando-com-write.table}
 
 Exportar é bem facil. Vamos dar uma olhada nos argumentos da função
 \texttt{write.table}:
@@ -1321,7 +1331,7 @@ Exportar é bem facil. Vamos dar uma olhada nos argumentos da função
 ## NULL
 \end{verbatim}
 
-Se temos um data-frame com colunas de classe character,
+Se temos um data frame com colunas de classe character,
 \texttt{quote\ =\ TRUE} quer dizer que o arquivo de texto resultante vai
 ter aspas nas colunas de caractere. Novamente, o argumento \texttt{sep}
 indica como podemos separar as colunas. Se você quiser abrir esses dados
@@ -1336,14 +1346,18 @@ FALSE, caso contrário, será adicionada uma coluna com os índices das
 linhas. O argumento \texttt{col.names} indica se você quer nomear as
 suas colunas, o que é sempre uma boa ideia.
 
-\textbf{Exercício:} Usando o conjunto de dados \texttt{mtcars} da base
-do R, vamos exportá-lo de uma forma que ele possa ser lido em algum
-Excel genérico. Não esqueça de usar o que foi ensinado acima.
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{Exercício}: Usando o conjunto de dados \texttt{mtcars} da base
+do R, exporte-o de uma forma que ele possa ser lido em algum Excel
+genérico. Não esqueça de usar o que foi ensinado acima.
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \subsection{\texorpdfstring{Exportando objetos com
 \texttt{save}}{Exportando objetos com save}}\label{exportando-objetos-com-save}
 
-Podemos salvar objetos do R com o comando \texttt{save}, ele permite que
+Podemos salvar objetos do R com o comando \texttt{save}. Ele permite que
 você recarregue o objeto mais tarde.
 
 \begin{Shaded}
@@ -1373,8 +1387,8 @@ de volta usamos a função \texttt{load}
 ## NULL
 \end{verbatim}
 
-Muito cuidado ao utilizar esse comando, pois podemos cometer alguns
-delizes, como trocar o nome do objeto. Veja esse exemplo abaixo:
+Muito cuidado ao utilizar esse comando, pois é bem possível cometer
+alguns deslizes, como trocar o nome do objeto. Veja esse exemplo abaixo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1402,7 +1416,7 @@ foi a mínima:
 E assim descobrimos que não era\ldots{} O que nos ensina a sempre
 guardar na memória quais variáveis que salvamos no ambiente R. O bom
 dessa função é que ela permite salvar com tipos de compressão, por
-exemplo compress = ``xz''.
+exemplo \texttt{compress\ =\ "xz"}.
 
 \subsection{\texorpdfstring{Exportando objetos com
 \texttt{saveRDS}}{Exportando objetos com saveRDS}}\label{exportando-objetos-com-saverds}
@@ -1425,16 +1439,11 @@ Você pode salvar seu objeto R de forma serializada e compactada com o
 argumento \texttt{compress} e na hora de chamar o objeto de volta é só
 usar \texttt{readRDS} e colocar o nome que você quiser.
 
-\hypertarget{processing_dfs}{\subsection{Processando nossa
-data-frame}\label{processing_dfs}}
+\hypertarget{processing_dfs}{\subsection{Processando nossa data
+frame}\label{processing_dfs}}
 
-Existem inúmeros pacotes para organizar (Arrange) e modificar data
-frames. As mais conhecidas são provavelmente do universe
-\emph{tidyverse} como o famoso pacote \emph{dplyr}. Mas, neste curso
-vamos focar no \textbf{base}.
-
-Vamos então revisar a classe de cada coluna do nosso data-frame com a
-função \texttt{sapply}, que será revisada em putro capítuo, mas lembre,
+Vamos revisar a classe de cada coluna do nosso data-frame com a função
+\texttt{sapply}, que será explicada em outro capítulo. Lembre-se,
 qualquer dúvida é só usar \texttt{?sapply}.
 
 \begin{Shaded}
@@ -1456,13 +1465,13 @@ qualquer dúvida é só usar \texttt{?sapply}.
 
 Quando trabalhamos com séries temporais, é importante ter a variável
 tempo reconhecida como ``tempo'', especificamente como classe
-``POSIXct'', porém, a calsse do tipo Data é ``factor'' assim como a
+``POSIXct''. Porém, a classe do tipo Data é ``factor'' assim como a
 Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais
-padronizada com o formato 2018-06-04 00:46:31.
+padronizada com o formato 2018-06-04 01:33:51.
 
 Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa
-nova varável chamada ``tempo\_char''``, adicionando-a diretamente no
-data frame com o cifrão DOLLAR''\$``. Podemos fazer isso com as funções
+nova varável chamada ``tempo\_char'', adicionando-a diretamente no data
+frame com o cifrão (``\$''). Podemos fazer isso com as funções
 \texttt{paste} ou \texttt{paste0}.
 
 \begin{Shaded}
@@ -1504,7 +1513,7 @@ Para converter a nossa classe para POSIXct podemos usar a função
 ## NULL
 \end{verbatim}
 
-Então, vamos criar outra variável tempo o formato POSIXct:
+Então, vamos criar outra variável tempo com o formato POSIXct:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1530,7 +1539,7 @@ Então, vamos criar outra variável tempo o formato POSIXct:
 ## [1] "POSIXct" "POSIXt"
 \end{verbatim}
 
-Agora, vamos a extrair os dias da semana do tempo, mes e dia juliano:
+Agora, vamos extrair os dias da semana do tempo, mes e dia juliano:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1574,9 +1583,9 @@ Agora, vamos a extrair os dias da semana do tempo, mes e dia juliano:
 
 Pronto! Agora temos o tempo no formato que desejamos.
 
-\subsubsection{Aggregate}\label{aggregate}
+\subsubsection{\texorpdfstring{\texttt{aggregate}}{aggregate}}\label{aggregate}
 
-Vamos a carregar o nosso data frame e daruma olhada nele:
+Vamos dar uma olhada no nosso data frame:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1777,7 +1786,7 @@ quanto tempo demora cada um.
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.071   0.000   0.071
+##     0.1     0.0     0.1
 \end{verbatim}
 
 \begin{Shaded}
@@ -1789,7 +1798,7 @@ quanto tempo demora cada um.
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.011   0.000   0.011
+##   0.016   0.000   0.016
 \end{verbatim}
 
 Para isso usamos a função \texttt{fread}.
@@ -2188,7 +2197,7 @@ tal um plot?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-76-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-75-1.pdf}
 
 Tem algo estranho com esta imagem. O que é? (valendo um sticker).
 
@@ -2224,7 +2233,7 @@ dados binários foram lidos corretamente.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-78-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-77-1.pdf}
 
 \textbf{Escrever dados binários no R}
 
@@ -2314,7 +2323,7 @@ Então, a forma mais fácil de plotar uma variável em função do tempo é:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-81-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-80-1.pdf}
 
 Feio, né?\\
 Tentando deixar mais bonito\ldots{}
@@ -2330,7 +2339,7 @@ Tentando deixar mais bonito\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-82-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-81-1.pdf}
 
 Colocando \textbf{DOIS} elementos no mesmo gráfico:
 
@@ -2348,7 +2357,7 @@ Colocando \textbf{DOIS} elementos no mesmo gráfico:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-83-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-82-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2405,7 +2414,7 @@ Que tal refazermos os gráficos da seção anterior?
 ## Warning: Removed 260 rows containing missing values (geom_point).
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-85-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-84-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2417,7 +2426,7 @@ Que tal refazermos os gráficos da seção anterior?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-86-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-85-1.pdf}
 
 Agora o mais interessante:
 
@@ -2433,7 +2442,7 @@ Agora o mais interessante:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-87-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-86-1.pdf}
 
 {\textbf{Pergunta}: Qual a principal diferença entre o código acima e o
 \protect\hyperlink{plot_base}{código usando \texttt{plot}}?}
@@ -2488,7 +2497,7 @@ funcionam bem com o \href{http://r4ds.had.co.nz/pipes.html}{\emph{pipe}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-88-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-87-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2509,7 +2518,7 @@ funcionam bem com o \href{http://r4ds.had.co.nz/pipes.html}{\emph{pipe}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-89-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-88-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2531,7 +2540,7 @@ funcionam bem com o \href{http://r4ds.had.co.nz/pipes.html}{\emph{pipe}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-90-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-89-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2582,7 +2591,7 @@ Refazendo alguns gráficos:
 ## Warning: Removed 1 rows containing missing values (geom_path).
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-93-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-92-1.pdf}
 
 Experimentando escalas de cores com a função \texttt{lucky}:
 
@@ -2600,10 +2609,10 @@ Experimentando escalas de cores com a função \texttt{lucky}:
 \end{Shaded}
 
 \begin{verbatim}
-## Colour gradient: imagej_cmy, number: 3489
+## Colour gradient: colo_laleh1979_Strawberry_Tea, number: 726
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-94-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-93-1.pdf}
 
 \textbf{Este é só o começo!}
 \href{http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html}{Veja

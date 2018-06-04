@@ -131,10 +131,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html"><i class="fa fa-check"></i><b>4</b> Importando e Exportando Dados</a><ul>
 <li class="chapter" data-level="4.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#base"><i class="fa fa-check"></i><b>4.1</b> Base</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#importando-com-read."><i class="fa fa-check"></i><b>4.1.1</b> Importando com <code>read.*</code></a></li>
-<li class="chapter" data-level="4.1.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-texto-com-write.table"><i class="fa fa-check"></i><b>4.1.2</b> Exportando texto com <code>write.table</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-com-write.table"><i class="fa fa-check"></i><b>4.1.2</b> Exportando com <code>write.table</code></a></li>
 <li class="chapter" data-level="4.1.3" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-save"><i class="fa fa-check"></i><b>4.1.3</b> Exportando objetos com <code>save</code></a></li>
 <li class="chapter" data-level="4.1.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-saverds"><i class="fa fa-check"></i><b>4.1.4</b> Exportando objetos com <code>saveRDS</code></a></li>
-<li class="chapter" data-level="4.1.5" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#processing_dfs"><i class="fa fa-check"></i><b>4.1.5</b> Processando nossa data-frame</a></li>
+<li class="chapter" data-level="4.1.5" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#processing_dfs"><i class="fa fa-check"></i><b>4.1.5</b> Processando nossa data frame</a></li>
 <li class="chapter" data-level="4.1.6" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data.table-e-mais"><i class="fa fa-check"></i><b>4.1.6</b> Data.table e mais</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#tidyverse"><i class="fa fa-check"></i><b>4.2</b> Tidyverse</a><ul>
@@ -195,11 +195,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">4.1.1</span> Importando com <code>read.*</code></h3>
 <p>Como vimos anteriormente, na maioria dos casos, iremos usar data frames par lidar com dados em R, sendo assim, podemos utilizar os seguintes modos de leitura:</p>
 <ul>
-<li>read.csv</li>
-<li>read.csv2</li>
-<li>read.table</li>
+<li><code>read.csv</code><br />
+</li>
+<li><code>read.csv2</code><br />
+</li>
+<li><code>read.table</code></li>
 </ul>
-<p>Vamos ler alguns dados usando read.table, para saber o que a função faz, use <code>?read.table</code>. Os argumentos da função são:</p>
+<p>Vamos ler alguns dados usando <code>read.table</code>. Para saber o que a função faz, use <code>?read.table</code>.<br />
+Os argumentos da função são:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(read.table)</code></pre></div>
 <pre><code>## function (file, header = FALSE, sep = &quot;&quot;, quote = &quot;\&quot;&#39;&quot;, dec = &quot;.&quot;, 
 ##     numerals = c(&quot;allow.loss&quot;, &quot;warn.loss&quot;, &quot;no.loss&quot;), row.names, 
@@ -210,9 +213,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##     stringsAsFactors = default.stringsAsFactors(), fileEncoding = &quot;&quot;, 
 ##     encoding = &quot;unknown&quot;, text, skipNul = FALSE) 
 ## NULL</code></pre>
-<p>O terceiro argumento é sep, com valores por default = “”. Esse argumento indica para o R qual o tipo de separador utilizado entre as colunas dos dados.</p>
+<p>O terceiro argumento é <code>sep</code>, definido como <code>&quot;&quot;</code> por padrão. Esse argumento indica para o R qual o tipo de separador utilizado entre as colunas dos dados.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>)</code></pre></div>
-<p>Lembre-se que as funções head e tail permitem que você veja as primeiras ou últimas linhas do data frame.</p>
+<p>Lembre-se que as funções <code>head</code> e <code>tail</code> permitem que você veja as primeiras ou últimas linhas do data frame.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df)</code></pre></div>
 <pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
 ## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
@@ -257,17 +260,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 8580             ppb           11          -    Sim
 ## 8581             ppb           16          -    Sim
 ## 8582             ppb           NA          -    Sim</code></pre>
-<p>O que acontece se tentarmos ler os mesmo dados utilizando a função read.table?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014v2.txt&quot;</span>)
-<span class="co"># Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : </span>
-<span class="co"># linha 1 não tinha 6 elementos</span></code></pre></div>
-<p>Apareceu uma mensagem de erro, você saberia dizer o porquê?</p>
-<p><strong>Caso você trabalhe com algum banco de dados em formato .txt e quiser abrir no R… Abra-os no bloco de notas primeiro</strong></p>
+<p>Vamos tentar ler outra versão dos mesmos dados utilizando a mesma função <code>read.table</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014v2.txt&quot;</span>)</code></pre></div>
+<pre><code>## Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : linha 1 não tinha 6 elementos</code></pre>
+<p>Apareceu uma mensagem de erro, <span style="color:blue">você saberia dizer o porquê?</span></p>
+<p><strong>Caso você trabalhe com algum banco de dados em formato .txt e quiser abrir no R… Abra-os no bloco de notas primeiro!</strong></p>
 <p>Vamos dar uma olhada em alguns dados, o primeiro tem uma cara assim:</p>
 <p><img src="figuras/f1.png" width="665" /></p>
 <p>Já o segundo arquivo é assim:</p>
 <p><img src="figuras/f2.png" width="552" /></p>
-<p>Você notou a diferença? Como vimos anteriormente, para importar os dados no R é super importante que você especifique o tipo de separador utilizado, como o segundo arquivo tem separação de “;”, precisamos espercificar o argumento <code>sep</code> na hora de usar o comando <code>read.table</code>:</p>
+<p>Você notou a diferença? Como vimos anteriormente, para importar os dados no R é super importante que você especifique o tipo de separador utilizado. Como o segundo arquivo é separado por “;”, precisamos espercificar o argumento <code>sep</code> na hora de usar o comando <code>read.table</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014v2.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
 <span class="kw">head</span>(df2)</code></pre></div>
 <pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
@@ -313,24 +315,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 8580             ppb           11          -    Sim
 ## 8581             ppb           16          -    Sim
 ## 8582             ppb           NA          -    Sim</code></pre>
-<p>Além desses comandos, vocês também pode utilizar a opção <strong>Import Dataset</strong> do Rstudio, permitindo que você tenha um “preview” dos dados, como no excel, mas melhor!</p>
-<p>Para mais informações sobre importar dados no R, dê uma olha nesse <a href="https://www.rstudio.com/resources/webinars/importing-data-into-r/">webnário</a></p>
+<p>Além desses comandos, vocês também pode utilizar a opção <strong>Import Dataset</strong> do RStudio, permitindo que você tenha um “preview” dos dados - como no Excel, mas melhor!</p>
+<p>Para mais informações sobre importar dados no R, dê uma olha nesse <a href="https://www.rstudio.com/resources/webinars/importing-data-into-r/">webnário</a>.</p>
 </div>
-<div id="exportando-texto-com-write.table" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> Exportando texto com <code>write.table</code></h3>
+<div id="exportando-com-write.table" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Exportando com <code>write.table</code></h3>
 <p>Exportar é bem facil. Vamos dar uma olhada nos argumentos da função <code>write.table</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(write.table)</code></pre></div>
 <pre><code>## function (x, file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot; &quot;, 
 ##     eol = &quot;\n&quot;, na = &quot;NA&quot;, dec = &quot;.&quot;, row.names = TRUE, col.names = TRUE, 
 ##     qmethod = c(&quot;escape&quot;, &quot;double&quot;), fileEncoding = &quot;&quot;) 
 ## NULL</code></pre>
-<p>Se temos um data-frame com colunas de classe character, <code>quote = TRUE</code> quer dizer que o arquivo de texto resultante vai ter aspas nas colunas de caractere. Novamente, o argumento <code>sep</code> indica como podemos separar as colunas. Se você quiser abrir esses dados no excel, uma boa opção é utilizar os separadores “,”/“;”/&quot; “/”“, sendo o último o separador que indica o espaçamento criado pela tecla TAB.</p>
+<p>Se temos um data frame com colunas de classe character, <code>quote = TRUE</code> quer dizer que o arquivo de texto resultante vai ter aspas nas colunas de caractere. Novamente, o argumento <code>sep</code> indica como podemos separar as colunas. Se você quiser abrir esses dados no excel, uma boa opção é utilizar os separadores “,”/“;”/&quot; “/”“, sendo o último o separador que indica o espaçamento criado pela tecla TAB.</p>
 <p>Já o argumento <code>eol</code> quer dizer <em>end of line</em>, e é uma forma de dizer ao R que a linha acaba ali. Por padrão, a opção <code>row.names</code> vem com a opção TRUE, mas sempre coloque a opção FALSE, caso contrário, será adicionada uma coluna com os índices das linhas. O argumento <code>col.names</code> indica se você quer nomear as suas colunas, o que é sempre uma boa ideia.</p>
-<p><strong>Exercício:</strong> Usando o conjunto de dados <code>mtcars</code> da base do R, vamos exportá-lo de uma forma que ele possa ser lido em algum Excel genérico. Não esqueça de usar o que foi ensinado acima.</p>
+<hr />
+<p><span style="color:red"><strong>Exercício</strong>: Usando o conjunto de dados <code>mtcars</code> da base do R, exporte-o de uma forma que ele possa ser lido em algum Excel genérico. Não esqueça de usar o que foi ensinado acima.</p>
+<hr />
 </div>
 <div id="exportando-objetos-com-save" class="section level3">
 <h3><span class="header-section-number">4.1.3</span> Exportando objetos com <code>save</code></h3>
-<p>Podemos salvar objetos do R com o comando <code>save</code>, ele permite que você recarregue o objeto mais tarde.</p>
+<p>Podemos salvar objetos do R com o comando <code>save</code>. Ele permite que você recarregue o objeto mais tarde.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(save)</code></pre></div>
 <pre><code>## function (..., list = character(), file = stop(&quot;&#39;file&#39; must be specified&quot;), 
 ##     ascii = FALSE, version = NULL, envir = parent.frame(), compress = isTRUE(!ascii), 
@@ -340,7 +344,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(load)</code></pre></div>
 <pre><code>## function (file, envir = parent.frame(), verbose = FALSE) 
 ## NULL</code></pre>
-<p>Muito cuidado ao utilizar esse comando, pois podemos cometer alguns delizes, como trocar o nome do objeto. Veja esse exemplo abaixo:</p>
+<p>Muito cuidado ao utilizar esse comando, pois é bem possível cometer alguns deslizes, como trocar o nome do objeto. Veja esse exemplo abaixo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Primeiro vamos ler os dados do dia 01/06/2016 para uma estação automática do INMET de Paracatu:</span>
 paracatu &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;dados/paracatu.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>) <span class="co">#lendo como csv</span>
 
@@ -351,7 +355,7 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 <span class="kw">save</span>(paracatu_temp, <span class="dt">file =</span> <span class="st">&quot;Temp_max.rda&quot;</span>)</code></pre></div>
 <p>Passado um tempo, queremos acessar de volta esse objeto, mas não lembramos se salvamos a temperatura máxima ou mínima, vamos confiar que foi a mínima:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;Temp_min.rda&quot;</span>)</code></pre></div>
-<p>E assim descobrimos que não era… O que nos ensina a sempre guardar na memória quais variáveis que salvamos no ambiente R. O bom dessa função é que ela permite salvar com tipos de compressão, por exemplo compress = “xz”.</p>
+<p>E assim descobrimos que não era… O que nos ensina a sempre guardar na memória quais variáveis que salvamos no ambiente R. O bom dessa função é que ela permite salvar com tipos de compressão, por exemplo <code>compress = &quot;xz&quot;</code>.</p>
 </div>
 <div id="exportando-objetos-com-saverds" class="section level3">
 <h3><span class="header-section-number">4.1.4</span> Exportando objetos com <code>saveRDS</code></h3>
@@ -361,9 +365,8 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 <p>Você pode salvar seu objeto R de forma serializada e compactada com o argumento <code>compress</code> e na hora de chamar o objeto de volta é só usar <code>readRDS</code> e colocar o nome que você quiser.</p>
 </div>
 <div id="processing_dfs" class="section level3">
-<h3><span class="header-section-number">4.1.5</span> Processando nossa data-frame</h3>
-<p>Existem inúmeros pacotes para organizar (Arrange) e modificar data frames. As mais conhecidas são provavelmente do universe <em>tidyverse</em> como o famoso pacote <em>dplyr</em>. Mas, neste curso vamos focar no <strong>base</strong>.</p>
-<p>Vamos então revisar a classe de cada coluna do nosso data-frame com a função <code>sapply</code>, que será revisada em putro capítuo, mas lembre, qualquer dúvida é só usar <code>?sapply</code>.</p>
+<h3><span class="header-section-number">4.1.5</span> Processando nossa data frame</h3>
+<p>Vamos revisar a classe de cada coluna do nosso data-frame com a função <code>sapply</code>, que será explicada em outro capítulo. Lembre-se, qualquer dúvida é só usar <code>?sapply</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(df, class)</code></pre></div>
 <pre><code>##          TipodeRede TipodeMonitoramento                Tipo 
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
@@ -373,8 +376,8 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
-<p>Quando trabalhamos com séries temporais, é importante ter a variável tempo reconhecida como “tempo”, especificamente como classe “POSIXct”, porém, a calsse do tipo Data é “factor” assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato 2018-06-04 00:46:06.</p>
-<p>Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa nova varável chamada “tempo_char”“, adicionando-a diretamente no data frame com o cifrão DOLLAR”$“. Podemos fazer isso com as funções <code>paste</code> ou <code>paste0</code>.</p>
+<p>Quando trabalhamos com séries temporais, é importante ter a variável tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Porém, a classe do tipo Data é “factor” assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato 2018-06-04 01:33:20.</p>
+<p>Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa nova varável chamada “tempo_char”, adicionando-a diretamente no data frame com o cifrão (“$”). Podemos fazer isso com as funções <code>paste</code> ou <code>paste0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo_char &lt;-<span class="st"> </span><span class="kw">paste</span>(df<span class="op">$</span>Data, df<span class="op">$</span>Hora)
 <span class="kw">head</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
 <pre><code>## [1] &quot;01/01/2014 01:00&quot; &quot;01/01/2014 02:00&quot; &quot;01/01/2014 03:00&quot;
@@ -387,7 +390,7 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(as.POSIXct)</code></pre></div>
 <pre><code>## function (x, tz = &quot;&quot;, ...) 
 ## NULL</code></pre>
-<p>Então, vamos criar outra variável tempo o formato POSIXct:</p>
+<p>Então, vamos criar outra variável tempo com o formato POSIXct:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo &lt;-<span class="st"> </span><span class="kw">as.POSIXct</span>(<span class="dt">x =</span> df<span class="op">$</span>tempo_char, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>, 
                        <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y %H:%M&quot;</span>)
 <span class="kw">head</span>(df<span class="op">$</span>tempo)</code></pre></div>
@@ -396,7 +399,7 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 ## [5] &quot;2014-01-01 05:00:00 Americas&quot; &quot;2014-01-01 06:00:00 Americas&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df<span class="op">$</span>tempo)</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
-<p>Agora, vamos a extrair os dias da semana do tempo, mes e dia juliano:</p>
+<p>Agora, vamos extrair os dias da semana do tempo, mes e dia juliano:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>weekdays &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%A&quot;</span>)
 <span class="kw">head</span>(df<span class="op">$</span>weekdays)</code></pre></div>
 <pre><code>## [1] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;</code></pre>
@@ -410,8 +413,8 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>ano &lt;-<span class="st"> </span><span class="kw">format</span>(df<span class="op">$</span>tempo, <span class="st">&quot;%Y&quot;</span>)</code></pre></div>
 <p>Pronto! Agora temos o tempo no formato que desejamos.</p>
 <div id="aggregate" class="section level4">
-<h4><span class="header-section-number">4.1.5.1</span> Aggregate</h4>
-<p>Vamos a carregar o nosso data frame e daruma olhada nele:</p>
+<h4><span class="header-section-number">4.1.5.1</span> <code>aggregate</code></h4>
+<p>Vamos dar uma olhada no nosso data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df)</code></pre></div>
 <pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
 ## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
@@ -523,11 +526,11 @@ dff</code></pre></div>
 <p>Vamos ver como funciona data.table lendo os dois arquivos e comparar quanto tempo demora cada um.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.070   0.001   0.070</code></pre>
+##   0.117   0.000   0.117</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.009   0.005   0.012</code></pre>
+##   0.014   0.004   0.022</code></pre>
 <p>Para isso usamos a função <code>fread</code>.</p>
 </div>
 </div>
@@ -704,7 +707,7 @@ l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st
 <span class="kw">image</span>(l2,
       <span class="dt">col =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
       <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <p>Tem algo estranho com esta imagem. O que é? (valendo um sticker).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)
 l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">t</span>(l2[<span class="dv">1</span><span class="op">:</span><span class="dv">1349</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">1613</span>]),
@@ -722,7 +725,7 @@ l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw"
            <span class="dt">col.regions =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
            <span class="dt">at =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">80</span>,<span class="dv">0</span>,<span class="dv">1</span>),
            <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho (ºC)&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <p><strong>Escrever dados binários no R</strong></p>
 
 </div>
