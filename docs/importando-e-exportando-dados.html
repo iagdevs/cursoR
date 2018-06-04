@@ -135,7 +135,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.3" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-save"><i class="fa fa-check"></i><b>4.1.3</b> Exportando objetos com <code>save</code></a></li>
 <li class="chapter" data-level="4.1.4" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#exportando-objetos-com-saverds"><i class="fa fa-check"></i><b>4.1.4</b> Exportando objetos com <code>saveRDS</code></a></li>
 <li class="chapter" data-level="4.1.5" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#processing_dfs"><i class="fa fa-check"></i><b>4.1.5</b> Processando nossa data frame</a></li>
-<li class="chapter" data-level="4.1.6" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data.table-e-mais"><i class="fa fa-check"></i><b>4.1.6</b> Data.table e mais</a></li>
+<li class="chapter" data-level="4.1.6" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#data.table-e-mais"><i class="fa fa-check"></i><b>4.1.6</b> Data.Table e mais</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#tidyverse"><i class="fa fa-check"></i><b>4.2</b> Tidyverse</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="importando-e-exportando-dados.html"><a href="importando-e-exportando-dados.html#importando-dados"><i class="fa fa-check"></i><b>4.2.1</b> Importando dados</a></li>
@@ -266,9 +266,9 @@ Os argumentos da função são:</p>
 <p>Apareceu uma mensagem de erro, <span style="color:blue">você saberia dizer o porquê?</span></p>
 <p><strong>Caso você trabalhe com algum banco de dados em formato .txt e quiser abrir no R… Abra-os no bloco de notas primeiro!</strong></p>
 <p>Vamos dar uma olhada em alguns dados, o primeiro tem uma cara assim:</p>
-<p><img src="figuras/f1.png" width="665" /></p>
+<p><img src="figuras/f1.png" /><!-- --></p>
 <p>Já o segundo arquivo é assim:</p>
-<p><img src="figuras/f2.png" width="552" /></p>
+<p><img src="figuras/f2.png" /><!-- --></p>
 <p>Você notou a diferença? Como vimos anteriormente, para importar os dados no R é super importante que você especifique o tipo de separador utilizado. Como o segundo arquivo é separado por “;”, precisamos espercificar o argumento <code>sep</code> na hora de usar o comando <code>read.table</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014v2.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
 <span class="kw">head</span>(df2)</code></pre></div>
@@ -376,7 +376,7 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
-<p>Quando trabalhamos com séries temporais, é importante ter a variável tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Porém, a classe do tipo Data é “factor” assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato 2018-06-04 01:33:20.</p>
+<p>Quando trabalhamos com séries temporais, é importante ter a variável tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Porém, a classe do tipo Data é “factor” assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato 2018-06-04 16:21:09.</p>
 <p>Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa nova varável chamada “tempo_char”, adicionando-a diretamente no data frame com o cifrão (“$”). Podemos fazer isso com as funções <code>paste</code> ou <code>paste0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo_char &lt;-<span class="st"> </span><span class="kw">paste</span>(df<span class="op">$</span>Data, df<span class="op">$</span>Hora)
 <span class="kw">head</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
@@ -444,35 +444,37 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 ## 5 2014-01-01 04:00:00   quarta janeiro 16071.17 days 2014
 ## 6 2014-01-01 05:00:00   quarta janeiro 16071.21 days 2014
 ## 7 2014-01-01 06:00:00   quarta janeiro 16071.25 days 2014</code></pre>
-<p>Podemos calcular a média horaria por dia da semana:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria, <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays), sum, <span class="dt">na.rm =</span> T)
+<p>Com a função <code>aggregate</code>, podemos agregar os dados de diversas formas. Por exemplo, a média horaria por dia da semana é:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria, <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays), mean, <span class="dt">na.rm =</span> T)
+<span class="kw">names</span>(dff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dias&quot;</span>, <span class="st">&quot;MediaHoraria&quot;</span>)
 dff</code></pre></div>
-<pre><code>##   Group.1     x
-## 1 domingo 20327
-## 2  quarta 40180
-## 3  quinta 41199
-## 4  sábado 32298
-## 5 segunda 34057
-## 6   sexta 42558
-## 7   terça 37904</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(dff) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dias&quot;</span>, <span class="st">&quot;MediaHoraria&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff<span class="op">$</span>sd &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria, 
-                    <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays), 
-                    sum, <span class="dt">na.rm =</span> T)<span class="op">$</span>x
+<pre><code>##      dias MediaHoraria
+## 1 domingo     17.32907
+## 2  quarta     34.07973
+## 3  quinta     33.65931
+## 4  sábado     27.30178
+## 5 segunda     28.93543
+## 6   sexta     35.40599
+## 7   terça     32.04057</code></pre>
+<p>E o desvio-padrão é:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dff<span class="op">$</span>sd &lt;-<span class="st"> </span><span class="kw">aggregate</span>(df<span class="op">$</span>MediaHoraria, <span class="dt">by =</span> <span class="kw">list</span>(df<span class="op">$</span>weekdays), sd, <span class="dt">na.rm =</span> T)<span class="op">$</span>x
 dff</code></pre></div>
-<pre><code>##      dias MediaHoraria    sd
-## 1 domingo        20327 20327
-## 2  quarta        40180 40180
-## 3  quinta        41199 41199
-## 4  sábado        32298 32298
-## 5 segunda        34057 34057
-## 6   sexta        42558 42558
-## 7   terça        37904 37904</code></pre>
+<pre><code>##      dias MediaHoraria       sd
+## 1 domingo     17.32907 22.11278
+## 2  quarta     34.07973 41.26901
+## 3  quinta     33.65931 42.14773
+## 4  sábado     27.30178 35.08044
+## 5 segunda     28.93543 32.15303
+## 6   sexta     35.40599 44.44488
+## 7   terça     32.04057 33.87323</code></pre>
+<hr />
+<p><span style="color:red"><strong>Exercício</strong>: <strong>Em média</strong>, como o NOx varia ao longo do dia de acordo com esses dados? Qual a amplitude diária?</span></p>
+<hr />
 </div>
 <div id="subset" class="section level4">
-<h4><span class="header-section-number">4.1.5.2</span> Subset</h4>
+<h4><span class="header-section-number">4.1.5.2</span> <code>subset</code></h4>
 <p>Como podemos escolher só o mês de janeiro??</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#[     LINHAS    ,  COLUNAS   ]</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#[ LINHAS , COLUNAS ]</span>
 <span class="kw">head</span>(df[df<span class="op">$</span>mes <span class="op">==</span><span class="st"> &quot;janeiro&quot;</span>, ]) <span class="co">#TODAS AS COLUNAS</span></code></pre></div>
 <pre><code>##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
 ## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
@@ -516,29 +518,32 @@ dff</code></pre></div>
 <pre><code>## [1] 9 9 5 4 5 5</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df[df<span class="op">$</span>mes <span class="op">==</span><span class="st"> &quot;janeiro&quot;</span>, <span class="st">&quot;MediaHoraria&quot;</span>])</code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<p>Dessa forma, vamos salvar nosso data frame:</p>
+<hr />
+<p><span style="color:red"><strong>Exercício</strong>: <strong>Em média</strong>, como o NOx varia ao longo do dia em Julho? E em Dezembro?</span></p>
+<hr />
+<p>Vamos salvar nosso data frame para depois fazer gráficos:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(df, <span class="st">&quot;dados/df.rds&quot;</span>)</code></pre></div>
 </div>
 </div>
 <div id="data.table-e-mais" class="section level3">
-<h3><span class="header-section-number">4.1.6</span> Data.table e mais</h3>
-<p>O data.table é um pacote que apresenta a classe <code>data.table</code>, que é como uma versão melhorada da classe <code>data-frame</code> O termo especifico é que <code>data-table</code> tem um “parentesco” (inherits) com a classe <code>data.frame</code></p>
-<p>Vamos ver como funciona data.table lendo os dois arquivos e comparar quanto tempo demora cada um.</p>
+<h3><span class="header-section-number">4.1.6</span> Data.Table e mais</h3>
+<p>O data.table é um pacote que apresenta a classe <code>data.table</code>, que é como uma versão melhorada da classe <code>data.frame</code> O termo especifico é que <code>data.table</code> tem um “parentesco” (inherits) com a classe <code>data.frame</code>.</p>
+<p>Vamos ver como funciona data.table lendo os dois arquivos e comparar quanto tempo demora cada um. A função de leitura do data.table é <code>fread</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.117   0.000   0.117</code></pre>
+##   0.044   0.000   0.044</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.014   0.004   0.022</code></pre>
-<p>Para isso usamos a função <code>fread</code>.</p>
+##   0.004   0.000   0.006</code></pre>
 </div>
 </div>
 <div id="tidyverse" class="section level2">
 <h2><span class="header-section-number">4.2</span> Tidyverse</h2>
 <p>Um método mais recente (e muito interessante!) de tratar data frames é usando os pacotes dentro do <a href="https://www.tidyverse.org/">Tidyverse</a>.<br />
 Usando diversas funções dos pacotes <strong>readr</strong>, <strong>tidyr</strong> e <strong>dplyr</strong>, por exemplo, é possível ler e processar dados de uma maneira mais <em>user-friendly</em> devido à sintaxe das funções e de como elas podem ser usadas em conjunto.<br />
-Note que muitas das funções usadas abaixo podem ser encontradas em Base ou em outros pacotes.</p>
+Assim como o data.table tem uma classe própria, as funções dentro do tidyverse costumam trabalhar com sua própria classe, que é o <code>tibble</code> (ou <code>tbl_df</code>) - <em>que segundo <a href="https://github.com/tidyverse/tibble">os desenvolvedores</a> são <code>data.frames</code> preguiçosos e mal-humorados. Isso pode parecer ruim, mas na verdade é bom pois exige funções “mais espertas” para lidar com eles</em>. Ainda assim é possível trabalhar com data frames sem dificuldades.<br />
+Note que muitas das funções usadas abaixo podem ser encontradas em Base ou em outros pacotes associados.</p>
 <div id="importando-dados" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Importando dados</h3>
 <p>Todas as funções de leitura possuem a mesma estrutura:</p>
@@ -553,7 +558,7 @@ Note que muitas das funções usadas abaixo podem ser encontradas em Base ou em 
        <span class="dt">skip =</span> <span class="dv">0</span>, 
        <span class="dt">n_max =</span> <span class="ot">Inf</span>, 
        <span class="dt">guess_max =</span> <span class="kw">min</span>(<span class="dv">1000</span>, n_max), <span class="dt">progress =</span> <span class="kw">interactive</span>())</code></pre></div>
-<p><em>Dica: Quando a descrição de uma função mostra os argumentos já definidos (<code>col_names = TRUE</code>), isso significa que esses são os valores padrão e que você não precisa escrever os argumentos se não quiser mudá-los</em></p>
+<p><em>Dica/Lembrete: Quando a descrição de uma função mostra os argumentos já definidos (<code>col_names = TRUE</code>), isso significa que esses são os valores padrão e que você não precisa escrever os argumentos se não quiser mudá-los</em></p>
 <p>Assim, todas as funções de leitura só precisam do nome do arquivo!</p>
 <p>Então como ler diferentes arquivos? Usando diferentes funções.</p>
 <ul>
@@ -567,30 +572,258 @@ Note que muitas das funções usadas abaixo podem ser encontradas em Base ou em 
 </li>
 <li><code>read_xl</code> lê arquivos <strong>Excel</strong> (.xls e .xlsx)</li>
 </ul>
+<p>Assim, para ler os dados de Paracatu do INMET:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+paracatu &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;dados/paracatu.csv&quot;</span>)
+<span class="kw">summary</span>(paracatu)</code></pre></div>
+<pre><code>##  codigo_estacao         data               hora             temp_inst    
+##  Length:24          Length:24          Length:24          Min.   :14.50  
+##  Class :character   Class :character   Class :character   1st Qu.:16.25  
+##  Mode  :character   Mode  :character   Mode  :character   Median :19.40  
+##                                                           Mean   :20.04  
+##                                                           3rd Qu.:24.32  
+##                                                           Max.   :26.40  
+##     temp_max        temp_min      umid_inst           umid_max        
+##  Min.   :15.50   Min.   :14.20   Length:24          Length:24         
+##  1st Qu.:17.15   1st Qu.:15.38   Class :character   Class :character  
+##  Median :19.75   Median :18.15   Mode  :character   Mode  :character  
+##  Mean   :20.78   Mean   :19.26                                        
+##  3rd Qu.:24.98   3rd Qu.:23.38                                        
+##  Max.   :27.20   Max.   :26.20                                        
+##    umid_min         pto_orvalho_inst   pto_orvalho_max   
+##  Length:24          Length:24          Length:24         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##  pto_orvalho_min       pressao       pressao_max     pressao_min   
+##  Length:24          Min.   :934.0   Min.   :934.1   Min.   :933.9  
+##  Class :character   1st Qu.:934.7   1st Qu.:934.8   1st Qu.:934.4  
+##  Mode  :character   Median :935.1   Median :935.4   Median :934.9  
+##                     Mean   :935.3   Mean   :935.6   Mean   :935.1  
+##                     3rd Qu.:935.6   3rd Qu.:936.0   3rd Qu.:935.4  
+##                     Max.   :937.6   Max.   :937.7   Max.   :937.4  
+##  vento_direcao     vento_vel       vento_rajada     radiacao      
+##  Min.   :0.300   Min.   : 14.00   Min.   :0.80   Min.   :  -3.60  
+##  1st Qu.:0.600   1st Qu.: 77.75   1st Qu.:1.85   1st Qu.:  -3.60  
+##  Median :1.350   Median :209.00   Median :2.80   Median :  21.03  
+##  Mean   :1.567   Mean   :177.96   Mean   :3.30   Mean   : 713.77  
+##  3rd Qu.:2.450   3rd Qu.:256.00   3rd Qu.:4.60   3rd Qu.:1483.50  
+##  Max.   :4.100   Max.   :355.00   Max.   :6.70   Max.   :2642.00  
+##   precipitacao
+##  Min.   :0    
+##  1st Qu.:0    
+##  Median :0    
+##  Mean   :0    
+##  3rd Qu.:0    
+##  Max.   :0</code></pre>
 </div>
 <div id="leitura-processamento" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Leitura <code>%&gt;%</code> Processamento</h3>
-<p>Existem funções de leitura e modificação de data frames. Muitas vezes, você precisa lidar com dados “brutos” e que precisam de um certo processamento antes de serem utilizados em cálculos e gráficos. Isso exige no mínimo duas funções em duas linhas de código (uma para ler e outra para modificar), mas em geral esse processo precisa de bem mais do que isso.</p>
-<p>O operador <code>%&gt;%</code> (chamada de <em>pipe</em>) está dentro do pacote magnittr (dentro do Tidyverse) e é muito útil nesse processo! (<a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">Leia um pouco sobre ele aqui</a>)</p>
+<p>Existem funções de leitura e modificação de data frames. Muitas vezes, você precisa lidar com dados “brutos” e que precisam de um certo processamento antes de serem utilizados em cálculos e gráficos. Como vimos anteriormente, isso exige no mínimo duas funções em duas linhas de código (uma para ler e outra para modificar), mas em geral esse processo precisa de bem mais do que isso.</p>
+<p>O operador <a href="http://r4ds.had.co.nz/pipes.html"><code>%&gt;%</code></a>) (chamada de <em>pipe</em>) está dentro do pacote magnittr (dentro do Tidyverse) e é muito útil nesse processo! (<a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">Leia um pouco sobre ele aqui</a>)</p>
 <p>Como ele funciona?</p>
 <blockquote>
-<p>variável %&gt;% função1(., faz a modificação 1) %&gt;% função2(., faz a modificação 2) %&gt;% … funçãon(., faz a modificação n)</p>
+<p>variável %&gt;% função1(., faz a modificação 1) %&gt;% função2(., faz a modificação 2) %&gt;% … %&gt;% funçãon(., faz a modificação n)</p>
 </blockquote>
 <p>O ponto (.) acima indica que a função será aplicada na versão da variável que chega nela.<br />
 Em notação matemática, podemos dizer que <span class="math inline">\(x \ \ \%&gt;\% \ \ f(y) = f(x,y)\)</span>.<br />
 Por exemplo, observe o código abaixo:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
 
-<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">order</span>(., <span class="dt">decreasing =</span> T) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">paste</span>(., <span class="st">&quot;vezes&quot;</span>)</code></pre></div>
-<pre><code>##  [1] &quot;10 vezes&quot; &quot;9 vezes&quot;  &quot;8 vezes&quot;  &quot;7 vezes&quot;  &quot;6 vezes&quot;  &quot;5 vezes&quot; 
-##  [7] &quot;4 vezes&quot;  &quot;3 vezes&quot;  &quot;2 vezes&quot;  &quot;1 vezes&quot;</code></pre>
-<p>O vetor (que não precisa necessariamente ser definido como uma variável) é primeiro ordenado de forma decrescente e, a partir dessa modificação, é transformado em um vetor de caracteres ao colar a string “vezes” a ele.</p>
+<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">order</span>(., <span class="dt">decreasing =</span> T) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">paste</span>(., <span class="st">&quot;n&quot;</span>)</code></pre></div>
+<pre><code>##  [1] &quot;10 n&quot; &quot;9 n&quot;  &quot;8 n&quot;  &quot;7 n&quot;  &quot;6 n&quot;  &quot;5 n&quot;  &quot;4 n&quot;  &quot;3 n&quot;  &quot;2 n&quot;  &quot;1 n&quot;</code></pre>
+<p>O vetor (que não precisa necessariamente ser definido como uma variável) é primeiro ordenado de forma decrescente e, a partir dessa modificação, é transformado em um vetor de caracteres ao colar a string “n” a ele.</p>
 <p>Uma forma de fazer isso sem usar <code>%&gt;%</code> seria:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(<span class="kw">order</span>(<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>), <span class="dt">decreasing =</span> T), <span class="st">&quot;vezes&quot;</span>)</code></pre></div>
 <pre><code>##  [1] &quot;10 vezes&quot; &quot;9 vezes&quot;  &quot;8 vezes&quot;  &quot;7 vezes&quot;  &quot;6 vezes&quot;  &quot;5 vezes&quot; 
 ##  [7] &quot;4 vezes&quot;  &quot;3 vezes&quot;  &quot;2 vezes&quot;  &quot;1 vezes&quot;</code></pre>
 <p><span style="color:blue"><strong>Pergunta</strong>: Na sua opinião, qual é o código mais fácil e rápido de ser entendido?</span></p>
 <p>Como isso pode ser aplicado a data frames?</p>
+<p>Voltando aos dados de Paracatu, vamos supor que você ainda não tenha lido esses dados, mas já saiba que o dia e a hora estão em colunas separadas e que você precisa juntá-los para calcular médias em períodos específicos. Além disso, você quer comparar a temperatura instantânea “temp_inst” com a média entre temperatura máxima “temp_max” e mínima “temp_min”. Então, precisamos:</p>
+<ol style="list-style-type: decimal">
+<li>Ler os dados<br />
+</li>
+<li>Juntas as colunas “data” e “hora”<br />
+</li>
+<li>Transformar a coluna resultante em <code>POSIXct</code><br />
+</li>
+<li>Calcular a média entre “temp_max” e “temp_min”<br />
+</li>
+<li>Comparar o que foi calculado com “temp_inst”</li>
+</ol>
+<p>Sem <code>%&gt;%</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+paracatu &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;dados/paracatu.csv&quot;</span>) <span class="co">#-- 1.</span>
+paracatu &lt;-<span class="st"> </span><span class="kw">mutate</span>(paracatu, <span class="dt">data_completa =</span> <span class="kw">paste</span>(data, hora, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)) <span class="co">#-- 2.</span>
+paracatu &lt;-<span class="st"> </span><span class="kw">mutate</span>(paracatu, <span class="dt">data_completa =</span> <span class="kw">as.POSIXct</span>(data_completa, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y-%H&quot;</span>)) <span class="co">#-- 3.</span>
+paracatu &lt;-<span class="st"> </span><span class="kw">mutate</span>(paracatu, <span class="dt">temp_med =</span> (temp_max <span class="op">+</span><span class="st"> </span>temp_min)<span class="op">/</span><span class="dv">2</span>) <span class="co">#-- 4.</span>
+paracatu &lt;-<span class="st"> </span><span class="kw">mutate</span>(paracatu, <span class="dt">temp_residuo =</span> temp_inst <span class="op">-</span><span class="st"> </span>temp_med) <span class="co">#-- 5.</span>
+<span class="kw">summary</span>(paracatu)</code></pre></div>
+<pre><code>##  codigo_estacao         data               hora             temp_inst    
+##  Length:24          Length:24          Length:24          Min.   :14.50  
+##  Class :character   Class :character   Class :character   1st Qu.:16.25  
+##  Mode  :character   Mode  :character   Mode  :character   Median :19.40  
+##                                                           Mean   :20.04  
+##                                                           3rd Qu.:24.32  
+##                                                           Max.   :26.40  
+##     temp_max        temp_min      umid_inst           umid_max        
+##  Min.   :15.50   Min.   :14.20   Length:24          Length:24         
+##  1st Qu.:17.15   1st Qu.:15.38   Class :character   Class :character  
+##  Median :19.75   Median :18.15   Mode  :character   Mode  :character  
+##  Mean   :20.78   Mean   :19.26                                        
+##  3rd Qu.:24.98   3rd Qu.:23.38                                        
+##  Max.   :27.20   Max.   :26.20                                        
+##    umid_min         pto_orvalho_inst   pto_orvalho_max   
+##  Length:24          Length:24          Length:24         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##  pto_orvalho_min       pressao       pressao_max     pressao_min   
+##  Length:24          Min.   :934.0   Min.   :934.1   Min.   :933.9  
+##  Class :character   1st Qu.:934.7   1st Qu.:934.8   1st Qu.:934.4  
+##  Mode  :character   Median :935.1   Median :935.4   Median :934.9  
+##                     Mean   :935.3   Mean   :935.6   Mean   :935.1  
+##                     3rd Qu.:935.6   3rd Qu.:936.0   3rd Qu.:935.4  
+##                     Max.   :937.6   Max.   :937.7   Max.   :937.4  
+##  vento_direcao     vento_vel       vento_rajada     radiacao      
+##  Min.   :0.300   Min.   : 14.00   Min.   :0.80   Min.   :  -3.60  
+##  1st Qu.:0.600   1st Qu.: 77.75   1st Qu.:1.85   1st Qu.:  -3.60  
+##  Median :1.350   Median :209.00   Median :2.80   Median :  21.03  
+##  Mean   :1.567   Mean   :177.96   Mean   :3.30   Mean   : 713.77  
+##  3rd Qu.:2.450   3rd Qu.:256.00   3rd Qu.:4.60   3rd Qu.:1483.50  
+##  Max.   :4.100   Max.   :355.00   Max.   :6.70   Max.   :2642.00  
+##   precipitacao data_completa                    temp_med    
+##  Min.   :0     Min.   :2018-06-01 00:00:00   Min.   :14.85  
+##  1st Qu.:0     1st Qu.:2018-06-01 05:45:00   1st Qu.:16.21  
+##  Median :0     Median :2018-06-01 11:30:00   Median :18.90  
+##  Mean   :0     Mean   :2018-06-01 11:30:00   Mean   :20.02  
+##  3rd Qu.:0     3rd Qu.:2018-06-01 17:15:00   3rd Qu.:24.18  
+##  Max.   :0     Max.   :2018-06-01 23:00:00   Max.   :26.70  
+##   temp_residuo     
+##  Min.   :-1.60000  
+##  1st Qu.:-0.35000  
+##  Median : 0.02500  
+##  Mean   : 0.02292  
+##  3rd Qu.: 0.55000  
+##  Max.   : 1.65000</code></pre>
+<p>Note que sempre se mostra necessário salvar cada passo em uma nova variável ou, nesse caso, reciclar a mesma variável. Foi preciso uma linha para cada operação.</p>
+<p>Já com <code>%&gt;%</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+paracatu &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;dados/paracatu.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- 1.</span>
+<span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">data_completa =</span> <span class="kw">paste</span>(data, hora, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#-- 2.</span>
+<span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">data_completa =</span> <span class="kw">as.POSIXct</span>(data_completa, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y-%H&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#-- 3.</span>
+<span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">temp_med =</span> (temp_max <span class="op">+</span><span class="st"> </span>temp_min)<span class="op">/</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#-- 4.</span>
+<span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">temp_residuo =</span> temp_inst <span class="op">-</span><span class="st"> </span>temp_med) <span class="co">#-- 5.</span>
+<span class="kw">summary</span>(paracatu)</code></pre></div>
+<pre><code>##  codigo_estacao         data               hora             temp_inst    
+##  Length:24          Length:24          Length:24          Min.   :14.50  
+##  Class :character   Class :character   Class :character   1st Qu.:16.25  
+##  Mode  :character   Mode  :character   Mode  :character   Median :19.40  
+##                                                           Mean   :20.04  
+##                                                           3rd Qu.:24.32  
+##                                                           Max.   :26.40  
+##     temp_max        temp_min      umid_inst           umid_max        
+##  Min.   :15.50   Min.   :14.20   Length:24          Length:24         
+##  1st Qu.:17.15   1st Qu.:15.38   Class :character   Class :character  
+##  Median :19.75   Median :18.15   Mode  :character   Mode  :character  
+##  Mean   :20.78   Mean   :19.26                                        
+##  3rd Qu.:24.98   3rd Qu.:23.38                                        
+##  Max.   :27.20   Max.   :26.20                                        
+##    umid_min         pto_orvalho_inst   pto_orvalho_max   
+##  Length:24          Length:24          Length:24         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##  pto_orvalho_min       pressao       pressao_max     pressao_min   
+##  Length:24          Min.   :934.0   Min.   :934.1   Min.   :933.9  
+##  Class :character   1st Qu.:934.7   1st Qu.:934.8   1st Qu.:934.4  
+##  Mode  :character   Median :935.1   Median :935.4   Median :934.9  
+##                     Mean   :935.3   Mean   :935.6   Mean   :935.1  
+##                     3rd Qu.:935.6   3rd Qu.:936.0   3rd Qu.:935.4  
+##                     Max.   :937.6   Max.   :937.7   Max.   :937.4  
+##  vento_direcao     vento_vel       vento_rajada     radiacao      
+##  Min.   :0.300   Min.   : 14.00   Min.   :0.80   Min.   :  -3.60  
+##  1st Qu.:0.600   1st Qu.: 77.75   1st Qu.:1.85   1st Qu.:  -3.60  
+##  Median :1.350   Median :209.00   Median :2.80   Median :  21.03  
+##  Mean   :1.567   Mean   :177.96   Mean   :3.30   Mean   : 713.77  
+##  3rd Qu.:2.450   3rd Qu.:256.00   3rd Qu.:4.60   3rd Qu.:1483.50  
+##  Max.   :4.100   Max.   :355.00   Max.   :6.70   Max.   :2642.00  
+##   precipitacao data_completa                    temp_med    
+##  Min.   :0     Min.   :2018-06-01 00:00:00   Min.   :14.85  
+##  1st Qu.:0     1st Qu.:2018-06-01 05:45:00   1st Qu.:16.21  
+##  Median :0     Median :2018-06-01 11:30:00   Median :18.90  
+##  Mean   :0     Mean   :2018-06-01 11:30:00   Mean   :20.02  
+##  3rd Qu.:0     3rd Qu.:2018-06-01 17:15:00   3rd Qu.:24.18  
+##  Max.   :0     Max.   :2018-06-01 23:00:00   Max.   :26.70  
+##   temp_residuo     
+##  Min.   :-1.60000  
+##  1st Qu.:-0.35000  
+##  Median : 0.02500  
+##  Mean   : 0.02292  
+##  3rd Qu.: 0.55000  
+##  Max.   : 1.65000</code></pre>
+<p>O código pode estar separado por linhas, mas perceba que, ao rodar qualquer linha desse conjunto, todo ele é rodado de uma vez!</p>
+<p>Assim, adicionar um passo fica fácil. Por exemplo, as colunas “data” e “hora” não são mais necessárias:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+paracatu &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;dados/paracatu.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- 1.</span>
+<span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">data_completa =</span> <span class="kw">paste</span>(data, hora, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#-- 2.</span>
+<span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">data_completa =</span> <span class="kw">as.POSIXct</span>(data_completa, <span class="dt">format =</span> <span class="st">&quot;%d/%m/%Y-%H&quot;</span>)) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#-- 3.</span>
+<span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">temp_med =</span> (temp_max <span class="op">+</span><span class="st"> </span>temp_min)<span class="op">/</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#-- 4.</span>
+<span class="st">  </span><span class="kw">mutate</span>(., <span class="dt">temp_residuo =</span> temp_inst <span class="op">-</span><span class="st"> </span>temp_med) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#-- 5.</span>
+<span class="st">  </span><span class="kw">select</span>(., <span class="op">-</span><span class="kw">c</span>(data, hora)) <span class="co">#-- 6.</span>
+<span class="kw">summary</span>(paracatu)</code></pre></div>
+<pre><code>##  codigo_estacao       temp_inst        temp_max        temp_min    
+##  Length:24          Min.   :14.50   Min.   :15.50   Min.   :14.20  
+##  Class :character   1st Qu.:16.25   1st Qu.:17.15   1st Qu.:15.38  
+##  Mode  :character   Median :19.40   Median :19.75   Median :18.15  
+##                     Mean   :20.04   Mean   :20.78   Mean   :19.26  
+##                     3rd Qu.:24.32   3rd Qu.:24.98   3rd Qu.:23.38  
+##                     Max.   :26.40   Max.   :27.20   Max.   :26.20  
+##   umid_inst           umid_max           umid_min        
+##  Length:24          Length:24          Length:24         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+##  pto_orvalho_inst   pto_orvalho_max    pto_orvalho_min       pressao     
+##  Length:24          Length:24          Length:24          Min.   :934.0  
+##  Class :character   Class :character   Class :character   1st Qu.:934.7  
+##  Mode  :character   Mode  :character   Mode  :character   Median :935.1  
+##                                                           Mean   :935.3  
+##                                                           3rd Qu.:935.6  
+##                                                           Max.   :937.6  
+##   pressao_max     pressao_min    vento_direcao     vento_vel     
+##  Min.   :934.1   Min.   :933.9   Min.   :0.300   Min.   : 14.00  
+##  1st Qu.:934.8   1st Qu.:934.4   1st Qu.:0.600   1st Qu.: 77.75  
+##  Median :935.4   Median :934.9   Median :1.350   Median :209.00  
+##  Mean   :935.6   Mean   :935.1   Mean   :1.567   Mean   :177.96  
+##  3rd Qu.:936.0   3rd Qu.:935.4   3rd Qu.:2.450   3rd Qu.:256.00  
+##  Max.   :937.7   Max.   :937.4   Max.   :4.100   Max.   :355.00  
+##   vento_rajada     radiacao        precipitacao
+##  Min.   :0.80   Min.   :  -3.60   Min.   :0    
+##  1st Qu.:1.85   1st Qu.:  -3.60   1st Qu.:0    
+##  Median :2.80   Median :  21.03   Median :0    
+##  Mean   :3.30   Mean   : 713.77   Mean   :0    
+##  3rd Qu.:4.60   3rd Qu.:1483.50   3rd Qu.:0    
+##  Max.   :6.70   Max.   :2642.00   Max.   :0    
+##  data_completa                    temp_med      temp_residuo     
+##  Min.   :2018-06-01 00:00:00   Min.   :14.85   Min.   :-1.60000  
+##  1st Qu.:2018-06-01 05:45:00   1st Qu.:16.21   1st Qu.:-0.35000  
+##  Median :2018-06-01 11:30:00   Median :18.90   Median : 0.02500  
+##  Mean   :2018-06-01 11:30:00   Mean   :20.02   Mean   : 0.02292  
+##  3rd Qu.:2018-06-01 17:15:00   3rd Qu.:24.18   3rd Qu.: 0.55000  
+##  Max.   :2018-06-01 23:00:00   Max.   :26.70   Max.   : 1.65000</code></pre>
+<p><span style="color:blue"><strong>Pergunta</strong>: E agora? Na sua opinião, qual é o código mais fácil e rápido de ser entendido?</span></p>
+<hr />
+<p><span style="color:red"><strong>Exercício</strong>: Crie um data frame dos dados de Paracatu com a data no formato <code>POSIXct</code> e os resíduos de temperatura, umidade e pressão. Em geral, qual grandeza tem maior resíduo?</span></p>
+<hr />
 </div>
 </div>
 <div id="outros-tipos-de-dados" class="section level2">
@@ -598,10 +831,10 @@ Por exemplo, observe o código abaixo:</p>
 <div id="netcdf" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> NetCDF</h3>
 <p>O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos compostos por dados, atributos e metadados.</p>
-<p>O pacote <code>ncdf4</code> pode ser usado para acessar a essa biblioteca, os comandos abaixo instalam e carregam esse pacote:</p>
+<p>O pacote <code>ncdf4</code> pode ser usado para acessar essa biblioteca, os comandos abaixo instalam e carregam esse pacote:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;ncdf4&quot;) # instala o pacote</span>
-<span class="kw">library</span>(<span class="st">&quot;ncdf4&quot;</span>)          <span class="co"># carrega o pacote</span>
-<span class="kw">nc_version</span>()              <span class="co"># que retorna a versão da biblioteca</span></code></pre></div>
+<span class="kw">library</span>(<span class="st">&quot;ncdf4&quot;</span>)           <span class="co"># carrega o pacote</span>
+<span class="kw">nc_version</span>()               <span class="co"># versão da biblioteca</span></code></pre></div>
 <pre><code>## [1] &quot;ncdf4_1.16_20170401&quot;</code></pre>
 <p>Um exemplo de NetCDF:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;dados/met_em.d03.2016-01-10.nc&quot;</span>)</code></pre></div>
@@ -707,7 +940,7 @@ l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st
 <span class="kw">image</span>(l2,
       <span class="dt">col =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
       <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 <p>Tem algo estranho com esta imagem. O que é? (valendo um sticker).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)
 l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">t</span>(l2[<span class="dv">1</span><span class="op">:</span><span class="dv">1349</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">1613</span>]),
@@ -725,7 +958,7 @@ l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw"
            <span class="dt">col.regions =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
            <span class="dt">at =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">80</span>,<span class="dv">0</span>,<span class="dv">1</span>),
            <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho (ºC)&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p><strong>Escrever dados binários no R</strong></p>
 
 </div>

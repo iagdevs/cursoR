@@ -197,28 +197,32 @@ Vamos dar uma olhada no nosso data frame:
 head(df)
 ```
 
-Podemos calcular a média horaria por dia da semana:
+Com a função `aggregate`, podemos agregar os dados de diversas formas. Por exemplo, a média horaria por dia da semana é:
 
 ```{r}
-dff <- aggregate(df$MediaHoraria, by = list(df$weekdays), sum, na.rm = T)
-dff
+dff <- aggregate(df$MediaHoraria, by = list(df$weekdays), mean, na.rm = T)
 names(dff) <- c("dias", "MediaHoraria")
-```
-
-```{r}
-dff$sd <- aggregate(df$MediaHoraria, 
-                    by = list(df$weekdays), 
-                    sum, na.rm = T)$x
 dff
 ```
 
+E o desvio-padrão é:
 
-#### Subset
+```{r}
+dff$sd <- aggregate(df$MediaHoraria, by = list(df$weekdays), sd, na.rm = T)$x
+dff
+```
+
+***
+<span style="color:red">**Exercício**: **Em média**, como o NOx varia ao longo do dia de acordo com esses dados? Qual a amplitude diária?</span>
+
+***
+
+#### `subset`
 
 Como podemos escolher só o mês de janeiro??
 
 ```{r}
-#[     LINHAS    ,  COLUNAS   ]
+#[ LINHAS , COLUNAS ]
 head(df[df$mes == "janeiro", ]) #TODAS AS COLUNAS
 ```
 
@@ -231,17 +235,24 @@ head(df[df$mes == "janeiro", "MediaHoraria"])
 class(df[df$mes == "janeiro", "MediaHoraria"])
 ```
 
-Dessa forma, vamos salvar nosso data frame:
+
+***
+<span style="color:red">**Exercício**: **Em média**, como o NOx varia ao longo do dia em Julho? E em Dezembro?</span>
+
+***
+
+Vamos salvar nosso data frame para depois fazer gráficos:
 
 ```{r}
 saveRDS(df, "dados/df.rds")
 ```
 
-### Data.table e mais
 
-O data.table é um pacote que apresenta a classe `data.table`, que é como uma versão melhorada da classe `data-frame` O termo especifico é que `data-table` tem um "parentesco" (inherits) com a classe `data.frame`
+### Data.Table e mais
 
-Vamos ver como funciona data.table lendo os dois arquivos e comparar quanto tempo demora cada um.
+O data.table é um pacote que apresenta a classe `data.table`, que é como uma versão melhorada da classe `data.frame` O termo especifico é que `data.table` tem um "parentesco" (inherits) com a classe `data.frame`.  
+
+Vamos ver como funciona data.table lendo os dois arquivos e comparar quanto tempo demora cada um. A função de leitura do data.table é `fread`.
 
 ```{r}
 df1 <- print(system.time(read.table("dados/NOXIPEN2014.txt", h = T)))
@@ -252,13 +263,14 @@ library(data.table)
 df2 <- print(system.time(fread("dados/NOXIPEN2014.txt", h = T)))
 ```
 
-Para isso usamos a função `fread`.
 
-## Tidyverse
+
+## Tidyverse {#tidyverse}
 
 Um método mais recente (e muito interessante!) de tratar data frames é usando os pacotes dentro do [Tidyverse](https://www.tidyverse.org/).  
 Usando diversas funções dos pacotes **readr**, **tidyr** e **dplyr**, por exemplo, é possível ler e processar dados de uma maneira mais *user-friendly* devido à sintaxe das funções e de como elas podem ser usadas em conjunto.  
-Note que muitas das funções usadas abaixo podem ser encontradas em Base ou em outros pacotes.
+Assim como o data.table tem uma classe própria, as funções dentro do tidyverse costumam trabalhar com sua própria classe, que é o `tibble` (ou `tbl_df`) - *que segundo [os desenvolvedores](https://github.com/tidyverse/tibble) são `data.frames` preguiçosos e mal-humorados. Isso pode parecer ruim, mas na verdade é bom pois exige funções "mais espertas" para lidar com eles*. Ainda assim é possível trabalhar com data frames sem dificuldades.    
+Note que muitas das funções usadas abaixo podem ser encontradas em Base ou em outros pacotes associados.
 
 ### Importando dados
 
@@ -278,7 +290,7 @@ read_*(arquivo,
        guess_max = min(1000, n_max), progress = interactive())
 ```
 
-*Dica: Quando a descrição de uma função mostra os argumentos já definidos (`col_names = TRUE`), isso significa que esses são os valores padrão e que você não precisa escrever os argumentos se não quiser mudá-los*  
+*Dica/Lembrete: Quando a descrição de uma função mostra os argumentos já definidos (`col_names = TRUE`), isso significa que esses são os valores padrão e que você não precisa escrever os argumentos se não quiser mudá-los*  
 
 Assim, todas as funções de leitura só precisam do nome do arquivo!  
 
@@ -290,15 +302,23 @@ Então como ler diferentes arquivos? Usando diferentes funções.
 - `read_fwf` lê arquivos **com delimitação fixa** (definidos com o argumento `col_positions`)  
 - `read_xl` lê arquivos **Excel** (.xls e .xlsx)  
 
+Assim, para ler os dados de Paracatu do INMET:
+
+```{r, message=F}
+library(tidyverse)
+paracatu <- read_csv("dados/paracatu.csv")
+summary(paracatu)
+```
+
 ### Leitura `%>%` Processamento
 
-Existem funções de leitura e modificação de data frames. Muitas vezes, você precisa lidar com dados "brutos" e que precisam de um certo processamento antes de serem utilizados em cálculos e gráficos. Isso exige no mínimo duas funções em duas linhas de código (uma para ler e outra para modificar), mas em geral esse processo precisa de bem mais do que isso.  
+Existem funções de leitura e modificação de data frames. Muitas vezes, você precisa lidar com dados "brutos" e que precisam de um certo processamento antes de serem utilizados em cálculos e gráficos. Como vimos anteriormente, isso exige no mínimo duas funções em duas linhas de código (uma para ler e outra para modificar), mas em geral esse processo precisa de bem mais do que isso.  
 
-O operador `%>%` (chamada de *pipe*) está dentro do pacote magnittr (dentro do Tidyverse) e é muito útil nesse processo! ([Leia um pouco sobre ele aqui](https://www.datacamp.com/community/tutorials/pipe-r-tutorial))  
+O operador [`%>%`](http://r4ds.had.co.nz/pipes.html)) (chamada de *pipe*) está dentro do pacote magnittr (dentro do Tidyverse) e é muito útil nesse processo! ([Leia um pouco sobre ele aqui](https://www.datacamp.com/community/tutorials/pipe-r-tutorial))  
 
 Como ele funciona?  
 
-> variável %>% função1(., faz a modificação 1) %>% função2(., faz a modificação 2) %>% ... funçãon(., faz a modificação n)
+> variável %>% função1(., faz a modificação 1) %>% função2(., faz a modificação 2) %>% ... %>% funçãon(., faz a modificação n)  
 
 O ponto (.) acima indica que a função será aplicada na versão da variável que chega nela.  
 Em notação matemática, podemos dizer que $x \ \ \%>\% \ \ f(y) = f(x,y)$.  
@@ -307,10 +327,10 @@ Por exemplo, observe o código abaixo:
 ```{r, message=F}
 library("tidyverse")
 
-seq(1, 10) %>% order(., decreasing = T) %>% paste(., "vezes")
+seq(1, 10) %>% order(., decreasing = T) %>% paste(., "n")
 ```
 
-O vetor (que não precisa necessariamente ser definido como uma variável) é primeiro ordenado de forma decrescente e, a partir dessa modificação, é transformado em um vetor de caracteres ao colar a string "vezes" a ele.  
+O vetor (que não precisa necessariamente ser definido como uma variável) é primeiro ordenado de forma decrescente e, a partir dessa modificação, é transformado em um vetor de caracteres ao colar a string "n" a ele.  
 
 Uma forma de fazer isso sem usar `%>%` seria:  
 
@@ -322,7 +342,62 @@ paste(order(seq(1, 10), decreasing = T), "vezes")
 
 Como isso pode ser aplicado a data frames?
 
+Voltando aos dados de Paracatu, vamos supor que você ainda não tenha lido esses dados, mas já saiba que o dia e a hora estão em colunas separadas e que você precisa juntá-los para calcular médias em períodos específicos. Além disso, você quer comparar a temperatura instantânea "temp_inst" com a média entre temperatura máxima "temp_max" e mínima "temp_min". Então, precisamos:  
 
+1. Ler os dados  
+2. Juntas as colunas "data" e "hora"  
+3. Transformar a coluna resultante em `POSIXct`  
+4. Calcular a média entre "temp_max" e "temp_min"  
+5. Comparar o que foi calculado com "temp_inst"  
+
+Sem `%>%`:
+
+```{r, message=F}
+library(tidyverse)
+paracatu <- read_csv("dados/paracatu.csv") #-- 1.
+paracatu <- mutate(paracatu, data_completa = paste(data, hora, sep = "-")) #-- 2.
+paracatu <- mutate(paracatu, data_completa = as.POSIXct(data_completa, format = "%d/%m/%Y-%H")) #-- 3.
+paracatu <- mutate(paracatu, temp_med = (temp_max + temp_min)/2) #-- 4.
+paracatu <- mutate(paracatu, temp_residuo = temp_inst - temp_med) #-- 5.
+summary(paracatu)
+```
+
+Note que sempre se mostra necessário salvar cada passo em uma nova variável ou, nesse caso, reciclar a mesma variável. Foi preciso uma linha para cada operação.
+
+Já com `%>%`:
+
+```{r, message=F}
+library(tidyverse)
+paracatu <- read_csv("dados/paracatu.csv") %>% #-- 1.
+  mutate(., data_completa = paste(data, hora, sep = "-")) %>%  #-- 2.
+  mutate(., data_completa = as.POSIXct(data_completa, format = "%d/%m/%Y-%H")) %>%  #-- 3.
+  mutate(., temp_med = (temp_max + temp_min)/2) %>%  #-- 4.
+  mutate(., temp_residuo = temp_inst - temp_med) #-- 5.
+summary(paracatu)
+```
+
+O código pode estar separado por linhas, mas perceba que, ao rodar qualquer linha desse conjunto, todo ele é rodado de uma vez!
+
+Assim, adicionar um passo fica fácil. Por exemplo, as colunas "data" e "hora" não são mais necessárias:
+
+```{r, message=F}
+library(tidyverse)
+paracatu <- read_csv("dados/paracatu.csv") %>% #-- 1.
+  mutate(., data_completa = paste(data, hora, sep = "-")) %>%  #-- 2.
+  mutate(., data_completa = as.POSIXct(data_completa, format = "%d/%m/%Y-%H")) %>%  #-- 3.
+  mutate(., temp_med = (temp_max + temp_min)/2) %>%  #-- 4.
+  mutate(., temp_residuo = temp_inst - temp_med) %>% #-- 5.
+  select(., -c(data, hora)) #-- 6.
+summary(paracatu)
+```
+
+
+<span style="color:blue">**Pergunta**: E agora? Na sua opinião, qual é o código mais fácil e rápido de ser entendido?</span>  
+
+***
+<span style="color:red">**Exercício**: Crie um data frame dos dados de Paracatu com a data no formato `POSIXct` e os resíduos de temperatura, umidade e pressão. Em geral, qual grandeza tem maior resíduo?</span>  
+
+***
 
 ## Outros Tipos de Dados
 
@@ -331,12 +406,12 @@ Como isso pode ser aplicado a data frames?
 
 O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos compostos por dados, atributos e metadados.
 
-O pacote `ncdf4` pode ser usado para acessar a essa biblioteca, os comandos abaixo instalam e carregam esse pacote:
+O pacote `ncdf4` pode ser usado para acessar essa biblioteca, os comandos abaixo instalam e carregam esse pacote:
 
 ```{r }
 #install.packages("ncdf4") # instala o pacote
-library("ncdf4")          # carrega o pacote
-nc_version()              # que retorna a versão da biblioteca
+library("ncdf4")           # carrega o pacote
+nc_version()               # versão da biblioteca
 ```
 
 Um exemplo de NetCDF:

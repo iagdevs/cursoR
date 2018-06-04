@@ -224,7 +224,7 @@ Iremos trabalhar bastante com data frames daqui pra frente, eles se tornarão al
 
 ## Tempo e Data
 
-O R trabalha com três classe de tempo: `POSIXct`, `POSIXlt` e `Date`, sendo que `POSIXct` se refere ao número de segundos desde o início de 1970 no modo UTC, enquanto que `POSIXct` armazena as datas como uma lista, contendo segundos, minutos, horas, dias, meses, etc.
+O R trabalha com três classe de tempo: `POSIXct`, `POSIXlt` e `Date`, sendo que `POSIXct` se refere ao número de segundos desde o início de 1970 no modo UTC, enquanto que `POSIXlt` armazena as datas como uma lista, contendo segundos, minutos, horas, dias, meses, etc.
 
 ```{r}
 a <- ISOdate(year = 2018, month = 4, day = 5)

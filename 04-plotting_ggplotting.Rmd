@@ -110,7 +110,7 @@ Vamos analisar o ano de 2014:
     + E para cada dia da semana?  
     + E para cada mês?  
   
-Usando algumas funções dentro do pacote **tidyverse**, que funcionam bem com o [*pipe* (`%>%`)](http://r4ds.had.co.nz/pipes.html):
+Usando algumas outras funções dentro do [**Tidyverse**](#tidyverse):
 
 ```{r, message=FALSE}
 library(tidyverse)
