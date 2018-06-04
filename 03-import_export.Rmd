@@ -466,62 +466,62 @@ A latitude de cada ponto de grade, assim como longitude níveis (tempo em outros
 lat  <- ncvar_get(wrf, "lat")
 lon  <- ncvar_get(wrf, "lon")
 ```
-O metadado de Longitude:
+O metadado de Longitude também pode conter informações úteis:
+```{r, eval=F}
+ncatt_get(edgar,"lon")
+# $standard_name
+# [1] "longitude"
+# $long_name
+# [1] "longitude"
+# $units
+# [1] "degrees_east"
+# $comment
+# [1] "center_of_cell"
+```
+e Latitude:
+```{r, eval=F}
+ncatt_get(edgar,"lat")
+# $standard_name
+# [1] "latitude"
+# $long_name
+# [1] "latitude"
+# $units
+# [1] "degrees_north"
+# $comment
+# [1] "center_of_cell"
 ```
 
+e também os atributos globais:
+```{r, eval=F}
+ncatt_get(edgar,varid = 0)
+# $Conventions
+# [1] "CF-1.0"
+# $title
+# [1] "Monthly Mean (October) Emissions of CO - "
+# $institution
+# [1] "European Commission, Joint Research Centre"
+# $source
+# [1] "http://edgar.jrc.ec.europa.eu/"
+# $history
+# [1] "Created from original data (0.1x0.1 degrees) using IDL program (edgar_ascii_to_ncdf.pro) on Wed Jun 29 13:29:58 2016"
+# $references
+# [1] "European Commission, Joint Research Centre (JRC)/Netherlands Environmental Assessment Agency (PBL). Emission Database for Global Atmospheric Research (EDGAR),http://edgar.jrc.ec.europe.eu"
+# $copyright_notice
+# [1] "Reproduction of the data is authorized, except for commercial purposes, provided the source is fully acknowledged in the from\"Source: European Commission, Joint Research Centre (JRC)/Netherlands Environmental Assessment Agency (PBL). Emission Databasefor Global Atmospheric Research (EDGAR), http://edgar.jrc.ec.europe.eu\". Where reproduction is on a web-site,at least one link to http://edgar.jrc.ec.europa.eu, should be provided and maintained. Where prior permission must be obtained for thereproduction or use of textual and multimedia information (sound, images, software, etc.), such permission shall cancel the above-mentionedgeneral permission and shall clearly indicate any restrictions on use."
+# $contact
+# [1] "edgar-info@jrc.ec.europa.eu"
 ```
-Latitude:
-```
-float XLAT_M[west_east,south_north,Time]   
-FieldType: 104
-MemoryOrder: XY 
-units: degrees latitude
-description: Latitude on mass grid
-stagger: M
-sr_x: 1
-sr_y: 1
-```
-e a altura:
-```
-float GHT[west_east,south_north,num_metgrid_levels,Time]   
-FieldType: 104
-MemoryOrder: XYZ
-units: m
-description: Height
-stagger: M
-sr_x: 1
-sr_y: 1
-```
+
 Da mesma forma com que podemos acessar variáveis e atributos com `ncvar_get` e `ncatt_get`, podemos modificar estes valores com `ncvar_put` e `ncatt_put`. Outras operações como renomear (`ncvar_rename`) e trocar o valor de missval (`ncvar_change_missval`) também estão disponíveis.
 
-*DICA*: `ncatt_get` e `ncatt_put` acessam e alteram os atributos de váriaveis e também atributos globais do NetCDF usando o argumento `varid=0`.
+*DICA*: `ncatt_get` e `ncatt_put` acessam e alteram os atributos de váriaveis e também atributos globais do NetCDF usando o argumento `varid=0` como no código mostrado anteriormente.
 
 Para salvar as alterações e/ou liberar o acesso ao arquivo use a função `nc_close` (ou a função `nc_sync` que sincroniza o NetCDF mas não fecha a conexão com o arquivo).
 
 ```{r, eval=F}
-nc_close(wrf) # ou nc_sync(wrf)
+nc_close(edgar) # ou nc_sync(edgar)
 ```
 
-Novas dimensões e também novas variáveis podem ser criadas com `ncvar_def` e `ncvar_add` em um arquivo aberto com permissão de leitura, como por exemplo:
-```{r eval=FALSE}
-wrf     <- nc_open("~/met_em.d03.2016-01-10.nc", write=TRUE)
-extrema <- ncvar_def(name = "Tex",
-                     units = "K",
-                     dim = list(wrf$dim$west_east,
-                                wrf$dim$south_north,
-                                wrf$dim$Time),
-                     missval = -999,
-                     longname = "temperatura extrema")
-ncvar_add(wrf, extrema)
-names(wrf$var)
-nc_close(wrf)
-```
-Se esse arquivo for aberto novamente vai conter 93 variáveis junto com a variável `Tex` da forma que definimos, caso queria os mesmos atributos que as demais é só usar a função `ncatt_get` na variável.
-
-```{r, eval=F}
-wrf <- nc_open("dados/met_em.d03.2016-01-10.nc", write = T)
-print(wrf)
-```
 O pacote possue ainda funções mais específicas para a criação de arquivos em NetCDF como `nc_create`, funções que definem dimenções como `ncdim_def` e funções para colocar e tirar o arquivo de modo de definição `nc_redef` e `nc_enddef`.
 
 *DICA*: o NetCDF no R funciona de forma parecida com ouma lista ou data frame, podemos "ver" ou selecionar suas sub-partes (sub-sub-partes...) com "$" e TAB.
