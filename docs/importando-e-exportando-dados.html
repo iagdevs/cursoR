@@ -266,9 +266,9 @@ Os argumentos da função são:</p>
 <p>Apareceu uma mensagem de erro, <span style="color:blue">você saberia dizer o porquê?</span></p>
 <p><strong>Caso você trabalhe com algum banco de dados em formato .txt e quiser abrir no R… Abra-os no bloco de notas primeiro!</strong></p>
 <p>Vamos dar uma olhada em alguns dados, o primeiro tem uma cara assim:</p>
-<p><img src="figuras/f1.png" /><!-- --></p>
+<p><img src="figuras/f1.png" width="665" /></p>
 <p>Já o segundo arquivo é assim:</p>
-<p><img src="figuras/f2.png" /><!-- --></p>
+<p><img src="figuras/f2.png" width="552" /></p>
 <p>Você notou a diferença? Como vimos anteriormente, para importar os dados no R é super importante que você especifique o tipo de separador utilizado. Como o segundo arquivo é separado por “;”, precisamos espercificar o argumento <code>sep</code> na hora de usar o comando <code>read.table</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014v2.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)
 <span class="kw">head</span>(df2)</code></pre></div>
@@ -376,7 +376,7 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
-<p>Quando trabalhamos com séries temporais, é importante ter a variável tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Porém, a classe do tipo Data é “factor” assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato 2018-06-04 16:21:09.</p>
+<p>Quando trabalhamos com séries temporais, é importante ter a variável tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Porém, a classe do tipo Data é “factor” assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato 2018-06-04 18:42:33.</p>
 <p>Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa nova varável chamada “tempo_char”, adicionando-a diretamente no data frame com o cifrão (“$”). Podemos fazer isso com as funções <code>paste</code> ou <code>paste0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo_char &lt;-<span class="st"> </span><span class="kw">paste</span>(df<span class="op">$</span>Data, df<span class="op">$</span>Hora)
 <span class="kw">head</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
@@ -531,11 +531,11 @@ dff</code></pre></div>
 <p>Vamos ver como funciona data.table lendo os dois arquivos e comparar quanto tempo demora cada um. A função de leitura do data.table é <code>fread</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.044   0.000   0.044</code></pre>
+##   0.075   0.000   0.076</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.004   0.000   0.006</code></pre>
+##   0.007   0.000   0.007</code></pre>
 </div>
 </div>
 <div id="tidyverse" class="section level2">
@@ -831,84 +831,81 @@ paracatu &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span cl
 <div id="netcdf" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> NetCDF</h3>
 <p>O NetCDF (Network Common Data Form) é um conjunto de bibliotecas de software e formatos de dados independentes de máquina e autodescritivos com suporte para criação, acesso e compartilhamento de dados científicos orientados a matrizes. Arquivos NetCDF (criado por essa biblioteca ou por programas que utilizam essa biblioteca) são arquivos compostos por dados, atributos e metadados.</p>
-<p>O pacote <code>ncdf4</code> pode ser usado para acessar essa biblioteca, os comandos abaixo instalam e carregam esse pacote:</p>
+<p>O pacote <code>ncdf4</code> é um exemplo de interface do R com a biblioteca NetCDF 4, os comandos abaixo instalam e carregam esse pacote:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;ncdf4&quot;) # instala o pacote</span>
 <span class="kw">library</span>(<span class="st">&quot;ncdf4&quot;</span>)           <span class="co"># carrega o pacote</span>
 <span class="kw">nc_version</span>()               <span class="co"># versão da biblioteca</span></code></pre></div>
 <pre><code>## [1] &quot;ncdf4_1.16_20170401&quot;</code></pre>
-<p>Um exemplo de NetCDF:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">nc_open</span>(<span class="st">&quot;dados/met_em.d03.2016-01-10.nc&quot;</span>)</code></pre></div>
-<p>O objeto <code>wrf</code> contém algumas informações sobre o conteúdo do arquivo, com um <code>print(wrf)</code> ou simplesmente <code>wrf</code> visualizamos o conteúdo do arquivo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(wrf)
-wrf</code></pre></div>
-<p>Isso mostra o nome do arquivo (e versão da biblioteca usada para criar), número de variáveis (92 no arquivo de exemplo), uma descrição de cada variável (incluindo atributos) as dimensões (13 para esse arquivo) e os atributos globais.</p>
+<p>Um exemplo de NetCDF (arquivo está disponivel na pasta dados deste repositório):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">edgar &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="dt">filename =</span> <span class="st">&quot;~/Downloads/v431_v2_REFERENCE_CO_2010_10_AGR.0.1x0.1.nc&quot;</span>)</code></pre></div>
+<p>O objeto <code>edgar</code> contém algumas informações sobre o conteúdo do arquivo, com um <code>print(edgar)</code> ou simplesmente <code>edgar</code> visualizamos o conteúdo do arquivo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(edgar)
+edgar</code></pre></div>
+<p>Isso mostra o nome do arquivo (e versão da biblioteca usada para criar), número de variáveis (1 variável neste exemplo), uma descrição de cada variável (incluindo atributos) as dimensões (2 para esse arquivo) e atributos globais.</p>
 <p>Agora vamos abrir alguma variável:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(wrf<span class="op">$</span>var)                <span class="co"># print no nome de cada variavel</span>
-TEMP &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;TT&quot;</span>)  <span class="co"># escolho você picachu</span>
-<span class="kw">class</span>(TEMP)</code></pre></div>
-<p>Como o NetCDF é organizado para guardar matrizes (arrays), só sabemos que a variável <code>ST</code> é um array</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncatt_get</span>(wrf,<span class="st">&quot;TT&quot;</span>) <span class="co"># ou ncatt_get(wrf,&quot;TT&quot;,verbose = T)</span>
-<span class="kw">dim</span>(TEMP)</code></pre></div>
-<p>praticamente a mesma informação do print anterior:</p>
-<pre><code>float TT[west_east,south_north,num_metgrid_levels,Time]   
-FieldType: 104
-MemoryOrder: XYZ
-units: K
-description: Temperature
-stagger: M
-sr_x: 1
-sr_y: 1</code></pre>
-<p>como temos apenas 1 tempo essa dimensão é desconsiderada para simplificar.</p>
-<p>A latitude de cada ponto de grade, assim como longitude níveis e tempo podem ser extraídas:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lat  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;XLAT_M&quot;</span>)
-lon  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;XLONG_M&quot;</span>)
-time &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;Times&quot;</span>)</code></pre></div>
-<p>O metadado de Longitude:</p>
-<pre><code>float XLONG_M[west_east,south_north,Time]   
-FieldType: 104
-MemoryOrder: XY 
-units: degrees longitude
-description: Longitude on mass grid
-stagger: M
-sr_x: 1
-sr_y: 1</code></pre>
-<p>Latitude:</p>
-<pre><code>float XLAT_M[west_east,south_north,Time]   
-FieldType: 104
-MemoryOrder: XY 
-units: degrees latitude
-description: Latitude on mass grid
-stagger: M
-sr_x: 1
-sr_y: 1</code></pre>
-<p>e a altura:</p>
-<pre><code>float GHT[west_east,south_north,num_metgrid_levels,Time]   
-FieldType: 104
-MemoryOrder: XYZ
-units: m
-description: Height
-stagger: M
-sr_x: 1
-sr_y: 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(edgar<span class="op">$</span>var)
+co &lt;-<span class="st"> </span>ncdf4<span class="op">::</span><span class="kw">ncvar_get</span>(edgar, <span class="st">&quot;emi_co&quot;</span>)  
+<span class="kw">class</span>(co)</code></pre></div>
+<p>Como o NetCDF é organizado para guardar matrizes (arrays), só sabemos que a variável <code>emi_co</code> é um array</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncatt_get</span>(edgar,<span class="st">&quot;emi_co&quot;</span>) <span class="co"># ou ncatt_get(edgar,&quot;emi_co&quot;,verbose = T)</span></code></pre></div>
+<p>repete a informação do print anterior, mas sem os atributos globais:</p>
+<pre><code># $standard_name
+# [1] &quot;tendency_of_atmosphere_mass_content_of_carbon_monoxide_due_to_emission&quot;
+# $long_name
+# [1] &quot;Emissions of CO - &quot;
+# $units
+# [1] &quot;kg m-2 s-1&quot;
+# $cell_method
+# [1] &quot;time: mean (interval: 1 month,  31 days)&quot;
+# $total_emi_co
+# [1] &quot;   6.32889e+009 kg/month&quot;
+# $comment
+# [1] &quot; (see http://edgar.jrc.ec.europa.eu/methodology.php#12sou for the definitions of the single sources)&quot;</code></pre>
+<p>A latitude de cada ponto de grade, assim como longitude níveis (tempo em outros casos) o podem ser extraídas:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lat  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;lat&quot;</span>)
+lon  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span class="st">&quot;lon&quot;</span>)</code></pre></div>
+<p>O metadado de Longitude também pode conter informações úteis:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncatt_get</span>(edgar,<span class="st">&quot;lon&quot;</span>)
+<span class="co"># $standard_name</span>
+<span class="co"># [1] &quot;longitude&quot;</span>
+<span class="co"># $long_name</span>
+<span class="co"># [1] &quot;longitude&quot;</span>
+<span class="co"># $units</span>
+<span class="co"># [1] &quot;degrees_east&quot;</span>
+<span class="co"># $comment</span>
+<span class="co"># [1] &quot;center_of_cell&quot;</span></code></pre></div>
+<p>e Latitude:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncatt_get</span>(edgar,<span class="st">&quot;lat&quot;</span>)
+<span class="co"># $standard_name</span>
+<span class="co"># [1] &quot;latitude&quot;</span>
+<span class="co"># $long_name</span>
+<span class="co"># [1] &quot;latitude&quot;</span>
+<span class="co"># $units</span>
+<span class="co"># [1] &quot;degrees_north&quot;</span>
+<span class="co"># $comment</span>
+<span class="co"># [1] &quot;center_of_cell&quot;</span></code></pre></div>
+<p>e também os atributos globais podem ser acessados separadamante:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ncatt_get</span>(edgar,<span class="dt">varid =</span> <span class="dv">0</span>)
+<span class="co"># $Conventions</span>
+<span class="co"># [1] &quot;CF-1.0&quot;</span>
+<span class="co"># $title</span>
+<span class="co"># [1] &quot;Monthly Mean (October) Emissions of CO - &quot;</span>
+<span class="co"># $institution</span>
+<span class="co"># [1] &quot;European Commission, Joint Research Centre&quot;</span>
+<span class="co"># $source</span>
+<span class="co"># [1] &quot;http://edgar.jrc.ec.europa.eu/&quot;</span>
+<span class="co"># $history</span>
+<span class="co"># [1] &quot;Created from original data (0.1x0.1 degrees) using IDL program (edgar_ascii_to_ncdf.pro) on Wed Jun 29 13:29:58 2016&quot;</span>
+<span class="co"># $references</span>
+<span class="co"># [1] &quot;European Commission, Joint Research Centre (JRC)/Netherlands Environmental Assessment Agency (PBL). Emission Database for Global Atmospheric Research (EDGAR),http://edgar.jrc.ec.europe.eu&quot;</span>
+<span class="co"># $copyright_notice</span>
+<span class="co"># [1] &quot;Reproduction of the data is authorized, except for commercial purposes, provided the source is fully acknowledged in the from\&quot;Source: European Commission, Joint Research Centre (JRC)/Netherlands Environmental Assessment Agency (PBL). Emission Databasefor Global Atmospheric Research (EDGAR), http://edgar.jrc.ec.europe.eu\&quot;. Where reproduction is on a web-site,at least one link to http://edgar.jrc.ec.europa.eu, should be provided and maintained. Where prior permission must be obtained for thereproduction or use of textual and multimedia information (sound, images, software, etc.), such permission shall cancel the above-mentionedgeneral permission and shall clearly indicate any restrictions on use.&quot;</span>
+<span class="co"># $contact</span>
+<span class="co"># [1] &quot;edgar-info@jrc.ec.europa.eu&quot;</span></code></pre></div>
 <p>Da mesma forma com que podemos acessar variáveis e atributos com <code>ncvar_get</code> e <code>ncatt_get</code>, podemos modificar estes valores com <code>ncvar_put</code> e <code>ncatt_put</code>. Outras operações como renomear (<code>ncvar_rename</code>) e trocar o valor de missval (<code>ncvar_change_missval</code>) também estão disponíveis.</p>
-<p><em>DICA</em>: <code>ncatt_get</code> e <code>ncatt_put</code> acessam e alteram os atributos de váriaveis e também atributos globais do NetCDF usando o argumento <code>varid=0</code>.</p>
+<p><em>DICA</em>: <code>ncatt_get</code> e <code>ncatt_put</code> acessam e alteram os atributos de váriaveis e também atributos globais do NetCDF usando o argumento <code>varid=0</code> como no código mostrado anteriormente.</p>
 <p>Para salvar as alterações e/ou liberar o acesso ao arquivo use a função <code>nc_close</code> (ou a função <code>nc_sync</code> que sincroniza o NetCDF mas não fecha a conexão com o arquivo).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nc_close</span>(wrf) <span class="co"># ou nc_sync(wrf)</span></code></pre></div>
-<p>Novas dimensões e também novas variáveis podem ser criadas com <code>ncvar_def</code> e <code>ncvar_add</code> em um arquivo aberto com permissão de leitura, como por exemplo:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf     &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;~/met_em.d03.2016-01-10.nc&quot;</span>, <span class="dt">write=</span><span class="ot">TRUE</span>)
-extrema &lt;-<span class="st"> </span><span class="kw">ncvar_def</span>(<span class="dt">name =</span> <span class="st">&quot;Tex&quot;</span>,
-                     <span class="dt">units =</span> <span class="st">&quot;K&quot;</span>,
-                     <span class="dt">dim =</span> <span class="kw">list</span>(wrf<span class="op">$</span>dim<span class="op">$</span>west_east,
-                                wrf<span class="op">$</span>dim<span class="op">$</span>south_north,
-                                wrf<span class="op">$</span>dim<span class="op">$</span>Time),
-                     <span class="dt">missval =</span> <span class="op">-</span><span class="dv">999</span>,
-                     <span class="dt">longname =</span> <span class="st">&quot;temperatura extrema&quot;</span>)
-<span class="kw">ncvar_add</span>(wrf, extrema)
-<span class="kw">names</span>(wrf<span class="op">$</span>var)
-<span class="kw">nc_close</span>(wrf)</code></pre></div>
-<p>Se esse arquivo for aberto novamente vai conter 93 variáveis junto com a variável <code>Tex</code> da forma que definimos, caso queria os mesmos atributos que as demais é só usar a função <code>ncatt_get</code> na variável.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wrf &lt;-<span class="st"> </span><span class="kw">nc_open</span>(<span class="st">&quot;dados/met_em.d03.2016-01-10.nc&quot;</span>, <span class="dt">write =</span> T)
-<span class="kw">print</span>(wrf)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nc_close</span>(edgar) <span class="co"># ou nc_sync(edgar)</span></code></pre></div>
 <p>O pacote possue ainda funções mais específicas para a criação de arquivos em NetCDF como <code>nc_create</code>, funções que definem dimenções como <code>ncdim_def</code> e funções para colocar e tirar o arquivo de modo de definição <code>nc_redef</code> e <code>nc_enddef</code>.</p>
 <p><em>DICA</em>: o NetCDF no R funciona de forma parecida com ouma lista ou data frame, podemos “ver” ou selecionar suas sub-partes (sub-sub-partes…) com “$” e TAB.</p>
 </div>
@@ -940,7 +937,7 @@ l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st
 <span class="kw">image</span>(l2,
       <span class="dt">col =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
       <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <p>Tem algo estranho com esta imagem. O que é? (valendo um sticker).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)
 l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">t</span>(l2[<span class="dv">1</span><span class="op">:</span><span class="dv">1349</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">1613</span>]),
@@ -958,7 +955,7 @@ l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw"
            <span class="dt">col.regions =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
            <span class="dt">at =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">80</span>,<span class="dv">0</span>,<span class="dv">1</span>),
            <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho (ºC)&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p><strong>Escrever dados binários no R</strong></p>
 
 </div>

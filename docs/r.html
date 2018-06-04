@@ -197,7 +197,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Numeric (1): valores numéricos com ou sem casa decimal</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="op">+</span><span class="fl">2.3</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="fl">+2.3</span></code></pre></div>
 <pre><code>## [1] 7.3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi</code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
@@ -410,8 +410,8 @@ linhas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>)</code></pre></div>
 <p>Funções úteis: <code>weekdays</code>, <code>month</code> e <a href="https://en.wikipedia.org/wiki/Julian_day"><code>julian</code></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot;
-##  [8] &quot;segunda&quot; &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
+<pre><code>##  [1] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;terça&quot;  
+##  [8] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
 ## [15] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
 ## [22] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
@@ -420,10 +420,10 @@ a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="
 ## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17686.81 17686.85 17686.89 17686.93 17686.97 17687.01 17687.06
-##  [8] 17687.10 17687.14 17687.18 17687.22 17687.26 17687.31 17687.35
-## [15] 17687.39 17687.43 17687.47 17687.51 17687.56 17687.60 17687.64
-## [22] 17687.68 17687.72 17687.76
+##  [1] 17686.90 17686.95 17686.99 17687.03 17687.07 17687.11 17687.15
+##  [8] 17687.20 17687.24 17687.28 17687.32 17687.36 17687.40 17687.45
+## [15] 17687.49 17687.53 17687.57 17687.61 17687.65 17687.70 17687.74
+## [22] 17687.78 17687.82 17687.86
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>O formato <code>POSIXct</code> é o mais comumente usado principalmente se os dados analisados serão plotados.</p>
@@ -437,25 +437,25 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] segunda segunda segunda segunda segunda segunda segunda segunda
+<pre><code>##   [1] segunda segunda segunda segunda segunda segunda terça   terça  
 ##   [9] terça   terça   terça   terça   terça   terça   terça   terça  
 ##  [17] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [25] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [25] terça   terça   terça   terça   terça   terça   quarta  quarta 
 ##  [33] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
 ##  [41] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [49] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [49] quarta  quarta  quarta  quarta  quarta  quarta  quinta  quinta 
 ##  [57] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
 ##  [65] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [73] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [73] quinta  quinta  quinta  quinta  quinta  quinta  sexta   sexta  
 ##  [81] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
 ##  [89] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [97] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [97] sexta   sexta   sexta   sexta   sexta   sexta   sábado  sábado 
 ## [105] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
 ## [113] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [121] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [121] sábado  sábado  sábado  sábado  sábado  sábado  domingo domingo
 ## [129] domingo domingo domingo domingo domingo domingo domingo domingo
 ## [137] domingo domingo domingo domingo domingo domingo domingo domingo
-## [145] domingo domingo domingo domingo domingo domingo domingo domingo
+## [145] domingo domingo domingo domingo domingo domingo segunda segunda
 ## [153] segunda segunda segunda segunda segunda segunda segunda segunda
 ## [161] segunda segunda segunda segunda segunda segunda segunda segunda
 ## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
