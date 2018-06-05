@@ -400,6 +400,10 @@ linhas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 <span class="kw">class</span>(a)</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b &lt;-<span class="st"> </span><span class="kw">ISOdate</span>(<span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">month =</span> <span class="dv">4</span>, <span class="dt">day =</span> <span class="dv">5</span>, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>)</code></pre></div>
+<pre><code>## Warning in strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz): unknown timezone
+## &#39;Americas/Sao_Paulo&#39;</code></pre>
+<pre><code>## Warning in as.POSIXct.POSIXlt(strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz), :
+## unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <p>Já a classe <code>Date</code>, armazena as datas como o número de dias contados a partir de 1970.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">Sys.time</span>())
 <span class="kw">class</span>(c)</code></pre></div>
@@ -410,20 +414,22 @@ linhas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>)</code></pre></div>
 <p>Funções úteis: <code>weekdays</code>, <code>month</code> e <a href="https://en.wikipedia.org/wiki/Julian_day"><code>julian</code></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot; 
-##  [8] &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;quarta&quot;
-## [15] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;
-## [22] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;</code></pre>
+<pre><code>##  [1] &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot; 
+##  [5] &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot; 
+##  [9] &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot; 
+## [13] &quot;terça-feira&quot;  &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
+## [17] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
+## [21] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
 <pre><code>##  [1] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ##  [9] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17687.59 17687.63 17687.67 17687.71 17687.75 17687.80 17687.84
-##  [8] 17687.88 17687.92 17687.96 17688.00 17688.05 17688.09 17688.13
-## [15] 17688.17 17688.21 17688.25 17688.30 17688.34 17688.38 17688.42
-## [22] 17688.46 17688.50 17688.55
+##  [1] 17687.62 17687.66 17687.70 17687.74 17687.78 17687.83 17687.87
+##  [8] 17687.91 17687.95 17687.99 17688.03 17688.08 17688.12 17688.16
+## [15] 17688.20 17688.24 17688.28 17688.33 17688.37 17688.41 17688.45
+## [22] 17688.49 17688.53 17688.58
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>O formato <code>POSIXct</code> é o mais comumente usado principalmente se os dados analisados serão plotados.</p>
@@ -437,28 +443,41 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] terça   terça   terça   terça   terça   terça   terça   terça  
-##   [9] terça   terça   terça   terça   terça   quarta  quarta  quarta 
-##  [17] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [25] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [33] quarta  quarta  quarta  quarta  quarta  quinta  quinta  quinta 
-##  [41] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [49] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [57] quinta  quinta  quinta  quinta  quinta  sexta   sexta   sexta  
-##  [65] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [73] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [81] sexta   sexta   sexta   sexta   sexta   sábado  sábado  sábado 
-##  [89] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-##  [97] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [105] sábado  sábado  sábado  sábado  sábado  domingo domingo domingo
-## [113] domingo domingo domingo domingo domingo domingo domingo domingo
-## [121] domingo domingo domingo domingo domingo domingo domingo domingo
-## [129] domingo domingo domingo domingo domingo segunda segunda segunda
-## [137] segunda segunda segunda segunda segunda segunda segunda segunda
-## [145] segunda segunda segunda segunda segunda segunda segunda segunda
-## [153] segunda segunda segunda segunda segunda terça   terça   terça  
-## [161] terça   terça   terça   terça   terça   terça   terça   terça  
-## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
+<pre><code>##   [1] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+##   [6] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+##  [11] terça-feira   terça-feira   terça-feira   quarta-feira  quarta-feira 
+##  [16] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+##  [21] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+##  [26] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+##  [31] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+##  [36] quarta-feira  quarta-feira  quinta-feira  quinta-feira  quinta-feira 
+##  [41] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+##  [46] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+##  [51] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+##  [56] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+##  [61] quinta-feira  sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [66] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [71] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [76] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [81] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [86] sábado        sábado        sábado        sábado        sábado       
+##  [91] sábado        sábado        sábado        sábado        sábado       
+##  [96] sábado        sábado        sábado        sábado        sábado       
+## [101] sábado        sábado        sábado        sábado        sábado       
+## [106] sábado        sábado        sábado        sábado        domingo      
+## [111] domingo       domingo       domingo       domingo       domingo      
+## [116] domingo       domingo       domingo       domingo       domingo      
+## [121] domingo       domingo       domingo       domingo       domingo      
+## [126] domingo       domingo       domingo       domingo       domingo      
+## [131] domingo       domingo       domingo       segunda-feira segunda-feira
+## [136] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+## [141] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+## [146] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+## [151] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+## [156] segunda-feira segunda-feira terça-feira   terça-feira   terça-feira  
+## [161] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [166] terça-feira   terça-feira   terça-feira  
+## 7 Levels: domingo quarta-feira quinta-feira sábado ... terça-feira</code></pre>
 <p>São muito úteis para regressões, gráficos e resumos estatísitcos, uma vez que limita o número de possibilidades para a qual o dado pertença. Além disso, é possível estabelecer “níveis” que vão designar a categoria do seu dado.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ab &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> aa,
              <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>,  <span class="st">&quot;Wednesday&quot;</span>,  <span class="st">&quot;Thursday&quot;</span>,
