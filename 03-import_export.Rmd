@@ -526,31 +526,29 @@ O pacote possue ainda funções mais específicas para a criação de arquivos e
 *DICA*: o NetCDF no R funciona de forma parecida com ouma lista ou data frame, podemos "ver" ou selecionar suas sub-partes (sub-sub-partes...) com "$" e TAB.
 
 ### Dados Binários
+O `R` lê e escreve dados binários usando as funções `readBin` e `writeBin`, respectivamente.
 
 **Ler dados binários no R**
 
-Em meteorologia, frequentemente os dados estão em formato binário. A maior "dificuldade" em ler estes dados está em conhecer como eles foram gerados. 
-
-Repare que a função `readBin` requer vários argumentos para ler estes dados da forma correta:
-
-```{r}
-args(readBin)
-```
-
-Neste curso, o arquivo binário que vamos abrir como exemplo contém dados de temperatura de brilho obtidas com o satélite GOES-13 (informações em: https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary).
+Em meteorologia, frequentemente os dados estão em formato binário. A maior "dificuldade" em ler estes dados está em conhecer como eles foram gerados.  Neste curso, o arquivo binário que vamos abrir como exemplo contém dados de temperatura de brilho obtidas com o satélite GOES-13 (informações em: https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary).
 
 Lembrem-se de baixar o dado em: https://github.com/iagdevs/cursoR/tree/master/dados
 
+Repare que a função `readBin` requer alguns argumentos para ler estes dados da forma correta:
+
 ```{r}
-# Ler o arquivo binário
+# Ler o arquivo binário: readBin
+args(readBin)
+# Lembre-se de usar ?readBin
+
 l1 <- readBin("dados/gs.140422.1900g.ch4", 
               what="int", 
               n = 1349*1613,
-              size = 2)
+              size = 2,
+              signed = T,
+              endian = "little")
 class(l1)
 ```
-
-Note que o argumento `endian` por default é `.Platform$endian`. Se rodarmos `.Platform$endian` no R obteremos a ordenação dos bytes ("big" ou "little") utilizada pela plataforma que estamos usando.  
 
 Uma forma rápida para verificarmos os nossos dados é gráfica. Logo, que tal um plot?
 ```{r}
@@ -584,3 +582,24 @@ sp::spplot(((l3 + 75)/100)-273, # Estas correções são necessárias. Veja: htt
 ```
 
 **Escrever dados binários no R**
+
+```{r}
+# Escrever um arquivo binário: writeBin
+args(writeBin)
+# Lembre-se de usar ?writeBin
+
+# Na linha abaixo vamos criar um arquivo temporário com o auxílio da função "tempfile" 
+# para depois escrever os dados dentro deste arquivo.
+tf <- tempfile()
+# Vamos atribuir a "tb" os 20 primeiros valores de l1 (temperatura de brilho).
+tb <- c(21000, 21000, 20800, 21000, 20800, 20700, 20600, 20600, 20900, 20900, 
+        20900, 20900, 20700, 20500, 20500, 20400, 20500, 20700, 20400, 20300)
+class(tb)
+x <- as.integer(tb)
+writeBin(x, con = tf)
+
+# Agora vamos ler o arquivo binário escrito acima. Você lembra quais são os argumentos para ler binário?
+readBin(tf,
+        what = "integer",
+        n = 20)
+```
