@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-06-04">
+<meta name="date" content="2018-06-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -197,7 +197,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Numeric (1): valores numéricos com ou sem casa decimal</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="fl">+2.3</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="op">+</span><span class="fl">2.3</span></code></pre></div>
 <pre><code>## [1] 7.3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi</code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
@@ -410,20 +410,20 @@ linhas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>)</code></pre></div>
 <p>Funções úteis: <code>weekdays</code>, <code>month</code> e <a href="https://en.wikipedia.org/wiki/Julian_day"><code>julian</code></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;segunda&quot; &quot;terça&quot;  
-##  [8] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
-## [15] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;  
-## [22] &quot;terça&quot;   &quot;terça&quot;   &quot;terça&quot;</code></pre>
+<pre><code>##  [1] &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot; 
+##  [8] &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;terça&quot;  &quot;quarta&quot;
+## [15] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;
+## [22] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
 <pre><code>##  [1] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ##  [9] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17686.90 17686.95 17686.99 17687.03 17687.07 17687.11 17687.15
-##  [8] 17687.20 17687.24 17687.28 17687.32 17687.36 17687.40 17687.45
-## [15] 17687.49 17687.53 17687.57 17687.61 17687.65 17687.70 17687.74
-## [22] 17687.78 17687.82 17687.86
+##  [1] 17687.59 17687.63 17687.67 17687.71 17687.75 17687.80 17687.84
+##  [8] 17687.88 17687.92 17687.96 17688.00 17688.05 17688.09 17688.13
+## [15] 17688.17 17688.21 17688.25 17688.30 17688.34 17688.38 17688.42
+## [22] 17688.46 17688.50 17688.55
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>O formato <code>POSIXct</code> é o mais comumente usado principalmente se os dados analisados serão plotados.</p>
@@ -437,27 +437,27 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] segunda segunda segunda segunda segunda segunda terça   terça  
-##   [9] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [17] terça   terça   terça   terça   terça   terça   terça   terça  
-##  [25] terça   terça   terça   terça   terça   terça   quarta  quarta 
-##  [33] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [41] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-##  [49] quarta  quarta  quarta  quarta  quarta  quarta  quinta  quinta 
-##  [57] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [65] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [73] quinta  quinta  quinta  quinta  quinta  quinta  sexta   sexta  
-##  [81] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [89] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [97] sexta   sexta   sexta   sexta   sexta   sexta   sábado  sábado 
-## [105] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [113] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-## [121] sábado  sábado  sábado  sábado  sábado  sábado  domingo domingo
-## [129] domingo domingo domingo domingo domingo domingo domingo domingo
-## [137] domingo domingo domingo domingo domingo domingo domingo domingo
-## [145] domingo domingo domingo domingo domingo domingo segunda segunda
-## [153] segunda segunda segunda segunda segunda segunda segunda segunda
-## [161] segunda segunda segunda segunda segunda segunda segunda segunda
+<pre><code>##   [1] terça   terça   terça   terça   terça   terça   terça   terça  
+##   [9] terça   terça   terça   terça   terça   quarta  quarta  quarta 
+##  [17] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [25] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+##  [33] quarta  quarta  quarta  quarta  quarta  quinta  quinta  quinta 
+##  [41] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [49] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [57] quinta  quinta  quinta  quinta  quinta  sexta   sexta   sexta  
+##  [65] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [73] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [81] sexta   sexta   sexta   sexta   sexta   sábado  sábado  sábado 
+##  [89] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [97] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+## [105] sábado  sábado  sábado  sábado  sábado  domingo domingo domingo
+## [113] domingo domingo domingo domingo domingo domingo domingo domingo
+## [121] domingo domingo domingo domingo domingo domingo domingo domingo
+## [129] domingo domingo domingo domingo domingo segunda segunda segunda
+## [137] segunda segunda segunda segunda segunda segunda segunda segunda
+## [145] segunda segunda segunda segunda segunda segunda segunda segunda
+## [153] segunda segunda segunda segunda segunda terça   terça   terça  
+## [161] terça   terça   terça   terça   terça   terça   terça   terça  
 ## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
 <p>São muito úteis para regressões, gráficos e resumos estatísitcos, uma vez que limita o número de possibilidades para a qual o dado pertença. Além disso, é possível estabelecer “níveis” que vão designar a categoria do seu dado.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ab &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> aa,

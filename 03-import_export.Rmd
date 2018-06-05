@@ -414,10 +414,10 @@ library("ncdf4")           # carrega o pacote
 nc_version()               # versão da biblioteca
 ```
 
-Um exemplo de NetCDF (arquivo está disponivel na pasta dados deste repositório):
+Um exemplo de NetCDF:
 
 ```{r, eval=F}
-edgar <- nc_open(filename = "~/Downloads/v431_v2_REFERENCE_CO_2010_10_AGR.0.1x0.1.nc")
+edgar <- nc_open(filename = "dados/v431_v2_REFERENCE_CO_2010_10_AGR.0.1x0.1.nc")
 ```
 
 O objeto `edgar` contém algumas informações sobre o conteúdo do arquivo, com um `print(edgar)` ou simplesmente `edgar` visualizamos o conteúdo do arquivo:
