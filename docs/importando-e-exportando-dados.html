@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-06-05">
+<meta name="date" content="2018-06-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -390,7 +390,7 @@ paracatu_temp &lt;-<span class="st"> </span>paracatu<span class="op">$</span>tem
 ##            &quot;factor&quot;            &quot;factor&quot;            &quot;factor&quot; 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           &quot;integer&quot;            &quot;factor&quot;            &quot;factor&quot;</code></pre>
-<p>Quando trabalhamos com séries temporais, é importante ter a variável tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Porém, a classe do tipo Data é “factor” assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato 2018-06-05 11:48:47.</p>
+<p>Quando trabalhamos com séries temporais, é importante ter a variável tempo reconhecida como “tempo”, especificamente como classe “POSIXct”. Porém, a classe do tipo Data é “factor” assim como a Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais padronizada com o formato 2018-06-06 00:12:41.</p>
 <p>Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa nova varável chamada “tempo_char”, adicionando-a diretamente no data frame com o cifrão (“$”). Podemos fazer isso com as funções <code>paste</code> ou <code>paste0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>tempo_char &lt;-<span class="st"> </span><span class="kw">paste</span>(df<span class="op">$</span>Data, df<span class="op">$</span>Hora)
 <span class="kw">head</span>(df<span class="op">$</span>tempo_char)</code></pre></div>
@@ -556,11 +556,11 @@ dff</code></pre></div>
 <p>Vamos ver como funciona data.table lendo os dois arquivos e comparar quanto tempo demora cada um. A função de leitura do data.table é <code>fread</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">read.table</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##    0.03    0.00    0.03</code></pre>
+##    0.09    0.00    0.09</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
 df2 &lt;-<span class="st"> </span><span class="kw">print</span>(<span class="kw">system.time</span>(<span class="kw">fread</span>(<span class="st">&quot;dados/NOXIPEN2014.txt&quot;</span>, <span class="dt">h =</span> T)))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##       0       0       0</code></pre>
+##    0.02    0.00    0.02</code></pre>
 </div>
 </div>
 <div id="tidyverse" class="section level2">
@@ -941,13 +941,21 @@ lon  &lt;-<span class="st"> </span><span class="kw">ncvar_get</span>(wrf, <span 
 <p>Em meteorologia, frequentemente os dados estão em formato binário. A maior “dificuldade” em ler estes dados está em conhecer como eles foram gerados. Neste curso, o arquivo binário que vamos abrir como exemplo contém dados de temperatura de brilho obtidas com o satélite GOES-13 (informações em: <a href="https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary" class="uri">https://disc.gsfc.nasa.gov/datasets/GPM_MERGIR_1/summary</a>).</p>
 <p>Lembrem-se de baixar o dado em: <a href="https://github.com/iagdevs/cursoR/tree/master/dados" class="uri">https://github.com/iagdevs/cursoR/tree/master/dados</a></p>
 <p>Repare que a função <code>readBin</code> requer alguns argumentos para ler estes dados da forma correta:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ler o arquivo binário: readBin</span>
-<span class="kw">args</span>(readBin)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(readBin)</code></pre></div>
 <pre><code>## function (con, what, n = 1L, size = NA_integer_, signed = TRUE, 
 ##     endian = .Platform$endian) 
 ## NULL</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lembre-se de usar ?readBin</span>
-
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lembre-se de usar ?readBin</span></code></pre></div>
+<p>O que são estes argumentos?</p>
+<ul>
+<li><code>con</code> é um objeto de conexão ou um string de caracteres nomeando um arquivo.</li>
+<li><code>what</code> é um string de caracteres que indica o modo dos dados a serem lidos. Pode ser um “numeric”, “double”, “integer”, “int”, “logical”, “complex”, or “character”.</li>
+<li><code>n</code> um inteiro especificando o número máximo de valores a serem lidos.</li>
+<li><code>size</code> um inteiro especificando o número de bytes por valor lido. O padrão de NA_integer_ usa um tamanho padrão para um valor do modo (what) especificado (4 para “integer”, 8 para “double” e 16 para “complex”. Este argumento é ignorado para dados “character”. Neste caso, os dados de caracteres são lidos como sequências de caracteres de byte único terminadas em nulo.</li>
+<li><code>signed</code> é um valor lógico. Usado apenas para números “integer” de tamanhos 1 e 2. Se TRUE (por default), “integers” são considerados como números inteiros assinados.</li>
+<li><code>endian</code> é um string de caracteres. Se endian = “big” ou se endian = “little”, especifica-se a extremidade (endian-ness) dos valores lidos ou escritos. Se endian=“swap” a extremidade é trocada. Hardware Intel é “little” endian e hardware Sun é “big” endian.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Ler o arquivo binário: readBin</span>
 l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st">&quot;dados/gs.140422.1900g.ch4&quot;</span>, 
               <span class="dt">what=</span><span class="st">&quot;int&quot;</span>, 
               <span class="dt">n =</span> <span class="dv">1349</span><span class="op">*</span><span class="dv">1613</span>,
@@ -965,7 +973,7 @@ l1 &lt;-<span class="st"> </span><span class="kw">readBin</span>(<span class="st
 <span class="kw">image</span>(l2,
       <span class="dt">col =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
       <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <p>Tem algo estranho com esta imagem. O que é? (valendo um sticker).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)
 l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">t</span>(l2[<span class="dv">1</span><span class="op">:</span><span class="dv">1349</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">1613</span>]),
@@ -983,16 +991,17 @@ l3 &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw"
            <span class="dt">col.regions =</span> <span class="kw">cpt</span>(<span class="kw">find_cpt</span>(<span class="st">&quot;sat&quot;</span>)[<span class="dv">8</span>]),
            <span class="dt">at =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">80</span>,<span class="dv">0</span>,<span class="dv">1</span>),
            <span class="dt">main =</span> <span class="st">&quot;Temperatura de brilho (ºC)&quot;</span>) </code></pre></div>
-<p><img src="cursoR_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<p><img src="cursoR_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p><strong>Escrever dados binários no R</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Escrever um arquivo binário: writeBin</span>
 <span class="kw">args</span>(writeBin)</code></pre></div>
 <pre><code>## function (object, con, size = NA_integer_, endian = .Platform$endian, 
 ##     useBytes = FALSE) 
 ## NULL</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lembre-se de usar ?writeBin</span>
-
-<span class="co"># Na linha abaixo vamos criar um arquivo temporário com o auxílio da função &quot;tempfile&quot; </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lembre-se de usar ?writeBin</span></code></pre></div>
+<p><code>useBytes</code> um valor lógico. No <code>R</code>, se FALSE (o default), especifica que writeBin converteria strings com codificações para uma string imprimível antes de escrever os bytes. Se TRUE, especifica que writeBin escreveria os bytes do string não convertidos.</p>
+<p><code>object</code> um objeto escrito no <code>con</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Na linha abaixo vamos criar um arquivo temporário com o auxílio da função &quot;tempfile&quot; </span>
 <span class="co"># para depois escrever os dados dentro deste arquivo.</span>
 tf &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
 <span class="co"># Vamos atribuir a &quot;tb&quot; os 20 primeiros valores de l1 (temperatura de brilho).</span>

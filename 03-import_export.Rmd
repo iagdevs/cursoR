@@ -535,12 +535,23 @@ Em meteorologia, frequentemente os dados estão em formato binário. A maior "di
 Lembrem-se de baixar o dado em: https://github.com/iagdevs/cursoR/tree/master/dados
 
 Repare que a função `readBin` requer alguns argumentos para ler estes dados da forma correta:
-
 ```{r}
-# Ler o arquivo binário: readBin
 args(readBin)
 # Lembre-se de usar ?readBin
 
+```
+O que são estes argumentos?
+
+- `con` é um objeto de conexão ou um string de caracteres nomeando um arquivo.
+- `what` é um string de caracteres que indica o modo dos dados a serem lidos. Pode ser um “numeric", "double", "integer", "int", "logical", "complex", or "character".
+- `n` um inteiro especificando o número máximo de valores a serem lidos.
+- `size` um inteiro especificando o número de bytes por valor lido. O padrão de NA_integer_ usa um tamanho padrão para um valor do modo (what) especificado (4 para “integer”, 8 para “double” e 16 para “complex”. Este argumento é ignorado para dados "character". Neste caso, os dados de caracteres são lidos como sequências de caracteres de byte único terminadas em nulo.
+- `signed` é um valor lógico. Usado apenas para números “integer” de tamanhos 1 e 2. Se TRUE (por default), “integers” são considerados como números inteiros assinados.
+- `endian` é um string de caracteres. Se endian = "big" ou se endian = "little", especifica-se a extremidade (endian-ness) dos valores lidos ou escritos. Se endian="swap" a extremidade é trocada. Hardware Intel é "little" endian e hardware Sun é "big" endian.
+
+
+```{r}
+# Ler o arquivo binário: readBin
 l1 <- readBin("dados/gs.140422.1900g.ch4", 
               what="int", 
               n = 1349*1613,
@@ -587,7 +598,12 @@ sp::spplot(((l3 + 75)/100)-273, # Estas correções são necessárias. Veja: htt
 # Escrever um arquivo binário: writeBin
 args(writeBin)
 # Lembre-se de usar ?writeBin
+```
+`useBytes` um valor lógico. No `R`, se FALSE (o default), especifica que writeBin converteria strings com codificações para uma string imprimível antes de escrever os bytes. Se TRUE, especifica que writeBin escreveria os bytes do string não convertidos.
 
+`object` um objeto escrito no `con`.
+
+```{r}
 # Na linha abaixo vamos criar um arquivo temporário com o auxílio da função "tempfile" 
 # para depois escrever os dados dentro deste arquivo.
 tf <- tempfile()

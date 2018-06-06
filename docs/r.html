@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-06-05">
+<meta name="date" content="2018-06-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -414,10 +414,10 @@ linhas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>)</code></pre></div>
 <p>Funções úteis: <code>weekdays</code>, <code>month</code> e <a href="https://en.wikipedia.org/wiki/Julian_day"><code>julian</code></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot; 
-##  [5] &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot; 
-##  [9] &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot;  &quot;terça-feira&quot; 
-## [13] &quot;terça-feira&quot;  &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
+<pre><code>##  [1] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
+##  [5] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
+##  [9] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
+## [13] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
 ## [17] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
 ## [21] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
@@ -426,10 +426,10 @@ a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="
 ## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17687.62 17687.66 17687.70 17687.74 17687.78 17687.83 17687.87
-##  [8] 17687.91 17687.95 17687.99 17688.03 17688.08 17688.12 17688.16
-## [15] 17688.20 17688.24 17688.28 17688.33 17688.37 17688.41 17688.45
-## [22] 17688.49 17688.53 17688.58
+##  [1] 17688.13 17688.18 17688.22 17688.26 17688.30 17688.34 17688.38
+##  [8] 17688.43 17688.47 17688.51 17688.55 17688.59 17688.63 17688.68
+## [15] 17688.72 17688.76 17688.80 17688.84 17688.88 17688.93 17688.97
+## [22] 17689.01 17689.05 17689.09
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>O formato <code>POSIXct</code> é o mais comumente usado principalmente se os dados analisados serão plotados.</p>
@@ -443,38 +443,38 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-##   [6] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-##  [11] terça-feira   terça-feira   terça-feira   quarta-feira  quarta-feira 
+<pre><code>##   [1] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+##   [6] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
+##  [11] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
 ##  [16] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [21] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [26] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [31] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [36] quarta-feira  quarta-feira  quinta-feira  quinta-feira  quinta-feira 
+##  [21] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quinta-feira 
+##  [26] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+##  [31] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
+##  [36] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
 ##  [41] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [46] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [51] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [56] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [61] quinta-feira  sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [46] quinta-feira  quinta-feira  quinta-feira  sexta-feira   sexta-feira  
+##  [51] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [56] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [61] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
 ##  [66] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [71] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [76] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [81] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
+##  [71] sexta-feira   sexta-feira   sábado        sábado        sábado       
+##  [76] sábado        sábado        sábado        sábado        sábado       
+##  [81] sábado        sábado        sábado        sábado        sábado       
 ##  [86] sábado        sábado        sábado        sábado        sábado       
 ##  [91] sábado        sábado        sábado        sábado        sábado       
-##  [96] sábado        sábado        sábado        sábado        sábado       
-## [101] sábado        sábado        sábado        sábado        sábado       
-## [106] sábado        sábado        sábado        sábado        domingo      
+##  [96] sábado        domingo       domingo       domingo       domingo      
+## [101] domingo       domingo       domingo       domingo       domingo      
+## [106] domingo       domingo       domingo       domingo       domingo      
 ## [111] domingo       domingo       domingo       domingo       domingo      
 ## [116] domingo       domingo       domingo       domingo       domingo      
-## [121] domingo       domingo       domingo       domingo       domingo      
-## [126] domingo       domingo       domingo       domingo       domingo      
-## [131] domingo       domingo       domingo       segunda-feira segunda-feira
+## [121] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+## [126] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
+## [131] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
 ## [136] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [141] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [146] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [151] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [156] segunda-feira segunda-feira terça-feira   terça-feira   terça-feira  
+## [141] segunda-feira segunda-feira segunda-feira segunda-feira terça-feira  
+## [146] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [151] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
+## [156] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
 ## [161] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
 ## [166] terça-feira   terça-feira   terça-feira  
 ## 7 Levels: domingo quarta-feira quinta-feira sábado ... terça-feira</code></pre>
