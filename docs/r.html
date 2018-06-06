@@ -148,8 +148,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="5" data-path="plotando.html"><a href="plotando.html"><i class="fa fa-check"></i><b>5</b> Plotando</a><ul>
 <li class="chapter" data-level="5.1" data-path="plotando.html"><a href="plotando.html#plot-base"><i class="fa fa-check"></i><b>5.1</b> <code>plot</code> (base)</a></li>
-<li class="chapter" data-level="5.2" data-path="plotando.html"><a href="plotando.html#ggplot-ggplot2"><i class="fa fa-check"></i><b>5.2</b> <code>ggplot</code> (ggplot2)</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="plotando.html"><a href="plotando.html#explorando-outras-escalas-de-cores-e-temas"><i class="fa fa-check"></i><b>5.2.1</b> Explorando outras escalas de cores e temas</a></li>
+<li class="chapter" data-level="5.2" data-path="plotando.html"><a href="plotando.html#image"><i class="fa fa-check"></i><b>5.2</b> image</a></li>
+<li class="chapter" data-level="5.3" data-path="plotando.html"><a href="plotando.html#ggplot-ggplot2"><i class="fa fa-check"></i><b>5.3</b> <code>ggplot</code> (ggplot2)</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="plotando.html"><a href="plotando.html#explorando-outras-escalas-de-cores-e-temas"><i class="fa fa-check"></i><b>5.3.1</b> Explorando outras escalas de cores e temas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="loop.html"><a href="loop.html"><i class="fa fa-check"></i><b>6</b> Estruturas de Controle</a><ul>
@@ -197,7 +198,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Numeric (1): valores numéricos com ou sem casa decimal</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="op">+</span><span class="fl">2.3</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="fl">+2.3</span></code></pre></div>
 <pre><code>## [1] 7.3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi</code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
@@ -400,10 +401,6 @@ linhas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 <span class="kw">class</span>(a)</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b &lt;-<span class="st"> </span><span class="kw">ISOdate</span>(<span class="dt">year =</span> <span class="dv">2018</span>, <span class="dt">month =</span> <span class="dv">4</span>, <span class="dt">day =</span> <span class="dv">5</span>, <span class="dt">tz =</span> <span class="st">&quot;Americas/Sao_Paulo&quot;</span>)</code></pre></div>
-<pre><code>## Warning in strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz): unknown timezone
-## &#39;Americas/Sao_Paulo&#39;</code></pre>
-<pre><code>## Warning in as.POSIXct.POSIXlt(strptime(x, &quot;%Y-%m-%d-%H-%M-%OS&quot;, tz = tz), :
-## unknown timezone &#39;Americas/Sao_Paulo&#39;</code></pre>
 <p>Já a classe <code>Date</code>, armazena as datas como o número de dias contados a partir de 1970.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="kw">Sys.time</span>())
 <span class="kw">class</span>(c)</code></pre></div>
@@ -414,22 +411,20 @@ linhas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>)</code></pre></div>
 <p>Funções úteis: <code>weekdays</code>, <code>month</code> e <a href="https://en.wikipedia.org/wiki/Julian_day"><code>julian</code></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
-##  [5] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
-##  [9] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
-## [13] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
-## [17] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;
-## [21] &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot; &quot;quarta-feira&quot;</code></pre>
+<pre><code>##  [1] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quinta&quot;
+##  [8] &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot;
+## [15] &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot;
+## [22] &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
 <pre><code>##  [1] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ##  [9] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17688.13 17688.18 17688.22 17688.26 17688.30 17688.34 17688.38
-##  [8] 17688.43 17688.47 17688.51 17688.55 17688.59 17688.63 17688.68
-## [15] 17688.72 17688.76 17688.80 17688.84 17688.88 17688.93 17688.97
-## [22] 17689.01 17689.05 17689.09
+##  [1] 17688.91 17688.95 17688.99 17689.03 17689.07 17689.11 17689.16
+##  [8] 17689.20 17689.24 17689.28 17689.32 17689.36 17689.41 17689.45
+## [15] 17689.49 17689.53 17689.57 17689.61 17689.66 17689.70 17689.74
+## [22] 17689.78 17689.82 17689.86
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>O formato <code>POSIXct</code> é o mais comumente usado principalmente se os dados analisados serão plotados.</p>
@@ -443,41 +438,28 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##   [6] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [11] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [16] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [21] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quinta-feira 
-##  [26] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [31] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [36] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [41] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [46] quinta-feira  quinta-feira  quinta-feira  sexta-feira   sexta-feira  
-##  [51] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [56] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [61] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [66] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [71] sexta-feira   sexta-feira   sábado        sábado        sábado       
-##  [76] sábado        sábado        sábado        sábado        sábado       
-##  [81] sábado        sábado        sábado        sábado        sábado       
-##  [86] sábado        sábado        sábado        sábado        sábado       
-##  [91] sábado        sábado        sábado        sábado        sábado       
-##  [96] sábado        domingo       domingo       domingo       domingo      
-## [101] domingo       domingo       domingo       domingo       domingo      
-## [106] domingo       domingo       domingo       domingo       domingo      
-## [111] domingo       domingo       domingo       domingo       domingo      
-## [116] domingo       domingo       domingo       domingo       domingo      
-## [121] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [126] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [131] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [136] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [141] segunda-feira segunda-feira segunda-feira segunda-feira terça-feira  
-## [146] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [151] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [156] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [161] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [166] terça-feira   terça-feira   terça-feira  
-## 7 Levels: domingo quarta-feira quinta-feira sábado ... terça-feira</code></pre>
+<pre><code>##   [1] quarta  quarta  quarta  quarta  quarta  quarta  quinta  quinta 
+##   [9] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [17] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [25] quinta  quinta  quinta  quinta  quinta  quinta  sexta   sexta  
+##  [33] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [41] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [49] sexta   sexta   sexta   sexta   sexta   sexta   sábado  sábado 
+##  [57] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [65] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [73] sábado  sábado  sábado  sábado  sábado  sábado  domingo domingo
+##  [81] domingo domingo domingo domingo domingo domingo domingo domingo
+##  [89] domingo domingo domingo domingo domingo domingo domingo domingo
+##  [97] domingo domingo domingo domingo domingo domingo segunda segunda
+## [105] segunda segunda segunda segunda segunda segunda segunda segunda
+## [113] segunda segunda segunda segunda segunda segunda segunda segunda
+## [121] segunda segunda segunda segunda segunda segunda terça   terça  
+## [129] terça   terça   terça   terça   terça   terça   terça   terça  
+## [137] terça   terça   terça   terça   terça   terça   terça   terça  
+## [145] terça   terça   terça   terça   terça   terça   quarta  quarta 
+## [153] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## [161] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
 <p>São muito úteis para regressões, gráficos e resumos estatísitcos, uma vez que limita o número de possibilidades para a qual o dado pertença. Além disso, é possível estabelecer “níveis” que vão designar a categoria do seu dado.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ab &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> aa,
              <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>,  <span class="st">&quot;Wednesday&quot;</span>,  <span class="st">&quot;Thursday&quot;</span>,

@@ -166,7 +166,7 @@ args(as.POSIXct)
 Então, vamos criar outra variável tempo com o formato POSIXct:
 
 ```{r}
-df$tempo <- as.POSIXct(x = df$tempo_char, tz = "Americas/Sao_Paulo", 
+df$tempo <- as.POSIXct(x = df$tempo_char, tz = "America/Sao_Paulo", 
                        format = "%d/%m/%Y %H:%M")
 head(df$tempo)
 class(df$tempo)

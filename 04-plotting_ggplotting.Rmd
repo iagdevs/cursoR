@@ -55,6 +55,21 @@ lines(x = df_parcial$tempo[df$Valido == "Não"],
   
 A função `plot` cumpre bem o papel de gerar um gráfico simples, e até permite algumas customizações, mas ela exige cada vez mais linhas de código e argumentos dentro das funções para deixar o gráfico "mais bonito" - ao cumprir o desafio, você irá perceber como uma coisa "simples" como colocar uma legenda pode exigir muito mais do que parece!
 
+## image
+
+
+A função `image` permite pĺotear matrieces diretamente. Vamos testar esta função
+com a librería `cptcity`. Argumentos similares de plot podem ser usados em
+`image`.
+
+
+```{r}
+library(cptcity)
+image(matrix(1:100), col = lucky())
+image(matrix(1:100), col = lucky())
+image(matrix(1:100), col = lucky())
+```
+
 ## `ggplot` (ggplot2)
 
 A função `ggplot` funciona de um jeito um pouco diferente. Veja a figura abaixo:

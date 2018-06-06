@@ -375,7 +375,7 @@ que puder!
 Isso te ajudará a evitar coisas como: grafia errada da função, verificar
 se a função existe, verificar argumentos, etc\ldots{} Use sempre!
 
-\includegraphics{figuras/tab-key-.jpeg}
+\includegraphics[width=5.88in]{figuras/tab-key-}
 
 \begin{itemize}
 \tightlist
@@ -422,7 +422,7 @@ de variáveis básicas, sendo elas:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DecValTok{5}\OperatorTok{+}\FloatTok{2.3}
+\DecValTok{5}\FloatTok{+2.3}
 \end{Highlighting}
 \end{Shaded}
 
@@ -930,16 +930,6 @@ minutos, horas, dias, meses, etc.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning in strptime(x, "%Y-%m-%d-%H-%M-%OS", tz = tz): unknown timezone
-## 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(strptime(x, "%Y-%m-%d-%H-%M-%OS", tz = tz), :
-## unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
 Já a classe \texttt{Date}, armazena as datas como o número de dias
 contados a partir de 1970.
 
@@ -977,12 +967,10 @@ Funções úteis: \texttt{weekdays}, \texttt{month} e
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "quarta-feira" "quarta-feira" "quarta-feira" "quarta-feira"
-##  [5] "quarta-feira" "quarta-feira" "quarta-feira" "quarta-feira"
-##  [9] "quarta-feira" "quarta-feira" "quarta-feira" "quarta-feira"
-## [13] "quarta-feira" "quarta-feira" "quarta-feira" "quarta-feira"
-## [17] "quarta-feira" "quarta-feira" "quarta-feira" "quarta-feira"
-## [21] "quarta-feira" "quarta-feira" "quarta-feira" "quarta-feira"
+##  [1] "quarta" "quarta" "quarta" "quarta" "quarta" "quarta" "quinta"
+##  [8] "quinta" "quinta" "quinta" "quinta" "quinta" "quinta" "quinta"
+## [15] "quinta" "quinta" "quinta" "quinta" "quinta" "quinta" "quinta"
+## [22] "quinta" "quinta" "quinta"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1005,10 +993,10 @@ Funções úteis: \texttt{weekdays}, \texttt{month} e
 
 \begin{verbatim}
 ## Time differences in days
-##  [1] 17688.13 17688.18 17688.22 17688.26 17688.30 17688.34 17688.38
-##  [8] 17688.43 17688.47 17688.51 17688.55 17688.59 17688.63 17688.68
-## [15] 17688.72 17688.76 17688.80 17688.84 17688.88 17688.93 17688.97
-## [22] 17689.01 17689.05 17689.09
+##  [1] 17688.91 17688.95 17688.99 17689.03 17689.07 17689.11 17689.16
+##  [8] 17689.20 17689.24 17689.28 17689.32 17689.36 17689.41 17689.45
+## [15] 17689.49 17689.53 17689.57 17689.61 17689.66 17689.70 17689.74
+## [22] 17689.78 17689.82 17689.86
 ## attr(,"origin")
 ## [1] "1970-01-01 GMT"
 \end{verbatim}
@@ -1045,41 +1033,28 @@ variável contínua pode assumir um um número infinito de valores.
 \end{Shaded}
 
 \begin{verbatim}
-##   [1] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##   [6] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [11] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [16] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quarta-feira 
-##  [21] quarta-feira  quarta-feira  quarta-feira  quarta-feira  quinta-feira 
-##  [26] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [31] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [36] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [41] quinta-feira  quinta-feira  quinta-feira  quinta-feira  quinta-feira 
-##  [46] quinta-feira  quinta-feira  quinta-feira  sexta-feira   sexta-feira  
-##  [51] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [56] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [61] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [66] sexta-feira   sexta-feira   sexta-feira   sexta-feira   sexta-feira  
-##  [71] sexta-feira   sexta-feira   sábado        sábado        sábado       
-##  [76] sábado        sábado        sábado        sábado        sábado       
-##  [81] sábado        sábado        sábado        sábado        sábado       
-##  [86] sábado        sábado        sábado        sábado        sábado       
-##  [91] sábado        sábado        sábado        sábado        sábado       
-##  [96] sábado        domingo       domingo       domingo       domingo      
-## [101] domingo       domingo       domingo       domingo       domingo      
-## [106] domingo       domingo       domingo       domingo       domingo      
-## [111] domingo       domingo       domingo       domingo       domingo      
-## [116] domingo       domingo       domingo       domingo       domingo      
-## [121] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [126] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [131] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [136] segunda-feira segunda-feira segunda-feira segunda-feira segunda-feira
-## [141] segunda-feira segunda-feira segunda-feira segunda-feira terça-feira  
-## [146] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [151] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [156] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [161] terça-feira   terça-feira   terça-feira   terça-feira   terça-feira  
-## [166] terça-feira   terça-feira   terça-feira  
-## 7 Levels: domingo quarta-feira quinta-feira sábado ... terça-feira
+##   [1] quarta  quarta  quarta  quarta  quarta  quarta  quinta  quinta 
+##   [9] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [17] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+##  [25] quinta  quinta  quinta  quinta  quinta  quinta  sexta   sexta  
+##  [33] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [41] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##  [49] sexta   sexta   sexta   sexta   sexta   sexta   sábado  sábado 
+##  [57] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [65] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [73] sábado  sábado  sábado  sábado  sábado  sábado  domingo domingo
+##  [81] domingo domingo domingo domingo domingo domingo domingo domingo
+##  [89] domingo domingo domingo domingo domingo domingo domingo domingo
+##  [97] domingo domingo domingo domingo domingo domingo segunda segunda
+## [105] segunda segunda segunda segunda segunda segunda segunda segunda
+## [113] segunda segunda segunda segunda segunda segunda segunda segunda
+## [121] segunda segunda segunda segunda segunda segunda terça   terça  
+## [129] terça   terça   terça   terça   terça   terça   terça   terça  
+## [137] terça   terça   terça   terça   terça   terça   terça   terça  
+## [145] terça   terça   terça   terça   terça   terça   quarta  quarta 
+## [153] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## [161] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## Levels: domingo quarta quinta sábado segunda sexta terça
 \end{verbatim}
 
 São muito úteis para regressões, gráficos e resumos estatísitcos, uma
@@ -1184,22 +1159,22 @@ veja as primeiras ou últimas linhas do data frame.
 \end{Shaded}
 
 \begin{verbatim}
-##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
-## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
-## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
-## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
-## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
-## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
-##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
-## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido
-## 2             ppb            9          -   NÃ£o
+## 2             ppb            9          -    Não
 ## 3             ppb            9          -    Sim
 ## 4             ppb            5          -    Sim
 ## 5             ppb            4          -    Sim
@@ -1214,34 +1189,27 @@ veja as primeiras ou últimas linhas do data frame.
 \end{Shaded}
 
 \begin{verbatim}
-##       TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 8577 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 19:00
-## 8578 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 20:00
-## 8579 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 21:00
-## 8580 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 22:00
-## 8581 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 23:00
-## 8582 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 24:00
-##      CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o
-## 8577              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8578              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8579              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8580              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8581              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8582              95 Cid.UniversitÃ¡ria-USP-Ipen
-##                    NomeParÃ.metro UnidadedeMedida MediaHoraria MediaMovel
-## 8577 NOx (Ã“xidos de NitrogÃªnio)             ppb            3          -
-## 8578 NOx (Ã“xidos de NitrogÃªnio)             ppb            8          -
-## 8579 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
-## 8580 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
-## 8581 NOx (Ã“xidos de NitrogÃªnio)             ppb           16          -
-## 8582 NOx (Ã“xidos de NitrogÃªnio)             ppb           NA          -
-##      Valido
-## 8577    Sim
-## 8578    Sim
-## 8579    Sim
-## 8580    Sim
-## 8581    Sim
-## 8582    Sim
+##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim
 \end{verbatim}
 
 Vamos tentar ler outra versão dos mesmos dados utilizando a mesma função
@@ -1284,22 +1252,22 @@ espercificar o argumento \texttt{sep} na hora de usar o comando
 \end{Shaded}
 
 \begin{verbatim}
-##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
-## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
-## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
-## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
-## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
-## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
-##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
-## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido
-## 2             ppb            9          -   NÃ£o
+## 2             ppb            9          -    Não
 ## 3             ppb            9          -    Sim
 ## 4             ppb            5          -    Sim
 ## 5             ppb            4          -    Sim
@@ -1314,34 +1282,27 @@ espercificar o argumento \texttt{sep} na hora de usar o comando
 \end{Shaded}
 
 \begin{verbatim}
-##       TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 8577 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 19:00
-## 8578 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 20:00
-## 8579 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 21:00
-## 8580 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 22:00
-## 8581 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 23:00
-## 8582 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2015 24:00
-##      CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o
-## 8577              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8578              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8579              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8580              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8581              95 Cid.UniversitÃ¡ria-USP-Ipen
-## 8582              95 Cid.UniversitÃ¡ria-USP-Ipen
-##                    NomeParÃ.metro UnidadedeMedida MediaHoraria MediaMovel
-## 8577 NOx (Ã“xidos de NitrogÃªnio)             ppb            3          -
-## 8578 NOx (Ã“xidos de NitrogÃªnio)             ppb            8          -
-## 8579 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
-## 8580 NOx (Ã“xidos de NitrogÃªnio)             ppb           11          -
-## 8581 NOx (Ã“xidos de NitrogÃªnio)             ppb           16          -
-## 8582 NOx (Ã“xidos de NitrogÃªnio)             ppb           NA          -
-##      Valido
-## 8577    Sim
-## 8578    Sim
-## 8579    Sim
-## 8580    Sim
-## 8581    Sim
-## 8582    Sim
+##      TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 8577 Automático              CETESB Dados Primários 01/01/2015 19:00
+## 8578 Automático              CETESB Dados Primários 01/01/2015 20:00
+## 8579 Automático              CETESB Dados Primários 01/01/2015 21:00
+## 8580 Automático              CETESB Dados Primários 01/01/2015 22:00
+## 8581 Automático              CETESB Dados Primários 01/01/2015 23:00
+## 8582 Automático              CETESB Dados Primários 01/01/2015 24:00
+##      CodigoEstação                NomeEstação              NomeParâmetro
+## 8577            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8578            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8579            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8580            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8581            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 8582            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+##      UnidadedeMedida MediaHoraria MediaMovel Valido
+## 8577             ppb            3          -    Sim
+## 8578             ppb            8          -    Sim
+## 8579             ppb           11          -    Sim
+## 8580             ppb           11          -    Sim
+## 8581             ppb           16          -    Sim
+## 8582             ppb           NA          -    Sim
 \end{verbatim}
 
 Além desses comandos, vocês também pode utilizar a opção \textbf{Import
@@ -1494,9 +1455,9 @@ qualquer dúvida é só usar \texttt{?sapply}.
 \begin{verbatim}
 ##          TipodeRede TipodeMonitoramento                Tipo 
 ##            "factor"            "factor"            "factor" 
-##                Data                Hora     CodigoEstaÃ.Ã.o 
+##                Data                Hora       CodigoEstação 
 ##            "factor"            "factor"           "integer" 
-##       NomeEstaÃ.Ã.o      NomeParÃ.metro     UnidadedeMedida 
+##         NomeEstação       NomeParâmetro     UnidadedeMedida 
 ##            "factor"            "factor"            "factor" 
 ##        MediaHoraria          MediaMovel              Valido 
 ##           "integer"            "factor"            "factor"
@@ -1506,7 +1467,7 @@ Quando trabalhamos com séries temporais, é importante ter a variável
 tempo reconhecida como ``tempo'', especificamente como classe
 ``POSIXct''. Porém, a classe do tipo Data é ``factor'' assim como a
 Hora, o que pode ser ruim. Então, vamos criar uma variável de tempo mais
-padronizada com o formato 2018-06-06 00:13:18.
+padronizada com o formato 2018-06-06 18:45:30.
 
 Para isso temos que juntar as variáveis Data e Hora. Faremos isso numa
 nova varável chamada ``tempo\_char'', adicionando-a diretamente no data
@@ -1556,35 +1517,16 @@ Então, vamos criar outra variável tempo com o formato POSIXct:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df}\OperatorTok{$}\NormalTok{tempo <-}\StringTok{ }\KeywordTok{as.POSIXct}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df}\OperatorTok{$}\NormalTok{tempo_char, }\DataTypeTok{tz =} \StringTok{"Americas/Sao_Paulo"}\NormalTok{, }
+\NormalTok{df}\OperatorTok{$}\NormalTok{tempo <-}\StringTok{ }\KeywordTok{as.POSIXct}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df}\OperatorTok{$}\NormalTok{tempo_char, }\DataTypeTok{tz =} \StringTok{"America/Sao_Paulo"}\NormalTok{, }
                        \DataTypeTok{format =} \StringTok{"%d/%m/%Y %H:%M"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in strptime(x, format, tz = tz): unknown timezone 'Americas/
-## Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(as.POSIXlt(x, tz, ...), tz, ...): unknown
-## timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{head}\NormalTok{(df}\OperatorTok{$}\NormalTok{tempo)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## [1] "2014-01-01 01:00:00 GMT" "2014-01-01 02:00:00 GMT"
-## [3] "2014-01-01 03:00:00 GMT" "2014-01-01 04:00:00 GMT"
-## [5] "2014-01-01 05:00:00 GMT" "2014-01-01 06:00:00 GMT"
+## [1] "2014-01-01 01:00:00 -02" "2014-01-01 02:00:00 -02"
+## [3] "2014-01-01 03:00:00 -02" "2014-01-01 04:00:00 -02"
+## [5] "2014-01-01 05:00:00 -02" "2014-01-01 06:00:00 -02"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1602,36 +1544,17 @@ Agora, vamos extrair os dias da semana do tempo, mes e dia juliano:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df}\OperatorTok{$}\NormalTok{weekdays <-}\StringTok{ }\KeywordTok{format}\NormalTok{(df}\OperatorTok{$}\NormalTok{tempo, }\StringTok{"%A"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{head}\NormalTok{(df}\OperatorTok{$}\NormalTok{weekdays)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "quarta-feira" "quarta-feira" "quarta-feira" "quarta-feira"
-## [5] "quarta-feira" "quarta-feira"
+## [1] "quarta" "quarta" "quarta" "quarta" "quarta" "quarta"
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df}\OperatorTok{$}\NormalTok{mes <-}\StringTok{ }\KeywordTok{format}\NormalTok{(df}\OperatorTok{$}\NormalTok{tempo, }\StringTok{"%B"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{head}\NormalTok{(df}\OperatorTok{$}\NormalTok{mes)}
 \end{Highlighting}
 \end{Shaded}
@@ -1649,7 +1572,7 @@ Agora, vamos extrair os dias da semana do tempo, mes e dia juliano:
 
 \begin{verbatim}
 ## Time differences in days
-## [1] 16071.04 16071.08 16071.12 16071.17 16071.21 16071.25
+## [1] 16071.12 16071.17 16071.21 16071.25 16071.29 16071.33
 \end{verbatim}
 
 \begin{Shaded}
@@ -1657,10 +1580,6 @@ Agora, vamos extrair os dias da semana do tempo, mes e dia juliano:
 \NormalTok{df}\OperatorTok{$}\NormalTok{ano <-}\StringTok{ }\KeywordTok{format}\NormalTok{(df}\OperatorTok{$}\NormalTok{tempo, }\StringTok{"%Y"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
 
 Pronto! Agora temos o tempo no formato que desejamos.
 
@@ -1675,38 +1594,34 @@ Vamos dar uma olhada no nosso data frame:
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
-## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
-## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
-## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
-## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
-## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
-##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
-## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
-## 2             ppb            9          -   NÃ£o 01/01/2014 01:00
+## 2             ppb            9          -    Não 01/01/2014 01:00
 ## 3             ppb            9          -    Sim 01/01/2014 02:00
 ## 4             ppb            5          -    Sim 01/01/2014 03:00
 ## 5             ppb            4          -    Sim 01/01/2014 04:00
 ## 6             ppb            5          -    Sim 01/01/2014 05:00
 ## 7             ppb            5          -    Sim 01/01/2014 06:00
-##                 tempo     weekdays     mes    diajuliano  ano
-## 2 2014-01-01 01:00:00 quarta-feira janeiro 16071.04 days 2014
-## 3 2014-01-01 02:00:00 quarta-feira janeiro 16071.08 days 2014
-## 4 2014-01-01 03:00:00 quarta-feira janeiro 16071.12 days 2014
-## 5 2014-01-01 04:00:00 quarta-feira janeiro 16071.17 days 2014
-## 6 2014-01-01 05:00:00 quarta-feira janeiro 16071.21 days 2014
-## 7 2014-01-01 06:00:00 quarta-feira janeiro 16071.25 days 2014
+##                 tempo weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00   quarta janeiro 16071.12 days 2014
+## 3 2014-01-01 02:00:00   quarta janeiro 16071.17 days 2014
+## 4 2014-01-01 03:00:00   quarta janeiro 16071.21 days 2014
+## 5 2014-01-01 04:00:00   quarta janeiro 16071.25 days 2014
+## 6 2014-01-01 05:00:00   quarta janeiro 16071.29 days 2014
+## 7 2014-01-01 06:00:00   quarta janeiro 16071.33 days 2014
 \end{verbatim}
 
 Com a função \texttt{aggregate}, podemos agregar os dados de diversas
@@ -1721,14 +1636,14 @@ formas. Por exemplo, a média horaria por dia da semana é:
 \end{Shaded}
 
 \begin{verbatim}
-##            dias MediaHoraria
-## 1       domingo     17.32907
-## 2  quarta-feira     34.07973
-## 3  quinta-feira     33.65931
-## 4        sábado     27.30178
-## 5 segunda-feira     28.93543
-## 6   sexta-feira     35.40599
-## 7   terça-feira     32.04057
+##      dias MediaHoraria
+## 1 domingo     17.30973
+## 2  quarta     34.07973
+## 3  quinta     33.65931
+## 4  sábado     27.31250
+## 5 segunda     28.93543
+## 6   sexta     35.40599
+## 7   terça     32.04057
 \end{verbatim}
 
 E o desvio-padrão é:
@@ -1741,14 +1656,14 @@ E o desvio-padrão é:
 \end{Shaded}
 
 \begin{verbatim}
-##            dias MediaHoraria       sd
-## 1       domingo     17.32907 22.11278
-## 2  quarta-feira     34.07973 41.26901
-## 3  quinta-feira     33.65931 42.14773
-## 4        sábado     27.30178 35.08044
-## 5 segunda-feira     28.93543 32.15303
-## 6   sexta-feira     35.40599 44.44488
-## 7   terça-feira     32.04057 33.87323
+##      dias MediaHoraria       sd
+## 1 domingo     17.30973 22.11229
+## 2  quarta     34.07973 41.26901
+## 3  quinta     33.65931 42.14773
+## 4  sábado     27.31250 35.06755
+## 5 segunda     28.93543 32.15303
+## 6   sexta     35.40599 44.44488
+## 7   terça     32.04057 33.87323
 \end{verbatim}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
@@ -1770,38 +1685,34 @@ Como podemos escolher só o mês de janeiro??
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-##    TipodeRede TipodeMonitoramento             Tipo       Data  Hora
-## 2 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 01:00
-## 3 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 02:00
-## 4 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 03:00
-## 5 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 04:00
-## 6 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 05:00
-## 7 AutomÃ¡tico              CETESB Dados PrimÃ¡rios 01/01/2014 06:00
-##   CodigoEstaÃ.Ã.o               NomeEstaÃ.Ã.o               NomeParÃ.metro
-## 2              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 3              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 4              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 5              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 6              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
-## 7              95 Cid.UniversitÃ¡ria-USP-Ipen NOx (Ã“xidos de NitrogÃªnio)
+##   TipodeRede TipodeMonitoramento            Tipo       Data  Hora
+## 2 Automático              CETESB Dados Primários 01/01/2014 01:00
+## 3 Automático              CETESB Dados Primários 01/01/2014 02:00
+## 4 Automático              CETESB Dados Primários 01/01/2014 03:00
+## 5 Automático              CETESB Dados Primários 01/01/2014 04:00
+## 6 Automático              CETESB Dados Primários 01/01/2014 05:00
+## 7 Automático              CETESB Dados Primários 01/01/2014 06:00
+##   CodigoEstação                NomeEstação              NomeParâmetro
+## 2            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 3            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 4            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 5            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 6            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
+## 7            95 Cid.Universitária-USP-Ipen NOx (Óxidos de Nitrogênio)
 ##   UnidadedeMedida MediaHoraria MediaMovel Valido       tempo_char
-## 2             ppb            9          -   NÃ£o 01/01/2014 01:00
+## 2             ppb            9          -    Não 01/01/2014 01:00
 ## 3             ppb            9          -    Sim 01/01/2014 02:00
 ## 4             ppb            5          -    Sim 01/01/2014 03:00
 ## 5             ppb            4          -    Sim 01/01/2014 04:00
 ## 6             ppb            5          -    Sim 01/01/2014 05:00
 ## 7             ppb            5          -    Sim 01/01/2014 06:00
-##                 tempo     weekdays     mes    diajuliano  ano
-## 2 2014-01-01 01:00:00 quarta-feira janeiro 16071.04 days 2014
-## 3 2014-01-01 02:00:00 quarta-feira janeiro 16071.08 days 2014
-## 4 2014-01-01 03:00:00 quarta-feira janeiro 16071.12 days 2014
-## 5 2014-01-01 04:00:00 quarta-feira janeiro 16071.17 days 2014
-## 6 2014-01-01 05:00:00 quarta-feira janeiro 16071.21 days 2014
-## 7 2014-01-01 06:00:00 quarta-feira janeiro 16071.25 days 2014
+##                 tempo weekdays     mes    diajuliano  ano
+## 2 2014-01-01 01:00:00   quarta janeiro 16071.12 days 2014
+## 3 2014-01-01 02:00:00   quarta janeiro 16071.17 days 2014
+## 4 2014-01-01 03:00:00   quarta janeiro 16071.21 days 2014
+## 5 2014-01-01 04:00:00   quarta janeiro 16071.25 days 2014
+## 6 2014-01-01 05:00:00   quarta janeiro 16071.29 days 2014
+## 7 2014-01-01 06:00:00   quarta janeiro 16071.33 days 2014
 \end{verbatim}
 
 Só que agora temos só a média horária para esse mês, que retorna um
@@ -1815,8 +1726,8 @@ vetor numérico:
 
 \begin{verbatim}
 ##  [1] "TipodeRede"          "TipodeMonitoramento" "Tipo"               
-##  [4] "Data"                "Hora"                "CodigoEstaÃ.Ã.o"    
-##  [7] "NomeEstaÃ.Ã.o"       "NomeParÃ.metro"      "UnidadedeMedida"    
+##  [4] "Data"                "Hora"                "CodigoEstação"      
+##  [7] "NomeEstação"         "NomeParâmetro"       "UnidadedeMedida"    
 ## [10] "MediaHoraria"        "MediaMovel"          "Valido"             
 ## [13] "tempo_char"          "tempo"               "weekdays"           
 ## [16] "mes"                 "diajuliano"          "ano"
@@ -1886,7 +1797,7 @@ quanto tempo demora cada um. A função de leitura do data.table é
 
 \begin{verbatim}
 ##    user  system elapsed 
-##    0.04    0.02    0.07
+##   0.076   0.000   0.075
 \end{verbatim}
 
 \begin{Shaded}
@@ -1898,7 +1809,7 @@ quanto tempo demora cada um. A função de leitura do data.table é
 
 \begin{verbatim}
 ##    user  system elapsed 
-##       0       0       0
+##   0.008   0.000   0.008
 \end{verbatim}
 
 \hypertarget{tidyverse}{\section{Tidyverse}\label{tidyverse}}
@@ -2741,57 +2652,53 @@ writeBin escreveria os bytes do string não convertidos.
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-##        TipodeRede   TipodeMonitoramento               Tipo     
-##  AutomÃ¡tico:8581   CETESB:8581         Dados PrimÃ¡rios:8581  
-##                                                                
-##                                                                
-##                                                                
-##                                                                
-##                                                                
-##                                                                
-##          Data           Hora      CodigoEstaÃ.Ã.o
-##  01/01/2014:  24   16:00  : 363   Min.   :95     
-##  01/01/2015:  24   12:00  : 361   1st Qu.:95     
-##  01/02/2014:  24   14:00  : 361   Median :95     
-##  01/04/2014:  24   18:00  : 361   Mean   :95     
-##  01/05/2014:  24   13:00  : 360   3rd Qu.:95     
-##  01/06/2014:  24   17:00  : 360   Max.   :95     
-##  (Other)   :8437   (Other):6415                  
-##                      NomeEstaÃ.Ã.o                       NomeParÃ.metro
-##  Cid.UniversitÃ¡ria-USP-Ipen:8581   NOx (Ã“xidos de NitrogÃªnio):8581  
-##                                                                        
-##                                                                        
-##                                                                        
-##                                                                        
-##                                                                        
-##                                                                        
-##  UnidadedeMedida  MediaHoraria    MediaMovel  Valido    
-##  ppb:8581        Min.   :  0.00   -:8581     NÃ£o: 907  
-##                  1st Qu.:  9.00              Sim :7674  
-##                  Median : 18.00                         
-##                  Mean   : 29.87                         
-##                  3rd Qu.: 34.00                         
-##                  Max.   :306.00                         
-##                  NA's   :260                            
-##   tempo_char            tempo                       weekdays        
-##  Length:8581        Min.   :2014-01-01 01:00:00   Length:8581       
-##  Class :character   1st Qu.:2014-04-05 14:00:00   Class :character  
-##  Mode  :character   Median :2014-07-05 23:00:00   Mode  :character  
-##                     Mean   :2014-07-04 20:22:55                     
-##                     3rd Qu.:2014-10-03 10:00:00                     
-##                     Max.   :2015-01-02 00:00:00                     
+##       TipodeRede   TipodeMonitoramento              Tipo     
+##  Automático:8581   CETESB:8581         Dados Primários:8581  
+##                                                              
+##                                                              
+##                                                              
+##                                                              
+##                                                              
+##                                                              
+##          Data           Hora      CodigoEstação
+##  01/01/2014:  24   16:00  : 363   Min.   :95   
+##  01/01/2015:  24   12:00  : 361   1st Qu.:95   
+##  01/02/2014:  24   14:00  : 361   Median :95   
+##  01/04/2014:  24   18:00  : 361   Mean   :95   
+##  01/05/2014:  24   13:00  : 360   3rd Qu.:95   
+##  01/06/2014:  24   17:00  : 360   Max.   :95   
+##  (Other)   :8437   (Other):6415                
+##                      NomeEstação                      NomeParâmetro 
+##  Cid.Universitária-USP-Ipen:8581   NOx (Óxidos de Nitrogênio):8581  
 ##                                                                     
-##      mes             diajuliano           ano           
-##  Length:8581        Length:8581       Length:8581       
-##  Class :character   Class :difftime   Class :character  
-##  Mode  :character   Mode  :numeric    Mode  :character  
-##                                                         
-##                                                         
-##                                                         
+##                                                                     
+##                                                                     
+##                                                                     
+##                                                                     
+##                                                                     
+##  UnidadedeMedida  MediaHoraria    MediaMovel Valido      tempo_char       
+##  ppb:8581        Min.   :  0.00   -:8581     Não: 907   Length:8581       
+##                  1st Qu.:  9.00              Sim:7674   Class :character  
+##                  Median : 18.00                         Mode  :character  
+##                  Mean   : 29.87                                           
+##                  3rd Qu.: 34.00                                           
+##                  Max.   :306.00                                           
+##                  NA's   :260                                              
+##      tempo                       weekdays             mes           
+##  Min.   :2014-01-01 01:00:00   Length:8581        Length:8581       
+##  1st Qu.:2014-04-05 14:00:00   Class :character   Class :character  
+##  Median :2014-07-05 23:00:00   Mode  :character   Mode  :character  
+##  Mean   :2014-07-04 20:03:16                                        
+##  3rd Qu.:2014-10-03 10:00:00                                        
+##  Max.   :2015-01-02 00:00:00                                        
+##                                                                     
+##   diajuliano           ano           
+##  Length:8581       Length:8581       
+##  Class :difftime   Class :character  
+##  Mode  :numeric    Mode  :character  
+##                                      
+##                                      
+##                                      
 ## 
 \end{verbatim}
 
@@ -2816,18 +2723,6 @@ Então, a forma mais fácil de plotar uma variável em função do tempo é:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(z): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(zz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-87-1.pdf}
 
 Feio, né?\\
@@ -2844,19 +2739,6 @@ Tentando deixar mais bonito\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(round(z, "days")): unknown timezone
-## 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
 \includegraphics{cursoR_files/figure-latex/unnamed-chunk-88-1.pdf}
 
 Colocando \textbf{DOIS} elementos no mesmo gráfico:
@@ -2869,24 +2751,6 @@ Colocando \textbf{DOIS} elementos no mesmo gráfico:
      \DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{,}
      \DataTypeTok{xlab =} \StringTok{"Data"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"NOx [ppb]"}\NormalTok{,}
      \DataTypeTok{main =} \StringTok{"Dados Válidos e Inválidos"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(round(z, "days")): unknown timezone
-## 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{lines}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df_parcial}\OperatorTok{$}\NormalTok{tempo[df}\OperatorTok{$}\NormalTok{Valido }\OperatorTok{==}\StringTok{ "Não"}\NormalTok{], }
       \DataTypeTok{y =}\NormalTok{ df_parcial}\OperatorTok{$}\NormalTok{MediaHoraria[df}\OperatorTok{$}\NormalTok{Valido }\OperatorTok{==}\StringTok{ "Não"}\NormalTok{], }
       \DataTypeTok{pch =} \DecValTok{15}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
@@ -2908,6 +2772,49 @@ código e argumentos dentro das funções para deixar o gráfico ``mais
 bonito'' - ao cumprir o desafio, você irá perceber como uma coisa
 ``simples'' como colocar uma legenda pode exigir muito mais do que
 parece!
+
+\section{image}\label{image}
+
+A função \texttt{image} permite pĺotear matrieces diretamente. Vamos
+testar esta função com a librería \texttt{cptcity}. Argumentos similares
+de plot podem ser usados em \texttt{image}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(cptcity)}
+\KeywordTok{image}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{), }\DataTypeTok{col =} \KeywordTok{lucky}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Colour gradient: jm_ad_ad_d, number: 4507
+\end{verbatim}
+
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-90-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{image}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{), }\DataTypeTok{col =} \KeywordTok{lucky}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Colour gradient: gacruxa_kon_kon_21, number: 2751
+\end{verbatim}
+
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-90-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{image}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{100}\NormalTok{), }\DataTypeTok{col =} \KeywordTok{lucky}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Colour gradient: ma_spice_spice15, number: 4957
+\end{verbatim}
+
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-90-3.pdf}
 
 \section{\texorpdfstring{\texttt{ggplot}
 (ggplot2)}{ggplot (ggplot2)}}\label{ggplot-ggplot2}
@@ -2947,62 +2854,10 @@ Que tal refazermos os gráficos da seção anterior?
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(to): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(to): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
 ## Warning: Removed 260 rows containing missing values (geom_point).
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-91-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-92-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3014,55 +2869,7 @@ Que tal refazermos os gráficos da seção anterior?
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-92-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-93-1.pdf}
 
 Agora o mais interessante:
 
@@ -3078,33 +2885,7 @@ Agora o mais interessante:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-93-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-94-1.pdf}
 
 {\textbf{Pergunta}: Qual a principal diferença entre o código acima e o
 \protect\hyperlink{plot_base}{código usando \texttt{plot}}?}
@@ -3144,25 +2925,25 @@ Usando algumas outras funções dentro do
 \KeywordTok{library}\NormalTok{(tidyverse)}
 
 \NormalTok{df_}\DecValTok{2014}\NormalTok{ <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(df, ano }\OperatorTok{==}\StringTok{ "2014"}\NormalTok{)}
-\NormalTok{df_2014_hour <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}\StringTok{ }\CommentTok{#-- A partir do data frame df_2014}
+\NormalTok{df_}\DecValTok{2014}\NormalTok{_hour <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}\StringTok{ }\CommentTok{#-- A partir do data frame df_2014}
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Agrupe os dados pela coluna hora}
 \StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- E calcule as médias, }
 \StringTok{                                                       }\CommentTok{#-- salvando em uma coluna nova}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Hora =} \KeywordTok{as.POSIXct}\NormalTok{(}\KeywordTok{strptime}\NormalTok{(Hora, }\StringTok{"%H:%M"}\NormalTok{))) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Transformando em data}
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\CommentTok{#-- Desagrupando}
 
-\KeywordTok{ggplot}\NormalTok{(df_2014_hour) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_hour) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{#-- Formato de data que aparecerá no eixo x}
 \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media, }\DataTypeTok{group =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-94-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-95-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_2014_weekly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}
+\NormalTok{df_}\DecValTok{2014}\NormalTok{_weekly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora, weekdays) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Agrupando os dados pelas colunas Hora e weekdays}
 \StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
@@ -3171,7 +2952,7 @@ Usando algumas outras funções dentro do
                                                 \StringTok{"quinta"}\NormalTok{, }\StringTok{"sexta"}\NormalTok{, }\StringTok{"sábado"}\NormalTok{, }
                                                 \StringTok{"domingo"}\NormalTok{))) }\CommentTok{#-- Ordenando os dias da semana}
 
-\KeywordTok{ggplot}\NormalTok{(df_2014_weekly) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_weekly) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media), }\DataTypeTok{fill =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Dia da Semana"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}
@@ -3179,11 +2960,11 @@ Usando algumas outras funções dentro do
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-95-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-96-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df_2014_monthly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}
+\NormalTok{df_}\DecValTok{2014}\NormalTok{_monthly <-}\StringTok{ }\NormalTok{df_}\DecValTok{2014} \OperatorTok{%>%}
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(Hora, mes) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#-- Agrupando os dados pelas colunas Hora e mes}
 \StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Media =} \KeywordTok{mean}\NormalTok{(MediaHoraria, }\DataTypeTok{na.rm =}\NormalTok{ T)) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ungroup}\NormalTok{() }\OperatorTok{%>%}
@@ -3193,7 +2974,7 @@ Usando algumas outras funções dentro do
                                       \StringTok{"agosto"}\NormalTok{, }\StringTok{"setembro"}\NormalTok{, }\StringTok{"outubro"}\NormalTok{,}
                                       \StringTok{"novembro"}\NormalTok{, }\StringTok{"dezembro"}\NormalTok{))) }\CommentTok{#-- Ordenando os meses}
 
-\KeywordTok{ggplot}\NormalTok{(df_2014_monthly) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_monthly) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media), }\DataTypeTok{fill =} \StringTok{"purple"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Mes"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}
@@ -3201,7 +2982,7 @@ Usando algumas outras funções dentro do
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-96-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-97-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -3249,68 +3030,16 @@ Refazendo alguns gráficos:
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(to): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(to): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(from): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXct.POSIXlt(r1): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in as.POSIXlt.POSIXct(x, tz): unknown timezone 'Americas/Sao_Paulo'
-\end{verbatim}
-
-\begin{verbatim}
 ## Warning: Removed 1 rows containing missing values (geom_path).
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-100-1.pdf}
 
 Experimentando escalas de cores com a função \texttt{lucky}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(df_2014_monthly) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(df_}\DecValTok{2014}\NormalTok{_monthly) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_x_datetime}\NormalTok{(}\DataTypeTok{date_labels =} \StringTok{"%H:%M"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Hora, }\DataTypeTok{y =}\NormalTok{ Media, }\DataTypeTok{fill =}\NormalTok{ Media)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Média Horária Anual por Mes"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"NOx [ppb]"}\NormalTok{) }\OperatorTok{+}
@@ -3322,10 +3051,10 @@ Experimentando escalas de cores com a função \texttt{lucky}:
 \end{Shaded}
 
 \begin{verbatim}
-## Colour gradient: ds9_heat, number: 1203
+## Colour gradient: nd_terra_Analogous_08a, number: 5770
 \end{verbatim}
 
-\includegraphics{cursoR_files/figure-latex/unnamed-chunk-100-1.pdf}
+\includegraphics{cursoR_files/figure-latex/unnamed-chunk-101-1.pdf}
 
 \textbf{Este é só o começo!}
 \href{http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html}{Veja
