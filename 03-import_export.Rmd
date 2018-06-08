@@ -335,7 +335,7 @@ O vetor (que não precisa necessariamente ser definido como uma variável) é pr
 Uma forma de fazer isso sem usar `%>%` seria:  
 
 ```{r}
-paste(order(seq(1, 10), decreasing = T), "vezes")
+paste(order(seq(1, 10), decreasing = T), "n")
 ```
 
 <span style="color:blue">**Pergunta**: Na sua opinião, qual é o código mais fácil e rápido de ser entendido?</span>  
@@ -395,7 +395,7 @@ summary(paracatu)
 <span style="color:blue">**Pergunta**: E agora? Na sua opinião, qual é o código mais fácil e rápido de ser entendido?</span>  
 
 ***
-<span style="color:red">**Exercício**: Crie um data frame dos dados de Paracatu com a data no formato `POSIXct` e os resíduos de temperatura, umidade e pressão. Em geral, qual grandeza tem maior resíduo?</span>  
+<span style="color:red">**Exercício**: Crie um data frame dos dados de Paracatu com a data no formato `POSIXct` e os resíduos de temperatura e pressão. Em geral, qual grandeza tem maior resíduo?</span>  
 
 ***
 

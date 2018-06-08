@@ -25,7 +25,7 @@
 <meta name="author" content="Sergio Ibarra-Espinosa, Amanda Rehbein, Daniel Schuch, Camila Lopes, Isabela Siqueira, e possivelmente outros (você está convidado para colaborar)">
 
 
-<meta name="date" content="2018-06-06">
+<meta name="date" content="2018-06-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -198,7 +198,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Numeric (1): valores numéricos com ou sem casa decimal</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="fl">+2.3</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span><span class="op">+</span><span class="fl">2.3</span></code></pre></div>
 <pre><code>## [1] 7.3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi</code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
@@ -411,20 +411,20 @@ linhas &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">
 a &lt;-<span class="st"> </span><span class="kw">seq.POSIXt</span>(<span class="dt">from =</span> hoje, <span class="dt">by =</span> <span class="dv">3600</span>, <span class="dt">length.out =</span> <span class="dv">24</span>)</code></pre></div>
 <p>Funções úteis: <code>weekdays</code>, <code>month</code> e <a href="https://en.wikipedia.org/wiki/Julian_day"><code>julian</code></a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">weekdays</span>(a)</code></pre></div>
-<pre><code>##  [1] &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quarta&quot; &quot;quinta&quot;
-##  [8] &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot;
-## [15] &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot;
-## [22] &quot;quinta&quot; &quot;quinta&quot; &quot;quinta&quot;</code></pre>
+<pre><code>##  [1] &quot;sexta&quot;  &quot;sexta&quot;  &quot;sexta&quot;  &quot;sexta&quot;  &quot;sexta&quot;  &quot;sexta&quot;  &quot;sexta&quot; 
+##  [8] &quot;sexta&quot;  &quot;sexta&quot;  &quot;sábado&quot; &quot;sábado&quot; &quot;sábado&quot; &quot;sábado&quot; &quot;sábado&quot;
+## [15] &quot;sábado&quot; &quot;sábado&quot; &quot;sábado&quot; &quot;sábado&quot; &quot;sábado&quot; &quot;sábado&quot; &quot;sábado&quot;
+## [22] &quot;sábado&quot; &quot;sábado&quot; &quot;sábado&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">months</span>(a)</code></pre></div>
 <pre><code>##  [1] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ##  [9] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;
 ## [17] &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot; &quot;junho&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">julian</span>(a) <span class="co">#dia Juliano</span></code></pre></div>
 <pre><code>## Time differences in days
-##  [1] 17688.91 17688.95 17688.99 17689.03 17689.07 17689.11 17689.16
-##  [8] 17689.20 17689.24 17689.28 17689.32 17689.36 17689.41 17689.45
-## [15] 17689.49 17689.53 17689.57 17689.61 17689.66 17689.70 17689.74
-## [22] 17689.78 17689.82 17689.86
+##  [1] 17690.76 17690.80 17690.85 17690.89 17690.93 17690.97 17691.01
+##  [8] 17691.05 17691.10 17691.14 17691.18 17691.22 17691.26 17691.30
+## [15] 17691.35 17691.39 17691.43 17691.47 17691.51 17691.55 17691.60
+## [22] 17691.64 17691.68 17691.72
 ## attr(,&quot;origin&quot;)
 ## [1] &quot;1970-01-01 GMT&quot;</code></pre>
 <p>O formato <code>POSIXct</code> é o mais comumente usado principalmente se os dados analisados serão plotados.</p>
@@ -438,27 +438,27 @@ aa &lt;-<span class="st"> </span><span class="kw">weekdays</span>(a)
 <span class="kw">class</span>(aa)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(aa)</code></pre></div>
-<pre><code>##   [1] quarta  quarta  quarta  quarta  quarta  quarta  quinta  quinta 
-##   [9] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [17] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
-##  [25] quinta  quinta  quinta  quinta  quinta  quinta  sexta   sexta  
-##  [33] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [41] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
-##  [49] sexta   sexta   sexta   sexta   sexta   sexta   sábado  sábado 
-##  [57] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-##  [65] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
-##  [73] sábado  sábado  sábado  sábado  sábado  sábado  domingo domingo
-##  [81] domingo domingo domingo domingo domingo domingo domingo domingo
-##  [89] domingo domingo domingo domingo domingo domingo domingo domingo
-##  [97] domingo domingo domingo domingo domingo domingo segunda segunda
-## [105] segunda segunda segunda segunda segunda segunda segunda segunda
-## [113] segunda segunda segunda segunda segunda segunda segunda segunda
-## [121] segunda segunda segunda segunda segunda segunda terça   terça  
-## [129] terça   terça   terça   terça   terça   terça   terça   terça  
-## [137] terça   terça   terça   terça   terça   terça   terça   terça  
-## [145] terça   terça   terça   terça   terça   terça   quarta  quarta 
-## [153] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
-## [161] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+<pre><code>##   [1] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+##   [9] sexta   sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [17] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [25] sábado  sábado  sábado  sábado  sábado  sábado  sábado  sábado 
+##  [33] sábado  domingo domingo domingo domingo domingo domingo domingo
+##  [41] domingo domingo domingo domingo domingo domingo domingo domingo
+##  [49] domingo domingo domingo domingo domingo domingo domingo domingo
+##  [57] domingo segunda segunda segunda segunda segunda segunda segunda
+##  [65] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [73] segunda segunda segunda segunda segunda segunda segunda segunda
+##  [81] segunda terça   terça   terça   terça   terça   terça   terça  
+##  [89] terça   terça   terça   terça   terça   terça   terça   terça  
+##  [97] terça   terça   terça   terça   terça   terça   terça   terça  
+## [105] terça   quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## [113] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## [121] quarta  quarta  quarta  quarta  quarta  quarta  quarta  quarta 
+## [129] quarta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+## [137] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+## [145] quinta  quinta  quinta  quinta  quinta  quinta  quinta  quinta 
+## [153] quinta  sexta   sexta   sexta   sexta   sexta   sexta   sexta  
+## [161] sexta   sexta   sexta   sexta   sexta   sexta   sexta   sexta  
 ## Levels: domingo quarta quinta sábado segunda sexta terça</code></pre>
 <p>São muito úteis para regressões, gráficos e resumos estatísitcos, uma vez que limita o número de possibilidades para a qual o dado pertença. Além disso, é possível estabelecer “níveis” que vão designar a categoria do seu dado.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ab &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> aa,
