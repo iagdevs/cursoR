@@ -307,7 +307,7 @@ Assim, para ler os dados de Paracatu do INMET:
 ```{r, message=F}
 library(tidyverse)
 paracatu <- read_csv("dados/paracatu.csv")
-summary(paracatu)
+glimpse(paracatu)
 ```
 
 ### Leitura `%>%` Processamento
@@ -372,8 +372,8 @@ paracatu <- read_csv("dados/paracatu.csv") %>% #-- 1.
   mutate(., data_completa = paste(data, hora, sep = "-")) %>%  #-- 2.
   mutate(., data_completa = as.POSIXct(data_completa, format = "%d/%m/%Y-%H")) %>%  #-- 3.
   mutate(., temp_med = (temp_max + temp_min)/2) %>%  #-- 4.
-  mutate(., temp_residuo = temp_inst - temp_med) #-- 5.
-summary(paracatu)
+  mutate(., temp_residuo = temp_inst - temp_med) %>% #-- 5.
+  glimpse()
 ```
 
 O código pode estar separado por linhas, mas perceba que, ao rodar qualquer linha desse conjunto, todo ele é rodado de uma vez!
@@ -387,8 +387,8 @@ paracatu <- read_csv("dados/paracatu.csv") %>% #-- 1.
   mutate(., data_completa = as.POSIXct(data_completa, format = "%d/%m/%Y-%H")) %>%  #-- 3.
   mutate(., temp_med = (temp_max + temp_min)/2) %>%  #-- 4.
   mutate(., temp_residuo = temp_inst - temp_med) %>% #-- 5.
-  select(., -c(data, hora)) #-- 6.
-summary(paracatu)
+  select(., -c(data, hora)) %>% #-- 6.
+  glimpse()
 ```
 
 
