@@ -87,7 +87,7 @@ Nem sempre os conjuntos de dados que você encontrar pela vida estarão no forma
 
 ## Array
 
-Ao contrário do vetor unidimensional, arrays permietm que você armazene dados em diversas dimensões, sendo todas com o mesmo comprimento.  
+Ao contrário do vetor unidimensional, arrays permitem que você armazene dados em diversas dimensões, sendo todas com o mesmo comprimento.  
 
 Vamos dar uma olhada nos argumentos da função:  
 
@@ -128,7 +128,7 @@ linhas <- c("lin1", "lin2", "lin3")
 array(data = c(vetor1, vetor2), dim = c(3, 3, 2), dimnames = list(linhas, colunas))
 ```
 
-Além disso, sempre que precisar acessar elementos do seu array é só especificar aas dimensões como para mostrar o elemento de um vetor.
+Além disso, sempre que precisar acessar elementos do seu array é só especificar as dimensões como para mostrar o elemento de um vetor.
 
 ```{r}
 a[1,2,2] #(linha, coluna, matriz)
